@@ -1,12 +1,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 ///             Universidade Federal do Rio Grande do Norte                 ///
 ///                 Centro de Ensino Superior do Seridó                     ///
-///               Departamento de Computação e Tecnologia                   ///
 ///                  Disciplina DCT1106 -- Programação                      ///
-///                  Projeto Sistema de Gestão Escolar                      ///
-///             Developed by @flgorgonio -- since Mar, 2020                 ///
-///////////////////////////////////////////////////////////////////////////////
-///                                Semana 2                                 ///
+///             PROJETO SIG DE UMA LOJA PARA ARTIGOS FEMININOS              ///
+///             Developed by @stenioeric -- since Agus, 2023                ///
 ///////////////////////////////////////////////////////////////////////////////
 
 #include <stdio.h>
@@ -46,24 +43,22 @@ void tela_menu_principal(void) {
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///             Universidade Federal do Rio Grande do Norte                 ///\n");
-    printf("///                 Centro de Ensino Superior do Seridó                     ///\n");
-    printf("///               Departamento de Computação e Tecnologia                   ///\n");
-    printf("///                  Disciplina DCT1106 -- Programação                      ///\n");
-    printf("///                  Projeto Sistema de Gestão Escolar                      ///\n");
-    printf("///             Developed by @flgorgonio -- since Mar, 2020                 ///\n");
-    printf("///                                                                         ///\n");
+    printf("               EEEEEEE lll                                                       ");
+    printf("               EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee           ");
+    printf("               EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e          ");
+    printf("               EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee           ");
+    printf("               EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee          ");
+    printf("                                    ggggg                                        ");                                                                   
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("///            = = = = = Sistema de Gestão Escolar = = = = =                ///\n");
+    printf("///            = = = = = LOJA DE ARTIGOS FEMININOS = = = = =                ///\n");
     printf("///                                                                         ///\n");
-    printf("///            1. Módulo Aluno                                              ///\n");
-    printf("///            2. Módulo Professor                                          ///\n");
-    printf("///            3. Módulo Turma                                              ///\n");
-    printf("///            4. Módulo Matrícula                                          ///\n");
-    printf("///            5. Módulo Relatórios                                         ///\n");
-    printf("///            0. Sair                                                      ///\n");
+    printf("///            1. MENU CLIENTES                                             ///\n");
+    printf("///            2. MENU VENDAS                                               ///\n");
+    printf("///            3. MENU PRODUTO                                              ///\n");
+    printf("///            4. MENU FUNCIONARIOS                                         ///\n");
+    printf("///            5. MENU GERENCIA                                             ///\n");
+    printf("///            0. SAIR                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///            Escolha a opção desejada: ");
     scanf("%c", &op);
@@ -286,3 +281,5 @@ void tela_excluir_aluno(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+
+
