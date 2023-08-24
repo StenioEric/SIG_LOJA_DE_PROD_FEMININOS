@@ -1,15 +1,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 ///             Universidade Federal do Rio Grande do Norte                 ///
 ///                 Centro de Ensino Superior do Seridó                     ///
-///                  Disciplina DCT1106 -- Programação                      ///
+///                 Disciplina DCT1106 ---- Programação                     ///
 ///             PROJETO SIG DE UMA LOJA PARA ARTIGOS FEMININOS              ///
-///             Developed by @stenioeric -- since Agus, 2023                ///
+///             Developed by @stenioeric -- since August, 2023              ///
 ///////////////////////////////////////////////////////////////////////////////
 
 #include <stdio.h>
 #include <stdlib.h>
 
-
+////
 // Assinatura das funções
 void menu_principal(void);
 void menu_sobre(void);
@@ -20,7 +20,7 @@ void tela_pesquisar_aluno(void);
 void tela_alterar_aluno(void);
 void tela_excluir_aluno(void);
 
-/////
+////
 // Programa principal
 int main(void) {
     tela_menu_principal();
@@ -48,7 +48,7 @@ void tela_menu_principal(void) {
     printf("             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e            ");
     printf("             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee             ");
     printf("             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee            ");
-    printf("                                    ggggg                                        ");
+    printf("                                  ggggg                                          ");
     printf("                                                                                 ");
     printf("                            LOJA DE ARTIGOS FEMININOS                            ");
     printf("                                                                                 ");                                                                       
@@ -84,7 +84,7 @@ void tela_sobre(void) {
     printf("             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e            ");
     printf("             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee             ");
     printf("             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee            ");
-    printf("                                    ggggg                                        ");
+    printf("                                  ggggg                                          ");
     printf("                                                                                 ");
     printf("                            LOJA DE ARTIGOS FEMININOS                            ");
     printf("                                                                                 ");                                                                       
@@ -115,7 +115,7 @@ void tela_equipe(void) {
     printf("              EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e           ");
     printf("              EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee            ");
     printf("              EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee           ");
-    printf("                                    ggggg                                        ");  
+    printf("                                   ggggg                                         ");  
     printf("                                                                                 ");
     printf("                            LOJA DE ARTIGOS FEMININOS                            ");
     printf("                                                                                 ");                                                                 
@@ -123,7 +123,7 @@ void tela_equipe(void) {
     printf("///                                                                         ///\n");
     printf("///     ------------ IFORMAÇÕES SOBRE O DESENVOLVEDOR ------------          ///\n");   
     printf("///                                                                         ///\n");
-    printf("/      Discente: Stênio Éric                                                ///\n");
+    printf("///    Discente: Stênio Éric                                                ///\n");
     printf("///    E-mail: stenioeric@gmail.com                                         ///\n");
     printf("///    Redes sociais: @stenioeric                                           ///\n");
     printf("///    Git:https://github.com/StenioEric/SIG_LOJA_DE_PROD_FEMININOS.git     ///\n");
@@ -145,7 +145,7 @@ void tela_menu_aluno(void) {
     printf("              EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e           ");
     printf("              EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee            ");
     printf("              EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee           ");
-    printf("                                    ggggg                                        ");
+    printf("                                   ggggg                                         ");
     printf("                                                                                 ");
     printf("                            LOJA DE ARTIGOS FEMININOS                            ");
     printf("                                                                                 ");                                                               
@@ -180,7 +180,7 @@ void tela_cadastrar_aluno(void) {
     printf("             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e            ");
     printf("             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee             ");
     printf("             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee            ");
-    printf("                                    ggggg                                        "); 
+    printf("                                  ggggg                                          "); 
     printf("                                                                                 ");
     printf("                            LOJA DE ARTIGOS FEMININOS                            ");
     printf("                                                                                 ");
@@ -193,7 +193,7 @@ void tela_cadastrar_aluno(void) {
     printf("///            Nome do  Completo do Cliente:                                ///\n");
     printf("///            E-mail:                                                      ///\n");
     printf("///            Data de Nascimento (dd/mm/aaaa):                             ///\n");
-    printf("///            Celular (apenas números):                                   ///\n");
+    printf("///            Celular (apenas números):                                    ///\n");
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -212,7 +212,7 @@ void tela_pesquisar_aluno(void) {
     printf("             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e            ");
     printf("             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee             ");
     printf("             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee            ");
-    printf("                                    ggggg                                        "); 
+    printf("                                  ggggg                                          "); 
     printf("                                                                                 ");
     printf("                            LOJA DE ARTIGOS FEMININOS                            ");
     printf("                                                                                 ");
@@ -241,7 +241,7 @@ void tela_alterar_aluno(void) {
     printf("             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e            ");
     printf("             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee             ");
     printf("             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee            ");
-    printf("                                    ggggg                                        "); 
+    printf("                                  ggggg                                          "); 
     printf("                                                                                 ");
     printf("                            LOJA DE ARTIGOS FEMININOS                            ");
     printf("                                                                                 ");
@@ -270,7 +270,7 @@ void tela_excluir_aluno(void) {
     printf("             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e            ");
     printf("             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee             ");
     printf("             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee            ");
-    printf("                                    ggggg                                        "); 
+    printf("                                  ggggg                                          "); 
     printf("                                                                                 ");
     printf("                            LOJA DE ARTIGOS FEMININOS                            ");
     printf("                                                                                 ");
