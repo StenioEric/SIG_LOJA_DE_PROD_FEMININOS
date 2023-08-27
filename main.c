@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 ///             Universidade Federal do Rio Grande do Norte                 ///
 ///                 Centro de Ensino Superior do Seridó                     ///
-///                 Disciplina DCT1106 ---- Programação                     ///
 ///             PROJETO SIG DE UMA LOJA PARA ARTIGOS FEMININOS              ///
 ///             Developed by @stenioeric -- since August, 2023              ///
 ///////////////////////////////////////////////////////////////////////////////
@@ -13,7 +12,7 @@
 // Assinatura das funções
 void tela_menu_principal(void);
 void tela_sobre_projeto(void);
-void tela_developed(void);
+void tela_info_desenvolvedor(void);
 void tela_menu_cliente(void);
 void tela_cadastro_cliente(void);
 void tela_pesquisar_cliente(void);
@@ -25,7 +24,7 @@ void tela_excluir_cliente(void);
 int main(void) {
     tela_menu_principal();
     tela_sobre_projeto();
-    tela_developed();
+    tela_info_desenvolvedor();
     tela_menu_cliente();
     tela_cadastro_cliente();
     tela_pesquisar_cliente();
@@ -65,7 +64,7 @@ void tela_menu_principal(void) {
     printf("///            6. INFORMAÇÕES DO PROJETO                                    ///\n");
     printf("///            0. SAIR                                                      ///\n");
     printf("///                                                                         ///\n");
-    printf("///            Escolha a opção desejada: ");
+    printf("///            ESCOLHA A OPÇÃO DESEJADA: ");
     scanf("%c", &op);
     getchar();
     printf("///                                                                         ///\n");
@@ -86,7 +85,7 @@ void tela_sobre(void) {
     printf("             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e            ");
     printf("             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee             ");
     printf("             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee            ");
-    printf("                                  ggggg                                          ");
+    printf("                                   ggggg                                          ");
     printf("                                                                                 ");
     printf("                         LOJA DE ARTIGOS FEMININOS                               ");
     printf("                                                                                 ");                                                                       
@@ -108,7 +107,7 @@ void tela_sobre(void) {
 }
 
 
-void tela_developed(void) {
+void tela_info_desenvolvedor(void) {
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -124,10 +123,11 @@ void tela_developed(void) {
     printf("                                                                                 ");                                                                 
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("///     ------------ IFORMAÇÕES SOBRE O DESENVOLVEDOR ------------          ///\n");   
+    printf("///      ------------ INFORMAÇÕES SOBRE O DESENVOLVEDOR ------------        ///\n");   
     printf("///                                                                         ///\n");
     printf("///    Discente: Stênio Éric                                                ///\n");
     printf("///    E-mail: stenioeric@gmail.com                                         ///\n");
+    printf("///    Telefone: (84) 981295674                                             ///\n");
     printf("///    Redes sociais: @stenioeric                                           ///\n");
     printf("///    Git:https://github.com/StenioEric/SIG_LOJA_DE_PROD_FEMININOS.git     ///\n");
     printf("///                                                                         ///\n");
@@ -200,6 +200,7 @@ void tela_cadastro_cliente(void) {
     printf("///            E-mail:                                                      ///\n");
     printf("///            Data de Nascimento (dd/mm/aaaa):                             ///\n");
     printf("///            Celular (apenas números):                                    ///\n");
+    printf("///            Endereço:                                                    ///\n");
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -297,5 +298,3 @@ void tela_excluir_cliente(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
-
-
