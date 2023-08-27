@@ -9,6 +9,7 @@
 #include <stdlib.h>
 
 
+
 ////
 // Assinatura das funções
 void tela_menu_principal(void);
@@ -20,8 +21,10 @@ void tela_pesquisar_cliente(void);
 void tela_alterar_cliente(void);
 void tela_excluir_cliente(void);
 
+
 ////
 // Programa principal
+
 int main(void) {
     tela_menu_principal();
     tela_sobre_projeto();
@@ -42,18 +45,18 @@ void tela_menu_principal(void) {
     char op;
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("                                                                                 ");
-    printf("             EEEEEEE lll                                                         ");
-    printf("             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee             ");
-    printf("             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e            ");
-    printf("             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee             ");
-    printf("             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee            ");
-    printf("                                  ggggg                                          ");
-    printf("                                                                                 ");
-    printf("                         LOJA DE ARTIGOS FEMININOS                               ");
-    printf("                                                                                 ");                                                                       
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n                                                                               ");
+    printf("\n             EEEEEEE lll                                                       ");
+    printf("\n             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee           ");
+    printf("\n             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e          ");
+    printf("\n             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee           ");
+    printf("\n             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee          ");
+    printf("\n                                  ggggg                                        ");
+    printf("\n                                                                               ");
+    printf("\n                         LOJA DE ARTIGOS FEMININOS                             ");
+    printf("\n                                                                               ");                                                                       
+    printf("\n///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///           ------------ SISTEMA DE GERENCIAMENTO ------------            ///\n");
     printf("///                                                                         ///\n");
@@ -79,18 +82,18 @@ void tela_menu_principal(void) {
 void tela_sobre_projeto(void) {
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("                                                                                 ");
-    printf("             EEEEEEE lll                                                         ");
-    printf("             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee             ");
-    printf("             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e            ");
-    printf("             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee             ");
-    printf("             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee            ");
-    printf("                                   ggggg                                          ");
-    printf("                                                                                 ");
-    printf("                         LOJA DE ARTIGOS FEMININOS                               ");
-    printf("                                                                                 ");                                                                       
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n                                                                               ");
+    printf("\n             EEEEEEE lll                                                       ");
+    printf("\n             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee           ");
+    printf("\n             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e          ");
+    printf("\n             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee           ");
+    printf("\n             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee          ");
+    printf("\n                                  ggggg                                        ");
+    printf("\n                                                                               ");
+    printf("\n                         LOJA DE ARTIGOS FEMININOS                             ");
+    printf("\n                                                                               ");                                                                       
+    printf("\n///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                  ------------ PROJETO ------------                      ///\n");
     printf("///                                                                         ///\n");
@@ -111,18 +114,18 @@ void tela_sobre_projeto(void) {
 void tela_info_desenvolvedor(void) {
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("                                                                                 ");
-    printf("             EEEEEEE lll                                                         ");
-    printf("             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee             ");
-    printf("             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e            ");
-    printf("             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee             ");
-    printf("             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee            ");
-    printf("                                  ggggg                                          ");  
-    printf("                                                                                 ");
-    printf("                         LOJA DE ARTIGOS FEMININOS                               ");
-    printf("                                                                                 ");                                                                 
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n                                                                               ");
+    printf("\n             EEEEEEE lll                                                       ");
+    printf("\n             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee           ");
+    printf("\n             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e          ");
+    printf("\n             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee           ");
+    printf("\n             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee          ");
+    printf("\n                                  ggggg                                        ");
+    printf("\n                                                                               ");
+    printf("\n                         LOJA DE ARTIGOS FEMININOS                             ");
+    printf("\n                                                                               ");                                                                       
+    printf("\n///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///      ------------ INFORMAÇÕES SOBRE O DESENVOLVEDOR ------------        ///\n");   
     printf("///                                                                         ///\n");
@@ -143,18 +146,18 @@ void tela_menu_cliente(void) {
     char op;
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("                                                                                 ");
-    printf("             EEEEEEE lll                                                         ");
-    printf("             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee             ");
-    printf("             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e            ");
-    printf("             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee             ");
-    printf("             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee            ");
-    printf("                                  ggggg                                          ");
-    printf("                                                                                 ");
-    printf("                         LOJA DE ARTIGOS FEMININOS                               ");
-    printf("                                                                                 ");                                                               
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n                                                                               ");
+    printf("\n             EEEEEEE lll                                                       ");
+    printf("\n             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee           ");
+    printf("\n             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e          ");
+    printf("\n             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee           ");
+    printf("\n             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee          ");
+    printf("\n                                  ggggg                                        ");
+    printf("\n                                                                               ");
+    printf("\n                         LOJA DE ARTIGOS FEMININOS                             ");
+    printf("\n                                                                               ");                                                                       
+    printf("\n///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///             ------------  MENU CLIENTES ------------                    ///\n");
     printf("///                                                                         ///\n");
@@ -179,18 +182,18 @@ void tela_menu_cliente(void) {
 void tela_cadastro_cliente(void) {
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("                                                                                 ");
-    printf("             EEEEEEE lll                                                         ");
-    printf("             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee             ");
-    printf("             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e            ");
-    printf("             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee             ");
-    printf("             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee            ");
-    printf("                                  ggggg                                          "); 
-    printf("                                                                                 ");
-    printf("                         LOJA DE ARTIGOS FEMININOS                               ");
-    printf("                                                                                 ");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n                                                                               ");
+    printf("\n             EEEEEEE lll                                                       ");
+    printf("\n             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee           ");
+    printf("\n             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e          ");
+    printf("\n             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee           ");
+    printf("\n             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee          ");
+    printf("\n                                  ggggg                                        ");
+    printf("\n                                                                               ");
+    printf("\n                         LOJA DE ARTIGOS FEMININOS                             ");
+    printf("\n                                                                               ");                                                                       
+    printf("\n///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                         CADASTRO CLIENTE                                ///\n");
@@ -214,18 +217,18 @@ void tela_cadastro_cliente(void) {
 void tela_pesquisar_cliente(void) {
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("                                                                                 ");
-    printf("             EEEEEEE lll                                                         ");
-    printf("             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee             ");
-    printf("             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e            ");
-    printf("             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee             ");
-    printf("             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee            ");
-    printf("                                  ggggg                                          "); 
-    printf("                                                                                 ");
-    printf("                         LOJA DE ARTIGOS FEMININOS                               ");
-    printf("                                                                                 ");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n                                                                               ");
+    printf("\n             EEEEEEE lll                                                       ");
+    printf("\n             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee           ");
+    printf("\n             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e          ");
+    printf("\n             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee           ");
+    printf("\n             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee          ");
+    printf("\n                                  ggggg                                        ");
+    printf("\n                                                                               ");
+    printf("\n                         LOJA DE ARTIGOS FEMININOS                             ");
+    printf("\n                                                                               ");                                                                       
+    printf("\n///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                        PESQUISAR CLIENTE                                ///\n");
@@ -244,18 +247,18 @@ void tela_pesquisar_cliente(void) {
 void tela_alterar_cliente(void) {
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("                                                                                 ");
-    printf("             EEEEEEE lll                                                         ");
-    printf("             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee             ");
-    printf("             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e            ");
-    printf("             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee             ");
-    printf("             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee            ");
-    printf("                                  ggggg                                          "); 
-    printf("                                                                                 ");
-    printf("                         LOJA DE ARTIGOS FEMININOS                               ");
-    printf("                                                                                 ");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n                                                                               ");
+    printf("\n             EEEEEEE lll                                                       ");
+    printf("\n             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee           ");
+    printf("\n             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e          ");
+    printf("\n             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee           ");
+    printf("\n             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee          ");
+    printf("\n                                  ggggg                                        ");
+    printf("\n                                                                               ");
+    printf("\n                         LOJA DE ARTIGOS FEMININOS                             ");
+    printf("\n                                                                               ");                                                                       
+    printf("\n///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                         ALTERAR CLIENTE                                 ///\n");
@@ -274,18 +277,18 @@ void tela_alterar_cliente(void) {
 void tela_excluir_cliente(void) {
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("                                                                                 ");
-    printf("             EEEEEEE lll                                                         ");
-    printf("             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee             ");
-    printf("             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e            ");
-    printf("             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee             ");
-    printf("             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee            ");
-    printf("                                  ggggg                                          "); 
-    printf("                                                                                 ");
-    printf("                         LOJA DE ARTIGOS FEMININOS                               ");
-    printf("                                                                                 ");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n                                                                               ");
+    printf("\n             EEEEEEE lll                                                       ");
+    printf("\n             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee           ");
+    printf("\n             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e          ");
+    printf("\n             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee           ");
+    printf("\n             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee          ");
+    printf("\n                                  ggggg                                        ");
+    printf("\n                                                                               ");
+    printf("\n                         LOJA DE ARTIGOS FEMININOS                             ");
+    printf("\n                                                                               ");                                                                       
+    printf("\n///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                         EXCLUIR CLIENTE                                 ///\n");
