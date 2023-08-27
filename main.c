@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 ////
 // Assinatura das funções
 void tela_menu_principal(void);
@@ -75,7 +76,7 @@ void tela_menu_principal(void) {
 }
 
 
-void tela_sobre(void) {
+void tela_sobre_projeto(void) {
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
