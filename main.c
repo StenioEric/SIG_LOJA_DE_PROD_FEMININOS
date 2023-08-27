@@ -7,8 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
-
+#include <locale.h>
 
 ////
 // Assinatura das funÃ§Ãµes
@@ -26,6 +25,7 @@ void tela_excluir_cliente(void);
 // Programa principal
 
 int main(void) {
+    setlocale(LC_ALL, "Portuguese");
     tela_menu_principal();
     tela_sobre_projeto();
     tela_info_desenvolvedor();
@@ -65,10 +65,10 @@ void tela_menu_principal(void) {
     printf("///            3. MENU PRODUTO                                              ///\n");
     printf("///            4. MENU FUNCIONARIOS                                         ///\n");
     printf("///            5. MENU GERENCIA                                             ///\n");
-    printf("///            6. INFORMAÃ‡Ã•ES DO PROJETO                                    ///\n");
+    printf("///            6. INFORMAÇÕES DO PROJETO                                    ///\n");
     printf("///            0. SAIR                                                      ///\n");
     printf("///                                                                         ///\n");
-    printf("///            ESCOLHA A OPÃ‡ÃƒO DESEJADA: ");
+    printf("///            ESCOLHA A OPCÃO DESEJADA: ");
     scanf("%c", &op);
     getchar();
     printf("///                                                                         ///\n");
@@ -127,9 +127,9 @@ void tela_info_desenvolvedor(void) {
     printf("\n                                                                               ");                                                                       
     printf("\n///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("///      ------------ INFORMAÃ‡Ã•ES SOBRE O DESENVOLVEDOR ------------        ///\n");   
+    printf("///      ------------ INFORMAÇÕES SOBRE O DESENVOLVEDOR ------------        ///\n");   
     printf("///                                                                         ///\n");
-    printf("///    Discente: StÃªnio Ã‰ric                                                ///\n");
+    printf("///    Discente: Stênio Ér ic                                               ///\n");
     printf("///    E-mail: stenioeric@gmail.com                                         ///\n");
     printf("///    Telefone: (84) 981295674                                             ///\n");
     printf("///    Redes sociais: @stenioeric                                           ///\n");
@@ -167,7 +167,7 @@ void tela_menu_cliente(void) {
     printf("///            4. EXCLUIR DADOS DO CLIENTE                                  ///\n");
     printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
     printf("///                                                                         ///\n");
-    printf("///            ESCOLHA A OPÃ‡ÃƒO DESEJADA: ");
+    printf("///            ESCOLHA A OPCÃO DESEJADA: ");
     scanf("%c", &op);
     getchar();
     printf("///                                                                         ///\n");
@@ -203,8 +203,8 @@ void tela_cadastro_cliente(void) {
     printf("///            CPF:                                                         ///\n");
     printf("///            E-mail:                                                      ///\n");
     printf("///            Data de Nascimento (dd/mm/aaaa):                             ///\n");
-    printf("///            Celular (apenas nÃºmeros):                                    ///\n");
-    printf("///            EndereÃ§o:                                                    ///\n");
+    printf("///            Celular (apenas números):                                    ///\n");
+    printf("///            Endereço:                                                    ///\n");
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
