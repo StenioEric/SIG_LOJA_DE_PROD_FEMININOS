@@ -10,7 +10,7 @@
 #include <locale.h>
 
 ////
-// Assinatura das funÃ§Ãµes
+// Assinatura das funções
 void tela_menu_principal(void);
 void tela_sobre_projeto(void);
 void tela_info_desenvolvedor(void);
@@ -34,12 +34,12 @@ int main(void) {
     tela_pesquisar_cliente();
     tela_alterar_cliente();
     tela_excluir_cliente();
-    return 0;
+
 }
 
 
 /////
-// FunÃ§Ãµes
+// Funções
 
 void tela_menu_principal(void) {
     char op;
