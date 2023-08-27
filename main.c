@@ -97,12 +97,12 @@ void tela_sobre_projeto(void) {
     printf("///                                                                         ///\n");
     printf("///                  ------------ PROJETO ------------                      ///\n");
     printf("///                                                                         ///\n");
-    printf("///  Programa em linguagem C desenvolvido com fins did√°ticos na UFRN Campus ///\n");
+    printf("///  Programa em linguagem C desenvolvido com fins did·ticos na UFRN Campus ///\n");
     printf("///  Ceres simula uma loja de artigos femininos, permitindo aos estudantes  ///\n");
-    printf("///  aplicar conceitos aprendidos em sala de aula de forma pr√°tica. Atrav√©s ///\n");
-    printf("///  da manipula√ß√£o de estruturas de dados, os alunos gerenciam informa√ß√µes ///\n");
-    printf("///  sobre produto,pre√ßos e categorias,aprimorando habilidades de resolu√ß√£o ///\n");
-    printf("///  de problemas e l√≥gica de programa√ß√£o.                                  ///\n");
+    printf("///  aplicar conceitos aprendidos em sala de aula de forma pr·tica. AtravÈs ///\n");
+    printf("///  da manipulaÁ„o de estruturas de dados, os alunos gerenciam informaÁıes ///\n");
+    printf("///  sobre produto,preÁos e categorias,aprimorando habilidades de resoluÁ„o ///\n");
+    printf("///  de problemas e lÛgica de programaÁ„o.                                  ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
