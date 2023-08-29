@@ -25,16 +25,55 @@ void tela_excluir_cliente(void);
 // Programa principal
 int main(void) {
     setlocale(LC_ALL, "Portuguese_Brazil");
-    tela_menu_principal();
-    tela_sobre_projeto();
-    tela_info_desenvolvedor();
-    tela_menu_cliente();
-    tela_cadastro_cliente();
-    tela_pesquisar_cliente();
-    tela_alterar_cliente();
-    tela_excluir_cliente();
-    return 0;
+    char op;
+    do {
+        tela_menu_principal();
+        scanf(" %c", &op); 
+        getchar();
 
+        switch (op) {
+            case '1':   
+                tela_menu_cliente();
+                scanf("%c", &op);
+                getchar();
+
+                switch (op) {
+                    case '1':
+                        system("clear||cls");
+                        tela_cadastro_cliente();
+                        break;
+                    case '2':
+                        system("clear||cls");
+                        tela_pesquisar_cliente();
+                        break;
+                    case '3':
+                        system("clear||cls");
+                        tela_alterar_cliente();
+                        break;
+                    case '4':
+                        system("clear||cls");
+                        tela_excluir_cliente();
+                        break;
+                    case '0':
+                        system("clear||cls");
+                        tela_menu_principal();
+                        break;
+                    default:
+                        printf("Opção inválida!\n");
+                        break;
+                }
+                break;
+            case '0':
+                printf("Saindo do programa.\n");
+                break;
+
+            default:
+                printf("Opção inválida!\n");
+                break;
+         }
+    } while (op != '0');
+    
+    return 0;
 }
 
 /////
@@ -67,7 +106,7 @@ void tela_menu_principal(void) {
     printf("///            6. INFORMAÇÕES DO PROJETO                                    ///\n");
     printf("///            0. SAIR                                                      ///\n");
     printf("///                                                                         ///\n");
-    printf("///            ESCOLHA A OP??O DESEJADA: ");
+    printf("///            ESCOLHA A OPÇÃO DESEJADA: ");
     scanf("%c", &op);
     getchar();
     printf("///                                                                         ///\n");
@@ -96,12 +135,12 @@ void tela_sobre_projeto(void) {
     printf("///                                                                         ///\n");
     printf("///                  ------------ PROJETO ------------                      ///\n");
     printf("///                                                                         ///\n");
-    printf("///  Programa em linguagem C desenvolvido com fins did?ticos na UFRN Campus ///\n");
+    printf("///  Programa em linguagem C desenvolvido com fins didáticos na UFRN Campus ///\n");
     printf("///  Ceres simula uma loja de artigos femininos, permitindo aos estudantes  ///\n");
-    printf("///  aplicar conceitos aprendidos em sala de aula de forma pr?tica. Atrav?s ///\n");
-    printf("///  da manipula??o de estruturas de dados, os alunos gerenciam informa??es ///\n");
-    printf("///  sobre produto,pre?os e categorias,aprimorando habilidades de resolu??o ///\n");
-    printf("///  de problemas e l?gica de programa??o.                                  ///\n");
+    printf("///  aplicar conceitos aprendidos em sala de aula de forma pratica. Atraves ///\n");
+    printf("///  da manipulações de estruturas de dados, os alunos gerenciam informações///\n");
+    printf("///  sobre produto,preços e categorias,aprimorando habilidades de resolução ///\n");
+    printf("///  de problemas e logica de programação.                                  ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
@@ -128,7 +167,7 @@ void tela_info_desenvolvedor(void) {
     printf("///                                                                         ///\n");
     printf("///      ------------ INFORMA??ES SOBRE O DESENVOLVEDOR ------------        ///\n");   
     printf("///                                                                         ///\n");
-    printf("///    Discente: St?nio ?ric                                                ///\n");
+    printf("///    Discente: Stênio Éric                                                ///\n");
     printf("///    E-mail: stenioeric@gmail.com                                         ///\n");
     printf("///    Telefone: (84) 981295674                                             ///\n");
     printf("///    Redes sociais: @stenioeric                                           ///\n");
@@ -166,7 +205,7 @@ void tela_menu_cliente(void) {
     printf("///            4. EXCLUIR DADOS DO CLIENTE                                  ///\n");
     printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
     printf("///                                                                         ///\n");
-    printf("///            ESCOLHA A OP??O DESEJADA: ");
+    printf("///            ESCOLHA A OPÇÃO DESEJADA: ");
     scanf("%c", &op);
     getchar();
     printf("///                                                                         ///\n");
@@ -202,8 +241,8 @@ void tela_cadastro_cliente(void) {
     printf("///            CPF:                                                         ///\n");
     printf("///            E-mail:                                                      ///\n");
     printf("///            Data de Nascimento (dd/mm/aaaa):                             ///\n");
-    printf("///            Celular (apenas n?meros):                                    ///\n");
-    printf("///            Endere?o:                                                    ///\n");
+    printf("///            Celular (apenas números):                                    ///\n");
+    printf("///            Endereço:                                                    ///\n");
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
