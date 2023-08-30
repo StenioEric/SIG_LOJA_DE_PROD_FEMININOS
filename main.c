@@ -19,68 +19,29 @@ void tela_cadastro_cliente(void);
 void tela_pesquisar_cliente(void);
 void tela_alterar_cliente(void);
 void tela_excluir_cliente(void);
-
+void tela_menu_vendas(void);
 
 ////
 // Programa principal
 int main(void) {
     setlocale(LC_ALL, "Portuguese_Brazil");
-    char op;
-    do {
-        tela_menu_principal();
-        scanf(" %c", &op); 
-        getchar();
-
-        switch (op) {
-            case '1':   
-                tela_menu_cliente();
-                scanf("%c", &op);
-                getchar();
-
-                switch (op) {
-                    case '1':
-                        system("clear||cls");
-                        tela_cadastro_cliente();
-                        break;
-                    case '2':
-                        system("clear||cls");
-                        tela_pesquisar_cliente();
-                        break;
-                    case '3':
-                        system("clear||cls");
-                        tela_alterar_cliente();
-                        break;
-                    case '4':
-                        system("clear||cls");
-                        tela_excluir_cliente();
-                        break;
-                    case '0':
-                        system("clear||cls");
-                        tela_menu_principal();
-                        break;
-                    default:
-                        printf("Opção inválida!\n");
-                        break;
-                }
-                break;
-            case '0':
-                printf("Saindo do programa.\n");
-                break;
-
-            default:
-                printf("Opção inválida!\n");
-                break;
-         }
-    } while (op != '0');
-    
+    tela_menu_principal();
+    tela_sobre_projeto();
+    tela_info_desenvolvedor();
+    tela_menu_cliente();
+    tela_cadastro_cliente();
+    tela_pesquisar_cliente();
+    tela_alterar_cliente();
+    tela_excluir_cliente();
+    tela_menu_vendas();   
     return 0;
 }
-
+    
 /////
 // Fun??es
 
 void tela_menu_principal(void) {
-    char op;
+    int op;
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -93,7 +54,7 @@ void tela_menu_principal(void) {
     printf("///                             ggggg                                       ///\n");
     printf("///                                                                         ///\n");
     printf("///                         LOJA DE ARTIGOS FEMININOS                       ///\n");
-    printf("///                                                                         ///\n");                                                                    
+    printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///           ------------ SISTEMA DE GERENCIAMENTO ------------            ///\n");
@@ -107,15 +68,14 @@ void tela_menu_principal(void) {
     printf("///            0. SAIR                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///            ESCOLHA A OPÇÃO DESEJADA: ");
-    scanf("%c", &op);
+    scanf("%d", &op);
     getchar();
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-}
 
+}
 
 void tela_sobre_projeto(void) {
     system("clear||cls");
@@ -130,7 +90,7 @@ void tela_sobre_projeto(void) {
     printf("///                             ggggg                                       ///\n");
     printf("///                                                                         ///\n");
     printf("///                         LOJA DE ARTIGOS FEMININOS                       ///\n");
-    printf("///                                                                         ///\n");                                                                    
+    printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                  ------------ PROJETO ------------                      ///\n");
@@ -146,8 +106,8 @@ void tela_sobre_projeto(void) {
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
-}
 
+}
 
 void tela_info_desenvolvedor(void) {
     system("clear||cls");
@@ -162,10 +122,10 @@ void tela_info_desenvolvedor(void) {
     printf("///                             ggggg                                       ///\n");
     printf("///                                                                         ///\n");
     printf("///                         LOJA DE ARTIGOS FEMININOS                       ///\n");
-    printf("///                                                                         ///\n");                                                                    
+    printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("///      ------------ INFORMA??ES SOBRE O DESENVOLVEDOR ------------        ///\n");   
+    printf("///      ------------ INFORMA??ES SOBRE O DESENVOLVEDOR ------------        ///\n");
     printf("///                                                                         ///\n");
     printf("///    Discente: Stênio Éric                                                ///\n");
     printf("///    E-mail: stenioeric@gmail.com                                         ///\n");
@@ -177,11 +137,10 @@ void tela_info_desenvolvedor(void) {
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
-} 
-
+}
 
 void tela_menu_cliente(void) {
-    char op;
+    int op;
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -194,8 +153,8 @@ void tela_menu_cliente(void) {
     printf("///                             ggggg                                       ///\n");
     printf("///                                                                         ///\n");
     printf("///                         LOJA DE ARTIGOS FEMININOS                       ///\n");
-    printf("///                                                                         ///\n");                                                                    
-    printf("///////////////////////////////////////////////////////////////////////////////\n");                                                      
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///             ------------  MENU CLIENTES ------------                    ///\n");
     printf("///                                                                         ///\n");
@@ -206,7 +165,7 @@ void tela_menu_cliente(void) {
     printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
     printf("///                                                                         ///\n");
     printf("///            ESCOLHA A OPÇÃO DESEJADA: ");
-    scanf("%c", &op);
+    scanf("%d", &op);
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
@@ -215,7 +174,6 @@ void tela_menu_cliente(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
-
 
 void tela_cadastro_cliente(void) {
     system("clear||cls");
@@ -230,12 +188,12 @@ void tela_cadastro_cliente(void) {
     printf("///                             ggggg                                       ///\n");
     printf("///                                                                         ///\n");
     printf("///                         LOJA DE ARTIGOS FEMININOS                       ///\n");
-    printf("///                                                                         ///\n");                                                                    
+    printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                         CADASTRO CLIENTE                                ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");   
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
     printf("///            Nome Completo do Cliente:                                    ///\n");
     printf("///            CPF:                                                         ///\n");
@@ -251,7 +209,6 @@ void tela_cadastro_cliente(void) {
     getchar();
 }
 
-
 void tela_pesquisar_cliente(void) {
     system("clear||cls");
     printf("\n");
@@ -265,7 +222,7 @@ void tela_pesquisar_cliente(void) {
     printf("///                             ggggg                                       ///\n");
     printf("///                                                                         ///\n");
     printf("///                         LOJA DE ARTIGOS FEMININOS                       ///\n");
-    printf("///                                                                         ///\n");                                                                    
+    printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
@@ -281,7 +238,6 @@ void tela_pesquisar_cliente(void) {
     getchar();
 }
 
-
 void tela_alterar_cliente(void) {
     system("clear||cls");
     printf("\n");
@@ -295,7 +251,7 @@ void tela_alterar_cliente(void) {
     printf("///                             ggggg                                       ///\n");
     printf("///                                                                         ///\n");
     printf("///                         LOJA DE ARTIGOS FEMININOS                       ///\n");
-    printf("///                                                                         ///\n");                                                                    
+    printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
@@ -311,7 +267,6 @@ void tela_alterar_cliente(void) {
     getchar();
 }
 
-
 void tela_excluir_cliente(void) {
     system("clear||cls");
     printf("\n");
@@ -325,7 +280,7 @@ void tela_excluir_cliente(void) {
     printf("///                             ggggg                                       ///\n");
     printf("///                                                                         ///\n");
     printf("///                         LOJA DE ARTIGOS FEMININOS                       ///\n");
-    printf("///                                                                         ///\n");                                                                    
+    printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
@@ -333,6 +288,43 @@ void tela_excluir_cliente(void) {
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
     printf("///              CPF DO CLIENTE:                                            ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+void tela_menu_vendas(void) {
+    int op;
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                         LOJA DE ARTIGOS FEMININOS                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///             ------------  MENU VENDAS ------------                      ///\n");
+    printf("///                                                                         ///\n");
+    printf("///            1. VER CATÁLOGO                                              ///\n");
+    printf("///            2. ADICIONAR CARRINHO AO PRODUTO                             ///\n");
+    printf("///            3. VER CARRINHO                                              ///\n");
+    printf("///            4. EXCLUIR PRODUTO                                           ///\n");
+    printf("///            5. FINALIZAR COMPRA                                          ///\n");
+    printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
+    printf("///                                                                         ///\n");
+    printf("///            ESCOLHA A OPÇÃO DESEJADA: ");
+    scanf("%d", &op);
+    getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
