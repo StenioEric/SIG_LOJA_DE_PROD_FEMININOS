@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 ///             Universidade Federal do Rio Grande do Norte                 ///
-///                 Centro de Ensino Superior do Serid?                     ///
+///                 Centro de Ensino Superior do Serido                     ///
 ///             PROJETO SIG DE UMA LOJA PARA ARTIGOS FEMININOS              ///
 ///             Developed by @stenioeric -- since August, 2023              ///
 ///////////////////////////////////////////////////////////////////////////////
@@ -10,7 +10,7 @@
 #include <locale.h>
 
 ////
-// Assinatura das fun??es
+// Assinatura das funcoes
 void tela_menu_principal(void);
 void tela_sobre_projeto(void);
 void tela_info_desenvolvedor(void);
@@ -64,10 +64,10 @@ void tela_menu_principal(void) {
     printf("///            3. MENU PRODUTO                                              ///\n");
     printf("///            4. MENU FUNCIONARIOS                                         ///\n");
     printf("///            5. MENU GERENCIA                                             ///\n");
-    printf("///            6. INFORMA??ES DO PROJETO                                    ///\n");
+    printf("///            6. INFORMACOES DO PROJETO                                    ///\n");
     printf("///            0. SAIR                                                      ///\n");
     printf("///                                                                         ///\n");
-    printf("///            ESCOLHA A OP??O DESEJADA: ");
+    printf("///            ESCOLHA A OPCAO DESEJADA: ");
     scanf("%d", &op);
     getchar();
     printf("///                                                                         ///\n");
@@ -95,12 +95,12 @@ void tela_sobre_projeto(void) {
     printf("///                                                                         ///\n");
     printf("///                  ------------ PROJETO ------------                      ///\n");
     printf("///                                                                         ///\n");
-    printf("///  Programa em linguagem C desenvolvido com fins did?ticos na UFRN Campus ///\n");
+    printf("///  Programa em linguagem C desenvolvido com fins didaticos na UFRN Campus ///\n");
     printf("///  Ceres simula uma loja de artigos femininos, permitindo aos estudantes  ///\n");
     printf("///  aplicar conceitos aprendidos em sala de aula de forma pratica. Atraves ///\n");
-    printf("///  da manipula??es de estruturas de dados, os alunos gerenciam informa??es///\n");
-    printf("///  sobre produto,pre?os e categorias,aprimorando habilidades de resolu??o ///\n");
-    printf("///  de problemas e logica de programa??o.                                  ///\n");
+    printf("///  da manipulacoes de estruturas de dados, os alunos gerenciam informacoes///\n");
+    printf("///  sobre produto,precos e categorias,aprimorando habilidades de resolucao ///\n");
+    printf("///  de problemas e logica de programacao.                                  ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
@@ -125,9 +125,9 @@ void tela_info_desenvolvedor(void) {
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("///      ------------ INFORMA??ES SOBRE O DESENVOLVEDOR ------------        ///\n");
+    printf("///      ------------ INFORMACOES SOBRE O DESENVOLVEDOR ------------        ///\n");
     printf("///                                                                         ///\n");
-    printf("///    Discente: St?nio ?ric                                                ///\n");
+    printf("///    Discente: Stenio Eric                                                ///\n");
     printf("///    E-mail: stenioeric@gmail.com                                         ///\n");
     printf("///    Telefone: (84) 981295674                                             ///\n");
     printf("///    Redes sociais: @stenioeric                                           ///\n");
@@ -164,7 +164,7 @@ void tela_menu_cliente(void) {
     printf("///            4. EXCLUIR DADOS DO CLIENTE                                  ///\n");
     printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
     printf("///                                                                         ///\n");
-    printf("///            ESCOLHA A OP??O DESEJADA: ");
+    printf("///            ESCOLHA A OPCAO DESEJADA: ");
     scanf("%d", &op);
     getchar();
     printf("///                                                                         ///\n");
@@ -199,8 +199,8 @@ void tela_cadastro_cliente(void) {
     printf("///            CPF:                                                         ///\n");
     printf("///            E-mail:                                                      ///\n");
     printf("///            Data de Nascimento (dd/mm/aaaa):                             ///\n");
-    printf("///            Celular (apenas n?meros):                                    ///\n");
-    printf("///            Endere?o:                                                    ///\n");
+    printf("///            Celular (apenas numeros):                                    ///\n");
+    printf("///            Endereco:                                                    ///\n");
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -315,14 +315,14 @@ void tela_menu_vendas(void) {
     printf("///                                                                         ///\n");
     printf("///             ------------  MENU VENDAS ------------                      ///\n");
     printf("///                                                                         ///\n");
-    printf("///            1. VER CAT?LOGO                                              ///\n");
+    printf("///            1. VER CATALOGO                                              ///\n");
     printf("///            2. ADICIONAR CARRINHO AO PRODUTO                             ///\n");
     printf("///            3. VER CARRINHO                                              ///\n");
     printf("///            4. EXCLUIR PRODUTO                                           ///\n");
     printf("///            5. FINALIZAR COMPRA                                          ///\n");
     printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
     printf("///                                                                         ///\n");
-    printf("///            ESCOLHA A OP??O DESEJADA: ");
+    printf("///            ESCOLHA A OPCAO DESEJADA: ");
     scanf("%d", &op);
     getchar();
     printf("///                                                                         ///\n");
