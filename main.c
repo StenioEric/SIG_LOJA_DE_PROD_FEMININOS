@@ -24,6 +24,7 @@ void tela_catalogo(void);
 void tela_carrinho_produtos(void);
 void tela_excluir_produto(void);
 void tela_finalizar_compra(void);
+int tela_menu_estoque(void);
 
 ////
 // Programa principal
@@ -42,6 +43,7 @@ int main(void)
     tela_carrinho_produtos();
     tela_excluir_produto();
     tela_finalizar_compra();
+    tela_menu_estoque();
 
     return 0;
 }
@@ -74,7 +76,7 @@ int tela_menu_principal(void)
     printf("///                                                                         ///\n");
     printf("///            1. MENU CLIENTES                                             ///\n");
     printf("///            2. MENU VENDAS                                               ///\n");
-    printf("///            3. MENU PRODUTO                                              ///\n");
+    printf("///            3. MENU ESTOQUE                                              ///\n");
     printf("///            4. MENU FUNCIONARIOS                                         ///\n");
     printf("///            5. MENU GERENCIA                                             ///\n");
     printf("///            6. INFORMACOES DO PROJETO                                    ///\n");
@@ -470,4 +472,42 @@ void tela_finalizar_compra(void)
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+}
+
+int tela_menu_estoque(void)
+{
+    int op;
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///             ------------  MENU ESTOQUE ------------                     ///\n");
+    printf("///                                                                         ///\n");
+    printf("///            1. CADASTRAR PRODUTO                                         ///\n");
+    printf("///            2. PESQUISAR DADOS DO PRODUTO                                ///\n");
+    printf("///            3. ATUALIZAR CADASTRO DO PRODUTO                             ///\n");
+    printf("///            4. EXCLUIR DADOS DO PRODUTO                                  ///\n");
+    printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
+    printf("///                                                                         ///\n");
+    printf("///            ESCOLHA A OPCAO DESEJADA: ");
+    scanf("%d", &op);
+    getchar();
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+    return op;
 }
