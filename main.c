@@ -11,15 +11,15 @@
 
 ////
 // Assinatura das funcoes
-void tela_menu_principal(void);
+int tela_menu_principal(void);
 void tela_sobre_projeto(void);
 void tela_info_desenvolvedor(void);
-void tela_menu_cliente(void);
+int tela_menu_cliente(void);
 void tela_cadastro_cliente(void);
 void tela_pesquisar_cliente(void);
 void tela_alterar_cliente(void);
 void tela_excluir_cliente(void);
-void tela_menu_vendas(void);
+int tela_menu_vendas(void);
 void tela_catalogo(void);
 void tela_carrinho_produtos(void);
 void tela_excluir_produto(void);
@@ -29,7 +29,6 @@ void tela_finalizar_compra(void);
 // Programa principal
 int main(void)
 {
-    setlocale(LC_ALL, "Portuguese_Brazil");
     tela_menu_principal();
     tela_sobre_projeto();
     tela_info_desenvolvedor();
@@ -43,13 +42,17 @@ int main(void)
     tela_carrinho_produtos();
     tela_excluir_produto();
     tela_finalizar_compra();
+
     return 0;
 }
 
-/////
-// Fun??es
+        
+      
 
-void tela_menu_principal(void)
+/////
+// Funcoes
+
+int tela_menu_principal(void)
 {
     int op;
     system("clear||cls");
@@ -84,6 +87,7 @@ void tela_menu_principal(void)
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    return op;
 }
 
 void tela_sobre_projeto(void)
@@ -149,7 +153,7 @@ void tela_info_desenvolvedor(void)
     getchar();
 }
 
-void tela_menu_cliente(void)
+int tela_menu_cliente(void)
 {
     int op;
     system("clear||cls");
@@ -184,6 +188,7 @@ void tela_menu_cliente(void)
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return op;
 }
 
 void tela_cadastro_cliente(void)
@@ -311,7 +316,7 @@ void tela_excluir_cliente(void)
     getchar();
 }
 
-void tela_menu_vendas(void)
+int tela_menu_vendas(void)
 {
     int op;
     system("clear||cls");
@@ -347,6 +352,7 @@ void tela_menu_vendas(void)
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return op;
 }
 
 void tela_catalogo(void)
@@ -465,6 +471,3 @@ void tela_finalizar_compra(void)
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
-
-
-
