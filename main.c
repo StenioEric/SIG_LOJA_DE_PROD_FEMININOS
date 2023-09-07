@@ -29,13 +29,11 @@ void tela_cadastro_produto(void);
 void tela_pesquisar_produto(void);
 void tela_alterar_produto(void);
 void tela_remover_produto(void);
-
-
+void tela_menu_funcionarios(void);
 
 ////
 // Programa principal
-int main(void)
-{
+int main(void) {
     tela_menu_principal();
     tela_sobre_projeto();
     tela_info_desenvolvedor();
@@ -54,9 +52,12 @@ int main(void)
     tela_pesquisar_produto();
     tela_alterar_produto();
     tela_remover_produto();
+    tela_menu_funcionarios();
 
     return 0;
+
 }
+
 
 
 /////
@@ -542,7 +543,7 @@ void tela_cadastro_produto(void)
     printf("///            PRODUTO:                                                     ///\n");
     printf("///            QUANTIDADE DE PRODUTOS:                                      ///\n");
     printf("///            VALOR DO PRODUTO:                                            ///\n");
-    printf("///            DESCRICAO DO PRODUTO:                                        ///\n"); 
+    printf("///            DESCRICAO DO PRODUTO:                                        ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
@@ -640,3 +641,40 @@ void tela_remover_produto(void)
     getchar();
 }
 
+void tela_menu_funcionarios(void)
+{
+    int op;
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///             ------------  MENU FUNCIONARIOS ------------                ///\n");
+    printf("///                                                                         ///\n");
+    printf("///            1. CADASTRAR FUNCIONARIOS                                    ///\n");
+    printf("///            2. PESQUISAR DADOS DO FUNCIONARIOS                           ///\n");
+    printf("///            3. ATUALIZAR CADASTRO DO FUNCIONARIOS                        ///\n");
+    printf("///            4. EXCLUIR DADOS DO FUNCIONARIOS                             ///\n");
+    printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
+    printf("///                                                                         ///\n");
+    printf("///            ESCOLHA A OPCAO DESEJADA: ");
+    scanf("%d", &op);
+    getchar();
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+    return op;
+}
