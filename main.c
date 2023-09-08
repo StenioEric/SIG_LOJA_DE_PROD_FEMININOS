@@ -30,6 +30,7 @@ void tela_pesquisar_produto(void);
 void tela_alterar_produto(void);
 void tela_remover_produto(void);
 void tela_menu_funcionarios(void);
+void tela_cadastro_fucnionario(void);
 
 ////
 // Programa principal
@@ -53,6 +54,7 @@ int main(void) {
     tela_alterar_produto();
     tela_remover_produto();
     tela_menu_funcionarios();
+    tela_cadastro_fucnionario();    
 
     return 0;
 
@@ -677,4 +679,36 @@ void tela_menu_funcionarios(void)
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
     return op;
+}
+
+void tela_cadastro_fucnionario(void)
+{
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///             ------------ CADASTRO DE FUNCIONARIOS ------------          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///            NOME COMPLETO:                                               ///\n");
+    printf("///            CARGO:                                                       ///\n");
+    printf("///            CPF:                                                         ///\n");
+    printf("///            DATA DE NASCIMENTO:                                          ///\n");
+    printf("///            E-MAIL:                                                      ///\n");
+    printf("///            TELEFONE:                                                    ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
 }
