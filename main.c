@@ -34,6 +34,7 @@ void tela_cadastro_funcionarios(void);
 void tela_pesquisar_funcionarios(void);
 void tela_alterar_funcionarios(void);
 void tela_excluir_funcionarios(void);
+int tela_menu_gerencia(void);
 
 ////
 // Programa principal
@@ -61,6 +62,7 @@ int main(void) {
     tela_pesquisar_funcionarios();
     tela_alterar_funcionarios();
     tela_excluir_funcionarios();
+    tela_menu_gerencia();
 
     return 0;
 
@@ -810,4 +812,42 @@ void tela_excluir_funcionarios(void)
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+}
+
+
+int tela_menu_gerencia(void)
+{
+    int op;
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///           ------------ MENU GERENCIA ------------                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///            1. RELATORIO DE CLIENTES                                     ///\n");
+    printf("///            2. RELATORIO DE VENDAS                                       ///\n");
+    printf("///            3. RELATORIO DE ESTOQUE                                      ///\n");
+    printf("///            4. RELATORIO DE FUNCIONARIOS                                 ///\n");
+    printf("///            5. RELATORIO DE FINANCAS                                     ///\n");
+    printf("///            0. SAIR                                                      ///\n");
+    printf("///                                                                         ///\n");
+    printf("///            ESCOLHA A OPCAO DESEJADA: ");
+    scanf("%d", &op);
+    getchar();
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    return op;
 }
