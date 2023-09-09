@@ -65,6 +65,7 @@ int main(void) {
         case 6: tela_info_desenvolvedor();
             break;
 
+
         case 7: tela_sobre_projeto();
             break;
         
@@ -108,7 +109,8 @@ int tela_menu_principal(void)
     printf("///            3. MENU ESTOQUE                                              ///\n");
     printf("///            4. MENU FUNCIONARIOS                                         ///\n");
     printf("///            5. MENU GERENCIA                                             ///\n");
-    printf("///            6. INFORMACOES DO PROJETO                                    ///\n");
+    printf("///            6. INFORMACOES DO DESENVOLVEDOR                              ///\n");
+    printf("///            7. INFORMACOES DO PROJETO                                    ///\n");
     printf("///            0. SAIR                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///            ESCOLHA A OPCAO DESEJADA: ");
