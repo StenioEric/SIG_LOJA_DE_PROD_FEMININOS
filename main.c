@@ -31,10 +31,10 @@ void tela_pesquisar_produto(void);
 void tela_alterar_produto(void);
 void tela_remover_produto(void);
 void tela_menu_funcionarios(void);
-// void tela_cadastro_funcionarios(void);
-// void tela_pesquisar_funcionarios(void);
-// void tela_alterar_funcionarios(void);
-// void tela_excluir_funcionarios(void);
+void tela_cadastro_funcionarios(void);
+void tela_pesquisar_funcionarios(void);
+void tela_alterar_funcionarios(void);
+void tela_excluir_funcionarios(void);
 int tela_menu_gerencia(void);
 // void tela_relatorio_cliente(void);
 // void tela_relatorio_vendas(void);
@@ -765,6 +765,7 @@ void tela_remover_produto(void)
 void tela_menu_funcionarios(void)
 {
     int op;
+    do {
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -797,133 +798,153 @@ void tela_menu_funcionarios(void)
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+
+    switch (op) {
+        case 1: tela_cadastro_funcionarios();
+            break;
+
+        case 2: tela_pesquisar_funcionarios();
+            break;
+
+        case 3: tela_alterar_funcionarios();
+            break;
+
+        case 4: tela_excluir_funcionarios();
+            break;
+        
+        default:
+            break;
+        }
+
+    } while (op != 0);
+    
     return op;
 }
 
-// void tela_cadastro_funcionarios(void)
-// {
-//     system("clear||cls");
-//     printf("\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                         ///\n");
-//     printf("///        EEEEEEE lll                                                      ///\n");
-//     printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-//     printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-//     printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-//     printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-//     printf("///                             ggggg                                       ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                         ///\n");
-//     printf("///             ------------ CADASTRO DE FUNCIONARIOS ------------          ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///            NOME COMPLETO:                                               ///\n");
-//     printf("///            CARGO:                                                       ///\n");
-//     printf("///            CPF:                                                         ///\n");
-//     printf("///            DATA DE NASCIMENTO:                                          ///\n");
-//     printf("///            E-MAIL:                                                      ///\n");
-//     printf("///            TELEFONE:                                                    ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-// }
+void tela_cadastro_funcionarios(void)
+{
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///             ------------ CADASTRO DE FUNCIONARIOS ------------          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///            NOME COMPLETO:                                               ///\n");
+    printf("///            CARGO:                                                       ///\n");
+    printf("///            CPF:                                                         ///\n");
+    printf("///            DATA DE NASCIMENTO:                                          ///\n");
+    printf("///            E-MAIL:                                                      ///\n");
+    printf("///            TELEFONE:                                                    ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
 
 
-// void tela_pesquisar_funcionarios(void)
-// {
-//     system("clear||cls");
-//     printf("\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                         ///\n");
-//     printf("///        EEEEEEE lll                                                      ///\n");
-//     printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-//     printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-//     printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-//     printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-//     printf("///                             ggggg                                       ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                         ///\n");
-//     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-//     printf("///                         PESQUISAR FUNCIONARIO                           ///\n");
-//     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///              CPF DO FUNCIONARIO:                                        ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-// }
+void tela_pesquisar_funcionarios(void)
+{
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                         PESQUISAR FUNCIONARIO                           ///\n");
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                                                                         ///\n");
+    printf("///              CPF DO FUNCIONARIO:                                        ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
 
 
-// void tela_alterar_funcionarios(void)
-// {
-//     system("clear||cls");
-//     printf("\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                         ///\n");
-//     printf("///        EEEEEEE lll                                                      ///\n");
-//     printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-//     printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-//     printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-//     printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-//     printf("///                             ggggg                                       ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                         ///\n");
-//     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-//     printf("///                         ALTERAR FUNCIONARIO                             ///\n");
-//     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///              CPF DO FUNCIONÁRIO:                                        ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-// }
+void tela_alterar_funcionarios(void)
+{
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                         ALTERAR FUNCIONARIO                             ///\n");
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                                                                         ///\n");
+    printf("///              CPF DO FUNCIONARIO:                                        ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
 
 
-// void tela_excluir_funcionarios(void)
-// {
-//     system("clear||cls");
-//     printf("\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                         ///\n");
-//     printf("///        EEEEEEE lll                                                      ///\n");
-//     printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-//     printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-//     printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-//     printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-//     printf("///                             ggggg                                       ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                         ///\n");
-//     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-//     printf("///                         EXCLUIR FUNCIONARIO                             ///\n");
-//     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///              CPF DO FUNCIONARIO:                                        ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-// }
+void tela_excluir_funcionarios(void)
+{
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                         EXCLUIR FUNCIONARIO                             ///\n");
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                                                                         ///\n");
+    printf("///              CPF DO FUNCIONARIO:                                        ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
 
 
 int tela_menu_gerencia(void)
