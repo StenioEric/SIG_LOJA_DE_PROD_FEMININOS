@@ -26,10 +26,10 @@ void tela_excluir_produto(void);
 void tela_finalizar_compra(void);
 void tela_ver_carrinho(void);
 int tela_menu_estoque(void);
-// void tela_cadastro_produto(void);
-// void tela_pesquisar_produto(void);
-// void tela_alterar_produto(void);
-// void tela_remover_produto(void);
+void tela_cadastro_produto(void);
+void tela_pesquisar_produto(void);
+void tela_alterar_produto(void);
+void tela_remover_produto(void);
 void tela_menu_funcionarios(void);
 // void tela_cadastro_funcionarios(void);
 // void tela_pesquisar_funcionarios(void);
@@ -585,6 +585,7 @@ void tela_finalizar_compra(void)
 int tela_menu_estoque(void)
 {
     int op;
+    do {
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -617,128 +618,149 @@ int tela_menu_estoque(void)
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+
+    switch (op) {
+        case 1: tela_cadastro_produto();
+            break;
+
+        case 2: tela_pesquisar_produto();
+            break;
+
+        case 3: tela_alterar_produto();
+            break;
+
+        case 4: tela_remover_produto();
+            break;
+
+        default:
+            break;
+        }
+
+    } while (op != 0);
+    
     return op;
 }
 
-// void tela_cadastro_produto(void)
-// {
-//     system("clear||cls");
-//     printf("\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                         ///\n");
-//     printf("///        EEEEEEE lll                                                      ///\n");
-//     printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-//     printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-//     printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-//     printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-//     printf("///                             ggggg                                       ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                         ///\n");
-//     printf("///             ------------ CADASTRO DE PRODUTO ------------               ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///            PRODUTO:                                                     ///\n");
-//     printf("///            QUANTIDADE DE PRODUTOS:                                      ///\n");
-//     printf("///            VALOR DO PRODUTO:                                            ///\n");
-//     printf("///            DESCRICAO DO PRODUTO:                                        ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-// }
 
-// void tela_pesquisar_produto(void)
-// {
-//     system("clear||cls");
-//     printf("\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                         ///\n");
-//     printf("///        EEEEEEE lll                                                      ///\n");
-//     printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-//     printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-//     printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-//     printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-//     printf("///                             ggggg                                       ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                         ///\n");
-//     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-//     printf("///                         PESQUISAR PRODUTO                               ///\n");
-//     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///              ID PRODUTO:                                                ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-// }
+void tela_cadastro_produto(void)
+{
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///             ------------ CADASTRO DE PRODUTO ------------               ///\n");
+    printf("///                                                                         ///\n");
+    printf("///            PRODUTO:                                                     ///\n");
+    printf("///            QUANTIDADE DE PRODUTOS:                                      ///\n");
+    printf("///            VALOR DO PRODUTO:                                            ///\n");
+    printf("///            DESCRICAO DO PRODUTO:                                        ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
 
-// void tela_alterar_produto(void)
-// {
-//     system("clear||cls");
-//     printf("\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                         ///\n");
-//     printf("///        EEEEEEE lll                                                      ///\n");
-//     printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-//     printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-//     printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-//     printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-//     printf("///                             ggggg                                       ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                         ///\n");
-//     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-//     printf("///                         ALTERAR PRODUTO                                 ///\n");
-//     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///              ID PRODUTO:                                                ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-// }
+void tela_pesquisar_produto(void)
+{
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                         PESQUISAR PRODUTO                               ///\n");
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                                                                         ///\n");
+    printf("///              ID PRODUTO:                                                ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
 
-// void tela_remover_produto(void)
-// {
-//     system("clear||cls");
-//     printf("\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                         ///\n");
-//     printf("///        EEEEEEE lll                                                      ///\n");
-//     printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-//     printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-//     printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-//     printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-//     printf("///                             ggggg                                       ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                         ///\n");
-//     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-//     printf("///                         REMOVER PRODUTO                                 ///\n");
-//     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///              ID PRODUTO:                                                ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///                                                                         ///\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-// }
+void tela_alterar_produto(void)
+{
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                         ALTERAR PRODUTO                                 ///\n");
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                                                                         ///\n");
+    printf("///              ID PRODUTO:                                                ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+void tela_remover_produto(void)
+{
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                         REMOVER PRODUTO                                 ///\n");
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                                                                         ///\n");
+    printf("///              ID PRODUTO:                                                ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
 
 void tela_menu_funcionarios(void)
 {
