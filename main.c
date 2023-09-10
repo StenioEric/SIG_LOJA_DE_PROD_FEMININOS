@@ -24,6 +24,7 @@ int tela_menu_vendas(void);
 // void tela_carrinho_produtos(void);
 // void tela_excluir_produto(void);
 // void tela_finalizar_compra(void);
+void tela_ver_carrinho(void);
 int tela_menu_estoque(void);
 // void tela_cadastro_produto(void);
 // void tela_pesquisar_produto(void);
@@ -467,6 +468,37 @@ int tela_menu_vendas(void)
 //     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 //     getchar();
 // }
+
+void tela_ver_carrinho(void)
+{
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///             ------------ CARRINHO DE PRODUTOS ------------              ///\n");
+    printf("///                                                                         ///\n");
+    printf("///            PRODUTO:                                                     ///\n");
+    printf("///            ID DO PRODUTO:                                               ///\n");
+    printf("///            QUANTIDADE:                                                  ///\n");
+    printf("///            VALOR:                                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
 
 // void tela_excluir_produto(void)
 // {
