@@ -30,7 +30,7 @@ void tela_cadastro_produto(void);
 void tela_pesquisar_produto(void);
 void tela_alterar_produto(void);
 void tela_remover_produto(void);
-void tela_menu_funcionarios(void);
+int tela_menu_funcionarios(void);
 void tela_cadastro_funcionarios(void);
 void tela_pesquisar_funcionarios(void);
 void tela_alterar_funcionarios(void);
@@ -762,7 +762,7 @@ void tela_remover_produto(void)
     getchar();
 }
 
-void tela_menu_funcionarios(void)
+int tela_menu_funcionarios(void)
 {
     int op;
     do {
