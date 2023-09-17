@@ -5,10 +5,9 @@
 ///             Developed by @stenioeric -- since August, 2023              ///
 ///////////////////////////////////////////////////////////////////////////////
 
-void moduloVendas(void);
-int tela_menu_vendas(void);
-void tela_catalogo(void);
-void tela_carrinho_produtos(void);
-void tela_excluir_produto(void);
-void tela_finalizar_compra(void);
-void tela_ver_carrinho(void);
+void moduloEstoque(void);
+int tela_menu_estoque(void);
+void tela_cadastro_produto(void);
+void tela_pesquisar_produto(void);
+void tela_alterar_produto(void);
+void tela_remover_produto(void);
