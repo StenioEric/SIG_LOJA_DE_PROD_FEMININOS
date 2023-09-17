@@ -11,7 +11,6 @@
 #include "estoque.h"
 
 
-
 void moduloEstoque(void) {
     int op;
 
@@ -32,9 +31,11 @@ void moduloEstoque(void) {
     } while (op != 0);
 }
 
-int tela_menu_estoque(void)
+int tela_menu_estoque(void) 
 {
+
     int op;
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");

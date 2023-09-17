@@ -87,10 +87,3 @@ int tela_menu_principal(void)
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     return op;
 }
-
-
-
-
-
-
-
