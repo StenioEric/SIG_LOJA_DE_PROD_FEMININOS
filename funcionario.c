@@ -32,9 +32,9 @@ void moduloFuncio(void) {
 
 
 
-int tela_menu_funcionarios(void)
-{
+int tela_menu_funcionarios(void) {
     int op;
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -70,8 +70,8 @@ int tela_menu_funcionarios(void)
     return op;
 }
 
-void tela_cadastro_funcionarios(void)
-{
+void tela_cadastro_funcionarios(void) {
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -103,8 +103,8 @@ void tela_cadastro_funcionarios(void)
 }
 
 
-void tela_pesquisar_funcionarios(void)
-{
+void tela_pesquisar_funcionarios(void) {
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -134,8 +134,8 @@ void tela_pesquisar_funcionarios(void)
 }
 
 
-void tela_alterar_funcionarios(void)
-{
+void tela_alterar_funcionarios(void) {
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -165,8 +165,8 @@ void tela_alterar_funcionarios(void)
 }
 
 
-void tela_excluir_funcionarios(void)
-{
+void tela_excluir_funcionarios(void) {
+    
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");

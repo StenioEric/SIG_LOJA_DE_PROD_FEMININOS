@@ -17,8 +17,8 @@ void moduloSobre (void) {
 }
 
 
-void tela_sobre_projeto(void)
-{
+void tela_sobre_projeto(void) {
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -49,8 +49,8 @@ void tela_sobre_projeto(void)
     getchar();
 }
 
-void tela_info_desenvolvedor(void)
-{
+void tela_info_desenvolvedor(void) {
+    
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");

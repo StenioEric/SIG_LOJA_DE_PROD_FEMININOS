@@ -72,8 +72,8 @@ int tela_menu_cliente(void) {
 
 
 
-void tela_cadastro_cliente(void)
-{
+void tela_cadastro_cliente(void) {
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -107,8 +107,8 @@ void tela_cadastro_cliente(void)
     getchar();
 }
 
-void tela_pesquisar_cliente(void)
-{
+void tela_pesquisar_cliente(void) {
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -137,8 +137,8 @@ void tela_pesquisar_cliente(void)
     getchar();
 }
 
-void tela_alterar_cliente(void)
-{
+void tela_alterar_cliente(void) {
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -167,8 +167,8 @@ void tela_alterar_cliente(void)
     getchar();
 }
 
-void tela_excluir_cliente(void)
-{
+void tela_excluir_cliente(void) {
+    
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");

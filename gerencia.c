@@ -32,9 +32,9 @@ void moduloGerencia(void) {
 }
 
 
-int tela_menu_gerencia(void)
-{
+int tela_menu_gerencia(void) {
     int op;
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -69,8 +69,8 @@ int tela_menu_gerencia(void)
 }
 
 
-void tela_relatorio_cliente(void)
-{
+void tela_relatorio_cliente(void) {
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -106,8 +106,8 @@ void tela_relatorio_cliente(void)
 }
 
 
-void tela_relatorio_vendas(void)
-{
+void tela_relatorio_vendas(void) {
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -140,8 +140,8 @@ void tela_relatorio_vendas(void)
 }
 
 
-void tela_relatorio_estoque(void)
-{
+void tela_relatorio_estoque(void) {
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -174,8 +174,8 @@ void tela_relatorio_estoque(void)
 }
 
 
-void tela_relatorio_funcionarios(void)
-{
+void tela_relatorio_funcionarios(void) {
+    
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");

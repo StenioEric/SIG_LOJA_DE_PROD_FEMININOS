@@ -28,20 +28,18 @@ int main(void) {
     do {
         op = tela_menu_principal();
         switch (op) {
-
-                case 1: moduloCliente();
-                        break;
-                case 2: moduloVendas();
+            case 1: moduloCliente();
                     break;
-                case 3: moduloEstoque();
+            case 2: moduloVendas();
+                break;
+            case 3: moduloEstoque();
+                break;
+            case 4: moduloFuncio();
                     break;
-                case 4: moduloFuncio();
-                        break;
-                case 5: moduloGerencia();
-                        break;
-                case 6: moduloSobre();
-                        break;
-        
+            case 5: moduloGerencia();
+                    break;
+            case 6: moduloSobre();
+                    break;
         }
 
     } while (op != 0);
@@ -50,9 +48,9 @@ int main(void) {
 /////
 // Funcoes
 
-int tela_menu_principal(void)
-{
+int tela_menu_principal(void) {
     int op;
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");

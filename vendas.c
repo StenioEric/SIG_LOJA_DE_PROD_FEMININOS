@@ -33,8 +33,7 @@ void moduloVendas(void) {
 }
 
 
-int tela_menu_vendas(void)
-{
+int tela_menu_vendas(void) {
     int op;
 
     system("clear||cls");
@@ -73,8 +72,7 @@ int tela_menu_vendas(void)
     return op;
 }
 
-void tela_catalogo(void)
-{
+void tela_catalogo(void) {
 
     system("clear||cls");
     printf("\n");
@@ -104,8 +102,8 @@ void tela_catalogo(void)
     getchar();
 }
 
-void tela_carrinho_produtos(void)
-{
+void tela_carrinho_produtos(void) {
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -133,8 +131,8 @@ void tela_carrinho_produtos(void)
     getchar();
 }
 
-void tela_ver_carrinho(void)
-{
+void tela_ver_carrinho(void) {
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -164,8 +162,8 @@ void tela_ver_carrinho(void)
 }
 
 
-void tela_excluir_produto(void)
-{
+void tela_excluir_produto(void) {
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -192,8 +190,8 @@ void tela_excluir_produto(void)
     getchar();
 }
 
-void tela_finalizar_compra(void)
-{
+void tela_finalizar_compra(void) {
+    
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");

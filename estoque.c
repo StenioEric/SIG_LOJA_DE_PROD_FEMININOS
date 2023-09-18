@@ -31,9 +31,7 @@ void moduloEstoque(void) {
     } while (op != 0);
 }
 
-int tela_menu_estoque(void) 
-{
-
+int tela_menu_estoque(void) {
     int op;
 
     system("clear||cls");
@@ -73,8 +71,8 @@ int tela_menu_estoque(void)
 }
 
 
-void tela_cadastro_produto(void)
-{
+void tela_cadastro_produto(void) {
+    
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -103,8 +101,8 @@ void tela_cadastro_produto(void)
     getchar();
 }
 
-void tela_pesquisar_produto(void)
-{
+void tela_pesquisar_produto(void) {
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -133,8 +131,8 @@ void tela_pesquisar_produto(void)
     getchar();
 }
 
-void tela_alterar_produto(void)
-{
+void tela_alterar_produto(void) {
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -163,8 +161,8 @@ void tela_alterar_produto(void)
     getchar();
 }
 
-void tela_remover_produto(void)
-{
+void tela_remover_produto(void) {
+    
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
