@@ -8,12 +8,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "cliente.c"
-#include "vendas.c"
-#include "estoque.c"
-#include "funcionario.c"
-#include "gerencia.c"
-#include "projeto.c"
+#include "cliente.h"
+#include "vendas.h"
+#include "estoque.h"
+#include "funcionario.h"
+#include "gerencia.h"
+#include "projeto.h"
 
 ////
 // Assinatura das funcoes
@@ -22,6 +22,7 @@ int tela_menu_principal(void);
 
 ////
 // Programa principal
+
 int main(void) {
     int op;
 
@@ -40,9 +41,12 @@ int main(void) {
                     break;
             case 6: moduloSobre();
                     break;
+                    
         }
 
     } while (op != 0);
+
+    return 0;
 }
 
 /////

@@ -25,11 +25,11 @@ void moduloEstoque(void) {
                     break;
             case 4: tela_remover_produto();
                     break;
-
         }
 
     } while (op != 0);
 }
+
 
 int tela_menu_estoque(void) {
     int op;
@@ -66,7 +66,6 @@ int tela_menu_estoque(void) {
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
-    
     return op;
 }
 
@@ -162,7 +161,7 @@ void tela_alterar_produto(void) {
 }
 
 void tela_remover_produto(void) {
-    
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");

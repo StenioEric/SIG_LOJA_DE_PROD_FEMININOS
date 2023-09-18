@@ -168,7 +168,7 @@ void tela_alterar_cliente(void) {
 }
 
 void tela_excluir_cliente(void) {
-    
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
