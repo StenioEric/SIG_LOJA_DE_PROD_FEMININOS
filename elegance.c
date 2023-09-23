@@ -29,17 +29,17 @@ int main(void) {
     do {
         op = tela_menu_principal();
         switch (op) {
-            case "1":   moduloCliente();
+            case '1':   moduloCliente();
                         break;
-            case "2":   moduloVendas();
+            case '2':   moduloVendas();
                         break;
-            case "3":   moduloEstoque();
+            case '3':   moduloEstoque();
                         break;
-            case "4":   moduloFuncio();
+            case '4':   moduloFuncio();
                         break;
-            case "5":   moduloGerencia();
+            case '5':   moduloGerencia();
                         break;
-            case "6":   moduloSobre();
+            case '6':   moduloSobre();
                         break;
                     
         }
@@ -81,7 +81,7 @@ char tela_menu_principal(void) {
     printf("///            0. SAIR                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///            ESCOLHA A OPCAO DESEJADA: ");
-    scanf("%s", &op);
+    scanf("%c", &op);
     getchar();
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");

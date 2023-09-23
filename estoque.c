@@ -17,13 +17,13 @@ void moduloEstoque(void) {
     do { 
         op = tela_menu_estoque();
         switch (op) {
-            case "1":   tela_cadastro_produto();
+            case '1':   tela_cadastro_produto();
                         break;
-            case "2":   tela_pesquisar_produto();
+            case '2':   tela_pesquisar_produto();
                         break;
-            case "3":   tela_alterar_produto();
+            case '3':   tela_alterar_produto();
                         break;
-            case "4":   tela_remover_produto();
+            case '4':   tela_remover_produto();
                         break;
         }
 
@@ -58,7 +58,7 @@ char tela_menu_estoque(void) {
     printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
     printf("///                                                                         ///\n");
     printf("///            ESCOLHA A OPCAO DESEJADA: ");
-    scanf("%s", &op);
+    scanf("%c", &op);
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
