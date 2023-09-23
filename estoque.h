@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 void moduloEstoque(void);
-int tela_menu_estoque(void);
+char tela_menu_estoque(void);
 void tela_cadastro_produto(void);
 void tela_pesquisar_produto(void);
 void tela_alterar_produto(void);
