@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 void moduloGerencia(void);
-int tela_menu_gerencia(void);
+char tela_menu_gerencia(void);
 void tela_relatorio_cliente(void);
 void tela_relatorio_vendas(void);
 void tela_relatorio_estoque(void);
