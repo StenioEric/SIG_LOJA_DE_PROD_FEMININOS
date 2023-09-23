@@ -8,7 +8,7 @@
 /// Assinatura das funcoes
 
 void moduloCliente(void);
-int tela_menu_cliente(void);
+char tela_menu_cliente(void);
 void tela_cadastro_cliente(void);
 void tela_pesquisar_cliente(void);
 void tela_alterar_cliente(void);
