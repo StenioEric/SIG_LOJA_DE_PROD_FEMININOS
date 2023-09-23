@@ -11,29 +11,29 @@
 #include "funcionario.h"
 
 void moduloFuncio(void) {
-    int op;
+    char op;
 
     do {
         op = tela_menu_funcionarios();
         switch (op) {
-            case 1: tela_cadastro_funcionarios();
-                    break;
-            case 2: tela_pesquisar_funcionarios();
-                    break;
-            case 3: tela_alterar_funcionarios();
-                    break;
-            case 4: tela_excluir_funcionarios();
-                    break;
+            case '1':   tela_cadastro_funcionarios();
+                        break;
+            case '2':   tela_pesquisar_funcionarios();
+                        break;
+            case '3':   tela_alterar_funcionarios();
+                        break;
+            case '4':   tela_excluir_funcionarios();
+                        break;
                 
         }
 
-    } while (op != 0);
+    } while (op != '0');
 }
 
 
 
-int tela_menu_funcionarios(void) {
-    int op;
+char tela_menu_funcionarios(void) {
+    char op;
 
     system("clear||cls");
     printf("\n");
@@ -59,7 +59,7 @@ int tela_menu_funcionarios(void) {
     printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
     printf("///                                                                         ///\n");
     printf("///            ESCOLHA A OPCAO DESEJADA: ");
-    scanf("%d", &op);
+    scanf("%c", &op);
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
