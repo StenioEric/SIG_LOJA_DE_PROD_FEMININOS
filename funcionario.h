@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 void moduloFuncio(void);
-int tela_menu_funcionarios(void);
+char tela_menu_funcionarios(void);
 void tela_cadastro_funcionarios(void);
 void tela_pesquisar_funcionarios(void);
 void tela_alterar_funcionarios(void);

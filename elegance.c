@@ -17,34 +17,34 @@
 
 ////
 // Assinatura das funcoes
-int tela_menu_principal(void);
+char tela_menu_principal(void);
 
 
 ////
 // Programa principal
 
 int main(void) {
-    int op;
+    char op;
 
     do {
         op = tela_menu_principal();
         switch (op) {
-            case 1: moduloCliente();
-                    break;
-            case 2: moduloVendas();
-                break;
-            case 3: moduloEstoque();
-                break;
-            case 4: moduloFuncio();
-                    break;
-            case 5: moduloGerencia();
-                    break;
-            case 6: moduloSobre();
-                    break;
+            case '1':   moduloCliente();
+                        break;
+            case '2':   moduloVendas();
+                        break;
+            case '3':   moduloEstoque();
+                        break;
+            case '4':   moduloFuncio();
+                        break;
+            case '5':   moduloGerencia();
+                        break;
+            case '6':   moduloSobre();
+                        break;
                     
         }
 
-    } while (op != 0);
+    } while (op !='0');
 
     return 0;
 }
@@ -52,8 +52,8 @@ int main(void) {
 /////
 // Funcoes
 
-int tela_menu_principal(void) {
-    int op;
+char tela_menu_principal(void) {
+    char op;
 
     system("clear||cls");
     printf("\n");
@@ -81,7 +81,7 @@ int tela_menu_principal(void) {
     printf("///            0. SAIR                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///            ESCOLHA A OPCAO DESEJADA: ");
-    scanf("%d", &op);
+    scanf("%c", &op);
     getchar();
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");

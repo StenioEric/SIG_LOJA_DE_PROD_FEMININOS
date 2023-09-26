@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 void moduloVendas(void);
-int tela_menu_vendas(void);
+char tela_menu_vendas(void);
 void tela_catalogo(void);
 void tela_carrinho_produtos(void);
 void tela_excluir_produto(void);

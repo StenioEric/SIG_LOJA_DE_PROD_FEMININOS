@@ -12,27 +12,27 @@
 #include "cliente.h"
 
 void moduloCliente(void) {
-    int op;
+    char op;
 
     do {
         op = tela_menu_cliente();
         switch (op) {
-            case 1: tela_cadastro_cliente();
-                    break;
-            case 2: tela_pesquisar_cliente();
-                    break;
-            case 3: tela_alterar_cliente();
-                    break;
-            case 4: tela_excluir_cliente();
-                    break;
+            case '1':   tela_cadastro_cliente();
+                        break;
+            case '2':   tela_pesquisar_cliente();
+                        break;
+            case '3':   tela_alterar_cliente();
+                        break;
+            case '4':   tela_excluir_cliente();
+                        break;
 
         }
-    } while (op != 0);
+    } while (op != '0');
 }
 
 
-int tela_menu_cliente(void) {
-    int op;
+char tela_menu_cliente(void) {
+    char op;
 
     system("clear||cls");
     printf("\n");
@@ -58,7 +58,7 @@ int tela_menu_cliente(void) {
     printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
     printf("///                                                                         ///\n");
     printf("///            ESCOLHA A OPCAO DESEJADA: ");
-    scanf("%d", &op);
+    scanf("%c", &op);
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");

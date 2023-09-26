@@ -12,29 +12,29 @@
 
 
 void moduloVendas(void) {
-    int op;
+    char op;
 
     do {
         op = tela_menu_vendas();
         switch (op) {
-            case 1: tela_catalogo();
-                break;
-            case 2: tela_carrinho_produtos();
-                break;
-            case 3: tela_ver_carrinho();
-                break;
-            case 4: tela_excluir_produto();
-                break;
-            case 5: tela_finalizar_compra();
-                break;
+            case '1':   tela_catalogo();
+                        break;
+            case '2':   tela_carrinho_produtos();
+                        break;
+            case '3':   tela_ver_carrinho();
+                        break;
+            case '4':   tela_excluir_produto();
+                        break;
+            case '5':   tela_finalizar_compra();
+                        break;
 
         }
-    } while (op != 0);
+    } while (op != '0');
 }
 
 
-int tela_menu_vendas(void) {
-    int op;
+char tela_menu_vendas(void) {
+    char op;
 
     system("clear||cls");
     printf("\n");
@@ -61,7 +61,7 @@ int tela_menu_vendas(void) {
     printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
     printf("///                                                                         ///\n");
     printf("///            ESCOLHA A OPCAO DESEJADA: ");
-    scanf("%d", &op);
+    scanf("%c", &op);
     getchar();
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
