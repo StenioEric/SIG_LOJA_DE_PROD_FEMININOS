@@ -36,7 +36,7 @@ char tela_menu_estoque(void) {
 
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///        EEEEEEE lll                                                      ///\n");
     printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
