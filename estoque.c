@@ -27,7 +27,7 @@ void moduloEstoque(void) {
                         break;
         }
 
-    } while (op != "0");
+    } while (op != '0');
 }
 
 

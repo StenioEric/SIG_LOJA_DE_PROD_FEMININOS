@@ -87,7 +87,7 @@ void tela_cadastro_funcionarios(void) {
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("///             ------------ CADASTRO DE FUNCIONARIOS ------------          ///\n");
+    printf("///            ------------ CADASTRO DE FUNCIONARIOS ------------           ///\n");
     printf("///                                                                         ///\n");
     printf("///            NOME COMPLETO:                                               ///\n");
     printf("///            CARGO:                                                       ///\n");
@@ -95,6 +95,7 @@ void tela_cadastro_funcionarios(void) {
     printf("///            DATA DE NASCIMENTO:                                          ///\n");
     printf("///            E-MAIL:                                                      ///\n");
     printf("///            TELEFONE:                                                    ///\n");
+    printf("///            SALÁRIO:                                                     ///\n");    
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
@@ -121,7 +122,7 @@ void tela_pesquisar_funcionarios(void) {
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                         PESQUISAR FUNCIONARIO                           ///\n");
+    printf("///                        PESQUISAR FUNCIONARIO                            ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
     printf("///              CPF DO FUNCIONARIO:                                        ///\n");
@@ -152,7 +153,7 @@ void tela_alterar_funcionarios(void) {
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                         ALTERAR FUNCIONARIO                             ///\n");
+    printf("///                           ALTERAR FUNCIONARIO                             ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
     printf("///              CPF DO FUNCIONARIO:                                        ///\n");
