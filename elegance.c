@@ -14,6 +14,8 @@
 #include "funcionario.h"
 #include "gerencia.h"
 #include "projeto.h"
+#include "util.h"
+
 
 ////
 // Assinatura das funcoes
