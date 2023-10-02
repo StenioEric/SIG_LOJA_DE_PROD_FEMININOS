@@ -10,6 +10,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "cliente.h"
+#include "util.h"
+
+
 
 void moduloCliente(void) {
     char op;
@@ -74,6 +77,14 @@ char tela_menu_cliente(void) {
 
 void tela_cadastro_cliente(void) {
 
+    char op;
+    char *nome, *cpf, *email, *dataNasc, *telefone;
+    nome = (char*) malloc(50*sizeof(char));
+    cpf = (char*) malloc(11*sizeof(char));
+    email = (char*) malloc(40*sizeof(char));
+    dataNasc = (char*) malloc(10*sizeof(char));
+    telefone = (char*) malloc(12*sizeof(char));
+
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -93,16 +104,12 @@ void tela_cadastro_cliente(void) {
     printf("///                         CADASTRO CLIENTE                                ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    printf("///            Nome Completo do Cliente:                                    ///\n");
-    printf("///            CPF:                                                         ///\n");
-    printf("///            E-mail:                                                      ///\n");
-    printf("///            Data de Nascimento (dd/mm/aaaa):                             ///\n");
-    printf("///            Celular (apenas numeros):                                    ///\n");
-    printf("///            Endereco:                                                    ///\n");
+    valCliente(nome, cpf ,email, dataNasc, telefone);
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    scanf("%c", &op);
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
@@ -196,3 +203,48 @@ void tela_excluir_cliente(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// Validador de nome, cpf , email , telefone e data de nascimento.
+///
+void valCliente (char *nome, char *cpf, char *email, char *dataNasc, char *telefone ){
+
+    do {
+        printf("NOME:");
+        scanf("%s", nome);
+        limparBuffer();
+    } while(!validarNome(nome));
+
+    do {
+        printf("CPF:");
+        scanf("%s", cpf);
+        limparBuffer();
+    } while(!validarCPF(cpf));
+
+    do {
+        printf("EMAIL:");
+        scanf("%[a-z0-9@.]", email);
+        limparBuffer();
+    } while(!valEmail(email));
+
+    do {
+        printf("DATA DE NASCIMENTO:");
+        scanf("%s", dataNasc);
+        limparBuffer();
+    } while(!validarData(dataNasc));
+
+    do {
+        printf("TELEFONE:");
+        scanf("%s", telefone);
+        limparBuffer();
+    } while(!validarFone(telefone));
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
+/// Adaptado de Luiz Miguel 
+/// link: https://github.com/LuizMiguel4444/GestaoCasaShow/blob/main/client.c
+
+
+
