@@ -205,3 +205,39 @@ int ehDigito(char c) {
     return 0;
   }
 }
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// Tela de print dados genéricos
+///
+void printDados(void)
+{
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
+    printf("///                          PRINT DADOS SERVIDOR                           ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
+    printf("///                                                                         ///\n");
+    printf("///            ************************:..............                      ///\n");
+    printf("///            ***::..............                                          ///\n");
+    printf("///            ******:                                                      ///\n");
+    printf("///            *******************************::..............              ///\n");
+    printf("///            ************************::..............                     ///\n");
+    printf("///            ********::..............                                     ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+}
