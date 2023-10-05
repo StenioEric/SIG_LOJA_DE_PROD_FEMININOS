@@ -138,23 +138,31 @@ void tela_pesquisar_cliente(void) {
     printf("///                        PESQUISAR CLIENTE                                ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    printf("///" "CPF DO CLIENTE:");
-    scanf("%s", cpf);
-    limparBuffer();
-    validarCPF(cpf);
+   do {
+        printf("///CPF DO CLIENTE:");
+        scanf("%s", cpf);
+        limparBuffer();    
+    }while(!validarCPF(cpf));
     if (validarCPF(cpf) == 1) {
         printDados();
     }
     else {
-        printf("///""USUARIO NAO ENCONTRADO");
+        printf("///USUARIO NAO ENCONTRADO");
+        printf("\n");
+        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+        getchar();
     }
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
 }
 
+
 void tela_alterar_cliente(void) {
+    
+    char *nome, *cpf, *email, *dataNasc, *telefone;   
+    nome = (char*) malloc(50*sizeof(char));
+    cpf = (char*) malloc(11*sizeof(char));
+    email = (char*) malloc(40*sizeof(char));
+    dataNasc = (char*) malloc(10*sizeof(char));
+    telefone = (char*) malloc(12*sizeof(char));
 
     system("clear||cls");
     printf("\n");
@@ -175,10 +183,17 @@ void tela_alterar_cliente(void) {
     printf("///                         ALTERAR CLIENTE                                 ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    printf("///              CPF DO CLIENTE:                                            ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    do {
+        printf("///CPF DO CLIENTE:");
+        scanf("%s", cpf);
+        limparBuffer();
+    }while(!validarCPF(cpf));
+    if (validarCPF(cpf) == 1){
+        valCliente(nome, cpf ,email, dataNasc, telefone);
+    }
+    else {
+        printf("///USUARIO NAO ENCONTRADO");
+    }
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
