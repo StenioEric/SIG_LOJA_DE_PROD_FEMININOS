@@ -138,7 +138,7 @@ void tela_pesquisar_cliente(void) {
     printf("///                        PESQUISAR CLIENTE                                ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-   do {
+    do {
         printf("///CPF DO CLIENTE:");
         scanf("%s", cpf);
         limparBuffer();    
@@ -150,19 +150,17 @@ void tela_pesquisar_cliente(void) {
         printf("///USUARIO NAO ENCONTRADO");
         printf("\n");
         printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-        getchar();
     }
 }
 
 
 void tela_alterar_cliente(void) {
     
-    char *nome, *cpf, *email, *dataNasc, *telefone;   
-    nome = (char*) malloc(50*sizeof(char));
-    cpf = (char*) malloc(11*sizeof(char));
-    email = (char*) malloc(40*sizeof(char));
-    dataNasc = (char*) malloc(10*sizeof(char));
-    telefone = (char*) malloc(12*sizeof(char));
+    // char *nome,*cpf,*email, *dataNasc, *telefone;   
+    // nome = (char*) malloc(50*sizeof(char));
+    // email = (char*) malloc(40*sizeof(char));
+    // dataNasc = (char*) malloc(10*sizeof(char));
+    // telefone = (char*) malloc(12*sizeof(char));
 
     system("clear||cls");
     printf("\n");
@@ -183,17 +181,17 @@ void tela_alterar_cliente(void) {
     printf("///                         ALTERAR CLIENTE                                 ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    do {
-        printf("///CPF DO CLIENTE:");
-        scanf("%s", cpf);
-        limparBuffer();
-    }while(!validarCPF(cpf));
-    if (validarCPF(cpf) == 1){
-        valCliente(nome, cpf ,email, dataNasc, telefone);
-    }
-    else {
-        printf("///USUARIO NAO ENCONTRADO");
-    }
+    // do {
+    //     printf("///CPF DO CLIENTE:");
+    //     scanf("%s", cpf);
+    //     limparBuffer();
+    // }while(!validarCPF(cpf));
+    // if (validarCPF(cpf) == 1){
+    //     mudaCliente(nome,email, dataNasc,telefone);
+    // }
+    // else {
+    //     printf("///USUARIO NAO ENCONTRADO");
+    // }
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
@@ -236,31 +234,31 @@ void tela_excluir_cliente(void) {
 void valCliente (char *nome, char *cpf, char *email, char *dataNasc, char *telefone ){
 
     do {
-        printf("///\n" "NOME:");
+        printf("///NOME:");
         scanf("%s", nome);
         limparBuffer();
     } while(!validarNome(nome));
 
     do {
-        printf("///\n""CPF:");
+        printf("///CPF:");
         scanf("%s", cpf);
         limparBuffer();
     } while(!validarCPF(cpf));
 
     do {
-        printf("///\n""EMAIL:");
+        printf("///EMAIL:");
         scanf("%[a-z0-9@.]", email);
         limparBuffer();
     } while(!valEmail(email));
 
     do {
-        printf("///\n""DATA DE NASCIMENTO:");
-        scanf("%s", dataNasc);
+        printf("///DATA DE NASCIMENTO:");
+        scanf("%[0-9/]", dataNasc);
         limparBuffer();
     } while(!validarData(dataNasc));
 
     do {
-        printf("///\n""TELEFONE:");
+        printf("///TELEFONE:");
         scanf("%s", telefone);
         limparBuffer();
     } while(!validarFone(telefone));
@@ -272,4 +270,29 @@ void valCliente (char *nome, char *cpf, char *email, char *dataNasc, char *telef
 /// link: https://github.com/LuizMiguel4444/GestaoCasaShow/blob/main/client.c
 
 
+// void mudaCliente (char *nome,char *email, char *dataNasc, char *telefone ){
+//     do {
+//         printf("///NOME:");
+//         scanf("%s", nome);
+//         limparBuffer();
+//     } while(!validarNome(nome));
 
+//     do {
+//         printf("///EMAIL:");
+//         scanf("%[a-z0-9@.]", email);
+//         limparBuffer();
+//     } while(!valEmail(email));
+
+//     do {
+//         printf("///DATA DE NASCIMENTO:");
+//         scanf("%s", dataNasc);
+//         limparBuffer();
+//     } while(!validarData(dataNasc));
+
+//     do {
+//         printf("///TELEFONE:");
+//         scanf("%s", telefone);
+//         limparBuffer();
+//     } while(!validarFone(telefone));
+
+// }
