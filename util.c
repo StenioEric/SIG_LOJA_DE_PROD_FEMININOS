@@ -27,6 +27,19 @@ int ehLetra(char c) {
 
 
 ///////////////////////////////////////////////////////////////////////////////
+/// Retorna 1 se o caractere recebido for uma barra
+///
+int ehBarra(char c) {
+  if (c == '/') {
+    return 1;
+  }
+  else {
+    return 0;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
 /// Retorna 1 se string recebido for exclusivamente alfabético ou
 /// retorna 0 caso contrário
 ///
@@ -71,11 +84,32 @@ int ehData(int dd, int mm, int aa) {
 int validarData(char* data) {
   int tam, dia, mes, ano;
   tam = strlen(data);
-  if (tam != 8) {
+  if (tam != 10) {
     return 0;
   }
   for (int i = 0; i < tam; i++) {
-    if (!ehDigito(data[i])) {
+    if (!ehDigito(data[i]) && !ehBarra(data[i])) { 
+      return 0;
+    }
+  }
+  dia = (data[0] - '0') * 10 + (data[1] - '0');
+  mes = (data[3] - '0') * 10 + (data[4] - '0'); 
+  ano = (data[6] - '0') * 1000 + (data[7] - '0') * 100 + 
+        (data[8] - '0') * 10 + (data[9] - '0'); 
+  if (!ehData(dia, mes, ano)) {
+    return 0;
+  }
+  return 1;
+}
+
+int validarData(char* data) {
+  int tam, dia, mes, ano;
+  tam = strlen(data);
+  if (tam != 10) {
+    return 0;
+  }
+  for (int i = 0; i < tam; i++) {
+    if (!ehDigito(data[i]) || data[i] != '/') {
       return 0;
     }
   }
@@ -88,6 +122,7 @@ int validarData(char* data) {
   }
   return 1;
 }
+
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -240,4 +275,5 @@ void printDados(void)
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
+    getchar();
 }

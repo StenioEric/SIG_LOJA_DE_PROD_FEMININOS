@@ -8,6 +8,7 @@
 /// Assinatura das funcoes
 int ehDigito(char);
 int ehLetra(char);
+int ehBarra(char);
 int ehBissexto(int);
 int ehData(int, int, int);
 int validarNome(char*);
