@@ -9,6 +9,7 @@
 int ehDigito(char);
 int ehLetra(char);
 int ehBarra(char);
+int ehParentese(char);
 int ehBissexto(int);
 int ehData(int, int, int);
 int validarNome(char*);
