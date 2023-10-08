@@ -40,6 +40,20 @@ int ehBarra(char c) {
 
 
 ///////////////////////////////////////////////////////////////////////////////
+/// Retorna 1 se o caractere recebido for um parentese
+///
+int ehParentese(char c) {
+  if (c == '(' || c == ')') {
+    return 1;
+  }
+  else {
+    return 0;
+  }
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////
 /// Retorna 1 se string recebido for exclusivamente alfabético ou
 /// retorna 0 caso contrário
 ///
@@ -102,28 +116,6 @@ int validarData(char* data) {
   return 1;
 }
 
-int validarData(char* data) {
-  int tam, dia, mes, ano;
-  tam = strlen(data);
-  if (tam != 10) {
-    return 0;
-  }
-  for (int i = 0; i < tam; i++) {
-    if (!ehDigito(data[i]) || data[i] != '/') {
-      return 0;
-    }
-  }
-  dia = (data[0] - '0') * 10 + (data[1] - '0');
-  mes = (data[2] - '0') * 10 + (data[3] - '0');
-  ano = (data[4] - '0') * 1000 + (data[5] - '0') * 100 + 
-        (data[6] - '0') * 10 + (data[7] - '0');
-  if (!ehData(dia, mes, ano)) {
-    return 0;
-  }
-  return 1;
-}
-
-
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Retorna 1 se string recebido corresponder a um número de celular válido 
@@ -132,11 +124,11 @@ int validarData(char* data) {
 int validarFone(char* fone) {
   int tam;
   tam = strlen(fone);
-  if (tam != 11) {
+  if (tam != 13) {
     return 0;
   }
   for (int i = 0; i < tam; i++) {
-    if (!ehDigito(fone[i])) {
+    if (!ehDigito(fone[i]) && !ehParentese(fone[i])) {
         return 0;
     }
   }
