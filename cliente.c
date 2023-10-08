@@ -77,7 +77,6 @@ char tela_menu_cliente(void) {
 
 void tela_cadastro_cliente(void) {
 
-    char op;
     char *nome, *cpf, *email, *dataNasc, *telefone;
     nome = (char*) malloc(50*sizeof(char));
     cpf = (char*) malloc(11*sizeof(char));
@@ -109,7 +108,6 @@ void tela_cadastro_cliente(void) {
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    scanf("%c", &op);
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
@@ -143,14 +141,16 @@ void tela_pesquisar_cliente(void) {
         scanf("%s", cpf);
         limparBuffer();    
     }while(!validarCPF(cpf));
-    if (validarCPF(cpf) == 1) {
+    if (*cpf != '\0') {
         printDados();
     }
     else {
         printf("///USUARIO NAO ENCONTRADO");
         printf("\n");
         printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    }
+        limparBuffer();
+        }
+    free(cpf);
 }
 
 
@@ -259,7 +259,7 @@ void valCliente (char *nome, char *cpf, char *email, char *dataNasc, char *telef
 
     do {
         printf("///TELEFONE:");
-        scanf("%s", telefone);
+        scanf("%[0-9()]", telefone);
         limparBuffer();
     } while(!validarFone(telefone));
 
