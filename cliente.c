@@ -141,10 +141,11 @@ void tela_pesquisar_cliente(void) {
         scanf("%s", cpf);
         limparBuffer();    
     }while(!validarCPF(cpf));
-    if (*cpf != '\0') {
+    if (validarCPF(cpf) == 1) {
         printDados();
     }
     else {
+        printf("\n");
         printf("///USUARIO NAO ENCONTRADO");
         printf("\n");
         printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
