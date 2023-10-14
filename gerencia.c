@@ -11,6 +11,7 @@
 #include "gerencia.h"
 
 
+
 void moduloGerencia(void) { 
     char op;
 
@@ -92,10 +93,10 @@ void tela_relatorio_cliente(void) {
     printf("///                                                                                   ///\n");
     printf("///###################################################################################///\n");
     printf("///#Nome do Cliente|CPF|E-mail|Data de Nascimento|Celular|Endereco|Compras realizadas#///\n");                              ///\n");
-    printf("///#               |   |                         |       |        |                  #///\n");
-    printf("///#               |   |                         |       |        |                  #///\n");    
-    printf("///#               |   |                         |       |        |                  #///\n");    
-    printf("///#               |   |                         |       |        |                  #///\n");    
+    printf("///#               |   |      |                  |       |        |                  #///\n");
+    printf("///#               |   |      |                  |       |        |                  #///\n");    
+    printf("///#               |   |      |                  |       |        |                  #///\n");    
+    printf("///#               |   |      |                  |       |        |                  #///\n");    
     printf("///###################################################################################///\n");
     printf("///                                                                                   ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////////////////\n");
