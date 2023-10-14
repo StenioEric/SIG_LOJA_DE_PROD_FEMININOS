@@ -7,19 +7,32 @@
 
 /// Assinatura das funcoes
 
+typedef struct cliente Cliente;
+struct cliente {
+    char nome[70];
+    char cpf[13];
+    char email[30];
+    char dataNas[11];
+    char telefone[12];
+};
+
 void moduloCliente(void);
 char tela_menu_cliente(void);
-void tela_cadastro_cliente(void);
+Cliente* tela_cadastro_cliente(void);
 void tela_pesquisar_cliente(void);
 void tela_alterar_cliente(void);
 void tela_excluir_cliente(void);
-void valCliente (char *nome, char *cpf, char *email, char *dataNasc, char *telefone);
+
+void valCliente (Cliente*);
 void limparBuffer(void);
 int validarNome(char *nome);
 int validarCPF(char *cpf);
 int valEmail(char *email);
 int validarData(char *data);
 int validarFone(char *fone);
+
+
+
 
 
 

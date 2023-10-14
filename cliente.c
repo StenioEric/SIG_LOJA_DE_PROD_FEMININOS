@@ -8,11 +8,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include "cliente.h"
 #include "util.h"
 
-
+typedef struct cliente Cliente;
 
 void moduloCliente(void) {
     char op;
@@ -33,7 +34,6 @@ void moduloCliente(void) {
     } while (op != '0');
 }
 
-
 char tela_menu_cliente(void) {
     char op;
 
@@ -52,7 +52,7 @@ char tela_menu_cliente(void) {
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("///             ------------  MENU CLIENTES ------------                    ///\n");
+    printf("///                 ------------ MENU CLIENTES ------------                 ///\n");
     printf("///                                                                         ///\n");
     printf("///            1. CADASTRAR CLIENTE                                         ///\n");
     printf("///            2. PESQUISAR DADOS DO CLIENTE                                ///\n");
@@ -75,14 +75,10 @@ char tela_menu_cliente(void) {
 
 
 
-void tela_cadastro_cliente(void) {
+Cliente* tela_cadastro_cliente(void) {
 
-    char *nome, *cpf, *email, *dataNasc, *telefone;
-    nome = (char*) malloc(50*sizeof(char));
-    cpf = (char*) malloc(11*sizeof(char));
-    email = (char*) malloc(40*sizeof(char));
-    dataNasc = (char*) malloc(10*sizeof(char));
-    telefone = (char*) malloc(12*sizeof(char));
+    Cliente *cli;
+    cli = (Cliente*)malloc(sizeof(Cliente));
 
     system("clear||cls");
     printf("\n");
@@ -103,13 +99,14 @@ void tela_cadastro_cliente(void) {
     printf("///                         CADASTRO CLIENTE                                ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    valCliente(nome, cpf ,email, dataNasc, telefone);
+    valCliente(cli);
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return cli;
 }
 
 void tela_pesquisar_cliente(void) {
@@ -232,37 +229,36 @@ void tela_excluir_cliente(void) {
 ///////////////////////////////////////////////////////////////////////////////
 /// Validador de nome, cpf , email , telefone e data de nascimento.
 ///
-void valCliente (char *nome, char *cpf, char *email, char *dataNasc, char *telefone ){
+void valCliente (Cliente *cli ) {
+    do {
+        printf("/// NOME:");
+        scanf("%s", cli -> nome);
+        limparBuffer();
+    } while(!validarNome(cli -> nome));
 
     do {
-        printf("///NOME:");
-        scanf("%s", nome);
+        printf("/// CPF:");
+        scanf("%[0-9/]", cli -> cpf);
         limparBuffer();
-    } while(!validarNome(nome));
+    } while(!validarCPF(cli -> cpf));
 
     do {
-        printf("///CPF:");
-        scanf("%s", cpf);
+        printf("/// EMAIL:");
+        scanf("%[a-z0-9@.]",cli -> email);
         limparBuffer();
-    } while(!validarCPF(cpf));
+    } while(!valEmail(cli -> email));
 
     do {
-        printf("///EMAIL:");
-        scanf("%[a-z0-9@.]", email);
+        printf("/// DATA DE NASCIMENTO:");
+        scanf("%[0-9/]",cli -> dataNas);
         limparBuffer();
-    } while(!valEmail(email));
+    } while(!validarData(cli -> dataNas));
 
     do {
-        printf("///DATA DE NASCIMENTO:");
-        scanf("%[0-9/]", dataNasc);
+        printf("/// TELEFONE:");
+        scanf("%[0-9()]",cli -> telefone);
         limparBuffer();
-    } while(!validarData(dataNasc));
-
-    do {
-        printf("///TELEFONE:");
-        scanf("%[0-9()]", telefone);
-        limparBuffer();
-    } while(!validarFone(telefone));
+    } while(!validarFone(cli -> telefone));
 
 }
 
