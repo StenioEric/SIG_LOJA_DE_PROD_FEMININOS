@@ -17,5 +17,4 @@ int valEmail(char*);
 int validarData(char*);
 int validarFone(char*);
 void limparBuffer(void);
-void tela_excluir_cliente(void);
 void printDados(void);
