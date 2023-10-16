@@ -17,17 +17,18 @@ typedef struct cliente Cliente;
 
 void moduloCliente(void) {
     char op;
+    Cliente* modelo;
 
     do {
         op = tela_menu_cliente();
         switch (op) {
-            case '1':   tela_cadastro_cliente();
+            case '1':   modelo = tela_cadastro_cliente();
                         break;
-            case '2':   tela_pesquisar_cliente();
+            case '2':   tela_pesquisar_cliente(modelo);
                         break;
-            case '3':   tela_alterar_cliente();
+            case '3':   tela_alterar_cliente(modelo);
                         break;
-            case '4':   tela_excluir_cliente();
+            case '4':   tela_excluir_cliente(modelo);
                         break;
 
         }
@@ -79,7 +80,6 @@ Cliente* tela_cadastro_cliente(void) {
 
     Cliente *cli;
     cli = (Cliente*)malloc(sizeof(Cliente));
-
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -109,10 +109,7 @@ Cliente* tela_cadastro_cliente(void) {
     return cli;
 }
 
-void tela_pesquisar_cliente(void) {
-
-    char *cpf;
-    cpf = (char*) malloc(11*sizeof(char));
+void tela_pesquisar_cliente(const Cliente* cli) {
 
     system("clear||cls");
     printf("\n");
@@ -133,32 +130,11 @@ void tela_pesquisar_cliente(void) {
     printf("///                        PESQUISAR CLIENTE                                ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    do {
-        printf("///CPF DO CLIENTE:");
-        scanf("%s", cpf);
-        limparBuffer();    
-    }while(!validarCPF(cpf));
-    if (validarCPF(cpf) == 1) {
-        printDados();
-    }
-    else {
-        printf("\n");
-        printf("///USUARIO NAO ENCONTRADO");
-        printf("\n");
-        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-        limparBuffer();
-        }
-    free(cpf);
+    idGenerico(cli);
 }
 
 
-void tela_alterar_cliente(void) {
-    
-    // char *nome,*cpf,*email, *dataNasc, *telefone;   
-    // nome = (char*) malloc(50*sizeof(char));
-    // email = (char*) malloc(40*sizeof(char));
-    // dataNasc = (char*) malloc(10*sizeof(char));
-    // telefone = (char*) malloc(12*sizeof(char));
+void tela_alterar_cliente(const Cliente* cli) {
 
     system("clear||cls");
     printf("\n");
@@ -179,23 +155,13 @@ void tela_alterar_cliente(void) {
     printf("///                         ALTERAR CLIENTE                                 ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    // do {
-    //     printf("///CPF DO CLIENTE:");
-    //     scanf("%s", cpf);
-    //     limparBuffer();
-    // }while(!validarCPF(cpf));
-    // if (validarCPF(cpf) == 1){
-    //     mudaCliente(nome,email, dataNasc,telefone);
-    // }
-    // else {
-    //     printf("///USUARIO NAO ENCONTRADO");
-    // }
+    idGenerico(cli);
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
 
-void tela_excluir_cliente(void) {
+void tela_excluir_cliente(const Cliente* cli) {
 
     system("clear||cls");
     printf("\n");
@@ -220,6 +186,7 @@ void tela_excluir_cliente(void) {
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
+    idGenerico(cli);
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
@@ -262,34 +229,75 @@ void valCliente (Cliente *cli ) {
 
 }
 
+void idGenerico ( const Cliente* cli) {
+    char* cpf;
+    cpf = (char*)malloc(sizeof(char));
+
+ do {
+        printf("///     CPF DO CLIENTE:");
+        scanf("%s", cpf);
+        limparBuffer();    
+    } while(!validarCPF(cpf));
+
+    if (validarCPF(cpf) == 1) {
+        printCliente(cli);
+    } else {
+        printf("\n");
+        printf("///     USUARIO NAO ENCONTRADO");
+        printf("\n");
+        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+        limparBuffer();
+    }
+}
+
+
+
+
+
+void printCliente( const Cliente* cli)
+{
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
+    printf("///                          PRINT DADOS CLIENTES                           ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
+    printf("///                                                                         ///\n");
+    printf("///            NOME:%s\n", cli-> nome);
+    printf("///            CPF:%s\n", cli-> cpf);                                                         
+    printf("///            EMAIL:%s\n", cli-> email);                                                      
+    printf("///            DATA DE NASCIMENTO:%s\n", cli-> dataNas);                                          
+    printf("///            TELEFONE: %s\n", cli-> telefone);                    
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    getchar();
+}
+
+
+
+
+
+
+
+
+
+
+
 /////////////////////////////////////////////////////////////////////////////
 /// Adaptado de Luiz Miguel 
 /// link: https://github.com/LuizMiguel4444/GestaoCasaShow/blob/main/client.c
 
-
-// void mudaCliente (char *nome,char *email, char *dataNasc, char *telefone ){
-//     do {
-//         printf("///NOME:");
-//         scanf("%s", nome);
-//         limparBuffer();
-//     } while(!validarNome(nome));
-
-//     do {
-//         printf("///EMAIL:");
-//         scanf("%[a-z0-9@.]", email);
-//         limparBuffer();
-//     } while(!valEmail(email));
-
-//     do {
-//         printf("///DATA DE NASCIMENTO:");
-//         scanf("%s", dataNasc);
-//         limparBuffer();
-//     } while(!validarData(dataNasc));
-
-//     do {
-//         printf("///TELEFONE:");
-//         scanf("%s", telefone);
-//         limparBuffer();
-//     } while(!validarFone(telefone));
-
-// }
