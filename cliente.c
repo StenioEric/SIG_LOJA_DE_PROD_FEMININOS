@@ -156,9 +156,6 @@ void tela_alterar_cliente(const Cliente* cli) {
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
     idGenerico(cli);
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
 }
 
 void tela_excluir_cliente(const Cliente* cli) {
@@ -187,9 +184,6 @@ void tela_excluir_cliente(const Cliente* cli) {
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     idGenerico(cli);
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
 }
 
 
@@ -233,7 +227,7 @@ void idGenerico ( const Cliente* cli) {
     char* cpf;
     cpf = (char*)malloc(sizeof(char));
 
- do {
+    do {
         printf("///     CPF DO CLIENTE:");
         scanf("%s", cpf);
         limparBuffer();    
@@ -245,8 +239,8 @@ void idGenerico ( const Cliente* cli) {
         printf("\n");
         printf("///     USUARIO NAO ENCONTRADO");
         printf("\n");
-        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-        limparBuffer();
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    limparBuffer();
     }
 }
 
