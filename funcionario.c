@@ -10,6 +10,8 @@
 #include <unistd.h>
 #include "funcionario.h"
 
+typedef struct funcio Funcio;
+
 void moduloFuncio(void) {
     char op;
 
