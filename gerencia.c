@@ -11,7 +11,6 @@
 #include "gerencia.h"
 
 
-
 void moduloGerencia(void) { 
     char op;
 

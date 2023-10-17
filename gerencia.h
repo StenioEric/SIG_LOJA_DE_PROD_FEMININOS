@@ -5,6 +5,7 @@
 ///             Developed by @stenioeric -- since August, 2023              ///
 ///////////////////////////////////////////////////////////////////////////////
 
+
 void moduloGerencia(void);
 char tela_menu_gerencia(void);
 void tela_relatorio_cliente(void);
