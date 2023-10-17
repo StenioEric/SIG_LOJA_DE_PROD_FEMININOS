@@ -10,6 +10,8 @@
 #include <unistd.h>
 #include "vendas.h"
 
+typedef struct vendas Vendas;
+
 
 void moduloVendas(void) {
     char op;
@@ -101,6 +103,7 @@ void tela_catalogo(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+
 
 void tela_carrinho_produtos(void) {
 
