@@ -225,7 +225,7 @@ void valCliente (Cliente *cli ) {
 
 void idGenerico ( const Cliente* cli) {
     char* cpf;
-    cpf = (char*)malloc(sizeof(char));
+    cpf = (char*)malloc(12*sizeof(char));
 
     do {
         printf("///     CPF DO CLIENTE:");
@@ -239,14 +239,10 @@ void idGenerico ( const Cliente* cli) {
         printf("\n");
         printf("///     USUARIO NAO ENCONTRADO");
         printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    limparBuffer();
     }
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
 }
-
-
-
-
 
 void printCliente( const Cliente* cli)
 {
@@ -278,19 +274,9 @@ void printCliente( const Cliente* cli)
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
-
-
-
-
-
-
-
-
-
-
-
 /////////////////////////////////////////////////////////////////////////////
 /// Adaptado de Luiz Miguel 
 /// link: https://github.com/LuizMiguel4444/GestaoCasaShow/blob/main/client.c

@@ -10,10 +10,10 @@
 typedef struct cliente Cliente;
 struct cliente {
     char nome[70];
-    char cpf[13];
-    char email[30];
-    char dataNas[11];
-    char telefone[12];
+    char cpf[12];
+    char email[50];
+    char dataNas[15];
+    char telefone[15];
 };
 
 void moduloCliente(void);
