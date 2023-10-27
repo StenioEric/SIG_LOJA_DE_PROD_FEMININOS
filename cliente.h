@@ -35,7 +35,7 @@ int valEmail(char *email);
 int validarData(char *data);
 int validarFone(char *fone);
 void gravaCliente(Cliente*);
-void listaClientes(void);
+void listarTodosClientes(void);
 
 
 

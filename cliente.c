@@ -31,7 +31,7 @@ void moduloCliente(void) {
                         break;
             case '4':   tela_excluir_cliente();
                         break;
-            case '5':   listaClientes();
+            case '5':   listarTodosClientes();
                         break;
 
         }
@@ -285,22 +285,23 @@ void gravaCliente(Cliente* cli) {
 }
 
 
-void listaClientes(void) {
+void listarTodosClientes(void) {
     FILE* fp;
-    Cliente* cli;
-    printf("\n = Lista de Clientes = \n");
-    cli = (Cliente*) malloc(sizeof(Cliente));
-    fp = fopen("cliente.dat", "rb");
+    Cliente cli;
+
+    printf("\n = Lista de Todos os Clientes = \n");
+    fp = fopen("clientes.dat", "rb");
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         printf("Nao eh possivel continuar...\n");
         exit(1);
     }
-    while(fread(cli, sizeof(Cliente), 1, fp)) {
-        if (cli->status != 'x') {
-            printCliente(cli);
+    while (fread(&cli, sizeof(Cliente), 1, fp)) {
+        if (cli.status != 'x') {
+            printCliente(&cli);
         }
     }
     fclose(fp);
 }
+
 
