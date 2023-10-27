@@ -20,11 +20,12 @@ struct cliente {
 void moduloCliente(void);
 char tela_menu_cliente(void);
 Cliente* tela_cadastro_cliente(void);
-void tela_pesquisar_cliente(const Cliente*);
-void tela_alterar_cliente(const Cliente*);
-void tela_excluir_cliente(const Cliente*);
+void tela_pesquisar_cliente(void);
+void tela_alterar_cliente(void);
+void tela_excluir_cliente(void);
 void printCliente(Cliente*);
 // void idGenerico(const Cliente*);
+
 
 // void valCliente (Cliente*);
 void limparBuffer(void);
@@ -34,6 +35,7 @@ int valEmail(char *email);
 int validarData(char *data);
 int validarFone(char *fone);
 void gravaCliente(Cliente*);
+void listaClientes(void);
 
 
 

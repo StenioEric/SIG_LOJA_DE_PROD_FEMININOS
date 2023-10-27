@@ -25,11 +25,13 @@ void moduloCliente(void) {
             case '1':   modelo = tela_cadastro_cliente();
                         gravaCliente(modelo);
                         break;
-            case '2':   tela_pesquisar_cliente(modelo);
+            case '2':   tela_pesquisar_cliente();
                         break;
-            case '3':   tela_alterar_cliente(modelo);
+            case '3':   tela_alterar_cliente();
                         break;
-            case '4':   tela_excluir_cliente(modelo);
+            case '4':   tela_excluir_cliente();
+                        break;
+            case '5':   listaClientes();
                         break;
 
         }
@@ -135,7 +137,7 @@ Cliente* tela_cadastro_cliente(void) {
     return cli;
 }
 
-void tela_pesquisar_cliente(const Cliente* cli) {
+void tela_pesquisar_cliente(void) {
 
     system("clear||cls");
     printf("\n");
@@ -156,10 +158,11 @@ void tela_pesquisar_cliente(const Cliente* cli) {
     printf("///                        PESQUISAR CLIENTE                                ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
+    getchar();
 }
 
 
-void tela_alterar_cliente(const Cliente* cli) {
+void tela_alterar_cliente(void) {
 
     system("clear||cls");
     printf("\n");
@@ -180,9 +183,10 @@ void tela_alterar_cliente(const Cliente* cli) {
     printf("///                         ALTERAR CLIENTE                                 ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
+    getchar();
 }
 
-void tela_excluir_cliente(const Cliente* cli) {
+void tela_excluir_cliente(void) {
 
     system("clear||cls");
     printf("\n");
@@ -207,6 +211,7 @@ void tela_excluir_cliente(const Cliente* cli) {
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
+    getchar();
 }
 
 // void idGenerico ( const Cliente* cli) {
@@ -230,8 +235,8 @@ void tela_excluir_cliente(const Cliente* cli) {
 //     getchar();
 // }
 
-void printCliente(Cliente* cl) {
-    if ((cl == NULL) || (cl->status == 'x')) {
+void printCliente(Cliente* cli) {
+    if ((cli == NULL) || (cli->status == 'x')) {
     printf("\n= = = Cliente Inexistente = = =\n");
     } else {
     system("clear||cls");
@@ -253,11 +258,11 @@ void printCliente(Cliente* cl) {
     printf("///                          PRINT DADOS CLIENTES                           ///\n");
     printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
     printf("///                                                                         ///\n");
-    printf("///            NOME:%s\n", cl-> nome);
-    printf("///            CPF:%s\n", cl-> cpf);                                                         
-    printf("///            EMAIL:%s\n", cl-> email);                                                      
-    printf("///            DATA DE NASCIMENTO:%s\n", cl-> dataNas);                                          
-    printf("///            TELEFONE: %s\n", cl-> telefone);                    
+    printf("///            NOME:%s\n", cli-> nome);
+    printf("///            CPF:%s\n", cli-> cpf);                                                         
+    printf("///            EMAIL:%s\n", cli-> email);                                                      
+    printf("///            DATA DE NASCIMENTO:%s\n", cli-> dataNas);                                          
+    printf("///            TELEFONE: %s\n", cli-> telefone);                    
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
@@ -272,11 +277,30 @@ void gravaCliente(Cliente* cli) {
     fp = fopen("clientes.dat", "ab");
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
-        printf("Não é possível continuar...\n");
+        printf("Nao eh possivel continuar...\n");
         exit(1);
     }
     fwrite(cli, sizeof(Cliente), 1, fp);
     fclose(fp);
 }
 
+
+void listaClientes(void) {
+    FILE* fp;
+    Cliente* cli;
+    printf("\n = Lista de Clientes = \n");
+    cli = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("cliente.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Nao eh possivel continuar...\n");
+        exit(1);
+    }
+    while(fread(cli, sizeof(Cliente), 1, fp)) {
+        if (cli->status != 'x') {
+            printCliente(cli);
+        }
+    }
+    fclose(fp);
+}
 
