@@ -214,27 +214,6 @@ void tela_excluir_cliente(void) {
     getchar();
 }
 
-// void idGenerico ( const Cliente* cli) {
-//     char* cpf;
-//     cpf = (char*)malloc(12*sizeof(char));
-
-//     do {
-//         printf("///     CPF DO CLIENTE:");
-//         scanf("%s", cpf);
-//         limparBuffer();    
-//     } while(!validarCPF(cpf));
-
-//     if (validarCPF(cpf) == 1) {
-//         printCliente(cli);
-//     } else {
-//         printf("\n");
-//         printf("///     USUARIO NAO ENCONTRADO");
-//         printf("\n");
-//     }
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
-// }
-
 void printCliente(Cliente* cli) {
     if ((cli == NULL) || (cli->status == 'x')) {
     printf("\n= = = Cliente Inexistente = = =\n");
