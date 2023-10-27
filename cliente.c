@@ -266,8 +266,8 @@ void gravaCliente(Cliente* cli) {
 
 void listarTodosClientes(void) {
     FILE* fp;
-    Cliente cli;
-
+    Cliente *cli;
+    cli = (Cliente*) malloc(sizeof(Cliente));
     printf("\n = Lista de Todos os Clientes = \n");
     fp = fopen("clientes.dat", "rb");
     if (fp == NULL) {
@@ -275,12 +275,13 @@ void listarTodosClientes(void) {
         printf("Nao eh possivel continuar...\n");
         exit(1);
     }
-    while (fread(&cli, sizeof(Cliente), 1, fp)) {
-        if (cli.status != 'x') {
-            printCliente(&cli);
+    while (fread(cli, sizeof(Cliente), 1, fp)) {
+        if (cli->status != 'x') {
+            printCliente(cli);
         }
     }
     fclose(fp);
+    free(fp);
 }
 
 
