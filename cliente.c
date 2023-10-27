@@ -23,6 +23,7 @@ void moduloCliente(void) {
         op = tela_menu_cliente();
         switch (op) {
             case '1':   modelo = tela_cadastro_cliente();
+                        gravaCliente(modelo);
                         break;
             case '2':   tela_pesquisar_cliente(modelo);
                         break;
@@ -75,9 +76,7 @@ char tela_menu_cliente(void) {
 }
 
 
-
 Cliente* tela_cadastro_cliente(void) {
-
     Cliente *cli;
     cli = (Cliente*)malloc(sizeof(Cliente));
     system("clear||cls");
@@ -99,98 +98,6 @@ Cliente* tela_cadastro_cliente(void) {
     printf("///                         CADASTRO CLIENTE                                ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    valCliente(cli);
-    printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-    return cli;
-}
-
-void tela_pesquisar_cliente(const Cliente* cli) {
-
-    system("clear||cls");
-    printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                        PESQUISAR CLIENTE                                ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                                                                         ///\n");
-    idGenerico(cli);
-}
-
-
-void tela_alterar_cliente(const Cliente* cli) {
-
-    system("clear||cls");
-    printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                         ALTERAR CLIENTE                                 ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                                                                         ///\n");
-    idGenerico(cli);
-}
-
-void tela_excluir_cliente(const Cliente* cli) {
-
-    system("clear||cls");
-    printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                         EXCLUIR CLIENTE                                 ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                                                                         ///\n");
-    printf("///              CPF DO CLIENTE:                                            ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    idGenerico(cli);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////
-/// Validador de nome, cpf , email , telefone e data de nascimento.
-///
-void valCliente (Cliente *cli ) {
     do {
         printf("/// NOME:");
         scanf("%s", cli -> nome);
@@ -221,31 +128,112 @@ void valCliente (Cliente *cli ) {
         limparBuffer();
     } while(!validarFone(cli -> telefone));
 
-}
-
-void idGenerico ( const Cliente* cli) {
-    char* cpf;
-    cpf = (char*)malloc(12*sizeof(char));
-
-    do {
-        printf("///     CPF DO CLIENTE:");
-        scanf("%s", cpf);
-        limparBuffer();    
-    } while(!validarCPF(cpf));
-
-    if (validarCPF(cpf) == 1) {
-        printCliente(cli);
-    } else {
-        printf("\n");
-        printf("///     USUARIO NAO ENCONTRADO");
-        printf("\n");
-    }
+    cli -> status = 'A';
+    printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return cli;
 }
 
-void printCliente( const Cliente* cli)
-{
+void tela_pesquisar_cliente(const Cliente* cli) {
+
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                        PESQUISAR CLIENTE                                ///\n");
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                                                                         ///\n");
+}
+
+
+void tela_alterar_cliente(const Cliente* cli) {
+
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                         ALTERAR CLIENTE                                 ///\n");
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                                                                         ///\n");
+}
+
+void tela_excluir_cliente(const Cliente* cli) {
+
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///        EEEEEEE lll                                                      ///\n");
+    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+    printf("///                             ggggg                                       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                         EXCLUIR CLIENTE                                 ///\n");
+    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                                                                         ///\n");
+    printf("///              CPF DO CLIENTE:                                            ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+}
+
+// void idGenerico ( const Cliente* cli) {
+//     char* cpf;
+//     cpf = (char*)malloc(12*sizeof(char));
+
+//     do {
+//         printf("///     CPF DO CLIENTE:");
+//         scanf("%s", cpf);
+//         limparBuffer();    
+//     } while(!validarCPF(cpf));
+
+//     if (validarCPF(cpf) == 1) {
+//         printCliente(cli);
+//     } else {
+//         printf("\n");
+//         printf("///     USUARIO NAO ENCONTRADO");
+//         printf("\n");
+//     }
+//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+//     getchar();
+// }
+
+void printCliente(Cliente* cl) {
+    if ((cl == NULL) || (cl->status == 'x')) {
+    printf("\n= = = Cliente Inexistente = = =\n");
+    } else {
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -265,19 +253,30 @@ void printCliente( const Cliente* cli)
     printf("///                          PRINT DADOS CLIENTES                           ///\n");
     printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
     printf("///                                                                         ///\n");
-    printf("///            NOME:%s\n", cli-> nome);
-    printf("///            CPF:%s\n", cli-> cpf);                                                         
-    printf("///            EMAIL:%s\n", cli-> email);                                                      
-    printf("///            DATA DE NASCIMENTO:%s\n", cli-> dataNas);                                          
-    printf("///            TELEFONE: %s\n", cli-> telefone);                    
+    printf("///            NOME:%s\n", cl-> nome);
+    printf("///            CPF:%s\n", cl-> cpf);                                                         
+    printf("///            EMAIL:%s\n", cl-> email);                                                      
+    printf("///            DATA DE NASCIMENTO:%s\n", cl-> dataNas);                                          
+    printf("///            TELEFONE: %s\n", cl-> telefone);                    
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    }
 }
-/////////////////////////////////////////////////////////////////////////////
-/// Adaptado de Luiz Miguel 
-/// link: https://github.com/LuizMiguel4444/GestaoCasaShow/blob/main/client.c
+
+void gravaCliente(Cliente* cli) {
+    FILE* fp;
+    fp = fopen("clientes.dat", "ab");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Não é possível continuar...\n");
+        exit(1);
+    }
+    fwrite(cli, sizeof(Cliente), 1, fp);
+    fclose(fp);
+}
+
 

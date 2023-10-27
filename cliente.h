@@ -14,6 +14,7 @@ struct cliente {
     char email[50];
     char dataNas[15];
     char telefone[15];
+    char status;
 };
 
 void moduloCliente(void);
@@ -22,16 +23,17 @@ Cliente* tela_cadastro_cliente(void);
 void tela_pesquisar_cliente(const Cliente*);
 void tela_alterar_cliente(const Cliente*);
 void tela_excluir_cliente(const Cliente*);
-void printCliente(const Cliente*);
-void idGenerico(const Cliente*);
+void printCliente(Cliente*);
+// void idGenerico(const Cliente*);
 
-void valCliente (Cliente*);
+// void valCliente (Cliente*);
 void limparBuffer(void);
 int validarNome(char *nome);
 int validarCPF(char *cpf);
 int valEmail(char *email);
 int validarData(char *data);
 int validarFone(char *fone);
+void gravaCliente(Cliente*);
 
 
 
