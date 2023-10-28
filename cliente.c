@@ -223,7 +223,7 @@ void printCliente(Cliente* cli) {
         printf("EMAIL:%s\n", cli-> email);                                                      
         printf("DATA DE NASCIMENTO:%s\n", cli-> dataNas);                                          
         printf("TELEFONE: %s\n", cli-> telefone);
-        printf("===================================");                  
+        printf("===================================\n");                  
     }
 
 }
@@ -243,8 +243,7 @@ void gravaCliente(Cliente* cli) {
 
 void listarTodosClientes(void) {
     FILE* fp;
-    Cliente *cli;
-    cli = (Cliente*) malloc(sizeof(Cliente));
+    Cliente cli;
     system("clear||cls");
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
     printf("         PRINT DADOS CLIENTES          \n");
@@ -256,15 +255,14 @@ void listarTodosClientes(void) {
         printf("Nao eh possivel continuar...\n");
         exit(1);
     }
-    while (fread(cli, sizeof(Cliente), 1, fp)) {
-        if (cli->status != 'x') {
-            printCliente(cli);
+    while (fread(&cli, sizeof(Cliente), 1, fp)) {
+        if (cli.status != 'x') {
+            printCliente(&cli);
         }
     }
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
     fclose(fp);
-    free(fp);
 }
 
 
