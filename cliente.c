@@ -216,39 +216,16 @@ void tela_excluir_cliente(void) {
 
 void printCliente(Cliente* cli) {
     if ((cli == NULL) || (cli->status == 'x')) {
-    printf("\n= = = Cliente Inexistente = = =\n");
+        printf("\n= = = Cliente Inexistente = = =\n");
     } else {
-    system("clear||cls");
-    printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
-    printf("///                          PRINT DADOS CLIENTES                           ///\n");
-    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
-    printf("///                                                                         ///\n");
-    printf("///            NOME:%s\n", cli-> nome);
-    printf("///            CPF:%s\n", cli-> cpf);                                                         
-    printf("///            EMAIL:%s\n", cli-> email);                                                      
-    printf("///            DATA DE NASCIMENTO:%s\n", cli-> dataNas);                                          
-    printf("///            TELEFONE: %s\n", cli-> telefone);                    
-    printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+        printf("NOME:%s\n", cli-> nome);
+        printf("CPF:%s\n", cli-> cpf);                                                         
+        printf("EMAIL:%s\n", cli-> email);                                                      
+        printf("DATA DE NASCIMENTO:%s\n", cli-> dataNas);                                          
+        printf("TELEFONE: %s\n", cli-> telefone);
+        printf("===================================");                  
     }
+
 }
 
 void gravaCliente(Cliente* cli) {
@@ -268,7 +245,11 @@ void listarTodosClientes(void) {
     FILE* fp;
     Cliente *cli;
     cli = (Cliente*) malloc(sizeof(Cliente));
-    printf("\n = Lista de Todos os Clientes = \n");
+    system("clear||cls");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("         PRINT DADOS CLIENTES          \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("                                       \n");
     fp = fopen("clientes.dat", "rb");
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
@@ -280,6 +261,8 @@ void listarTodosClientes(void) {
             printCliente(cli);
         }
     }
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
     fclose(fp);
     free(fp);
 }
