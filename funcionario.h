@@ -23,5 +23,5 @@ void tela_pesquisar_funcionarios(void);
 void tela_alterar_funcionarios(void);
 void tela_excluir_funcionarios(void);
 void gravaFuncionario(Funcio*);
-// void listarFuncionarios(void);
+void listarFuncionarios(void);
 void printFuncionarios(Funcio*);
