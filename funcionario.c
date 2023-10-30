@@ -20,7 +20,7 @@ int validarCPF(const char* cpf);
 void moduloFuncio(void) {
     char op;
     Funcio* modelo;
-    
+
     do {
         op = tela_menu_funcionarios();
         switch (op) {
@@ -33,6 +33,8 @@ void moduloFuncio(void) {
                         break;
             case '4':   tela_excluir_funcionarios();
                         break;
+            // case '5':   listarFuncionarios();
+            //             break;
                 
         }
 
@@ -242,4 +244,44 @@ void gravaFuncionario(Funcio* fun) {
     }
     fwrite(fun, sizeof(Funcio), 1, fp);
     fclose(fp);
+}
+
+
+// void listarFuncionarios(void) {
+//     FILE* fp;
+//     Funcio fun;
+//     system("clear||cls");
+//     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+//     printf("       LISTAGEM DOS FUNCIONARIOS       \n");
+//     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+//     printf("                                       \n");
+//     fp = fopen("funcionarios.dat", "rb");
+//     if (fp == NULL) {
+//         printf("Ops! Erro na abertura do arquivo!\n");
+//         printf("Nao eh possivel continuar...\n");
+//         exit(1);
+//     }
+//     while (fread(&fun, sizeof(Funcio), 1, fp)) {
+//         if (fun.status != 'x') {
+//             printFuncionarios(&fun);
+//         }
+//     }
+//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+//     getchar();
+//     fclose(fp);
+// }
+
+void printFuncionarios(Funcio* fun) {
+    if ((fun == NULL) || (fun->status == 'x')) {
+        printf("\n= = = Funcionário Inexistente = = =\n");
+    } else {
+        printf("NOME:%s\n", fun-> nome);
+        printf("CARGO:%s\n",fun->cargo);
+        printf("CPF:%s\n", fun-> cpf);                                                         
+        printf("EMAIL:%s\n", fun-> email);                                                      
+        printf("DATA DE NASCIMENTO:%s\n", fun-> dataNas);                                          
+        printf("TELEFONE: %s\n", fun-> telefone);
+        printf("===================================\n");                  
+    }
+
 }
