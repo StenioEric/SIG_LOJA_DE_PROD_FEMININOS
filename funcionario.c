@@ -19,11 +19,13 @@ int validarCPF(const char* cpf);
 
 void moduloFuncio(void) {
     char op;
-
+    Funcio* modelo;
+    
     do {
         op = tela_menu_funcionarios();
         switch (op) {
-            case '1':   tela_cadastro_funcionarios();
+            case '1':   modelo = tela_cadastro_funcionarios();
+                        gravaFuncionario(modelo);
                         break;
             case '2':   tela_pesquisar_funcionarios();
                         break;
@@ -227,4 +229,17 @@ void tela_excluir_funcionarios(void) {
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+}
+
+
+void gravaFuncionario(Funcio* fun) {
+    FILE* fp;
+    fp = fopen("funcionarios.dat", "ab");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Nao eh possivel continuar...\n");
+        exit(1);
+    }
+    fwrite(fun, sizeof(Funcio), 1, fp);
+    fclose(fp);
 }
