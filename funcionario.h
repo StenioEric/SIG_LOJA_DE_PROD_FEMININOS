@@ -13,11 +13,12 @@ struct funcio {
     char email[30];
     char telefone[12];
     char salario[12];
+    char status;
 };
 
 void moduloFuncio(void);
 char tela_menu_funcionarios(void);
-void tela_cadastro_funcionarios(void);
+Funcio* tela_cadastro_funcionarios(void);
 void tela_pesquisar_funcionarios(void);
 void tela_alterar_funcionarios(void);
 void tela_excluir_funcionarios(void);

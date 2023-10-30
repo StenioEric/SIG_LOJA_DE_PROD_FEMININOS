@@ -7,10 +7,15 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include "funcionario.h"
+#include "util.h"
 
 typedef struct funcio Funcio;
+
+// Declaração da função validarCPF
+int validarCPF(const char* cpf);
 
 void moduloFuncio(void) {
     char op;
@@ -72,8 +77,9 @@ char tela_menu_funcionarios(void) {
     return op;
 }
 
-void tela_cadastro_funcionarios(void) {
-
+Funcio* tela_cadastro_funcionarios(void) {
+    Funcio *fun;
+    fun = (Funcio*)malloc(sizeof(Funcio));
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -91,19 +97,44 @@ void tela_cadastro_funcionarios(void) {
     printf("///                                                                         ///\n");
     printf("///            ------------ CADASTRO DE FUNCIONARIOS ------------           ///\n");
     printf("///                                                                         ///\n");
-    printf("///            NOME COMPLETO:                                               ///\n");
-    printf("///            CARGO:                                                       ///\n");
-    printf("///            CPF:                                                         ///\n");
-    printf("///            DATA DE NASCIMENTO:                                          ///\n");
-    printf("///            E-MAIL:                                                      ///\n");
-    printf("///            TELEFONE:                                                    ///\n");
-    printf("///            SALÁRIO:                                                     ///\n");    
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    do {
+        printf("/// NOME:");
+        scanf("%s", fun -> nome);
+        limparBuffer();
+    } while(!validarNome(fun -> nome));
+    do {
+        printf("/// CARGO:");
+        scanf("%s", fun -> cargo);
+        limparBuffer();
+    } while(!validarNome(fun -> cargo));
+    do {
+        printf("/// CPF:");
+        scanf("%[0-9]",fun -> cpf);
+        limparBuffer();
+    } while(!validarCPF(fun -> cpf));
+    do {
+        printf("/// DATA DE NASCIMENTO:");
+        scanf("%[0-9/]",fun -> dataNas);
+        limparBuffer();
+    } while(!validarData(fun -> dataNas));
+    do {
+        printf("/// EMAIL:");
+        scanf("%[a-z0-9@.]",fun -> email);
+        limparBuffer();
+    } while(!valEmail(fun -> email));
+    do {
+        printf("/// TELEFONE:");
+        scanf("%[0-9()]",fun -> telefone);
+        limparBuffer();
+    } while(!validarFone(fun -> telefone));
+
+    fun -> status = 'A';
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return fun;
 }
+
 
 
 void tela_pesquisar_funcionarios(void) {
