@@ -16,11 +16,12 @@ typedef struct estoque Estoque;
 
 void moduloEstoque(void) {
     char op;
-
+    Estoque* modelo;
     do { 
         op = tela_menu_estoque();
         switch (op) {
-            case '1':   tela_cadastro_produto();
+            case '1':   modelo = tela_cadastro_produto();
+                        gravaEstoque(modelo);
                         break;
             case '2':   tela_pesquisar_produto();
                         break;
@@ -207,7 +208,17 @@ void tela_remover_produto(void) {
     getchar();
 }
 
-
+void gravaEstoque(Estoque* est) {
+    FILE* fp;
+    fp = fopen("estoque.dat", "ab");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Nao eh possivel continuar...\n");
+        exit(1);
+    }
+    fwrite(est, sizeof(Estoque), 1, fp);
+    fclose(fp);
+}
 
 
 

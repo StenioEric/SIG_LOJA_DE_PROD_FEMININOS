@@ -23,8 +23,5 @@ Estoque* tela_cadastro_produto(void);
 void tela_pesquisar_produto(void);
 void tela_alterar_produto(void);
 void tela_remover_produto(void);
-// void idEstoque(const Estoque*);
-// void printEstoque(const Estoque*);
-// void limparBuffer(void);
-// void valEstoque (Estoque*);
+void gravaEstoque(Estoque*);
 
