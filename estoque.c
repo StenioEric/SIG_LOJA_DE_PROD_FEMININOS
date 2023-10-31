@@ -29,6 +29,8 @@ void moduloEstoque(void) {
                         break;
             case '4':   tela_remover_produto();
                         break;
+            case '5':   listarEstoque();
+                        break;
         }
 
     } while (op != '0');
@@ -220,7 +222,44 @@ void gravaEstoque(Estoque* est) {
     fclose(fp);
 }
 
+void printEstoque(Estoque* est) {
+    if ((est == NULL) || (est->status == 'x')) {
+        printf("\n= = = Produto Inexistente = = =\n");
+    } else {
+        printf("PRODUTO:%s\n", est-> produto);
+        printf("QUANTIDADE:%s\n", est-> quantidade);                                                         
+        printf("VALOR:%s\n", est-> valor);                                                      
+        printf("DESCRICAO:%s\n", est-> descricao);                                          
+        printf("ID: %s\n", est-> id);
+        printf("===================================\n");                  
+    }
+}
 
+
+void listarEstoque(void) {
+    FILE* fp;
+    Estoque est;
+    system("clear||cls");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("          PRINT DADOS ESTOQUE          \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("                                       \n");
+    fp = fopen("estoque.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Nao eh possivel continuar...\n");
+        exit(1);
+    }
+    while (fread(&est, sizeof(Estoque), 1, fp)) {
+        if (est.status != 'x') {
+            printEstoque(&est);
+        }
+    }
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+    fclose(fp);
+    free(fp);
+}
 
 
 

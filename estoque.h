@@ -24,4 +24,6 @@ void tela_pesquisar_produto(void);
 void tela_alterar_produto(void);
 void tela_remover_produto(void);
 void gravaEstoque(Estoque*);
+void listarEstoque(void);
+void printEstoque(Estoque*);
 
