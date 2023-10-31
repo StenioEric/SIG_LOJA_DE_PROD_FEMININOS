@@ -250,18 +250,28 @@ void limparBuffer(void) {
 ///  Autor: Chatgpt
 
 
-
-
 ///////////////////////////////////////////////////////////////////////////////
 /// Retorna 1 se o caractere recebido for um dígito (entre 0 e 9)
 /// retorna 0 caso contrário
 ///
+int ehDigitos(char* str) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] < '0' || str[i] > '9') {
+            return 0; // Se qualquer caractere não for um dígito, retorna 0
+        }
+    }
+    return 1; // Todos os caracteres são dígitos
+}
+
+/////////////////////////////////////////////////////////////////////////////
+/// ChatGpt
+
 int ehDigito(char c) {
-  if (c >= '0' && c <= '9') {
-    return 1;
-  } else {
-    return 0;
-  }
+    if (c >= '0' && c <= '9') {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 /////////////////////////////////////////////////////////////////////////////
 /// Flavius Gorgonio
