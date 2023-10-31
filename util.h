@@ -6,6 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 /// Assinatura das funcoes
+int ehDigitos(char*);
 int ehDigito(char);
 int ehLetra(char);
 int ehBarra(char);
