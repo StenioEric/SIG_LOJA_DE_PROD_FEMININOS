@@ -142,7 +142,10 @@ Funcio* tela_cadastro_funcionarios(void) {
 
 
 void tela_pesquisar_funcionarios(void) {
-
+    FILE* fp;
+    char cpf[15];
+    Funcio* fun;
+    fun = (Funcio*)malloc(sizeof(Funcio));
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -162,10 +165,28 @@ void tela_pesquisar_funcionarios(void) {
     printf("///                        PESQUISAR FUNCIONARIO                            ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    printf("///              CPF DO FUNCIONARIO:                                        ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///  CPF DO FUNCIONARIO: ");
+    scanf("%14s", cpf);
+    if (fun == NULL){
+        printf("\n= = = Funcionário não registrado = = =\n");
+        free(fun);
+        return;
+    }
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Não é possível continuar...\n");
+        free(fun); // Libera a memória alocada para fun
+        exit(1);
+    }
+    while (fread(fun, sizeof(Funcio), 1, fp)) {
+        if ((fun->status != 'x') && (strcmp(fun->cpf,cpf)==0)) {
+            printFuncionarios(fun);
+            limparBuffer();
+        }
+    }
+    fclose(fp);
+    free(fp);
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
@@ -273,14 +294,17 @@ void listarFuncionarios(void) {
 
 void printFuncionarios(Funcio* fun) {
     if ((fun == NULL) || (fun->status == 'x')) {
-        printf("\n= = = Funcionário Inexistente = = =\n");
+        printf("\n= = = FUNCIONARIO INEXISTENTE = = =\n");
     } else {
-        printf("NOME:%s\n", fun-> nome);
-        printf("CARGO:%s\n",fun->cargo);
-        printf("CPF:%s\n", fun-> cpf);                                                         
-        printf("EMAIL:%s\n", fun-> email);                                                      
-        printf("DATA DE NASCIMENTO:%s\n", fun-> dataNas);                                          
-        printf("TELEFONE: %s\n", fun-> telefone);
+        system("clear||cls");
+        printf("\n = = = DADOS DO FUNCIONARIO = = = \n");
+        printf("\n");
+        printf("+ NOME:%s\n", fun-> nome);
+        printf("+ CARGO:%s\n",fun->cargo);
+        printf("+ CPF:%s\n", fun-> cpf);                                                         
+        printf("+ EMAIL:%s\n", fun-> email);                                                      
+        printf("+ DATA DE NASCIMENTO:%s\n", fun-> dataNas);                                          
+        printf("+ TELEFONE: %s\n", fun-> telefone);
         printf("===================================\n");                  
     }
 
