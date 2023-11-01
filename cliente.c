@@ -105,25 +105,21 @@ Cliente* tela_cadastro_cliente(void) {
         scanf("%s", cli -> nome);
         limparBuffer();
     } while(!validarNome(cli -> nome));
-
     do {
         printf("/// CPF:");
         scanf("%[0-9/]", cli -> cpf);
         limparBuffer();
     } while(!validarCPF(cli -> cpf));
-
     do {
         printf("/// EMAIL:");
         scanf("%[a-z0-9@.]",cli -> email);
         limparBuffer();
     } while(!valEmail(cli -> email));
-
     do {
         printf("/// DATA DE NASCIMENTO:");
         scanf("%[0-9/]",cli -> dataNas);
         limparBuffer();
     } while(!validarData(cli -> dataNas));
-
     do {
         printf("/// TELEFONE:");
         scanf("%[0-9()]",cli -> telefone);
@@ -131,6 +127,7 @@ Cliente* tela_cadastro_cliente(void) {
     } while(!validarFone(cli -> telefone));
 
     cli -> status = 'A';
+    
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
@@ -138,7 +135,10 @@ Cliente* tela_cadastro_cliente(void) {
 }
 
 void tela_pesquisar_cliente(void) {
-
+    char mtr[15];
+    FILE* fp;
+    Cliente* cli;
+    cli = (Cliente*)malloc(sizeof(Cliente));
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -158,6 +158,29 @@ void tela_pesquisar_cliente(void) {
     printf("///                        PESQUISAR CLIENTE                                ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
+    printf("CPF DO CLIENTE:");
+    scanf("%14s", mtr);
+    if (cli == NULL){
+        printf("\n= = = Cliente não registrado = = =\n");
+        free(cli);
+        return;
+    }
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Não é possível continuar...\n");
+        free(cli); // Libera a memória alocada para cli
+        exit(1);
+    }
+    while (fread(cli, sizeof(Cliente), 1, fp)) {
+        if ((cli->status != 'x') && (strcmp(cli->cpf,mtr)==0)) {
+            printCliente(cli);
+            limparBuffer();
+        }
+    }
+    fclose(fp);
+    free(fp);
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
 
@@ -218,11 +241,14 @@ void printCliente(Cliente* cli) {
     if ((cli == NULL) || (cli->status == 'x')) {
         printf("\n= = = Cliente Inexistente = = =\n");
     } else {
+        printf("\n");
+        printf("\n= = = DADOS DO CLIENTE = = = \n");
         printf("NOME:%s\n", cli-> nome);
         printf("CPF:%s\n", cli-> cpf);                                                         
         printf("EMAIL:%s\n", cli-> email);                                                      
         printf("DATA DE NASCIMENTO:%s\n", cli-> dataNas);                                          
         printf("TELEFONE: %s\n", cli-> telefone);
+        printf("STATUS: %d\n", cli->status);
         printf("===================================\n");                  
     }
 
@@ -264,5 +290,6 @@ void listarTodosClientes(void) {
     getchar();
     fclose(fp);
 }
+
 
 
