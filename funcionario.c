@@ -165,7 +165,7 @@ void tela_pesquisar_funcionarios(void) {
     printf("///                        PESQUISAR FUNCIONARIO                            ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    printf("///  CPF DO FUNCIONARIO: ");
+    printf("/// CPF DO FUNCIONARIO: ");
     scanf("%14s", cpf);
     if (fun == NULL){
         printf("\n= = = Funcionário não registrado = = =\n");

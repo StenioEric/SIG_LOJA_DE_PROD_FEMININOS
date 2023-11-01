@@ -158,7 +158,7 @@ void tela_pesquisar_cliente(void) {
     printf("///                        PESQUISAR CLIENTE                                ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    printf("CPF DO CLIENTE:");
+    printf("/// CPF DO CLIENTE: ");
     scanf("%14s", mtr);
     if (cli == NULL){
         printf("\n= = = Cliente não registrado = = =\n");
@@ -180,6 +180,7 @@ void tela_pesquisar_cliente(void) {
     }
     fclose(fp);
     free(fp);
+    printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
@@ -239,10 +240,11 @@ void tela_excluir_cliente(void) {
 
 void printCliente(Cliente* cli) {
     if ((cli == NULL) || (cli->status == 'x')) {
-        printf("\n= = = Cliente Inexistente = = =\n");
+        printf("\n= = = CLIENTE INEXISTENTE = = =\n");
     } else {
+        system("clear||cls");
+        printf("\n = = = DADOS DO CLIENTE = = = \n");
         printf("\n");
-        printf("\n= = = DADOS DO CLIENTE = = = \n");
         printf("NOME:%s\n", cli-> nome);
         printf("CPF:%s\n", cli-> cpf);                                                         
         printf("EMAIL:%s\n", cli-> email);                                                      
@@ -253,6 +255,7 @@ void printCliente(Cliente* cli) {
     }
 
 }
+
 
 void gravaCliente(Cliente* cli) {
     FILE* fp;
