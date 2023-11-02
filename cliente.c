@@ -238,6 +238,18 @@ void tela_excluir_cliente(void) {
     getchar();
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 void printCliente(Cliente* cli) {
     if ((cli == NULL) || (cli->status == 'x')) {
         printf("\n= = = CLIENTE INEXISTENTE = = =\n");
