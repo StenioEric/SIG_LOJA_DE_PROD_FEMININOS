@@ -9,7 +9,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #include "cliente.h"
 #include "util.h"
 
@@ -17,17 +16,14 @@ typedef struct cliente Cliente;
 
 void moduloCliente(void) {
     char op;
-    Cliente* modelo;
-
     do {
         op = tela_menu_cliente();
         switch (op) {
-            case '1':   modelo = tela_cadastro_cliente();
-                        gravaCliente(modelo);
+            case '1':   cadCliente();
                         break;
             case '2':   tela_pesquisar_cliente();
                         break;
-            case '3':   tela_alterar_cliente();
+            case '3':   atualizaCliente();
                         break;
             case '4':   tela_excluir_cliente();
                         break;
@@ -106,7 +102,7 @@ Cliente* tela_cadastro_cliente(void) {
         limparBuffer();
     } while(!validarNome(cli -> nome));
     do {
-        printf("/// CPF:");
+        printf("/// CPF:");     /// Implementar validação para saber se o cpf já existe
         scanf("%[0-9/]", cli -> cpf);
         limparBuffer();
     } while(!validarCPF(cli -> cpf));
@@ -159,7 +155,7 @@ Cliente* tela_pesquisar_cliente(void) {
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
     do {
-        printf("/// CPF DO CLIENTE: ");
+        printf("///CPF DO CLIENTE: ");
         scanf("%[0-9]",opc);
         limparBuffer();
     } while(!validarCPF(opc));
@@ -170,8 +166,7 @@ Cliente* tela_pesquisar_cliente(void) {
     }
     fp = fopen("clientes.dat", "rb");
     if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\t");
-        printf("Não é possível continuar...\n");
+        telaErro();
         free(cli);
         exit(1);
     }
@@ -191,8 +186,9 @@ Cliente* tela_pesquisar_cliente(void) {
 }
 
 
-void tela_alterar_cliente(void) {
-
+char* tela_alterar_cliente(void) {
+    char* cpf;
+	cpf = (char*) malloc(15*sizeof(char));
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -212,7 +208,12 @@ void tela_alterar_cliente(void) {
     printf("///                         ALTERAR CLIENTE                                 ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
+    printf("///CPF DO CLIENTE: ");
+    scanf("%[0-9]", cpf);
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return cpf;
 }
 
 void tela_excluir_cliente(void) {
@@ -258,6 +259,8 @@ void tela_excluir_cliente(void) {
 void printCliente(Cliente* cli) {
     if ((cli == NULL) || (cli->status == 'x')) {
         printf("\n= = = CLIENTE INEXISTENTE = = =\n");
+        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+        getchar();
     } else {
         system("clear||cls");
         printf("\n = = = DADOS DO CLIENTE = = = \n");
@@ -278,8 +281,7 @@ void gravaCliente(Cliente* cli) {
     FILE* fp;
     fp = fopen("clientes.dat", "ab");
     if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
-        printf("Nao eh possivel continuar...\n");
+        telaErro();
         exit(1);
     }
     fwrite(cli, sizeof(Cliente), 1, fp);
@@ -297,8 +299,7 @@ void listarTodosClientes(void) {
     printf("                                       \n");
     fp = fopen("clientes.dat", "rb");
     if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
-        printf("Nao eh possivel continuar...\n");
+        telaErro();
         exit(1);
     }
     while (fread(&cli, sizeof(Cliente), 1, fp)) {
@@ -312,30 +313,74 @@ void listarTodosClientes(void) {
 }
 
 
-// Cliente* buscaCliente(char* cpf) {
-//         FILE* fp;
-//         Cliente* cli;
-//         cli = (Cliente*)malloc(sizeof(Cliente));
+Cliente* buscaCliente(char* cpf) {
+    FILE* fp;
+    Cliente* cli;
+    cli = (Cliente*)malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        telaErro();
+    }
+    while (fread(cli, sizeof(Cliente), 1, fp)) {
+        if ((cli->status != 'x') && (strcmp(cli->cpf, cpf) == 0)) {
+            fclose(fp);
+            return cli;
+        }
+    }
+	fclose(fp);
+	return NULL;
+}
 
-//         if (cli == NULL){
-//             printf("\n= = = Cliente não registrado = = =\n");
-//             return NULL;
-//         }
-//         fp = fopen("clientes.dat", "rb");
-//         if (fp == NULL) {
-//             printf("Ops! Erro na abertura do arquivo!\n");
-//             printf("Não é possível continuar...\n");
-//         }
-//         while (fread(cli, sizeof(Cliente), 1, fp)) {
-//             if ((cli->status != 'x') && (strcmp(cli->cpf, cpf) == 0)) {
-//                 fclose(fp);
-//                 return cli;
-//             }
-//         }
-//         fclose(fp);
-//         printf("\n");
-//         printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//         getchar();
-//         return NULL;
-// }
 
+void atualizaCliente(void) {
+	Cliente* cli;
+	char* cpf;
+
+	cpf = tela_alterar_cliente();
+	cli = buscaCliente(cpf);
+	if (cli == NULL) {
+    	printf("\n\nCliente não encontrado!\n\n");
+        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+        getchar();
+  	} else {
+		  cli = tela_cadastro_cliente();
+		  strcpy(cli->cpf, cpf);
+		  regravarCliente(cli);
+		  free(cli);
+	}
+	free(cpf);
+}
+
+/// Regravar Cliente
+void regravarCliente(Cliente* cli) {
+    int achou;
+    FILE* fp;
+    Cliente* cli_Lido;
+
+    cli_Lido = (Cliente*)malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "a+b");
+    if (fp == NULL) {
+        telaErro();
+        free(cli_Lido);
+        return;
+    }
+    achou = 0;
+    while (fread(cli_Lido, sizeof(Cliente), 1, fp) && !achou) {
+        if (strcmp(cli_Lido->cpf, cli->cpf) == 0) {
+            achou = 1; 
+            fseek(fp, -1 * sizeof(Cliente), SEEK_CUR);
+            fwrite(cli, sizeof(Cliente), 1, fp);
+        }
+    }
+    fclose(fp);
+    free(cli_Lido);
+}
+
+
+/// Opção de Cadastrar
+void cadCliente(void) {
+	Cliente *cli;
+	cli = tela_cadastro_cliente();
+	gravaCliente(cli);
+	free(cli);
+}

@@ -277,5 +277,9 @@ int ehDigito(char c) {
 /// Flavius Gorgonio
 /// link: https://github.com/flgorgonio/linguasolta_2020.2
 
+void telaErro(void) {
+    printf("\nOps! Erro na abertura do arquivo!\n");
+}
 
 /// criar função ehdinheiro
+

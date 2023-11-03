@@ -18,4 +18,4 @@ int valEmail(char*);
 int validarData(char*);
 int validarFone(char*);
 void limparBuffer(void);
-void printDados(void);
+void telaErro(void);
