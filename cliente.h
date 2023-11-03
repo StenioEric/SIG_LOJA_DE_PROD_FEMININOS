@@ -39,7 +39,7 @@ int validarData(char *data);
 int validarFone(char *fone);
 void gravaCliente(Cliente*);
 void listarTodosClientes(void);
-
+int verificaCPFDuplicado(const char*);
 
 
 

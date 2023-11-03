@@ -75,9 +75,9 @@ char tela_menu_cliente(void) {
 
 
 Cliente* tela_cadastro_cliente(void){
-    // FILE* fp;
     Cliente *cli;
     cli = (Cliente*)malloc(sizeof(Cliente));
+    int valido = 0;
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -97,20 +97,28 @@ Cliente* tela_cadastro_cliente(void){
     printf("///                         CADASTRO CLIENTE                                ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    // fp = fopen("clientes.dat", "rb");
-    // if (fp == NULL) {
-    //     telaErro();
-    // }
     do {
         printf("/// NOME:");
         scanf("%s", cli -> nome);
         limparBuffer();
     } while(!validarNome(cli -> nome));
+    int cpfDuplicado = 0;
     do {
-        printf("/// CPF:");
-        scanf("%[0-9/]", cli->cpf);
+        printf("/// CPF DO CLIENTE: ");
+        scanf("%s", cli->cpf);
         limparBuffer();
-    } while (!validarCPF(cli->cpf));
+
+        cpfDuplicado = verificaCPFDuplicado(cli->cpf);
+
+        if (cpfDuplicado) {
+            printf("/// CPF JA EXISTE. TENTE NOVAMENTE.\n");
+        } else if (validarCPF(cli->cpf)) {
+            valido = 1;
+        }
+        else {
+            printf("/// CPF INVALIDO. TENTE NOVAMENTE.\n");
+        }
+    } while (!valido || cpfDuplicado);
     do {
         printf("/// EMAIL:");
         scanf("%[a-z0-9@.]",cli -> email);
@@ -127,7 +135,6 @@ Cliente* tela_cadastro_cliente(void){
         limparBuffer();
     } while(!validarFone(cli -> telefone));
     cli->status = 1;
-    // fclose(fp);
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
@@ -410,4 +417,20 @@ void excluirCliente(void) {
 
 	}
 	free(cpf);
+}
+
+
+int verificaCPFDuplicado(const char* cpf) {
+    FILE* fp = fopen("clientes.dat", "rb");
+
+    Cliente cli;
+    while (fread(&cli, sizeof(Cliente), 1, fp)) {
+        if (cli.status != 0 && strcmp(cli.cpf, cpf) == 0) {
+            fclose(fp);
+            return 1; // CPF duplicado
+        }
+    }
+
+    fclose(fp);
+    return 0; // CPF não duplicado
 }
