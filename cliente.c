@@ -25,13 +25,13 @@ void moduloCliente(void) {
                         break;
             case '3':   atualizaCliente();
                         break;
-            case '4':   tela_excluir_cliente();
+            case '4':   excluirCliente();
                         break;
             case '5':   listarTodosClientes();
                         break;
 
         }
-    } while (op != '0');
+    } while (op != 0);
 }
 
 char tela_menu_cliente(void) {
@@ -74,7 +74,8 @@ char tela_menu_cliente(void) {
 }
 
 
-Cliente* tela_cadastro_cliente(void) {
+Cliente* tela_cadastro_cliente(void){
+    // FILE* fp;
     Cliente *cli;
     cli = (Cliente*)malloc(sizeof(Cliente));
     system("clear||cls");
@@ -96,16 +97,20 @@ Cliente* tela_cadastro_cliente(void) {
     printf("///                         CADASTRO CLIENTE                                ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
+    // fp = fopen("clientes.dat", "rb");
+    // if (fp == NULL) {
+    //     telaErro();
+    // }
     do {
         printf("/// NOME:");
         scanf("%s", cli -> nome);
         limparBuffer();
     } while(!validarNome(cli -> nome));
     do {
-        printf("/// CPF:");     /// Implementar validação para saber se o cpf já existe
-        scanf("%[0-9/]", cli -> cpf);
+        printf("/// CPF:");
+        scanf("%[0-9/]", cli->cpf);
         limparBuffer();
-    } while(!validarCPF(cli -> cpf));
+    } while (!validarCPF(cli->cpf));
     do {
         printf("/// EMAIL:");
         scanf("%[a-z0-9@.]",cli -> email);
@@ -121,9 +126,8 @@ Cliente* tela_cadastro_cliente(void) {
         scanf("%[0-9()]",cli -> telefone);
         limparBuffer();
     } while(!validarFone(cli -> telefone));
-
-    cli -> status = 'A';
-    
+    cli->status = 1;
+    // fclose(fp);
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
@@ -171,7 +175,7 @@ Cliente* tela_pesquisar_cliente(void) {
         exit(1);
     }
     while (fread(cli, sizeof(Cliente), 1, fp)) {
-        if ((cli->status != 'x') && (strcmp(cli->cpf,opc)==0)) {
+        if ((cli->status != 0) && (strcmp(cli->cpf,opc)==0)) {
             printCliente(cli);
             limparBuffer();
         }
@@ -216,8 +220,9 @@ char* tela_alterar_cliente(void) {
     return cpf;
 }
 
-void tela_excluir_cliente(void) {
-
+char* tela_excluir_cliente(void) {
+    char* cpf;
+	cpf = (char*) malloc(15*sizeof(char));
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -237,11 +242,12 @@ void tela_excluir_cliente(void) {
     printf("///                         EXCLUIR CLIENTE                                 ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    printf("///              CPF DO CLIENTE:                                            ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///CPF DO CLIENTE: ");
+    scanf("%[0-9]", cpf);
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return cpf;
 }
 
 
@@ -255,9 +261,8 @@ void tela_excluir_cliente(void) {
 
 
 
-
 void printCliente(Cliente* cli) {
-    if ((cli == NULL) || (cli->status == 'x')) {
+    if ((cli == NULL) || (cli->status == 0)) {
         printf("\n= = = CLIENTE INEXISTENTE = = =\n");
         printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
         getchar();
@@ -303,7 +308,7 @@ void listarTodosClientes(void) {
         exit(1);
     }
     while (fread(&cli, sizeof(Cliente), 1, fp)) {
-        if (cli.status != 'x') {
+        if (cli.status != 0) {
             printCliente(&cli);
         }
     }
@@ -322,7 +327,7 @@ Cliente* buscaCliente(char* cpf) {
         telaErro();
     }
     while (fread(cli, sizeof(Cliente), 1, fp)) {
-        if ((cli->status != 'x') && (strcmp(cli->cpf, cpf) == 0)) {
+        if ((strcmp(cli->cpf, cpf) == 0) && (strcmp(cli->cpf, cpf) == 0)) {
             fclose(fp);
             return cli;
         }
@@ -351,6 +356,7 @@ void atualizaCliente(void) {
 	free(cpf);
 }
 
+
 /// Regravar Cliente
 void regravarCliente(Cliente* cli) {
     int achou;
@@ -358,17 +364,15 @@ void regravarCliente(Cliente* cli) {
     Cliente* cli_Lido;
 
     cli_Lido = (Cliente*)malloc(sizeof(Cliente));
-    fp = fopen("clientes.dat", "a+b");
+    fp = fopen("clientes.dat", "r+b");
     if (fp == NULL) {
         telaErro();
-        free(cli_Lido);
-        return;
     }
     achou = 0;
     while (fread(cli_Lido, sizeof(Cliente), 1, fp) && !achou) {
         if (strcmp(cli_Lido->cpf, cli->cpf) == 0) {
             achou = 1; 
-            fseek(fp, -1 * sizeof(Cliente), SEEK_CUR);
+            fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
             fwrite(cli, sizeof(Cliente), 1, fp);
         }
     }
@@ -383,4 +387,27 @@ void cadCliente(void) {
 	cli = tela_cadastro_cliente();
 	gravaCliente(cli);
 	free(cli);
+}
+
+
+void excluirCliente(void) {
+	Cliente* cli;
+	char* cpf;
+
+	cpf = tela_excluir_cliente();
+	cli = (Cliente*) malloc(sizeof(Cliente));
+	cli = buscaCliente(cpf);
+	if (cli == NULL) {
+    	printf("\n\nAluno não encontrado!\n\n");
+  	} else {
+        cli->status = 0;
+        regravarCliente(cli);
+        free(cli);
+        printf("\n= = = CLIENTE EXCLUIDO COM SUCESSO = = =\n");
+        printf("\n");
+        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+        limparBuffer();
+
+	}
+	free(cpf);
 }

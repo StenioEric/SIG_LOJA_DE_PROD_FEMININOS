@@ -14,7 +14,7 @@ struct cliente {
     char email[50];
     char dataNas[15];
     char telefone[15];
-    char status;
+    int status;
 };
 
 void moduloCliente(void);
@@ -22,12 +22,13 @@ char tela_menu_cliente(void);
 Cliente* tela_cadastro_cliente(void);
 Cliente* tela_pesquisar_cliente(void);
 char* tela_alterar_cliente(void);
-void tela_excluir_cliente(void);
+char* tela_excluir_cliente(void);
 void printCliente(Cliente*);
 Cliente* buscaCliente(char*);
 void atualizaCliente(void);
 void regravarCliente(Cliente*);
 void cadCliente(void);
+void excluirCliente(void);
 
 
 void limparBuffer(void);
