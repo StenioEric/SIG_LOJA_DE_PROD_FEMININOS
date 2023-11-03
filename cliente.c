@@ -170,30 +170,30 @@ Cliente* tela_pesquisar_cliente(void) {
         scanf("%[0-9]",opc);
         limparBuffer();
     } while(!validarCPF(opc));
-    if (cli == NULL){  /// Concertar erro que não aparece essa parte do código
-        printf("\n= = = Cliente não registrado = = =\n");
-        limparBuffer();
-        return NULL;
-    }
     fp = fopen("clientes.dat", "rb");
     if (fp == NULL) {
         telaErro();
         free(cli);
         exit(1);
     }
+    int cliEncontrado = 0;
     while (fread(cli, sizeof(Cliente), 1, fp)) {
         if ((cli->status != 0) && (strcmp(cli->cpf,opc)==0)) {
             printCliente(cli);
             limparBuffer();
+            cliEncontrado = 1;
         }
     }
-    fclose(fp);
-    free(cli);
+    if (!cliEncontrado){
+        printf("\n= = = Cliente não registrado = = =\n");
+        limparBuffer();
+        return NULL;
+    }
+    
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
     return NULL;
-
 }
 
 
