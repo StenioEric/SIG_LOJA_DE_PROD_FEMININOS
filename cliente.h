@@ -20,14 +20,13 @@ struct cliente {
 void moduloCliente(void);
 char tela_menu_cliente(void);
 Cliente* tela_cadastro_cliente(void);
-void tela_pesquisar_cliente(void);
+Cliente* tela_pesquisar_cliente(void);
 void tela_alterar_cliente(void);
 void tela_excluir_cliente(void);
 void printCliente(Cliente*);
-// void idGenerico(const Cliente*);
+// Cliente* buscaCliente(char*);
 
 
-// void valCliente (Cliente*);
 void limparBuffer(void);
 int validarNome(char *nome);
 int validarCPF(char *cpf);

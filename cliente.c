@@ -134,8 +134,8 @@ Cliente* tela_cadastro_cliente(void) {
     return cli;
 }
 
-void tela_pesquisar_cliente(void) {
-    char mtr[15];
+Cliente* tela_pesquisar_cliente(void) {
+    char opc[15];
     FILE* fp;
     Cliente* cli;
     cli = (Cliente*)malloc(sizeof(Cliente));
@@ -158,31 +158,36 @@ void tela_pesquisar_cliente(void) {
     printf("///                        PESQUISAR CLIENTE                                ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    printf("/// CPF DO CLIENTE: ");
-    scanf("%14s", mtr);
-    if (cli == NULL){
+    do {
+        printf("/// CPF DO CLIENTE: ");
+        scanf("%[0-9]",opc);
+        limparBuffer();
+    } while(!validarCPF(opc));
+    if (cli == NULL){  /// Concertar erro que não aparece essa parte do código
         printf("\n= = = Cliente não registrado = = =\n");
-        free(cli);
-        return;
+        limparBuffer();
+        return NULL;
     }
     fp = fopen("clientes.dat", "rb");
     if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Ops! Erro na abertura do arquivo!\t");
         printf("Não é possível continuar...\n");
-        free(cli); // Libera a memória alocada para cli
+        free(cli);
         exit(1);
     }
     while (fread(cli, sizeof(Cliente), 1, fp)) {
-        if ((cli->status != 'x') && (strcmp(cli->cpf,mtr)==0)) {
+        if ((cli->status != 'x') && (strcmp(cli->cpf,opc)==0)) {
             printCliente(cli);
             limparBuffer();
         }
     }
     fclose(fp);
-    free(fp);
+    free(cli);
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return NULL;
+
 }
 
 
@@ -307,4 +312,30 @@ void listarTodosClientes(void) {
 }
 
 
+// Cliente* buscaCliente(char* cpf) {
+//         FILE* fp;
+//         Cliente* cli;
+//         cli = (Cliente*)malloc(sizeof(Cliente));
+
+//         if (cli == NULL){
+//             printf("\n= = = Cliente não registrado = = =\n");
+//             return NULL;
+//         }
+//         fp = fopen("clientes.dat", "rb");
+//         if (fp == NULL) {
+//             printf("Ops! Erro na abertura do arquivo!\n");
+//             printf("Não é possível continuar...\n");
+//         }
+//         while (fread(cli, sizeof(Cliente), 1, fp)) {
+//             if ((cli->status != 'x') && (strcmp(cli->cpf, cpf) == 0)) {
+//                 fclose(fp);
+//                 return cli;
+//             }
+//         }
+//         fclose(fp);
+//         printf("\n");
+//         printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+//         getchar();
+//         return NULL;
+// }
 
