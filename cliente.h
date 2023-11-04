@@ -28,6 +28,7 @@ Cliente* buscaCliente(char*);
 void atualizaCliente(void);
 void regravarCliente(Cliente*);
 void cadCliente(void);
+void removeCliente(Cliente*);
 void excluirCliente(void);
 
 

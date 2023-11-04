@@ -277,21 +277,9 @@ char* tela_excluir_cliente(void) {
     printf("///                                                                         ///\n");
     printf("///CPF DO CLIENTE: ");
     scanf("%[0-9]", cpf);
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
     return cpf;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 void printCliente(Cliente* cli) {
@@ -338,7 +326,7 @@ void listarTodosClientes(void) {
         exit(1);
     }
     while (fread(cli, sizeof(Cliente), 1, fp)) {
-        if (cli->status != 0) {
+        if (cli->status == 1) {
             printCliente(cli);
             // limparBuffer();
         }
@@ -388,9 +376,7 @@ void atualizaCliente(void) {
 }
 
 
-/// Regravar Cliente
 void regravarCliente(Cliente* cli) {
-    int achou;
     FILE* fp;
     Cliente* cli_Lido;
 
@@ -399,17 +385,25 @@ void regravarCliente(Cliente* cli) {
     if (fp == NULL) {
         telaErro();
     }
-    achou = 0;
-    while (fread(cli_Lido, sizeof(Cliente), 1, fp) && !achou) {
+    
+    int achou = 0;
+    while(!feof(fp)) {
+        fread(cli_Lido, sizeof(Cliente), 1, fp);
         if (strcmp(cli_Lido->cpf, cli->cpf) == 0) {
-            achou = 1; 
-            fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
+            achou = 1;
+            fseek(fp, -1 * sizeof(Cliente), SEEK_CUR);
             fwrite(cli, sizeof(Cliente), 1, fp);
+            break;
         }
     }
     fclose(fp);
     free(cli_Lido);
+
+    if (!achou) {
+        printf("\nCliente não encontrado!\n");
+    }
 }
+
 
 
 /// Opção de Cadastrar
@@ -421,26 +415,60 @@ void cadCliente(void) {
 }
 
 
-void excluirCliente(void) {
-	Cliente* cli;
-	char* cpf;
+void removeCliente(Cliente* cli) {
+    FILE* fp;
+    Cliente* cli_Lido;
+    cli_Lido = (Cliente*)malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "r+b");
+    
+    if (fp == NULL) {
+        telaErro();
+    }
+    int achou = 0;
+    while (fread(cli_Lido, sizeof(Cliente), 1, fp) && !achou) {
+        if (strcmp(cli_Lido->cpf, cli->cpf) == 0 && cli_Lido->status) {
+            achou = 1; 
+            fseek(fp, -1 * sizeof(Cliente), SEEK_CUR);
+            cli_Lido->status = 0; // Marca o cliente como inativo
+            fwrite(cli_Lido, sizeof(Cliente), 1, fp);
+        }
+    }
+    fclose(fp);
+    free(cli_Lido);
 
-	cpf = tela_excluir_cliente();
-	cli = (Cliente*) malloc(sizeof(Cliente));
-	cli = buscaCliente(cpf);
-	if (cli == NULL) {
-    	printf("\n\nAluno não encontrado!\n\n");
-  	} else {
-        cli->status = 0;
+    if (!achou) {
+        printf("\nCliente não encontrado ou já removido!\n");
+    }
+}
+
+
+
+void excluirCliente(void) {
+    Cliente *cli;
+    char *cpf;
+
+    cpf = tela_excluir_cliente();
+    cli = buscaCliente(cpf);
+
+    if (cli == NULL)
+    {
+        printf("\n\nCliente não encontrado!\n\n");
+        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+        limparBuffer();
+    }
+    else
+    {
+        cli->status = 0; // Marca o cliente como inativo
         regravarCliente(cli);
         free(cli);
-        printf("\n= = = CLIENTE EXCLUIDO COM SUCESSO = = =\n");
+        printf("\n");
+        printf("\t\t\tCLIENTE EXCLUIDO COM SUCESSO\n");
         printf("\n");
         printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
         limparBuffer();
+    }
 
-	}
-	free(cpf);
+    free(cpf);
 }
 
 
