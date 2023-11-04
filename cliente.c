@@ -77,7 +77,6 @@ char tela_menu_cliente(void) {
 Cliente* tela_cadastro_cliente(void){
     Cliente *cli;
     cli = (Cliente*)malloc(sizeof(Cliente));
-    int valido = 0;
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -103,6 +102,7 @@ Cliente* tela_cadastro_cliente(void){
         limparBuffer();
     } while(!validarNome(cli -> nome));
     int cpfDuplicado = 0;
+    int cpfValido = 0;
     do {
         printf("/// CPF DO CLIENTE: ");
         scanf("%s", cli->cpf);
@@ -111,29 +111,54 @@ Cliente* tela_cadastro_cliente(void){
         cpfDuplicado = verificaCPFDuplicado(cli->cpf);
 
         if (cpfDuplicado) {
-            printf("/// CPF JA EXISTE. TENTE NOVAMENTE.\n");
+            printf("\n");
+            printf("\t\t\tCPF JA EXISTE. TENTE NOVAMENTE.\n");
+            printf("\n");
         } else if (validarCPF(cli->cpf)) {
-            valido = 1;
+            cpfValido= 1;
         }
         else {
-            printf("/// CPF INVALIDO. TENTE NOVAMENTE.\n");
+            printf("\n");
+            printf("\t\t\tCPF INVALIDO. TENTE NOVAMENTE.\n");
+            printf("\n");
         }
-    } while (!valido || cpfDuplicado);
+    } while (!cpfValido || cpfDuplicado);
+
+    int emailDuplicado = 0;
+    int emailValido = 0;
     do {
         printf("/// EMAIL:");
         scanf("%[a-z0-9@.]",cli -> email);
         limparBuffer();
-    } while(!valEmail(cli -> email));
+
+        emailDuplicado = verificaEmailDuplicado(cli->email);
+
+        if (emailDuplicado) {
+            printf("\n");
+            printf("\t\t\tEMAIL JA EXISTE. TENTE NOVAMENTE.\n");
+            printf("\n");
+        } else if (valEmail(cli->email)) {
+            emailValido = 1;
+        }
+        else {
+            printf("\n");
+            printf("\t\t\tEMAIL INVALIDO. TENTE NOVAMENTE.\n");
+            printf("\n");
+        }
+    } while (emailDuplicado || !emailValido);
+
     do {
         printf("/// DATA DE NASCIMENTO:");
         scanf("%[0-9/]",cli -> dataNas);
         limparBuffer();
     } while(!validarData(cli -> dataNas));
+
     do {
         printf("/// TELEFONE:");
         scanf("%[0-9()]",cli -> telefone);
         limparBuffer();
     } while(!validarFone(cli -> telefone));
+    
     cli->status = 1;
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -185,7 +210,8 @@ Cliente* tela_pesquisar_cliente(void) {
         }
     }
     if (!cliEncontrado){
-        printf("\n= = = Cliente não registrado = = =\n");
+        printf("\n");
+        printf("\t\t\tCLIENTE NAO REGISTRADO\n");
         limparBuffer();
         return NULL;
     }
@@ -283,7 +309,8 @@ void printCliente(Cliente* cli) {
         printf("DATA DE NASCIMENTO:%s\n", cli-> dataNas);                                          
         printf("TELEFONE: %s\n", cli-> telefone);
         printf("STATUS: %d\n", cli->status);
-        printf("===================================\n");                  
+        printf("===================================\n");      
+        limparBuffer();            
     }
 
 }
@@ -303,20 +330,17 @@ void gravaCliente(Cliente* cli) {
 
 void listarTodosClientes(void) {
     FILE* fp;
-    Cliente cli;
-    system("clear||cls");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-    printf("         PRINT DADOS CLIENTES          \n");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-    printf("                                       \n");
+    Cliente* cli;
+    cli = (Cliente*) malloc(sizeof(Cliente));
     fp = fopen("clientes.dat", "rb");
     if (fp == NULL) {
         telaErro();
         exit(1);
     }
-    while (fread(&cli, sizeof(Cliente), 1, fp)) {
-        if (cli.status != 0) {
-            printCliente(&cli);
+    while (fread(cli, sizeof(Cliente), 1, fp)) {
+        if (cli->status != 0) {
+            printCliente(cli);
+            // limparBuffer();
         }
     }
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
@@ -426,6 +450,21 @@ int verificaCPFDuplicado(const char* cpf) {
     Cliente cli;
     while (fread(&cli, sizeof(Cliente), 1, fp)) {
         if (cli.status != 0 && strcmp(cli.cpf, cpf) == 0) {
+            fclose(fp);
+            return 1; // CPF duplicado
+        }
+    }
+
+    fclose(fp);
+    return 0; // CPF não duplicado
+}
+
+int verificaEmailDuplicado(const char* email) {
+    FILE* fp = fopen("clientes.dat", "rb");
+
+    Cliente cli;
+    while (fread(&cli, sizeof(Cliente), 1, fp)) {
+        if (cli.status != 0 && strcmp(cli.email, email) == 0) {
             fclose(fp);
             return 1; // CPF duplicado
         }
