@@ -19,3 +19,5 @@ int validarData(char*);
 int validarFone(char*);
 void limparBuffer(void);
 void telaErro(void);
+int verificaCPFDuplicado(const char*);
+int verificaEmailDuplicado(const char*);
