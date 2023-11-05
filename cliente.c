@@ -58,6 +58,7 @@ char tela_menu_cliente(void) {
     printf("///            2. PESQUISAR DADOS DO CLIENTE                                ///\n");
     printf("///            3. ATUALIZAR CADASTRO DO CLIENTE                             ///\n");
     printf("///            4. EXCLUIR DADOS DO CLIENTE                                  ///\n");
+    printf("///            5. LISTAR TODOS OS CLIENTES                                  ///\n");
     printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
     printf("///                                                                         ///\n");
     printf("///            ESCOLHA A OPCAO DESEJADA: ");
@@ -282,6 +283,12 @@ char* tela_excluir_cliente(void) {
 }
 
 
+
+////////////////////////////////////////////////////////////////
+///////////////// FUNCOES UTILIZADAS NO CODIGO /////////////////
+////////////////////////////////////////////////////////////////
+
+// PRINTA DADOS DO CLIENTE
 void printCliente(Cliente* cli) {
     system("clear||cls");
     printf("\n = = = DADOS DO CLIENTE = = = \n");
@@ -294,105 +301,131 @@ void printCliente(Cliente* cli) {
     printf("===================================\n");
 }
 
-
-
+// Grava os dados do cliente em um arquivo
 void gravaCliente(Cliente* cli) {
+    // Abre o arquivo "clientes.dat" para escrita binária no final do arquivo
     FILE* fp;
     fp = fopen("clientes.dat", "ab");
+
+    // Verifica se houve erro ao abrir o arquivo
     if (fp == NULL) {
-        telaErro();
-        exit(1);
+        telaErro(); // Exibe uma mensagem de erro
+        exit(1); // Encerra o programa
     }
+
+    // Escreve os dados do cliente no arquivo
     fwrite(cli, sizeof(Cliente), 1, fp);
+
+    // Fecha o arquivo
     fclose(fp);
 }
 
-
+// Lista todos os clientes ativos
 void listarTodosClientes(void) {
+    // Abre o arquivo "clientes.dat" para leitura binária
     FILE* fp;
     Cliente* cli;
     cli = (Cliente*) malloc(sizeof(Cliente));
     fp = fopen("clientes.dat", "rb");
+
+    // Verifica se houve erro ao abrir o arquivo
     if (fp == NULL) {
-        telaErro();
-        free(cli);
-        exit(1);
+        telaErro(); // Exibe uma mensagem de erro
+        free(cli); // Libera a memória alocada para o cliente
+        exit(1); // Encerra o programa
     }
 
-    int clienteEncontrado = 0; 
+    int clienteEncontrado = 0; // Variável para rastrear se algum cliente foi encontrado
+
     while (fread(cli, sizeof(Cliente), 1, fp)) {
         if (cli->status == 1) {
             printCliente(cli);
             clienteEncontrado = 1;
         }
     }
-    if (!clienteEncontrado) { // Se nenhum cliente foi encontrado
+
+    if (!clienteEncontrado) { // Se nenhum cliente ativo foi encontrado
         system("clear||cls");
         printf("\n");
         printf("\t\t\tNENHUM CLIENTE ENCONTRADO\n");
         printf("\n");
     }
+
+    // Libera a memória alocada para o cliente
     free(cli);
+    // Fecha o arquivo
     fclose(fp);
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     limparBuffer();
 }
 
-
-
-
+// Busca um cliente pelo CPF
 Cliente* buscaCliente(char* cpf) {
+    // Abre o arquivo "clientes.dat" para leitura binária
     FILE* fp;
     Cliente* cli;
     cli = (Cliente*)malloc(sizeof(Cliente));
     fp = fopen("clientes.dat", "rb");
+
+    // Verifica se houve erro ao abrir o arquivo
     if (fp == NULL) {
-        telaErro();
+        telaErro(); // Exibe uma mensagem de erro
     }
+
+    // Percorre o arquivo em busca do cliente com o CPF fornecido
     while (fread(cli, sizeof(Cliente), 1, fp)) {
-        if ((strcmp(cli->cpf, cpf) == 0) && (strcmp(cli->cpf, cpf) == 0)) {
-            fclose(fp);
-            return cli;
+        if (strcmp(cli->cpf, cpf) == 0 && cli->status == 1) {
+            fclose(fp); // Fecha o arquivo
+            return cli; // Retorna o cliente encontrado
         }
     }
-	fclose(fp);
-	return NULL;
+
+    fclose(fp); // Fecha o arquivo
+    free(cli); // Libera a memória alocada para o cliente
+    return NULL; // Retorna NULL se o cliente não foi encontrado
 }
 
-
+// Atualiza um cliente
 void atualizaCliente(void) {
-	Cliente* cli;
-	char* cpf;
+    Cliente* cli;
+    char* cpf;
 
-	cpf = tela_alterar_cliente();
-	cli = buscaCliente(cpf);
-	if (cli == NULL) {
+    // Obtém o CPF do cliente a ser atualizado
+    cpf = tela_alterar_cliente();
+    cli = buscaCliente(cpf);
+
+    if (cli == NULL) {
         system("clear||cls");
-    	printf("\t\t\tCLIENTE NAO ENCONTRADO!\n\n");
+        printf("\n");
+        printf("\t\t\tCLIENTE NAO ENCONTRADO!\n\n");
         printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
         getchar();
-  	} else {
+    } else {
         removeCliente(cli);
         cli = tela_cadastro_cliente();
         strcpy(cli->cpf, cpf);
         regravarCliente(cli);
         free(cli);
     }
-	free(cpf);
+
+    free(cpf);
 }
 
-
+// Reescreve os dados de um cliente no arquivo
 void regravarCliente(Cliente* cli) {
     FILE* fp;
     Cliente* cli_Lido;
 
     cli_Lido = (Cliente*)malloc(sizeof(Cliente));
     fp = fopen("clientes.dat", "r+b");
+
     if (fp == NULL) {
         telaErro();
     }
-    
+
     int achou = 0;
+
+    // Busca o cliente pelo CPF no arquivo
     while(!feof(fp)) {
         fread(cli_Lido, sizeof(Cliente), 1, fp);
         if (strcmp(cli_Lido->cpf, cli->cpf) == 0) {
@@ -402,79 +435,82 @@ void regravarCliente(Cliente* cli) {
             break;
         }
     }
-    fclose(fp);
-    free(cli_Lido);
+
+    fclose(fp); // Fecha o arquivo
+    free(cli_Lido); // Libera a memória alocada para o cliente lido do arquivo
 
     if (!achou) {
-        printf("t\t\tCLIENTE NAO ENCONTRADO!\n");
+        printf("\n");
+        printf("\t\t\tCLIENTE NAO ENCONTRADO!\n");
     }
 }
 
-
-
-/// Opção de Cadastrar
+// Cadastra um novo cliente
 void cadCliente(void) {
-	Cliente *cli;
-	cli = tela_cadastro_cliente();
-	gravaCliente(cli);
-	free(cli);
+    Cliente *cli;
+    cli = tela_cadastro_cliente();
+    gravaCliente(cli);
+    free(cli);
 }
 
-
+// Remove um cliente
 void removeCliente(Cliente* cli) {
     FILE* fp;
     Cliente* cli_Lido;
     cli_Lido = (Cliente*)malloc(sizeof(Cliente));
     fp = fopen("clientes.dat", "r+b");
-    
+
     if (fp == NULL) {
         telaErro();
     }
+
     int achou = 0;
+
+    // Busca o cliente pelo CPF no arquivo
     while (fread(cli_Lido, sizeof(Cliente), 1, fp) && !achou) {
         if (strcmp(cli_Lido->cpf, cli->cpf) == 0 && cli_Lido->status) {
-            achou = 1; 
+            achou = 1;
             fseek(fp, -1 * sizeof(Cliente), SEEK_CUR);
             cli_Lido->status = 0; // Marca o cliente como inativo
             fwrite(cli_Lido, sizeof(Cliente), 1, fp);
         }
     }
-    fclose(fp);
-    free(cli_Lido);
+
+    fclose(fp); // Fecha o arquivo
+    free(cli_Lido); // Libera a memória alocada para o cliente lido do arquivo
 
     if (!achou) {
         printf("\t\t\tCLIENTE NAO ENCONTRADO OU JA REMOVIDO!\n");
     }
 }
 
-
-
+// Exclui um cliente
 void excluirCliente(void) {
     Cliente *cli;
     char *cpf;
 
+    // Obtém o CPF do cliente a ser excluído
     cpf = tela_excluir_cliente();
     cli = buscaCliente(cpf);
 
     if (cli == NULL) {
         printf("\t\t\tCLIENTE NAO ENCONTRADO!\n\n");
-    }
-    else {
+    } else {
         cli->status = 0; // Marca o cliente como inativo
         removeCliente(cli);
         free(cli);
-        cli = NULL; // Definindo cli como NULL após remoção
+        cli = NULL; // Define cli como NULL após remoção
         printf("\n");
         printf("\t\t\tCLIENTE EXCLUIDO COM SUCESSO!\n");
     }
+
     free(cpf);
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     limparBuffer();
 }
 
-
-
+// Verifica se um CPF já está cadastrado
 int verificaCPFDuplicado(const char* cpf) {
     FILE* fp = fopen("clientes.dat", "rb");
 
@@ -486,10 +522,11 @@ int verificaCPFDuplicado(const char* cpf) {
         }
     }
 
-    fclose(fp);
+    fclose(fp); // Fecha o arquivo
     return 0; // CPF não duplicado
 }
 
+// Verifica se um e-mail já está cadastrado
 int verificaEmailDuplicado(const char* email) {
     FILE* fp = fopen("clientes.dat", "rb");
 
@@ -497,10 +534,10 @@ int verificaEmailDuplicado(const char* email) {
     while (fread(&cli, sizeof(Cliente), 1, fp)) {
         if (cli.status != 0 && strcmp(cli.email, email) == 0) {
             fclose(fp);
-            return 1; // CPF duplicado
+            return 1; // E-mail duplicado
         }
     }
 
-    fclose(fp);
-    return 0; // CPF não duplicado
+    fclose(fp); // Fecha o arquivo
+    return 0; // E-mail não duplicado
 }
