@@ -231,9 +231,11 @@ char* tela_excluir_cliente(void) {
     printf("///                         EXCLUIR CLIENTE                                 ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    printf("///CPF DO CLIENTE: ");
-    scanf("%[0-9]", cpf);
-    getchar();
+    do {
+        printf("///CPF DO CLIENTE: ");
+        scanf("%[0-9]",cpf);
+        limparBuffer();
+    } while(!validarCPF(cpf));
     return cpf;
 }
 
@@ -435,6 +437,7 @@ void removeCliente(Cliente* cli) {
     free(cli_Lido); // Libera a memória alocada para o cliente lido do arquivo
 
     if (!achou) {
+        printf("\n");
         printf("\t\t\tCLIENTE NAO ENCONTRADO OU JA REMOVIDO!\n");
     }
 }
@@ -449,6 +452,7 @@ void excluirCliente(void) {
     cli = buscaCliente(cpf);
 
     if (cli == NULL) {
+        printf("\n");
         printf("\t\t\tCLIENTE NAO ENCONTRADO!\n\n");
     } else {
         cli->status = 0; // Marca o cliente como inativo
@@ -465,34 +469,3 @@ void excluirCliente(void) {
     limparBuffer();
 }
 
-// Verifica se um CPF já está cadastrado
-int verificaCPFDuplicado(const char* cpf) {
-    FILE* fp = fopen("clientes.dat", "rb");
-
-    Cliente cli;
-    while (fread(&cli, sizeof(Cliente), 1, fp)) {
-        if (cli.status != 0 && strcmp(cli.cpf, cpf) == 0) {
-            fclose(fp);
-            return 1; // CPF duplicado
-        }
-    }
-
-    fclose(fp); // Fecha o arquivo
-    return 0; // CPF não duplicado
-}
-
-// Verifica se um e-mail já está cadastrado
-int verificaEmailDuplicado(const char* email) {
-    FILE* fp = fopen("clientes.dat", "rb");
-
-    Cliente cli;
-    while (fread(&cli, sizeof(Cliente), 1, fp)) {
-        if (cli.status != 0 && strcmp(cli.email, email) == 0) {
-            fclose(fp);
-            return 1; // E-mail duplicado
-        }
-    }
-
-    fclose(fp); // Fecha o arquivo
-    return 0; // E-mail não duplicado
-}
