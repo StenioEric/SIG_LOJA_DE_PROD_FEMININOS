@@ -283,25 +283,17 @@ char* tela_excluir_cliente(void) {
 
 
 void printCliente(Cliente* cli) {
-    if ((cli == NULL) || (cli->status == 0)) {
-        printf("\n= = = CLIENTE INEXISTENTE = = =\n");
-        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-        getchar();
-    } else {
-        system("clear||cls");
-        printf("\n = = = DADOS DO CLIENTE = = = \n");
-        printf("\n");
-        printf("NOME:%s\n", cli-> nome);
-        printf("CPF:%s\n", cli-> cpf);                                                         
-        printf("EMAIL:%s\n", cli-> email);                                                      
-        printf("DATA DE NASCIMENTO:%s\n", cli-> dataNas);                                          
-        printf("TELEFONE: %s\n", cli-> telefone);
-        printf("STATUS: %d\n", cli->status);
-        printf("===================================\n");      
-        limparBuffer();            
-    }
-
+    system("clear||cls");
+    printf("\n = = = DADOS DO CLIENTE = = = \n");
+    printf("NOME:              %s\n", cli->nome);
+    printf("CPF:               %s\n", cli->cpf);
+    printf("EMAIL:             %s\n", cli->email);
+    printf("DATA DE NASCIMENTO:%s\n", cli->dataNas);
+    printf("TELEFONE:          %s\n", cli->telefone);
+    printf("STATUS:            %d\n", cli->status);
+    printf("===================================\n");
 }
+
 
 
 void gravaCliente(Cliente* cli) {
@@ -323,18 +315,30 @@ void listarTodosClientes(void) {
     fp = fopen("clientes.dat", "rb");
     if (fp == NULL) {
         telaErro();
+        free(cli);
         exit(1);
     }
+
+    int clienteEncontrado = 0; 
     while (fread(cli, sizeof(Cliente), 1, fp)) {
         if (cli->status == 1) {
             printCliente(cli);
-            // limparBuffer();
+            clienteEncontrado = 1;
         }
     }
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    if (!clienteEncontrado) { // Se nenhum cliente foi encontrado
+        system("clear||cls");
+        printf("\n");
+        printf("\t\t\tNENHUM CLIENTE ENCONTRADO\n");
+        printf("\n");
+    }
+    free(cli);
     fclose(fp);
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    limparBuffer();
 }
+
+
 
 
 Cliente* buscaCliente(char* cpf) {
@@ -363,15 +367,17 @@ void atualizaCliente(void) {
 	cpf = tela_alterar_cliente();
 	cli = buscaCliente(cpf);
 	if (cli == NULL) {
-    	printf("\n\nCliente não encontrado!\n\n");
+        system("clear||cls");
+    	printf("\t\t\tCLIENTE NAO ENCONTRADO!\n\n");
         printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
         getchar();
   	} else {
-		  cli = tela_cadastro_cliente();
-		  strcpy(cli->cpf, cpf);
-		  regravarCliente(cli);
-		  free(cli);
-	}
+        removeCliente(cli);
+        cli = tela_cadastro_cliente();
+        strcpy(cli->cpf, cpf);
+        regravarCliente(cli);
+        free(cli);
+    }
 	free(cpf);
 }
 
@@ -400,7 +406,7 @@ void regravarCliente(Cliente* cli) {
     free(cli_Lido);
 
     if (!achou) {
-        printf("\nCliente não encontrado!\n");
+        printf("t\t\tCLIENTE NAO ENCONTRADO!\n");
     }
 }
 
@@ -437,7 +443,7 @@ void removeCliente(Cliente* cli) {
     free(cli_Lido);
 
     if (!achou) {
-        printf("\nCliente não encontrado ou já removido!\n");
+        printf("\t\t\tCLIENTE NAO ENCONTRADO OU JA REMOVIDO!\n");
     }
 }
 
@@ -450,26 +456,23 @@ void excluirCliente(void) {
     cpf = tela_excluir_cliente();
     cli = buscaCliente(cpf);
 
-    if (cli == NULL)
-    {
-        printf("\n\nCliente não encontrado!\n\n");
-        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-        limparBuffer();
+    if (cli == NULL) {
+        printf("\t\t\tCLIENTE NAO ENCONTRADO!\n\n");
     }
-    else
-    {
+    else {
         cli->status = 0; // Marca o cliente como inativo
-        regravarCliente(cli);
+        removeCliente(cli);
         free(cli);
+        cli = NULL; // Definindo cli como NULL após remoção
         printf("\n");
-        printf("\t\t\tCLIENTE EXCLUIDO COM SUCESSO\n");
-        printf("\n");
-        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-        limparBuffer();
+        printf("\t\t\tCLIENTE EXCLUIDO COM SUCESSO!\n");
     }
-
     free(cpf);
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    limparBuffer();
 }
+
 
 
 int verificaCPFDuplicado(const char* cpf) {
