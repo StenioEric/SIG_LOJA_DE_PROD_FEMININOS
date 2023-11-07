@@ -5,6 +5,7 @@
 ///             Developed by @stenioeric -- since August, 2023              ///
 ///////////////////////////////////////////////////////////////////////////////
 
+#define TAMANHO_MAXIMO_NOME 50
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -315,4 +316,14 @@ int verificaEmailDuplicado(const char* email) {
 
 
 /// criar função ehdinheiro
+char* pegaNome(void) {
+  char nome[TAMANHO_MAXIMO_NOME];
 
+  do {
+    printf("/// NOME: ");
+    scanf("%s", nome);
+    limparBuffer();
+  } while (!validarNome(nome));
+
+  return strdup(nome);
+}
