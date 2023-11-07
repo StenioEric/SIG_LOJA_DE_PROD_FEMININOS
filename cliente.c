@@ -5,7 +5,6 @@
 ///             Developed by @stenioeric -- since August, 2023              ///
 ///////////////////////////////////////////////////////////////////////////////
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -85,11 +84,12 @@ Cliente* tela_cadastro_cliente(void){
     printf("///                         CADASTRO CLIENTE                                ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    do {
-        printf("/// NOME:");
-        scanf("%s", cli -> nome);
-        limparBuffer();
-    } while(!validarNome(cli -> nome));
+    // do {
+    //     printf("/// NOME:");
+    //     scanf("%s", cli -> nome);
+    //     limparBuffer();
+    // } while(!validarNome(cli -> nome));
+    strcpy(cli->nome, pegaNome());
     int cpfDuplicado = 0;
     int cpfValido = 0;
     do {
@@ -247,7 +247,6 @@ char* tela_excluir_cliente(void) {
 
 // PRINTA DADOS DO CLIENTE
 void printCliente(Cliente* cli) {
-    system("clear||cls");
     printf("\n = = = DADOS DO CLIENTE = = = \n");
     printf("NOME:              %s\n", cli->nome);
     printf("CPF:               %s\n", cli->cpf);
@@ -272,20 +271,15 @@ void gravaCliente(Cliente* cli) {
 
     // Escreve os dados do cliente no arquivo
     fwrite(cli, sizeof(Cliente), 1, fp);
-
     // Fecha o arquivo
     fclose(fp);
 }
 
-// Lista todos os clientes ativos
 void listarTodosClientes(void) {
-    // Abre o arquivo "clientes.dat" para leitura binária
     FILE* fp;
     Cliente* cli;
     cli = (Cliente*) malloc(sizeof(Cliente));
     fp = fopen("clientes.dat", "rb");
-
-    // Verifica se houve erro ao abrir o arquivo
     if (fp == NULL) {
         telaErro(); // Exibe uma mensagem de erro
         free(cli); // Libera a memória alocada para o cliente
@@ -294,26 +288,21 @@ void listarTodosClientes(void) {
 
     int clienteEncontrado = 0; // Variável para rastrear se algum cliente foi encontrado
 
+    system("clear||cls");
     while (fread(cli, sizeof(Cliente), 1, fp)) {
         if (cli->status == 1) {
-            printCliente(cli);
-            clienteEncontrado = 1;
+            printCliente(cli); 
+            clienteEncontrado = 1; // Marca que um cliente foi encontrado
         }
     }
-
-    if (!clienteEncontrado) { // Se nenhum cliente ativo foi encontrado
-        system("clear||cls");
-        printf("\n");
-        printf("\t\t\tNENHUM CLIENTE ENCONTRADO\n");
-        printf("\n");
-    }
-
-    // Libera a memória alocada para o cliente
-    free(cli);
-    // Fecha o arquivo
     fclose(fp);
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    limparBuffer();
+    free(cli); 
+    if (!clienteEncontrado) {
+        printf("\nNenhum cliente ativo encontrado.\n"); // Mensagem se nenhum cliente ativo for encontrado
+    }
+    printf("\n");
+    printf("\t\t>>> Tecle ENTER para voltar ao menu anterior... <<<");
+    getchar();
 }
 
 // Busca um cliente pelo CPF
@@ -455,7 +444,7 @@ void excluirCliente(void) {
         printf("\n");
         printf("\t\t\tCLIENTE NAO ENCONTRADO!\n\n");
     } else {
-        cli->status = 0; // Marca o cliente como inativo
+        cli->status = 0;
         removeCliente(cli);
         free(cli);
         cli = NULL; // Define cli como NULL após remoção
