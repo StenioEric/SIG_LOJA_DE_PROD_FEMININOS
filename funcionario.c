@@ -79,58 +79,86 @@ char tela_menu_funcionarios(void) {
     return op;
 }
 
-Funcio* tela_cadastro_funcionarios(void) {
+Funcio* tela_cadastro_funcionarios(void){
     Funcio *fun;
     fun = (Funcio*)malloc(sizeof(Funcio));
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///            ------------ CADASTRO DE FUNCIONARIOS ------------           ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
+    printf("///                          CADASTRO FUNCIONARIOS                          ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
     printf("///                                                                         ///\n");
     do {
         printf("/// NOME:");
         scanf("%s", fun -> nome);
         limparBuffer();
     } while(!validarNome(fun -> nome));
-    do {
+        do {
         printf("/// CARGO:");
-        scanf("%s", fun -> cargo);
+        scanf("%s",fun -> cargo);
         limparBuffer();
     } while(!validarNome(fun -> cargo));
+    int cpfDuplicado = 0;
+    int cpfValido = 0;
     do {
-        printf("/// CPF:");
-        scanf("%[0-9]",fun -> cpf);
+        printf("/// CPF: ");
+        scanf("%s", fun->cpf);
         limparBuffer();
-    } while(!validarCPF(fun -> cpf));
+
+        cpfDuplicado = verificaCPFDuplicado(fun->cpf);
+
+        if (cpfDuplicado) {
+            printf("\n");
+            printf("\t\t\tCPF JA EXISTE. TENTE NOVAMENTE.\n");
+            printf("\n");
+        } else if (validarCPF(fun->cpf)) {
+            cpfValido= 1;
+        }
+        else {
+            printf("\n");
+            printf("\t\t\tCPF INVALIDO. TENTE NOVAMENTE.\n");
+            printf("\n");
+        }
+    } while (!cpfValido || cpfDuplicado);
+
+    int emailDuplicado = 0;
+    int emailValido = 0;
+    do {
+        printf("/// EMAIL:");
+        scanf("%[a-z0-9@.]",fun -> email);
+        limparBuffer();
+
+        emailDuplicado = verificaEmailDuplicado(fun->email);
+
+        if (emailDuplicado) {
+            printf("\n");
+            printf("\t\t\tEMAIL JA EXISTE. TENTE NOVAMENTE.\n");
+            printf("\n");
+        } else if (validarEmail(fun->email)) {
+            emailValido = 1;
+        }
+        else {
+            printf("\n");
+            printf("\t\t\tEMAIL INVALIDO. TENTE NOVAMENTE.\n");
+            printf("\n");
+        }
+    } while (emailDuplicado || !emailValido);
+
     do {
         printf("/// DATA DE NASCIMENTO:");
         scanf("%[0-9/]",fun -> dataNas);
         limparBuffer();
     } while(!validarData(fun -> dataNas));
-    do {
-        printf("/// EMAIL:");
-        scanf("%[a-z0-9@.]",fun -> email);
-        limparBuffer();
-    } while(!validarEmail(fun -> email));
+
     do {
         printf("/// TELEFONE:");
         scanf("%[0-9()]",fun -> telefone);
         limparBuffer();
     } while(!validarFone(fun -> telefone));
-
-    fun -> status = 'A';
+    
+    fun->status = 1;
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
