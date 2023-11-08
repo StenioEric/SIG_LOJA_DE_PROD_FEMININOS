@@ -17,13 +17,11 @@ typedef struct funcio Funcio;
 
 void moduloFuncio(void) {
     char op;
-    Funcio* modelo;
 
     do {
         op = tela_menu_funcionarios();
         switch (op) {
-            case '1':   modelo = tela_cadastro_funcionarios();
-                        gravaFuncionario(modelo);
+            case '1':   cadFuncionario();
                         break;
             case '2':   tela_pesquisar_funcionarios();
                         break;
@@ -203,6 +201,7 @@ Funcio* tela_pesquisar_funcionarios(void) {
         exit(1);
     }
     int funEncontrado = 0;
+    system("clear||cls");
     while (fread(fun, sizeof(Funcio), 1, fp)) {
         if ((fun->status != 0) && (strcmp(fun->cpf,opc)==0)) {
             printFuncionarios(fun);
@@ -323,23 +322,16 @@ void listarFuncionarios(void) {
 }
 
 void printFuncionarios(Funcio* fun) {
-    if ((fun == NULL) || (fun->status == 0)) {
-        printf("\n= = = FUNCIONARIO INEXISTENTE = = =\n");
-    } else {
-        system("clear||cls");
-        printf("\n = = = DADOS DO FUNCIONARIO = = = \n");
-        printf("\n");
-        printf("+ NOME:%s\n", fun-> nome);
-        printf("+ CARGO:%s\n",fun->cargo);
-        printf("+ CPF:%s\n", fun-> cpf);                                                         
-        printf("+ EMAIL:%s\n", fun-> email);                                                      
-        printf("+ DATA DE NASCIMENTO:%s\n", fun-> dataNas);                                          
-        printf("+ TELEFONE: %s\n", fun-> telefone);
-        printf("===================================\n");                  
-    }
-
+    printf("\n = = = DADOS DO FUNCIONARIO = = = \n");
+    printf("\n");
+    printf("+ NOME:%s\n", fun-> nome);
+    printf("+ CARGO:%s\n",fun->cargo);
+    printf("+ CPF:%s\n", fun-> cpf);                                                         
+    printf("+ EMAIL:%s\n", fun-> email);                                                      
+    printf("+ DATA DE NASCIMENTO:%s\n", fun-> dataNas);                                          
+    printf("+ TELEFONE: %s\n", fun-> telefone);
+    printf("===================================\n");                  
 }
-
 
 // Verifica se um CPF já está cadastrado
 int cpfDuplicadoFuncio(const char* cpf) {
@@ -371,4 +363,12 @@ int emailDuplicadoFuncio(const char* email) {
 
     fclose(fp); // Fecha o arquivo
     return 0; // E-mail não duplicado
+}
+
+// Cadastra um novo cliente
+void cadFuncionario(void) {
+    Funcio *fun;
+    fun = tela_cadastro_funcionarios();
+    gravaFuncionario(fun);
+    free(fun);
 }

@@ -25,6 +25,7 @@ void tela_excluir_funcionarios(void);
 void gravaFuncionario(Funcio*);
 void listarFuncionarios(void);
 void printFuncionarios(Funcio*);
+void cadFuncionario(void);
 
 int cpfDuplicadoFuncio(const char*);
 int emailDuplicadoFuncio(const char*);
