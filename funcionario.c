@@ -107,7 +107,7 @@ Funcio* tela_cadastro_funcionarios(void){
         scanf("%s", fun->cpf);
         limparBuffer();
 
-        cpfDuplicado = verificaCPFDuplicado(fun->cpf);
+        cpfDuplicado = cpfDuplicadoFuncio(fun->cpf);
 
         if (cpfDuplicado) {
             printf("\n");
@@ -130,7 +130,7 @@ Funcio* tela_cadastro_funcionarios(void){
         scanf("%[a-z0-9@.]",fun -> email);
         limparBuffer();
 
-        emailDuplicado = verificaEmailDuplicado(fun->email);
+        emailDuplicado = emailDuplicadoFuncio(fun->email);
 
         if (emailDuplicado) {
             printf("\n");
@@ -167,9 +167,9 @@ Funcio* tela_cadastro_funcionarios(void){
 
 
 
-void tela_pesquisar_funcionarios(void) {
+Funcio* tela_pesquisar_funcionarios(void) {
     FILE* fp;
-    char cpf[15];
+    char opc[15];
     Funcio* fun;
     fun = (Funcio*)malloc(sizeof(Funcio));
     system("clear||cls");
@@ -191,31 +191,35 @@ void tela_pesquisar_funcionarios(void) {
     printf("///                        PESQUISAR FUNCIONARIO                            ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    printf("/// CPF DO FUNCIONARIO: ");
-    scanf("%14s", cpf);
-    if (fun == NULL){
-        printf("\n= = = Funcionário não registrado = = =\n");
-        free(fun);
-        return;
-    }
+    do {
+        printf("///CPF: ");
+        scanf("%[0-9]",opc);
+        limparBuffer();
+    } while(!validarCPF(opc));
     fp = fopen("funcionarios.dat", "rb");
     if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
-        printf("Não é possível continuar...\n");
-        free(fun); // Libera a memória alocada para fun
+        telaErro();
+        free(fun);
         exit(1);
     }
+    int funEncontrado = 0;
     while (fread(fun, sizeof(Funcio), 1, fp)) {
-        if ((fun->status != 'x') && (strcmp(fun->cpf,cpf)==0)) {
+        if ((fun->status != 0) && (strcmp(fun->cpf,opc)==0)) {
             printFuncionarios(fun);
-            limparBuffer();
+            funEncontrado = 1;
         }
     }
-    fclose(fp);
-    free(fp);
+    if (!funEncontrado){
+        printf("\n");
+        printf("\t\t\t FUNCIONARIO NAO REGISTRADO\n");
+        limparBuffer();
+        return NULL;
+    }
+    
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return NULL;
 }
 
 
@@ -237,7 +241,7 @@ void tela_alterar_funcionarios(void) {
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                           ALTERAR FUNCIONARIO                             ///\n");
+    printf("///                           ALTERAR FUNCIONARIO                           ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
     printf("///              CPF DO FUNCIONARIO:                                        ///\n");
@@ -319,7 +323,7 @@ void listarFuncionarios(void) {
 }
 
 void printFuncionarios(Funcio* fun) {
-    if ((fun == NULL) || (fun->status == 'x')) {
+    if ((fun == NULL) || (fun->status == 0)) {
         printf("\n= = = FUNCIONARIO INEXISTENTE = = =\n");
     } else {
         system("clear||cls");
@@ -334,4 +338,37 @@ void printFuncionarios(Funcio* fun) {
         printf("===================================\n");                  
     }
 
+}
+
+
+// Verifica se um CPF já está cadastrado
+int cpfDuplicadoFuncio(const char* cpf) {
+    FILE* fp = fopen("funcionarios.dat", "rb");
+
+    Funcio fun;
+    while (fread(&fun, sizeof(Funcio), 1, fp)) {
+        if (fun.status != 0 && strcmp(fun.cpf, cpf) == 0) {
+            fclose(fp);
+            return 1; // CPF duplicado
+        }
+    }
+
+    fclose(fp); // Fecha o arquivo
+    return 0; // CPF não duplicado
+}
+
+// Verifica se um e-mail já está cadastrado
+int emailDuplicadoFuncio(const char* email) {
+    FILE* fp = fopen("funcionarios.dat", "rb");
+
+    Funcio fun;
+    while (fread(&fun, sizeof(Funcio), 1, fp)) {
+        if (fun.status != 0 && strcmp(fun.email, email) == 0) {
+            fclose(fp);
+            return 1; // E-mail duplicado
+        }
+    }
+
+    fclose(fp); // Fecha o arquivo
+    return 0; // E-mail não duplicado
 }
