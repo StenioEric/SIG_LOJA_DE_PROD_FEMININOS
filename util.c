@@ -286,37 +286,6 @@ void telaErro(void) {
     printf("\nOps! Erro na abertura do arquivo!\n");
 }
 
-// Verifica se um CPF já está cadastrado
-int verificaCPFDuplicado(const char* cpf) {
-    FILE* fp = fopen("clientes.dat", "rb");
-
-    Cliente cli;
-    while (fread(&cli, sizeof(Cliente), 1, fp)) {
-        if (cli.status != 0 && strcmp(cli.cpf, cpf) == 0) {
-            fclose(fp);
-            return 1; // CPF duplicado
-        }
-    }
-
-    fclose(fp); // Fecha o arquivo
-    return 0; // CPF não duplicado
-}
-
-// Verifica se um e-mail já está cadastrado
-int verificaEmailDuplicado(const char* email) {
-    FILE* fp = fopen("clientes.dat", "rb");
-
-    Cliente cli;
-    while (fread(&cli, sizeof(Cliente), 1, fp)) {
-        if (cli.status != 0 && strcmp(cli.email, email) == 0) {
-            fclose(fp);
-            return 1; // E-mail duplicado
-        }
-    }
-
-    fclose(fp); // Fecha o arquivo
-    return 0; // E-mail não duplicado
-}
 
 
 /// criar função ehdinheiro

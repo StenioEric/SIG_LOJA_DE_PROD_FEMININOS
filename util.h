@@ -21,8 +21,7 @@ int validarCPF(char *);
 void limparBuffer(void);
 // int validarEmail(char*);
 void telaErro(void);
-int verificaCPFDuplicado(const char*);
-int verificaEmailDuplicado(const char*);
+
 
 
 // char* pegaNome (void);
