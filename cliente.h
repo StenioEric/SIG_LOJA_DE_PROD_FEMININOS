@@ -6,6 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 /// Assinatura das funcoes
+/// Assinatura das funcoes
 
 typedef struct cliente Cliente;
 struct cliente {
@@ -35,7 +36,7 @@ void excluirCliente(void);
 void limparBuffer(void);
 int validarNome(char *nome);
 int validarCPF(char *cpf);
-int valEmail(char *email);
+int validarEmail(char *email);
 int validarData(char *data);
 int validarFone(char *fone);
 void gravaCliente(Cliente*);

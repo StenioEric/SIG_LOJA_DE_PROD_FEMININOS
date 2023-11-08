@@ -11,6 +11,8 @@
 #include "cliente.h"
 #include "util.h"
 
+int validarEmail(char* email);
+
 typedef struct cliente Cliente;
 
 void moduloCliente(void) {
@@ -84,12 +86,11 @@ Cliente* tela_cadastro_cliente(void){
     printf("///                         CADASTRO CLIENTE                                ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    // do {
-    //     printf("/// NOME:");
-    //     scanf("%s", cli -> nome);
-    //     limparBuffer();
-    // } while(!validarNome(cli -> nome));
-    strcpy(cli->nome, pegaNome());
+    do {
+        printf("/// NOME:");
+        scanf("%s", cli -> nome);
+        limparBuffer();
+    } while(!validarNome(cli -> nome));
     int cpfDuplicado = 0;
     int cpfValido = 0;
     do {
@@ -126,7 +127,7 @@ Cliente* tela_cadastro_cliente(void){
             printf("\n");
             printf("\t\t\tEMAIL JA EXISTE. TENTE NOVAMENTE.\n");
             printf("\n");
-        } else if (valEmail(cli->email)) {
+        } else if (validarEmail(cli->email)) {
             emailValido = 1;
         }
         else {
@@ -457,4 +458,3 @@ void excluirCliente(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     limparBuffer();
 }
-
