@@ -5,7 +5,11 @@
 ///             Developed by @stenioeric -- since August, 2023              ///
 ///////////////////////////////////////////////////////////////////////////////
 
-#define TAMANHO_MAXIMO_NOME 50
+// #define TAMANHO_MAXIMO_NOME 50
+// #define TAMANHO_MAXIMO_EMAIL 50
+// #define TAMANHO_MAXIMO_CPF 50
+// #define TAMANHO_MAXIMO_NUMERO 50
+// #define TAMANHO_MAXIMO_DATA 50
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -229,7 +233,7 @@ int validarCPF(char *cpf)
 /// Retorna 1 se string recebido corresponder a um email válido 
 /// ou retorna 0 caso contrário
 ///
-int valEmail(char *email )
+int validarEmail(char *email )
 {
     char usuario[256], site[256], dominio[256];
     if( sscanf( email, "%[^@ \t\n]@%[^. \t\n].%3[^ \t\n]", usuario, site, dominio ) != 3 )
@@ -316,14 +320,62 @@ int verificaEmailDuplicado(const char* email) {
 
 
 /// criar função ehdinheiro
-char* pegaNome(void) {
-  char nome[TAMANHO_MAXIMO_NOME];
+// char* pegaNome(void) {
+//   char nome[TAMANHO_MAXIMO_NOME];
 
-  do {
-    printf("/// NOME: ");
-    scanf("%s", nome);
-    limparBuffer();
-  } while (!validarNome(nome));
+//   do {
+//     printf("/// NOME: ");
+//     scanf("%s", nome);
+//     limparBuffer();
+//   } while(!validarNome(nome));
 
-  return strdup(nome);
-}
+//   return strdup(nome);
+// }
+
+// char* pegaEmail(void) {
+//   char email[TAMANHO_MAXIMO_NOME];
+
+//   do {
+//     printf("/// EMAIL: ");
+//     scanf("%s", email);
+//     limparBuffer();
+//   } while(!validarEmail(email));
+
+//   return strdup(email);
+// }
+
+// char* pegaCPF(void) {
+//   Cliente *cli;
+//   cli = (Cliente*)malloc(sizeof(Cliente));
+//   char cpf[TAMANHO_MAXIMO_CPF];
+//   do {
+//     printf("/// CPF: ");
+//     scanf("%s",cpf);
+//     limparBuffer();
+//   } while (!validarCPF(cpf));
+
+//   return strdup(cpf);
+// }
+
+// char* pegaTelefone(void) {
+//   char telefone[TAMANHO_MAXIMO_NUMERO];
+//   do {
+//     printf("/// TELEFONE: ");
+//     scanf("%s", telefone);
+//     limparBuffer();
+//   } while (!validarFone(telefone));
+
+//   return strdup(telefone);
+// }
+
+// char* pegaData(void) {
+//   char dataNas[TAMANHO_MAXIMO_DATA];
+
+//   do {
+//     printf("/// DATA DE NASCIMENTO: ");
+//     scanf("%s", dataNas);
+//     limparBuffer();
+//   } while (!validarData(dataNas));
+
+//   return strdup(dataNas);
+// }

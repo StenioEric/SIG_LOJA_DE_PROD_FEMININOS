@@ -14,8 +14,6 @@
 
 typedef struct funcio Funcio;
 
-// Declaração da função validarCPF
-int validarCPF(const char* cpf);
 
 void moduloFuncio(void) {
     char op;
@@ -125,7 +123,7 @@ Funcio* tela_cadastro_funcionarios(void) {
         printf("/// EMAIL:");
         scanf("%[a-z0-9@.]",fun -> email);
         limparBuffer();
-    } while(!valEmail(fun -> email));
+    } while(!validarEmail(fun -> email));
     do {
         printf("/// TELEFONE:");
         scanf("%[0-9()]",fun -> telefone);

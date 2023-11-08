@@ -14,12 +14,19 @@ int ehParentese(char);
 int ehBissexto(int);
 int ehData(int, int, int);
 int validarNome(char*);
-int valEmail(char*);
+int validarEmail(char*);
 int validarData(char*);
 int validarFone(char*);
+int validarCPF(char *);
 void limparBuffer(void);
+// int validarEmail(char*);
 void telaErro(void);
 int verificaCPFDuplicado(const char*);
 int verificaEmailDuplicado(const char*);
 
-char* pegaNome (void);
+
+// char* pegaNome (void);
+// char* pegaData(void);
+// char* pegaEmail(void);
+// char* pegaCPF(void);
+// char* pegaTelefone(void);
