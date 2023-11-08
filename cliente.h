@@ -31,16 +31,19 @@ void regravarCliente(Cliente*);
 void cadCliente(void);
 void removeCliente(Cliente*);
 void excluirCliente(void);
+void gravaCliente(Cliente*);
+void listarTodosClientes(void);
 
 
 void limparBuffer(void);
-int validarNome(char *nome);
-int validarCPF(char *cpf);
-int validarEmail(char *email);
-int validarData(char *data);
-int validarFone(char *fone);
-void gravaCliente(Cliente*);
-void listarTodosClientes(void);
+// int validarNome(char *nome);
+// int validarCPF(char *cpf);
+// int validarEmail(char *email);
+// int validarData(char *data);
+// int validarFone(char *fone);
+int verificaCPFDuplicado(const char*);
+int verificaEmailDuplicado(const char*);
+
 
 
 

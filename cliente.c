@@ -11,7 +11,7 @@
 #include "cliente.h"
 #include "util.h"
 
-int validarEmail(char* email);
+// int validarEmail(char* email);
 
 typedef struct cliente Cliente;
 
@@ -181,10 +181,10 @@ Cliente* tela_pesquisar_cliente(void) {
         exit(1);
     }
     int cliEncontrado = 0;
+    system("clear||cls");
     while (fread(cli, sizeof(Cliente), 1, fp)) {
         if ((cli->status != 0) && (strcmp(cli->cpf,opc)==0)) {
             printCliente(cli);
-            limparBuffer();
             cliEncontrado = 1;
         }
     }
@@ -458,3 +458,38 @@ void excluirCliente(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     limparBuffer();
 }
+
+
+
+// Verifica se um CPF já está cadastrado
+int verificaCPFDuplicado(const char* cpf) {
+    FILE* fp = fopen("clientes.dat", "rb");
+
+    Cliente cli;
+    while (fread(&cli, sizeof(Cliente), 1, fp)) {
+        if (cli.status != 0 && strcmp(cli.cpf, cpf) == 0) {
+            fclose(fp);
+            return 1; // CPF duplicado
+        }
+    }
+
+    fclose(fp); // Fecha o arquivo
+    return 0; // CPF não duplicado
+}
+
+// Verifica se um e-mail já está cadastrado
+int verificaEmailDuplicado(const char* email) {
+    FILE* fp = fopen("clientes.dat", "rb");
+
+    Cliente cli;
+    while (fread(&cli, sizeof(Cliente), 1, fp)) {
+        if (cli.status != 0 && strcmp(cli.email, email) == 0) {
+            fclose(fp);
+            return 1; // E-mail duplicado
+        }
+    }
+
+    fclose(fp); // Fecha o arquivo
+    return 0; // E-mail não duplicado
+}
+
