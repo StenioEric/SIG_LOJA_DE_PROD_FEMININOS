@@ -30,6 +30,7 @@ void cadEstoque(void);
 void listagemEstoque(void);
 Estoque* buscaEstoque(char*);
 void regravarEstoque(Estoque*);
+void removeEstoque(Estoque*);
 
 
 int verificaIdDuplicado(const char*);
