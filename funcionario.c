@@ -25,7 +25,7 @@ void moduloFuncio(void) {
                         break;
             case '2':   tela_pesquisar_funcionarios();
                         break;
-            case '3':   tela_alterar_funcionarios();
+            case '3':   atualizaFuncionario();
                         break;
             case '4':   tela_excluir_funcionarios();
                         break;
@@ -352,30 +352,30 @@ void cadFuncionario(void) {
 
 
 // Atualiza um funcionario
-// void atualizaFuncionario(void) {
-//     Funcio* fun;
-//     char* cpf;
+void atualizaFuncionario(void) {
+    Funcio* fun;
+    char* cpf;
 
-//     // Obtém o CPF do cliente a ser atualizado
-//     cpf = tela_alterar_funcionarios();
-//     fun = buscaFuncionario(cpf);
+    // Obtém o CPF do funcionario a ser atualizado
+    cpf = tela_alterar_funcionarios();
+    fun = buscaFuncionario(cpf);
 
-//     if (fun == NULL) {
-//         system("clear||cls");
-//         printf("\n");
-//         printf("\t\t\FUNCIONARIO NAO ENCONTRADO!\n\n");
-//         printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//         getchar();
-//     } else {
-//         removeFuncionario(fun);
-//         fun = tela_cadastro_funcionarios();
-//         strcpy(fun->cpf, cpf);
-//         regravarFuncionario(fun);
-//         free(fun);
-//     }
+    if (fun == NULL) {
+        system("clear||cls");
+        printf("\n");
+        printf("\t\t\tFUNCIONARIO NAO ENCONTRADO!\n\n");
+        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+        getchar();
+    } else {
+        removeFuncionario(fun);
+        fun = tela_cadastro_funcionarios();
+        strcpy(fun->cpf, cpf);
+        regravarFuncionario(fun);
+        free(fun);
+    }
 
-//     free(cpf);
-// }
+    free(cpf);
+}
 
 
 // Remove um funcionario
@@ -480,7 +480,7 @@ Funcio* buscaFuncionario(char* cpf) {
     FILE* fp;
     Funcio* cli;
     cli = (Funcio*)malloc(sizeof(Funcio));
-    fp = fopen("Funcios.dat", "rb");
+    fp = fopen("funcionarios.dat", "rb");
 
     // Verifica se houve erro ao abrir o arquivo
     if (fp == NULL) {

@@ -26,7 +26,7 @@ void gravaFuncionario(Funcio*);
 void listarFuncionarios(void);
 void printFuncionarios(Funcio*);
 void cadFuncionario(void);
-// void atualizaFuncionario(void);
+void atualizaFuncionario(void);
 Funcio* buscaFuncionario(char*);
 void regravarFuncionario(Funcio*);
 void removeFuncionario(Funcio*);
