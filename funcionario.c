@@ -378,37 +378,37 @@ void cadFuncionario(void) {
 // }
 
 
-// // Remove um cliente
-// void removeFuncionario(Funcio* fun) {
-//     FILE* fp;
-//     Funcio* fun_Lido;
-//     fun_Lido = (Funcio*)malloc(sizeof(Funcio));
-//     fp = fopen("funcionarios.dat", "r+b");
+// Remove um funcionario
+void removeFuncionario(Funcio* fun) {
+    FILE* fp;
+    Funcio* fun_Lido;
+    fun_Lido = (Funcio*)malloc(sizeof(Funcio));
+    fp = fopen("funcionarios.dat", "r+b");
 
-//     if (fp == NULL) {
-//         telaErro();
-//     }
+    if (fp == NULL) {
+        telaErro();
+    }
 
-//     int achou = 0;
+    int achou = 0;
 
-//     // Busca o cliente pelo CPF no arquivo
-//     while (fread(fun_Lido, sizeof(Funcio), 1, fp) && !achou) {
-//         if (strcmp(fun_Lido->cpf, fun->cpf) == 0 && fun_Lido->status) {
-//             achou = 1;
-//             fseek(fp, -1 * sizeof(Funcio), SEEK_CUR);
-//             fun_Lido->status = 0; // Marca o Funcionario como inativo
-//             fwrite(fun_Lido, sizeof(Funcio), 1, fp);
-//         }
-//     }
+    // Busca o funcionario pelo CPF no arquivo
+    while (fread(fun_Lido, sizeof(Funcio), 1, fp) && !achou) {
+        if (strcmp(fun_Lido->cpf, fun->cpf) == 0 && fun_Lido->status) {
+            achou = 1;
+            fseek(fp, -1 * sizeof(Funcio), SEEK_CUR);
+            fun_Lido->status = 0; // Marca o Funcionario como inativo
+            fwrite(fun_Lido, sizeof(Funcio), 1, fp);
+        }
+    }
 
-//     fclose(fp); // Fecha o arquivo
-//     free(fun_Lido); // Libera a memória alocada para o Funcionario lido do arquivo
+    fclose(fp); // Fecha o arquivo
+    free(fun_Lido); // Libera a memória alocada para o Funcionario lido do arquivo
 
-//     if (!achou) {
-//         printf("\n");
-//         printf("\t\t\tFUNCIONARIO NAO ENCONTRADO OU JA REMOVIDO!\n");
-//     }
-// }
+    if (!achou) {
+        printf("\n");
+        printf("\t\t\tFUNCIONARIO NAO ENCONTRADO OU JA REMOVIDO!\n");
+    }
+}
 
 
 // // Exclui um funcionario
