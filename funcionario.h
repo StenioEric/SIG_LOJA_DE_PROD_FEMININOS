@@ -28,7 +28,7 @@ void printFuncionarios(Funcio*);
 void cadFuncionario(void);
 // void atualizaFuncionario(void);
 Funcio* buscaFuncionario(char*);
-// void regravarFuncionario(Funcio*);
+void regravarFuncionario(Funcio*);
 // void removeFuncionario(Funcio*);
 // void excluirFuncionario(void);
 void listagemFuncionarios(void);

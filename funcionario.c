@@ -439,39 +439,39 @@ void cadFuncionario(void) {
 // }
 
 
-// // Reescreve os dados de um funcionario no arquivo
-// void regravarFuncionario(Funcio* fun) {
-//     FILE* fp;
-//     Funcio* fun_Lido;
+// Reescreve os dados de um funcionario no arquivo
+void regravarFuncionario(Funcio* fun) {
+    FILE* fp;
+    Funcio* fun_Lido;
 
-//     fun_Lido = (Funcio*)malloc(sizeof(Funcio));
-//     fp = fopen("funcionarios.dat", "r+b");
+    fun_Lido = (Funcio*)malloc(sizeof(Funcio));
+    fp = fopen("funcionarios.dat", "r+b");
 
-//     if (fp == NULL) {
-//         telaErro();
-//     }
+    if (fp == NULL) {
+        telaErro();
+    }
 
-//     int achou = 0;
+    int achou = 0;
 
-//     // Busca o Funcio pelo CPF no arquivo
-//     while(!feof(fp)) {
-//         fread(fun_Lido, sizeof(Funcio), 1, fp);
-//         if (strcmp(fun_Lido->cpf, fun->cpf) == 0) {
-//             achou = 1;
-//             fseek(fp, -1 * sizeof(Funcio), SEEK_CUR);
-//             fwrite(fun, sizeof(Funcio), 1, fp);
-//             break;
-//         }
-//     }
+    // Busca o Funcio pelo CPF no arquivo
+    while(!feof(fp)) {
+        fread(fun_Lido, sizeof(Funcio), 1, fp);
+        if (strcmp(fun_Lido->cpf, fun->cpf) == 0) {
+            achou = 1;
+            fseek(fp, -1 * sizeof(Funcio), SEEK_CUR);
+            fwrite(fun, sizeof(Funcio), 1, fp);
+            break;
+        }
+    }
 
-//     fclose(fp); // Fecha o arquivo
-//     free(fun_Lido); // Libera a memória alocada para o Funcio lido do arquivo
+    fclose(fp); // Fecha o arquivo
+    free(fun_Lido); // Libera a memória alocada para o Funcio lido do arquivo
 
-//     if (!achou) {
-//         printf("\n");
-//         printf("\t\t\tFUNCIONARIO NAO ENCONTRADO!\n");
-//     }
-// }
+    if (!achou) {
+        printf("\n");
+        printf("\t\t\tFUNCIONARIO NAO ENCONTRADO!\n");
+    }
+}
 
 
 // Busca um cliente pelo CPF
