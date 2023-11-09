@@ -390,38 +390,38 @@ void cadEstoque(void) {
 
 
 // // Reescreve os dados de um Estoque no arquivo
-// void regravarEstoque(Estoque* est) {
-//     FILE* fp;
-//     Estoque* est_Lido;
+void regravarEstoque(Estoque* est) {
+    FILE* fp;
+    Estoque* est_Lido;
 
-//     est_Lido = (Estoque*)malloc(sizeof(Estoque));
-//     fp = fopen("estoque.dat", "r+b");
+    est_Lido = (Estoque*)malloc(sizeof(Estoque));
+    fp = fopen("estoque.dat", "r+b");
 
-//     if (fp == NULL) {
-//         telaErro();
-//     }
+    if (fp == NULL) {
+        telaErro();
+    }
 
-//     int achou = 0;
+    int achou = 0;
 
-//     // Busca o Estoque pelo id no arquivo
-//     while(!feof(fp)) {
-//         fread(est_Lido, sizeof(Estoque), 1, fp);
-//         if (strcmp(est_Lido->id, est->id) == 0) {
-//             achou = 1;
-//             fseek(fp, -1 * sizeof(Estoque), SEEK_CUR);
-//             fwrite(est, sizeof(Estoque), 1, fp);
-//             break;
-//         }
-//     }
+    // Busca o Estoque pelo id no arquivo
+    while(!feof(fp)) {
+        fread(est_Lido, sizeof(Estoque), 1, fp);
+        if (strcmp(est_Lido->id, est->id) == 0) {
+            achou = 1;
+            fseek(fp, -1 * sizeof(Estoque), SEEK_CUR);
+            fwrite(est, sizeof(Estoque), 1, fp);
+            break;
+        }
+    }
 
-//     fclose(fp); // Fecha o arquivo
-//     free(est_Lido); // Libera a memória alocada para o produto lido do arquivo
+    fclose(fp); // Fecha o arquivo
+    free(est_Lido); // Libera a memória alocada para o produto lido do arquivo
 
-//     if (!achou) {
-//         printf("\n");
-//         printf("\t\t\tEstoque NAO ENCONTRADO!\n");
-//     }
-// }
+    if (!achou) {
+        printf("\n");
+        printf("\t\t\tEstoque NAO ENCONTRADO!\n");
+    }
+}
 
 
 // // Busca um produto pelo id

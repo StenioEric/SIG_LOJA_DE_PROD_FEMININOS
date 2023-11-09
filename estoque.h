@@ -29,6 +29,7 @@ void printEstoque(Estoque*);
 void cadEstoque(void);
 void listagemEstoque(void);
 Estoque* buscaEstoque(char*);
+void regravarEstoque(Estoque*);
 
 
 int verificaIdDuplicado(const char*);
