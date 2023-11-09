@@ -29,7 +29,7 @@ void moduloFuncio(void) {
                         break;
             case '4':   tela_excluir_funcionarios();
                         break;
-            case '5':   listarFuncionarios();
+            case '5':   listagemFuncionarios();
                         break;
                 
         }
@@ -63,6 +63,7 @@ char tela_menu_funcionarios(void) {
     printf("///            2. PESQUISAR DADOS DO FUNCIONARIOS                           ///\n");
     printf("///            3. ATUALIZAR CADASTRO DO FUNCIONARIOS                        ///\n");
     printf("///            4. EXCLUIR DADOS DO FUNCIONARIOS                             ///\n");
+    printf("///            5. LISTAR FUNCIONARIOS                                       ///\n");
     printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
     printf("///                                                                         ///\n");
     printf("///            ESCOLHA A OPCAO DESEJADA: ");
@@ -174,20 +175,9 @@ Funcio* tela_pesquisar_funcionarios(void) {
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                        PESQUISAR FUNCIONARIO                            ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
+    printf("///                          PESQUISA FUNCIONARIOS                          ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
     printf("///                                                                         ///\n");
     do {
         printf("///CPF: ");
@@ -222,36 +212,24 @@ Funcio* tela_pesquisar_funcionarios(void) {
 }
 
 
-void tela_alterar_funcionarios(void) {
-
+char* tela_alterar_funcionarios(void) {
+    char* cpf;
+	cpf = (char*) malloc(15*sizeof(char));
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
+    printf("///                          ALTERAR FUNCIONARIOS                           ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
     printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                           ALTERAR FUNCIONARIO                           ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                                                                         ///\n");
-    printf("///              CPF DO FUNCIONARIO:                                        ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///CPF: ");
+    scanf("%[0-9]", cpf);
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return cpf;
 }
-
 
 void tela_excluir_funcionarios(void) {
     
@@ -295,7 +273,6 @@ void gravaFuncionario(Funcio* fun) {
     fwrite(fun, sizeof(Funcio), 1, fp);
     fclose(fp);
 }
-
 
 void listarFuncionarios(void) {
     FILE* fp;
@@ -371,4 +348,184 @@ void cadFuncionario(void) {
     fun = tela_cadastro_funcionarios();
     gravaFuncionario(fun);
     free(fun);
+}
+
+
+// Atualiza um funcionario
+// void atualizaFuncionario(void) {
+//     Funcio* fun;
+//     char* cpf;
+
+//     // Obtém o CPF do cliente a ser atualizado
+//     cpf = tela_alterar_funcionarios();
+//     fun = buscaFuncionario(cpf);
+
+//     if (fun == NULL) {
+//         system("clear||cls");
+//         printf("\n");
+//         printf("\t\t\FUNCIONARIO NAO ENCONTRADO!\n\n");
+//         printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+//         getchar();
+//     } else {
+//         removeFuncionario(fun);
+//         fun = tela_cadastro_funcionarios();
+//         strcpy(fun->cpf, cpf);
+//         regravarFuncionario(fun);
+//         free(fun);
+//     }
+
+//     free(cpf);
+// }
+
+
+// // Remove um cliente
+// void removeFuncionario(Funcio* fun) {
+//     FILE* fp;
+//     Funcio* fun_Lido;
+//     fun_Lido = (Funcio*)malloc(sizeof(Funcio));
+//     fp = fopen("funcionarios.dat", "r+b");
+
+//     if (fp == NULL) {
+//         telaErro();
+//     }
+
+//     int achou = 0;
+
+//     // Busca o cliente pelo CPF no arquivo
+//     while (fread(fun_Lido, sizeof(Funcio), 1, fp) && !achou) {
+//         if (strcmp(fun_Lido->cpf, fun->cpf) == 0 && fun_Lido->status) {
+//             achou = 1;
+//             fseek(fp, -1 * sizeof(Funcio), SEEK_CUR);
+//             fun_Lido->status = 0; // Marca o Funcionario como inativo
+//             fwrite(fun_Lido, sizeof(Funcio), 1, fp);
+//         }
+//     }
+
+//     fclose(fp); // Fecha o arquivo
+//     free(fun_Lido); // Libera a memória alocada para o Funcionario lido do arquivo
+
+//     if (!achou) {
+//         printf("\n");
+//         printf("\t\t\tFUNCIONARIO NAO ENCONTRADO OU JA REMOVIDO!\n");
+//     }
+// }
+
+
+// // Exclui um funcionario
+// void excluirFuncionario(void) {
+//     Funcio *fun;
+//     char *cpf;
+
+//     // Obtém o CPF do funcionario a ser excluído
+//     cpf = tela_excluir_funcionarios();
+//     fun = buscaFuncionario(cpf);
+
+//     if (fun == NULL) {
+//         printf("\n");
+//         printf("\t\t\tFUNCIONARIO NAO ENCONTRADO!\n\n");
+//     } else {
+//         fun->status = 0;
+//         removeFuncionario(fun);
+//         free(fun);
+//         fun = NULL; // Define fun como NULL após remoção
+//         printf("\n");
+//         printf("\t\t\tFUNCIONARIO EXCLUIDO COM SUCESSO!\n");
+//     }
+
+//     free(cpf);
+//     printf("\n");
+//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+//     limparBuffer();
+// }
+
+
+// // Reescreve os dados de um funcionario no arquivo
+// void regravarFuncionario(Funcio* fun) {
+//     FILE* fp;
+//     Funcio* fun_Lido;
+
+//     fun_Lido = (Funcio*)malloc(sizeof(Funcio));
+//     fp = fopen("funcionarios.dat", "r+b");
+
+//     if (fp == NULL) {
+//         telaErro();
+//     }
+
+//     int achou = 0;
+
+//     // Busca o Funcio pelo CPF no arquivo
+//     while(!feof(fp)) {
+//         fread(fun_Lido, sizeof(Funcio), 1, fp);
+//         if (strcmp(fun_Lido->cpf, fun->cpf) == 0) {
+//             achou = 1;
+//             fseek(fp, -1 * sizeof(Funcio), SEEK_CUR);
+//             fwrite(fun, sizeof(Funcio), 1, fp);
+//             break;
+//         }
+//     }
+
+//     fclose(fp); // Fecha o arquivo
+//     free(fun_Lido); // Libera a memória alocada para o Funcio lido do arquivo
+
+//     if (!achou) {
+//         printf("\n");
+//         printf("\t\t\tFUNCIONARIO NAO ENCONTRADO!\n");
+//     }
+// }
+
+
+// // Busca um cliente pelo CPF
+// Funcio* buscaFuncionario(char* cpf) {
+//     // Abre o arquivo "Funcios.dat" para leitura binária
+//     FILE* fp;
+//     Funcio* cli;
+//     cli = (Funcio*)malloc(sizeof(Funcio));
+//     fp = fopen("Funcios.dat", "rb");
+
+//     // Verifica se houve erro ao abrir o arquivo
+//     if (fp == NULL) {
+//         telaErro(); // Exibe uma mensagem de erro
+//     }
+
+//     // Percorre o arquivo em busca do Funcio com o CPF fornecido
+//     while (fread(cli, sizeof(Funcio), 1, fp)) {
+//         if (strcmp(cli->cpf, cpf) == 0 && cli->status == 1) {
+//             fclose(fp); // Fecha o arquivo
+//             return cli; // Retorna o Funcio encontrado
+//         }
+//     }
+
+//     fclose(fp); // Fecha o arquivo
+//     free(cli); // Libera a memória alocada para o Funcio
+//     return NULL; // Retorna NULL se o Funcio não foi encontrado
+// }
+
+void listagemFuncionarios(void) {
+    FILE* fp;
+    Funcio* fun;
+    fun = (Funcio*) malloc(sizeof(Funcio));
+    fp = fopen("Funcios.dat", "rb");
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+        free(fun); // Libera a memória alocada para o Funcio
+        exit(1); // Encerra o programa
+    }
+
+    int FuncioEncontrado = 0; // Variável para rastrear se algum Funcio foi encontrado
+
+    system("clear||cls");
+    while (fread(fun, sizeof(Funcio), 1, fp)) {
+        if (fun->status == 1) {
+            printFuncionarios(fun); 
+            FuncioEncontrado = 1; // Marca que um Funcio foi encontrado
+        }
+    }
+    fclose(fp);
+    free(fun); 
+    if (!FuncioEncontrado) {
+        printf("\nNenhum funcionario ativo encontrado.\n"); // Mensagem se nenhum cliente ativo for encontrado
+    }
+    printf("\n");
+    printf("\t\t>>> Tecle ENTER para voltar ao menu anterior... <<<");
+    getchar();
 }
