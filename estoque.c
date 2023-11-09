@@ -425,30 +425,30 @@ void cadEstoque(void) {
 
 
 // // Busca um produto pelo id
-// Estoque* buscaEstoque(char* id) {
-//     // Abre o arquivo "estoque.dat" para leitura binária
-//     FILE* fp;
-//     Estoque* est;
-//     est = (Estoque*)malloc(sizeof(Estoque));
-//     fp = fopen("estoque.dat", "rb");
+Estoque* buscaEstoque(char* id) {
+    // Abre o arquivo "estoque.dat" para leitura binária
+    FILE* fp;
+    Estoque* est;
+    est = (Estoque*)malloc(sizeof(Estoque));
+    fp = fopen("estoque.dat", "rb");
 
-//     // Verifica se houve erro ao abrir o arquivo
-//     if (fp == NULL) {
-//         telaErro(); // Exibe uma mensagem de erro
-//     }
+    // Verifica se houve erro ao abrir o arquivo
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+    }
 
-//     // Percorre o arquivo em busca do produto com o id fornecido
-//     while (fread(est, sizeof(Estoque), 1, fp)) {
-//         if (strcmp(est->id, id) == 0 && est->status == 1) {
-//             fclose(fp); // Fecha o arquivo
-//             return est; // Retorna o Estoque encontrado
-//         }
-//     }
+    // Percorre o arquivo em busca do produto com o id fornecido
+    while (fread(est, sizeof(Estoque), 1, fp)) {
+        if (strcmp(est->id, id) == 0 && est->status == 1) {
+            fclose(fp); // Fecha o arquivo
+            return est; // Retorna o Estoque encontrado
+        }
+    }
 
-//     fclose(fp); // Fecha o arquivo
-//     free(est); // Libera a memória alocada para o produto
-//     return NULL; // Retorna NULL se o produto não foi encontrado
-// }
+    fclose(fp); // Fecha o arquivo
+    free(est); // Libera a memória alocada para o produto
+    return NULL; // Retorna NULL se o produto não foi encontrado
+}
 
 void listagemEstoque(void) {
     FILE* fp;
