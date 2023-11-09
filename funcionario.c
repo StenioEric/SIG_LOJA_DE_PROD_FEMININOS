@@ -27,7 +27,7 @@ void moduloFuncio(void) {
                         break;
             case '3':   atualizaFuncionario();
                         break;
-            case '4':   tela_excluir_funcionarios();
+            case '4':   excluirFuncionario();
                         break;
             case '5':   listagemFuncionarios();
                         break;
@@ -231,34 +231,20 @@ char* tela_alterar_funcionarios(void) {
     return cpf;
 }
 
-void tela_excluir_funcionarios(void) {
-    
+char* tela_excluir_funcionarios(void) {
+    char* cpf;
+	cpf = (char*) malloc(15*sizeof(char));
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
+    printf("///                          EXCLUIR FUNCIONARIO                            ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
     printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                         EXCLUIR FUNCIONARIO                             ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                                                                         ///\n");
-    printf("///              CPF DO FUNCIONARIO:                                        ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    printf("///CPF: ");
+    scanf("%[0-9]", cpf);
+    return cpf;
 }
 
 
@@ -412,31 +398,33 @@ void removeFuncionario(Funcio* fun) {
 
 
 // // Exclui um funcionario
-// void excluirFuncionario(void) {
-//     Funcio *fun;
-//     char *cpf;
+void excluirFuncionario(void) {
+    Funcio *fun;
+    char *cpf;
 
-//     // Obtém o CPF do funcionario a ser excluído
-//     cpf = tela_excluir_funcionarios();
-//     fun = buscaFuncionario(cpf);
+    // Obtém o CPF do funcionario a ser excluído
+    cpf = tela_excluir_funcionarios();
+    fun = buscaFuncionario(cpf);
 
-//     if (fun == NULL) {
-//         printf("\n");
-//         printf("\t\t\tFUNCIONARIO NAO ENCONTRADO!\n\n");
-//     } else {
-//         fun->status = 0;
-//         removeFuncionario(fun);
-//         free(fun);
-//         fun = NULL; // Define fun como NULL após remoção
-//         printf("\n");
-//         printf("\t\t\tFUNCIONARIO EXCLUIDO COM SUCESSO!\n");
-//     }
+    if (fun == NULL) {
+        printf("\n");
+        printf("\t\t\tFUNCIONARIO NAO ENCONTRADO!\n\n");
+        limparBuffer();
+    } else {
+        fun->status = 0;
+        removeFuncionario(fun);
+        free(fun);
+        fun = NULL; // Define fun como NULL após remoção
+        printf("\n");
+        printf("\t\t\tFUNCIONARIO EXCLUIDO COM SUCESSO!\n");
+        limparBuffer();
+    }
 
-//     free(cpf);
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     limparBuffer();
-// }
+    free(cpf);
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    limparBuffer();
+}
 
 
 // Reescreve os dados de um funcionario no arquivo
@@ -523,7 +511,7 @@ void listagemFuncionarios(void) {
     fclose(fp);
     free(fun); 
     if (!FuncioEncontrado) {
-        printf("\nNenhum funcionario ativo encontrado.\n"); // Mensagem se nenhum cliente ativo for encontrado
+        printf("\t\t\tNENHUM FUNCIONAIRO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum cliente ativo for encontrado
     }
     printf("\n");
     printf("\t\t>>> Tecle ENTER para voltar ao menu anterior... <<<");

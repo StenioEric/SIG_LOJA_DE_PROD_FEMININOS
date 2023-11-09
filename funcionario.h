@@ -21,7 +21,7 @@ char tela_menu_funcionarios(void);
 Funcio* tela_cadastro_funcionarios(void);
 Funcio* tela_pesquisar_funcionarios(void);
 char* tela_alterar_funcionarios(void);
-void tela_excluir_funcionarios(void);
+char* tela_excluir_funcionarios(void);
 void gravaFuncionario(Funcio*);
 void listarFuncionarios(void);
 void printFuncionarios(Funcio*);
@@ -30,7 +30,7 @@ void atualizaFuncionario(void);
 Funcio* buscaFuncionario(char*);
 void regravarFuncionario(Funcio*);
 void removeFuncionario(Funcio*);
-// void excluirFuncionario(void);
+void excluirFuncionario(void);
 void listagemFuncionarios(void);
 
 int cpfDuplicadoFuncio(const char*);
