@@ -13,17 +13,21 @@ struct estoque {
     char quantidade[13];
     char valor[30];
     char descricao[30];
-    char id[5];
+    char id[20];
     char status;
 };
 
 void moduloEstoque(void);
 char tela_menu_estoque(void);
-Estoque* tela_cadastro_produto(void);
-void tela_pesquisar_produto(void);
-void tela_alterar_produto(void);
-void tela_remover_produto(void);
+Estoque* tela_cadastro_estoque(void);
+void tela_pesquisar_estoque(void);
+void tela_alterar_estoque(void);
+void tela_remover_estoque(void);
 void gravaEstoque(Estoque*);
-void listarEstoque(void);
+void listagemEstoque(void);
 void printEstoque(Estoque*);
+void cadEstoque(void);
+
+
+int verificaIdDuplicado(const char*);
 
