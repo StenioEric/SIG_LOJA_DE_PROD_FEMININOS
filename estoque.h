@@ -20,7 +20,7 @@ struct estoque {
 void moduloEstoque(void);
 char tela_menu_estoque(void);
 Estoque* tela_cadastro_estoque(void);
-void tela_pesquisar_estoque(void);
+Estoque*  tela_pesquisar_estoque(void);
 void tela_alterar_estoque(void);
 void tela_remover_estoque(void);
 void gravaEstoque(Estoque*);

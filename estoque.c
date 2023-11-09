@@ -146,8 +146,11 @@ Estoque* tela_cadastro_estoque(void) {
     return est;
 }
 
-void tela_pesquisar_estoque(void) {
-
+Estoque* tela_pesquisar_estoque(void) {
+    FILE* fp;
+    char opc[15];
+    Estoque* est;
+    est = (Estoque*)malloc(sizeof(Estoque));
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -167,10 +170,36 @@ void tela_pesquisar_estoque(void) {
     printf("///                         PESQUISAR PRODUTO                               ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    do {
+        printf("///ID: ");
+        scanf("%[0-9]",opc);
+        limparBuffer();
+    } while(!ehDigitos(opc));
+    fp = fopen("estoque.dat", "rb");
+    if (fp == NULL) {
+        telaErro();
+        free(est);
+        exit(1);
+    }
+    int prodEncontrado = 0;
+    system("clear||cls");
+    while (fread(est, sizeof(Estoque), 1, fp)) {
+        if ((est->status != 0) && (strcmp(est->id,opc)==0)) {
+            printEstoque(est);
+            prodEncontrado = 1;
+        }
+    }
+    if (!prodEncontrado){
+        printf("\n");
+        printf("\t\t\t PRODUTO NAO REGISTRADO\n");
+        limparBuffer();
+        return NULL;
+    }
+
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return NULL;
 }
 
 void tela_alterar_estoque(void) {
@@ -354,7 +383,7 @@ void removeEstoque(Estoque* est) {
 
     if (!achou) {
         printf("\n");
-        printf("\t\t\tEstoque NAO ENCONTRADO OU JA REMOVIDO!\n");
+        printf("\t\t\tESTOQUE NAO ENCONTRADO OU JA REMOVIDO!\n");
     }
 }
 
