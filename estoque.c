@@ -27,8 +27,8 @@ void moduloEstoque(void) {
                         break;
             case '4':   tela_remover_estoque();
                         break;
-            // case '5':   listagemEstoque();
-            //             break;
+            case '5':   listagemEstoque();
+                        break;
         }
 
     } while (op != '0');
@@ -59,6 +59,7 @@ char tela_menu_estoque(void) {
     printf("///            2. PESQUISAR DADOS DO PRODUTO                                ///\n");
     printf("///            3. ATUALIZAR CADASTRO DO PRODUTO                             ///\n");
     printf("///            4. EXCLUIR DADOS DO PRODUTO                                  ///\n");
+    printf("///            5. LISTAR PRODUTOS                                           ///\n");
     printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
     printf("///                                                                         ///\n");
     printf("///            ESCOLHA A OPCAO DESEJADA: ");
@@ -449,34 +450,34 @@ void cadEstoque(void) {
 //     return NULL; // Retorna NULL se o produto não foi encontrado
 // }
 
-// void listagemEstoque(void) {
-//     FILE* fp;
-//     Estoque* est;
-//     est = (Estoque*) malloc(sizeof(Estoque));
-//     fp = fopen("estoque.dat", "rb");
-//     if (fp == NULL) {
-//         telaErro(); // Exibe uma mensagem de erro
-//         free(est); // Libera a memória alocada para o produto
-//         exit(1); // Encerra o programa
-//     }
+void listagemEstoque(void) {
+    FILE* fp;
+    Estoque* est;
+    est = (Estoque*) malloc(sizeof(Estoque));
+    fp = fopen("estoque.dat", "rb");
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+        free(est); // Libera a memória alocada para o produto
+        exit(1); // Encerra o programa
+    }
 
-//     int EstoqueEncontrado = 0; // Variável para rastrear se algum produto foi encontrado
+    int EstoqueEncontrado = 0; // Variável para rastrear se algum produto foi encontrado
 
-//     system("clear||cls");
-//     while (fread(est, sizeof(Estoque), 1, fp)) {
-//         if (est->status == 1) {
-//             printEstoque(est); 
-//             EstoqueEncontrado = 1; // Marca que um produto foi encontrado
-//         }
-//     }
-//     fclose(fp);
-//     free(est); 
-//     if (!EstoqueEncontrado) {
-//         printf("\t\t\tNENHUM PRODUTO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum estente ativo for encontrado
-//     }
-//     printf("\n");
-//     printf("\t\t>>> Tecle ENTER para voltar ao menu anterior... <<<");
-//     getchar();
-// }
+    system("clear||cls");
+    while (fread(est, sizeof(Estoque), 1, fp)) {
+        if (est->status == 1) {
+            printEstoque(est); 
+            EstoqueEncontrado = 1; // Marca que um produto foi encontrado
+        }
+    }
+    fclose(fp);
+    free(est); 
+    if (!EstoqueEncontrado) {
+        printf("\t\t\tNENHUM PRODUTO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum estente ativo for encontrado
+    }
+    printf("\n");
+    printf("\t\t>>> Tecle ENTER para voltar ao menu anterior... <<<");
+    getchar();
+}
 
 
