@@ -25,7 +25,7 @@ void moduloEstoque(void) {
                         break;
             case '3':   atualizaEstoque();
                         break;
-            case '4':   tela_remover_estoque();
+            case '4':   excluirEstoque();
                         break;
             case '5':   listagemEstoque();
                         break;
@@ -232,8 +232,9 @@ char* tela_alterar_estoque(void) {
     return id;
 }
 
-void tela_remover_estoque(void) {
-
+char* tela_exclui_estoque(void) {
+    char* id;
+	id = (char*) malloc(15*sizeof(char));
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -250,13 +251,13 @@ void tela_remover_estoque(void) {
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                         REMOVER PRODUTO                                 ///\n");
+    printf("///                         EXCLUIR PRODUTO                                 ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///ID: ");
+    scanf("%[0-9]", id);
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    return id;
 }
 
 void gravaEstoque(Estoque* est) {
@@ -392,33 +393,33 @@ void removeEstoque(Estoque* est) {
 
 
 // // // Exclui um Estoque
-// void excluirEstoque(void) {
-//     Estoque *est;
-//     char *id;
+void excluirEstoque(void) {
+    Estoque *est;
+    char *id;
 
-//     // Obtém o id do Estoque a ser excluído
-//     id = tela_excluir_Estoques();
-//     est = buscaEstoque(id);
+    // Obtém o id do Estoque a ser excluído
+    id = tela_exclui_estoque();
+    est = buscaEstoque(id);
 
-//     if (est == NULL) {
-//         printf("\n");
-//         printf("\t\t\tEstoque NAO ENCONTRADO!\n\n");
-//         limparBuffer();
-//     } else {
-//         est->status = 0;
-//         removeEstoque(est);
-//         free(est);
-//         est = NULL; // Define est como NULL após remoção
-//         printf("\n");
-//         printf("\t\t\tEstoque EXCLUIDO COM SUCESSO!\n");
-//         limparBuffer();
-//     }
+    if (est == NULL) {
+        printf("\n");
+        printf("\t\t\tESTOQUE NAO ENCONTRADO!\n\n");
+        limparBuffer();
+    } else {
+        est->status = 0;
+        removeEstoque(est);
+        free(est);
+        est = NULL; // Define est como NULL após remoção
+        printf("\n");
+        printf("\t\t\tESTOQUE EXCLUIDO COM SUCESSO!\n");
+        limparBuffer();
+    }
 
-//     free(id);
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     limparBuffer();
-// }
+    free(id);
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    limparBuffer();
+}
 
 
 // // Reescreve os dados de um Estoque no arquivo
