@@ -474,37 +474,37 @@ void cadFuncionario(void) {
 // }
 
 
-// // Busca um cliente pelo CPF
-// Funcio* buscaFuncionario(char* cpf) {
-//     // Abre o arquivo "Funcios.dat" para leitura binária
-//     FILE* fp;
-//     Funcio* cli;
-//     cli = (Funcio*)malloc(sizeof(Funcio));
-//     fp = fopen("Funcios.dat", "rb");
+// Busca um cliente pelo CPF
+Funcio* buscaFuncionario(char* cpf) {
+    // Abre o arquivo "Funcios.dat" para leitura binária
+    FILE* fp;
+    Funcio* cli;
+    cli = (Funcio*)malloc(sizeof(Funcio));
+    fp = fopen("Funcios.dat", "rb");
 
-//     // Verifica se houve erro ao abrir o arquivo
-//     if (fp == NULL) {
-//         telaErro(); // Exibe uma mensagem de erro
-//     }
+    // Verifica se houve erro ao abrir o arquivo
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+    }
 
-//     // Percorre o arquivo em busca do Funcio com o CPF fornecido
-//     while (fread(cli, sizeof(Funcio), 1, fp)) {
-//         if (strcmp(cli->cpf, cpf) == 0 && cli->status == 1) {
-//             fclose(fp); // Fecha o arquivo
-//             return cli; // Retorna o Funcio encontrado
-//         }
-//     }
+    // Percorre o arquivo em busca do Funcio com o CPF fornecido
+    while (fread(cli, sizeof(Funcio), 1, fp)) {
+        if (strcmp(cli->cpf, cpf) == 0 && cli->status == 1) {
+            fclose(fp); // Fecha o arquivo
+            return cli; // Retorna o Funcio encontrado
+        }
+    }
 
-//     fclose(fp); // Fecha o arquivo
-//     free(cli); // Libera a memória alocada para o Funcio
-//     return NULL; // Retorna NULL se o Funcio não foi encontrado
-// }
+    fclose(fp); // Fecha o arquivo
+    free(cli); // Libera a memória alocada para o Funcio
+    return NULL; // Retorna NULL se o Funcio não foi encontrado
+}
 
 void listagemFuncionarios(void) {
     FILE* fp;
     Funcio* fun;
     fun = (Funcio*) malloc(sizeof(Funcio));
-    fp = fopen("Funcios.dat", "rb");
+    fp = fopen("funcionarios.dat", "rb");
     if (fp == NULL) {
         telaErro(); // Exibe uma mensagem de erro
         free(fun); // Libera a memória alocada para o Funcio
