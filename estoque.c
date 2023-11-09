@@ -23,7 +23,7 @@ void moduloEstoque(void) {
                         break;
             case '2':   tela_pesquisar_estoque();
                         break;
-            case '3':   tela_alterar_estoque();
+            case '3':   atualizaEstoque();
                         break;
             case '4':   tela_remover_estoque();
                         break;
@@ -202,8 +202,9 @@ Estoque* tela_pesquisar_estoque(void) {
     return NULL;
 }
 
-void tela_alterar_estoque(void) {
-
+char* tela_alterar_estoque(void) {
+    char* id;
+	id = (char*) malloc(15*sizeof(char));
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -223,10 +224,12 @@ void tela_alterar_estoque(void) {
     printf("///                         ALTERAR PRODUTO                                 ///\n");
     printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
     printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///ID: ");
+    scanf("%[0-9]", id);
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return id;
 }
 
 void tela_remover_estoque(void) {
@@ -329,30 +332,30 @@ void cadEstoque(void) {
 
 
 // // Atualiza um Estoque
-// void atualizaEstoque(void) {
-//     Estoque* est;
-//     char* id;
+void atualizaEstoque(void) {
+    Estoque* est;
+    char* id;
 
-//     // Obtém o id do Estoque a ser atualizado
-//     id = tela_alterar_estoque();
-//     est = buscaEstoque(id);
+    // Obtém o id do Estoque a ser atualizado
+    id = tela_alterar_estoque();
+    est = buscaEstoque(id);
 
-//     if (est == NULL) {
-//         system("clear||cls");
-//         printf("\n");
-//         printf("\t\t\tEstoque NAO ENCONTRADO!\n\n");
-//         printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//         getchar();
-//     } else {
-//         removeEstoque(est);
-//         est = tela_cadastro_estoque();
-//         strcpy(est->id, id);
-//         regravarEstoque(est);
-//         free(est);
-//     }
+    if (est == NULL) {
+        system("clear||cls");
+        printf("\n");
+        printf("\t\t\tESTOQUE NAO ENCONTRADO!\n\n");
+        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+        getchar();
+    } else {
+        removeEstoque(est);
+        est = tela_cadastro_estoque();
+        strcpy(est->id, id);
+        regravarEstoque(est);
+        free(est);
+    }
 
-//     free(id);
-// }
+    free(id);
+}
 
 
 // Remove um Estoque

@@ -21,7 +21,7 @@ void moduloEstoque(void);
 char tela_menu_estoque(void);
 Estoque* tela_cadastro_estoque(void);
 Estoque*  tela_pesquisar_estoque(void);
-void tela_alterar_estoque(void);
+char* tela_alterar_estoque(void);
 void tela_remover_estoque(void);
 void gravaEstoque(Estoque*);
 void listagemEstoque(void);
@@ -31,6 +31,7 @@ void listagemEstoque(void);
 Estoque* buscaEstoque(char*);
 void regravarEstoque(Estoque*);
 void removeEstoque(Estoque*);
+void atualizaEstoque(void);
 
 
 int verificaIdDuplicado(const char*);
