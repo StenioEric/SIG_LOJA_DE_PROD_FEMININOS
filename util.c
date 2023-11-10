@@ -283,7 +283,10 @@ int ehDigito(char c) {
 /// link: https://github.com/flgorgonio/linguasolta_2020.2
 
 void telaErro(void) {
-    printf("\nOps! Erro na abertura do arquivo!\n");
+  system("clear||cls");
+  printf("\t\t\tOps! Erro na abertura do arquivo!\n");
+  printf("\n");
+  exit(1);
 }
 
 
