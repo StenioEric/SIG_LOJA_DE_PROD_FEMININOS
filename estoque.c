@@ -82,18 +82,9 @@ Estoque* tela_cadastro_estoque(void) {
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///             ------------ CADASTRO DE PRODUTO ------------               ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
+    printf("///                            CADASTRO PRODUTOS                            ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
     printf("///                                                                         ///\n");
     do {
         printf("/// PRODUTO:");
@@ -155,20 +146,9 @@ Estoque* tela_pesquisar_estoque(void) {
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                         PESQUISAR PRODUTO                               ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
+    printf("///                           PESQUISAR PRODUTO                             ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
     printf("///                                                                         ///\n");
     do {
         printf("///ID: ");
@@ -209,20 +189,9 @@ char* tela_alterar_estoque(void) {
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                         ALTERAR PRODUTO                                 ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
+    printf("///                            ALTERAR PRODUTO                              ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
     printf("///                                                                         ///\n");
     printf("///ID: ");
     scanf("%[0-9]", id);
@@ -239,20 +208,9 @@ char* tela_exclui_estoque(void) {
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                         EXCLUIR PRODUTO                                 ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
+    printf("///                             EXCLUIR PRODUTO                             ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
     printf("///                                                                         ///\n");
     printf("///ID: ");
     scanf("%[0-9]", id);
@@ -447,7 +405,7 @@ void regravarEstoque(Estoque* est) {
 
     if (!achou) {
         printf("\n");
-        printf("\t\t\tEstoque NAO ENCONTRADO!\n");
+        printf("\t\t\tESTOQUE NAO ENCONTRADO!\n");
     }
 }
 
