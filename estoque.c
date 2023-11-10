@@ -27,7 +27,7 @@ void moduloEstoque(void) {
                         break;
             case '4':   excluirEstoque();
                         break;
-            case '5':   listagemEstoque();
+            case '5':   listarEstoque();
                         break;
         }
 
@@ -281,18 +281,13 @@ void printEstoque(Estoque* est) {
     printf("===================================\n"); 
 }
 
+
 void listarEstoque(void) {
     FILE* fp;
     Estoque est;
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-    printf("          PRINT DADOS ESTOQUE          \n");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-    printf("                                       \n");
     fp = fopen("estoque.dat", "rb");
     if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
-        printf("Nao eh possivel continuar...\n");
-        exit(1);
+        telaErro();
     }
     while (fread(&est, sizeof(Estoque), 1, fp)) {
         if (est.status != 'x') {
