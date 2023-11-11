@@ -6,7 +6,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 /// Assinatura de funcoes
-
 typedef struct estoque Estoque;
 struct estoque {
     char produto[20];

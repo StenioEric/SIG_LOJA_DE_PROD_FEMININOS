@@ -14,7 +14,6 @@
 
 typedef struct funcio Funcio;
 
-
 void moduloFuncio(void) {
     char op;
 

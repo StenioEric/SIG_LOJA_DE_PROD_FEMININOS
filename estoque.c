@@ -12,6 +12,7 @@
 #include "estoque.h"
 #include "util.h"
 
+
 typedef struct estoque Estoque;
 
 void moduloEstoque(void) {
@@ -247,11 +248,13 @@ void listarEstoque(void) {
     if (fp == NULL) {
         telaErro();
     }
+    system("clear||cls");
     while (fread(&est, sizeof(Estoque), 1, fp)) {
         if (est.status != 'x') {
             printEstoque(&est);
         }
     }
+    printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
     fclose(fp);
