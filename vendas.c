@@ -9,9 +9,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "vendas.h"
+#include "util.h"
+#include "cliente.h"
+#include "funcionario.h"
+#include "estoque.h"
 
 typedef struct vendas Vendas;
-
 
 void moduloVendas(void) {
     char op;
@@ -19,7 +22,7 @@ void moduloVendas(void) {
     do {
         op = tela_menu_vendas();
         switch (op) {
-            case '1':   tela_catalogo();
+            case '1':   listarEstoque();
                         break;
             case '2':   tela_carrinho_produtos();
                         break;
@@ -29,7 +32,6 @@ void moduloVendas(void) {
                         break;
             case '5':   tela_finalizar_compra();
                         break;
-
         }
     } while (op != '0');
 }
@@ -72,36 +74,6 @@ char tela_menu_vendas(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
     return op;
-}
-
-void tela_catalogo(void) {
-
-    system("clear||cls");
-    printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///             ------------ CATALOGO ------------                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///            PRODUTO:                                                     ///\n");
-    printf("///            VALOR:                                                       ///\n");
-    printf("///            QUANTIDADE EM ESTOQUE:                                       ///\n");
-    printf("///            ID DO PRODUTO:                                               ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
 }
 
 
@@ -222,3 +194,4 @@ void tela_finalizar_compra(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+
