@@ -7,7 +7,7 @@
 
 typedef struct vendas Vendas;
 struct vendas {
-    char idProduto[20];
+    char id[20];
     char quantidade[30];
     char valor[13];
     int status;
@@ -15,7 +15,9 @@ struct vendas {
 
 void moduloVendas(void);
 char tela_menu_vendas(void);
-void tela_carrinho_produtos(void);
+Vendas* adicionarProdutos(void);
 void tela_excluir_produto(void);
 void tela_finalizar_compra(void);
 void tela_ver_carrinho(void);
+
+int verificaQuantidade(const char* quantidade, const char* idProduto);

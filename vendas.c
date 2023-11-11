@@ -4,7 +4,7 @@
 ///             PROJETO SIG DE UMA LOJA PARA ARTIGOS FEMININOS              ///
 ///             Developed by @stenioeric -- since August, 2023              ///
 ///////////////////////////////////////////////////////////////////////////////
-
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -24,7 +24,7 @@ void moduloVendas(void) {
         switch (op) {
             case '1':   listarEstoque();
                         break;
-            case '2':   tela_carrinho_produtos();
+            case '2':   adicionarProdutos();
                         break;
             case '3':   tela_ver_carrinho();
                         break;
@@ -77,8 +77,9 @@ char tela_menu_vendas(void) {
 }
 
 
-void tela_carrinho_produtos(void) {
-
+Vendas* adicionarProdutos(void) {
+    Vendas* vend;
+    vend = (Vendas*)malloc(sizeof(Vendas));
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -96,14 +97,51 @@ void tela_carrinho_produtos(void) {
     printf("///                                                                         ///\n");
     printf("///             ------------ ADICIONAR PRODUTOS ------------                ///\n");
     printf("///                                                                         ///\n");
-    printf("///            ID DO PRODUTO:                                               ///\n");
-    printf("///            QUANTIDADE:                                                  ///\n");
-    printf("///            VALOR:                                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    int idDuplicado = 0;
+    int idValido = 0;
+    do {
+        printf("/// ID DO PRODUTO: ");
+        scanf("%s",vend->id);
+        limparBuffer();
+
+        idDuplicado = verificaIdDuplicado(vend->id);
+
+        if (!idDuplicado) {
+            printf("\n");
+            printf("\t\t\tID NAO EXISTE. TENTE NOVAMENTE.\n");
+            printf("\n");
+        } else if (ehDigitos(vend->id)) {
+            idValido= 1;
+        }
+        else {
+            printf("\n");
+            printf("\t\t\tID INVALIDO. TENTE NOVAMENTE.\n");
+            printf("\n");
+        }
+    } while (!idValido && !idDuplicado);
+
+    int quantidade = 0;
+    do {
+        printf("/// QUANTIDADE DE PRODUTOS: ");
+        scanf("%s", vend->quantidade);
+        limparBuffer();
+
+        quantidade = verificaQuantidade(vend->quantidade,vend->id);
+
+        if (!quantidade) {
+            printf("\n");
+            printf("\t\tNAO EXISTE ESSA QUANTIDADE EM ESTOQUE. TENTE NOVAMENTE.\n");
+            printf("\n");
+        } else {
+            quantidade = 1; // Atribui 1 para indicar que a quantidade é válida
+        }
+    } while (!quantidade || vend->quantidade != 0);
+
+    vend -> status = 1;
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return vend;
 }
 
 void tela_ver_carrinho(void) {
@@ -193,5 +231,31 @@ void tela_finalizar_compra(void) {
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+}
+
+
+int verificaQuantidade(const char* quantidade, const char* id) {
+    FILE* fp = fopen("estoque.dat", "rb");
+    if (fp == NULL) {
+        // Lidar com a falha na abertura do arquivo, se necessário
+        return 0;
+    }
+
+    Estoque est;
+    int quantidadeProduto = atoi(quantidade);
+    while (fread(&est, sizeof(Estoque), 1, fp)) {
+        if (strcmp(est.id, id) == 0) {
+            // Encontrou o produto pelo ID no arquivo
+            if (quantidadeProduto <= atoi(est.quantidade)) {
+                fclose(fp);
+                return 1; // Quantidade suficiente
+            } else {
+                fclose(fp);
+                return 0; // Quantidade insuficiente
+            }
+        }
+    }
+    fclose(fp);
+    return 0; // Produto não encontrado
 }
 
