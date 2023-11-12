@@ -289,7 +289,11 @@ void telaErro(void) {
   exit(1);
 }
 
-
+void espacamento(void) {
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
 
 /// criar função ehdinheiro
 // char* pegaNome(void) {

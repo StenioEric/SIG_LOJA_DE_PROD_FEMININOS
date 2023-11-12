@@ -21,6 +21,7 @@ int validarCPF(char *);
 void limparBuffer(void);
 // int validarEmail(char*);
 void telaErro(void);
+void espacamento(void);
 
 
 
