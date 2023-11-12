@@ -24,10 +24,10 @@ void moduloVendas(void) {
         switch (op) {
             case '1':   listarEstoque();
                         break;
-            case '2':   cadProduto();
+            case '2':   adicionarProdutos();
                         break;
-            // case '3':   tela_ver_carrinho();
-                        break;
+            // // case '3':   tela_ver_carrinho();
+            //             break;
             case '4':   tela_excluir_produto();
                         break;
             case '5':   tela_finalizar_compra();
@@ -81,75 +81,80 @@ Vendas* adicionarProdutos(void) {
     Vendas* vend;
     vend = (Vendas*)malloc(sizeof(Vendas));
     int adicionarMais = 1;
-    do {
-        system("clear||cls");
-        printf("\n");
-        printf("///////////////////////////////////////////////////////////////////////////////\n");
-        printf("///                                                                         ///\n");
-        printf("///        EEEEEEE lll                                                      ///\n");
-        printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-        printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-        printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-        printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-        printf("///                             ggggg                                       ///\n");
-        printf("///                                                                         ///\n");
-        printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-        printf("///                                                                         ///\n");
-        printf("///////////////////////////////////////////////////////////////////////////////\n");
-        printf("///                                                                         ///\n");
-        printf("///             ------------ ADICIONAR PRODUTOS ------------                ///\n");
-        printf("///                                                                         ///\n");
+    do { 
 
-        int idDuplicado = 0;
-        int idValido = 0;
         do {
-            printf("/// ID DO PRODUTO: ");
-            scanf("%s", vend->id);
-            limparBuffer();
+            system("clear||cls");
+            printf("\n");
+            printf("///////////////////////////////////////////////////////////////////////////////\n");
+            printf("///                                                                         ///\n");
+            printf("///        EEEEEEE lll                                                      ///\n");
+            printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
+            printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
+            printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
+            printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
+            printf("///                             ggggg                                       ///\n");
+            printf("///                                                                         ///\n");
+            printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
+            printf("///                                                                         ///\n");
+            printf("///////////////////////////////////////////////////////////////////////////////\n");
+            printf("///                                                                         ///\n");
+            printf("///             ------------ ADICIONAR PRODUTOS ------------                ///\n");
+            printf("///                                                                         ///\n");
 
-            idDuplicado = verificaIdDuplicado(vend->id);
+            int idDuplicado = 0;
+            int idValido = 0;
+            do {
+                printf("/// ID DO PRODUTO: ");
+                scanf("%s", vend->id);
+                limparBuffer();
 
-            if (!idDuplicado) {
-                printf("\n");
-                printf("\t\t\tID NAO EXISTE. TENTE NOVAMENTE.\n");
-                printf("\n");
-            } else if (ehDigitos(vend->id)) {
-                idValido = 1;
-            } else {
-                printf("\n");
-                printf("\t\t\tID INVALIDO. TENTE NOVAMENTE.\n");
-                printf("\n");
-            }
-        } while (!idValido && !idDuplicado);
+                idDuplicado = verificaIdDuplicado(vend->id);
 
-        int quantidade = 0;
-        do {
-            printf("/// QUANTIDADE DE PRODUTOS: ");
-            scanf("%s", vend->quantidade);
-            limparBuffer();
+                if (!idDuplicado) {
+                    printf("\n");
+                    printf("\t\t\tID NAO EXISTE. TENTE NOVAMENTE.\n");
+                    printf("\n");
+                } else if (ehDigitos(vend->id)) {
+                    idValido = 1;
+                } else {
+                    printf("\n");
+                    printf("\t\t\tID INVALIDO. TENTE NOVAMENTE.\n");
+                    printf("\n");
+                }
+            } while (!idValido && !idDuplicado);
 
-            quantidade = verificaQuantidade(vend->quantidade, vend->id);
+            int quantidade = 0;
+            do {
+                printf("/// QUANTIDADE DE PRODUTOS: ");
+                scanf("%s", vend->quantidade);
+                limparBuffer();
 
-            if (!quantidade) {
-                printf("\n");
-                printf("\t\tNAO EXISTE ESSA QUANTIDADE EM ESTOQUE. TENTE NOVAMENTE.\n");
-                printf("\n");
-            } else {
-                quantidade = 1; // Atribui 1 para indicar que a quantidade é válida
-            }
-        } while (!quantidade || vend->quantidade == 0);
-        do {
-            printf("/// ID DA COMPRA:");
-            scanf("%s", vend->idCompra);
-            limparBuffer();
+                quantidade = verificaQuantidade(vend->quantidade, vend->id);
+
+                if (!quantidade) {
+                    printf("\n");
+                    printf("\t\tNAO EXISTE ESSA QUANTIDADE EM ESTOQUE. TENTE NOVAMENTE.\n");
+                    printf("\n");
+                } else {
+                    quantidade = 1; // Atribui 1 para indicar que a quantidade é válida
+                }
+            } while (!quantidade || vend->quantidade == 0);
+            do {
+                printf("/// ID DA COMPRA:");
+                scanf("%s", vend->idCompra);
+                limparBuffer();
+            } while (!ehDigitos(vend->idCompra));
+
+            vend->status = 1;
+            gravaProduto(vend);
+            free(vend);
         } while (!ehDigitos(vend->idCompra));
 
-        vend->status = 1;
         printf("\n");
         printf("Deseja adicionar mais produtos? (1 para sim, 0 para encerrar): ");
         scanf("%d", &adicionarMais);
         limparBuffer(); // Limpar o buffer para a próxima entrada
-
     } while (adicionarMais);
 
     return vend;
@@ -157,7 +162,6 @@ Vendas* adicionarProdutos(void) {
 
 
 // Vendas* tela_ver_carrinho(void) {
-//     FILE* fp;
 //     char idCompra[15];
 //     Vendas* vend;
 //     vend = (Vendas*)malloc(sizeof(Vendas));
@@ -174,37 +178,14 @@ Vendas* adicionarProdutos(void) {
 //         scanf("%[0-9]", idCompra);
 //         limparBuffer();
 //     } while (!ehDigitos(idCompra));
-
-//     fp = fopen("vendas.dat", "rb");
-//     if (fp == NULL) {
-//         telaErro();
-//         free(vend);
-//         exit(1);
-//     }
-
-//     int produtosEncontrados = 0;
-//     system("clear||cls");
-//     while (fread(vend, sizeof(Vendas), 1, fp)) {
-//         if ((vend->idCompra != 0) && (strcmp(vend->idCompra, idCompra) == 0)) {
-//             printVendas(vend); 
-//             produtosEncontrados = 1;
-//         }
-//     }
-
-//     fclose(fp);
-
-//     if (!produtosEncontrados) {
-//         printf("\n");
-//         printf("\t\t\t NENHUM PRODUTO ENCONTRADO PARA O ID DE COMPRA INSERIDO\n");
-//         limparBuffer();
-//         return NULL;
-//     }
-
+//     recuperarProdutosPorCompra(idCompra);
 //     printf("\n");
 //     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 //     getchar();
-//     return NULL;
+
+//     return vend;
 // }
+
 
 
 void tela_excluir_produto(void) {
@@ -292,15 +273,6 @@ int verificaQuantidade(const char* quantidade, const char* id) {
 }
 
 
-// Cadastra um novo produto
-void cadProduto(void) {
-    Vendas *vend;
-    vend = adicionarProdutos();
-    gravaProduto(vend);
-    free(vend);
-}
-
-
 void gravaProduto(Vendas* vend) {
     FILE* fp;
     fp = fopen("vendas.dat", "ab");
@@ -314,5 +286,37 @@ void gravaProduto(Vendas* vend) {
 
 
 
+// void recuperarProdutosPorCompra(const char* idCompra) {
+//     FILE* fp;
+//     Vendas vend;
+//     system("clear||cls");
 
+//     // Abre o arquivo de vendas para leitura binária
+//     fp = fopen("vendas.dat", "rb");
+//     if (fp == NULL) {
+//         printf("Erro ao abrir o arquivo de vendas.\n");
+//         return;
+//     }
+
+//     // Percorre o arquivo de vendas em busca da compra com o ID fornecido
+//     while (fread(&vend, sizeof(Vendas), 1, fp)) {
+//         if (strcmp(vend.idCompra, idCompra) == 0 && vend.status == 1) {
+//             // Encontrou a compra pelo ID no arquivo
+
+//             // Agora, você pode usar o ID do produto na venda para buscar informações no arquivo de estoque
+//             // Certifique-se de implementar uma função semelhante para buscar produtos por ID no estoque
+
+//             // Exemplo de como buscar informações no arquivo de estoque
+//             Estoque* produto = buscaEstoque(vend.id);
+
+//             // Se o produto for encontrado, você pode imprimir suas informações
+//             if (produto != NULL) {
+//                 printEstoque(produto);
+//                 free(produto);  // Lembre-se de liberar a memória alocada pela função buscarProdutoPorId
+//             }
+//         }
+//     }
+
+//     fclose(fp);  // Fecha o arquivo de vendas
+// }
 
