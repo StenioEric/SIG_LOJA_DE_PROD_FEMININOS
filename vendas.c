@@ -161,30 +161,30 @@ Vendas* adicionarProdutos(void) {
 }
 
 
-// Vendas* tela_ver_carrinho(void) {
-//     char idCompra[15];
-//     Vendas* vend;
-//     vend = (Vendas*)malloc(sizeof(Vendas));
-//     system("clear||cls");
-//     printf("\n");
-//     printf("///////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                         ///\n");
-//     printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
-//     printf("///                        VER CARRINHO DE PRODUTOS                         ///\n");
-//     printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
-//     printf("///                                                                         ///\n");
-//     do {
-//         printf("/// ID DA COMPRA: ");
-//         scanf("%[0-9]", idCompra);
-//         limparBuffer();
-//     } while (!ehDigitos(idCompra));
-//     recuperarProdutosPorCompra(idCompra);
-//     printf("\n");
-//     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-//     getchar();
+Vendas* tela_ver_carrinho(void) {
+    char idCompra[15];
+    Vendas* vend;
+    vend = (Vendas*)malloc(sizeof(Vendas));
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
+    printf("///                        VER CARRINHO DE PRODUTOS                         ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
+    printf("///                                                                         ///\n");
+    do {
+        printf("/// ID DA COMPRA: ");
+        scanf("%[0-9]", idCompra);
+        limparBuffer();
+    } while (!ehDigitos(idCompra));
+    recuperarProdutosPorCompra(idCompra);
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
 
-//     return vend;
-// }
+    return vend;
+}
 
 
 
@@ -286,37 +286,37 @@ void gravaProduto(Vendas* vend) {
 
 
 
-// void recuperarProdutosPorCompra(const char* idCompra) {
-//     FILE* fp;
-//     Vendas vend;
-//     system("clear||cls");
+void recuperarProdutosPorCompra(const char* idCompra) {
+    FILE* fp;
+    Vendas vend;
+    system("clear||cls");
 
-//     // Abre o arquivo de vendas para leitura binária
-//     fp = fopen("vendas.dat", "rb");
-//     if (fp == NULL) {
-//         printf("Erro ao abrir o arquivo de vendas.\n");
-//         return;
-//     }
+    // Abre o arquivo de vendas para leitura binária
+    fp = fopen("vendas.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro ao abrir o arquivo de vendas.\n");
+        return;
+    }
 
-//     // Percorre o arquivo de vendas em busca da compra com o ID fornecido
-//     while (fread(&vend, sizeof(Vendas), 1, fp)) {
-//         if (strcmp(vend.idCompra, idCompra) == 0 && vend.status == 1) {
-//             // Encontrou a compra pelo ID no arquivo
+    // Percorre o arquivo de vendas em busca da compra com o ID fornecido
+    while (fread(&vend, sizeof(Vendas), 1, fp)) {
+        if (strcmp(vend.idCompra, idCompra) == 0 && vend.status == 1) {
+            // Encontrou a compra pelo ID no arquivo
 
-//             // Agora, você pode usar o ID do produto na venda para buscar informações no arquivo de estoque
-//             // Certifique-se de implementar uma função semelhante para buscar produtos por ID no estoque
+            // Agora, você pode usar o ID do produto na venda para buscar informações no arquivo de estoque
+            // Certifique-se de implementar uma função semelhante para buscar produtos por ID no estoque
 
-//             // Exemplo de como buscar informações no arquivo de estoque
-//             Estoque* produto = buscaEstoque(vend.id);
+            // Exemplo de como buscar informações no arquivo de estoque
+            Estoque* produto = buscaEstoque(vend.id);
 
-//             // Se o produto for encontrado, você pode imprimir suas informações
-//             if (produto != NULL) {
-//                 printEstoque(produto);
-//                 free(produto);  // Lembre-se de liberar a memória alocada pela função buscarProdutoPorId
-//             }
-//         }
-//     }
+            // Se o produto for encontrado, você pode imprimir suas informações
+            if (produto != NULL) {
+                printEstoque(produto);
+                free(produto);  // Lembre-se de liberar a memória alocada pela função buscarProdutoPorId
+            }
+        }
+    }
 
-//     fclose(fp);  // Fecha o arquivo de vendas
-// }
+    fclose(fp);  // Fecha o arquivo de vendas
+}
 

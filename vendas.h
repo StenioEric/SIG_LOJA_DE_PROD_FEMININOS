@@ -23,10 +23,10 @@ char tela_menu_vendas(void);
 Vendas* adicionarProdutos(void);
 void tela_excluir_produto(void);
 void tela_finalizar_compra(void);
-// Vendas* tela_ver_carrinho(void);
+Vendas* tela_ver_carrinho(void);
 void gravaProduto(Vendas*);
 
 int verificaQuantidade(const char* quantidade, const char* idProduto);
-// void recuperarProdutosPorCompra(const char* idCompra);
+void recuperarProdutosPorCompra(const char* idCompra);
 
 #endif // VENDAS_H
