@@ -4,13 +4,18 @@
 ///             PROJETO SIG DE UMA LOJA PARA ARTIGOS FEMININOS              ///
 ///             Developed by @stenioeric -- since August, 2023              ///
 ///////////////////////////////////////////////////////////////////////////////
+#ifndef VENDAS_H
+#define VENDAS_H
 
 typedef struct vendas Vendas;
 struct vendas {
+    char produto[20];
+    char quantidade[13];
+    char valor[30];
+    char descricao[30];
     char id[20];
-    char quantidade[30];
-    char valor[13];
-    int status;
+    char idCompra[20];
+    char status;
 };
 
 void moduloVendas(void);
@@ -18,6 +23,10 @@ char tela_menu_vendas(void);
 Vendas* adicionarProdutos(void);
 void tela_excluir_produto(void);
 void tela_finalizar_compra(void);
-void tela_ver_carrinho(void);
+// Vendas* tela_ver_carrinho(void);
+void gravaProduto(Vendas*);
+void cadProduto(void);
 
 int verificaQuantidade(const char* quantidade, const char* idProduto);
+
+#endif // VENDAS_H
