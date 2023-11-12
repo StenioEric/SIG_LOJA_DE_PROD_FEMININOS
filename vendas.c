@@ -82,21 +82,9 @@ Vendas* adicionarProdutos(void) {
     vend = (Vendas*)malloc(sizeof(Vendas));
     int adicionarMais = 1;
     do { 
-
         do {
             system("clear||cls");
             printf("\n");
-            printf("///////////////////////////////////////////////////////////////////////////////\n");
-            printf("///                                                                         ///\n");
-            printf("///        EEEEEEE lll                                                      ///\n");
-            printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-            printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-            printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-            printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-            printf("///                             ggggg                                       ///\n");
-            printf("///                                                                         ///\n");
-            printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-            printf("///                                                                         ///\n");
             printf("///////////////////////////////////////////////////////////////////////////////\n");
             printf("///                                                                         ///\n");
             printf("///             ------------ ADICIONAR PRODUTOS ------------                ///\n");
@@ -148,7 +136,7 @@ Vendas* adicionarProdutos(void) {
 
             vend->status = 1;
             gravaProduto(vend);
-            free(vend);
+
         } while (!ehDigitos(vend->idCompra));
 
         printf("\n");
@@ -156,7 +144,8 @@ Vendas* adicionarProdutos(void) {
         scanf("%d", &adicionarMais);
         limparBuffer(); // Limpar o buffer para a próxima entrada
     } while (adicionarMais);
-
+    
+    free(vend);
     return vend;
 }
 
@@ -186,20 +175,8 @@ Vendas* tela_ver_carrinho(void) {
 
 
 void tela_excluir_produto(void) {
-
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///             ------------ EXCLUIR PRODUTOS ------------                  ///\n");
@@ -212,20 +189,8 @@ void tela_excluir_produto(void) {
 }
 
 void tela_finalizar_compra(void) {
-    
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///             ------------ FINALIZAR COMPRA ------------                  ///\n");
