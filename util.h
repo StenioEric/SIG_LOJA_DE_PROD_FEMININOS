@@ -22,6 +22,9 @@ void limparBuffer(void);
 // int validarEmail(char*);
 void telaErro(void);
 void espacamento(void);
+int ehvirgula(char);
+int ehdinheiro(char*);
+
 
 
 

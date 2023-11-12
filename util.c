@@ -289,11 +289,32 @@ void telaErro(void) {
   exit(1);
 }
 
+
 void espacamento(void) {
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+
+
+int ehdinheiro(char* str) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if ((str[i] < '0' || str[i] > '9') && (!ehvirgula(str[i]))) {
+            return 0; // Se qualquer caractere não for um dígito, retorna 0
+        }
+    }
+    return 1; // Todos os caracteres são dígitos
+}
+
+int ehvirgula(char c) {
+  if (c == ',') {
+    return 1;
+  }
+  else {
+    return 0;
+  }
+}
+
 
 /// criar função ehdinheiro
 // char* pegaNome(void) {

@@ -99,7 +99,7 @@ Estoque* tela_cadastro_estoque(void) {
         printf("/// VALOR:");
         scanf("%s",est->valor);
         limparBuffer();
-    } while(!ehDigitos(est->valor));
+    } while(!ehdinheiro(est->valor));
     do {
         printf("/// DESCRICAO:");
         scanf("%s",est->descricao);
