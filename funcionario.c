@@ -71,9 +71,7 @@ char tela_menu_funcionarios(void) {
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar(); 
+    espacamento();
     return op;
 }
 
@@ -157,9 +155,7 @@ Funcio* tela_cadastro_funcionarios(void){
     } while(!validarFone(fun -> telefone));
     
     fun->status = 1;
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
     return fun;
 }
 
@@ -204,9 +200,7 @@ Funcio* tela_pesquisar_funcionarios(void) {
         return NULL;
     }
     
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
     return NULL;
 }
 
@@ -224,9 +218,7 @@ char* tela_alterar_funcionarios(void) {
     printf("///                                                                         ///\n");
     printf("///CPF: ");
     scanf("%[0-9]", cpf);
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
     return cpf;
 }
 
@@ -278,8 +270,7 @@ void listarFuncionarios(void) {
             printFuncionarios(&fun);
         }
     }
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
     fclose(fp);
 }
 
@@ -349,8 +340,7 @@ void atualizaFuncionario(void) {
         system("clear||cls");
         printf("\n");
         printf("\t\t\tFUNCIONARIO NAO ENCONTRADO!\n\n");
-        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-        getchar();
+        espacamento();
     } else {
         removeFuncionario(fun);
         fun = tela_cadastro_funcionarios();
@@ -420,9 +410,7 @@ void excluirFuncionario(void) {
     }
 
     free(cpf);
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    limparBuffer();
+    espacamento();
 }
 
 
@@ -512,7 +500,5 @@ void listagemFuncionarios(void) {
     if (!FuncioEncontrado) {
         printf("\t\t\tNENHUM FUNCIONAIRO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum cliente ativo for encontrado
     }
-    printf("\n");
-    printf("\t\t>>> Tecle ENTER para voltar ao menu anterior... <<<");
-    getchar();
+    espacamento();
 }

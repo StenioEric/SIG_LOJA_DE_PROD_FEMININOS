@@ -87,7 +87,6 @@ char tela_menu_principal(void) {
     getchar();
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    espacamento();
     return op;
 }

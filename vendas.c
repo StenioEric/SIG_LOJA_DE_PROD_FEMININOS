@@ -26,8 +26,8 @@ void moduloVendas(void) {
                         break;
             case '2':   adicionarProdutos();
                         break;
-            // // case '3':   tela_ver_carrinho();
-            //             break;
+            case '3':   tela_ver_carrinho();
+                        break;
             case '4':   tela_excluir_produto();
                         break;
             case '5':   tela_finalizar_compra();
@@ -179,10 +179,7 @@ Vendas* tela_ver_carrinho(void) {
         limparBuffer();
     } while (!ehDigitos(idCompra));
     recuperarProdutosPorCompra(idCompra);
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-
+    espacamento();
     return vend;
 }
 
@@ -211,9 +208,7 @@ void tela_excluir_produto(void) {
     printf("///            QUANTIDADE:                                                  ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
 }
 
 void tela_finalizar_compra(void) {
@@ -241,9 +236,7 @@ void tela_finalizar_compra(void) {
     printf("///            FORMA DE PAGAMENTO:                                          ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
 }
 
 
@@ -301,22 +294,13 @@ void recuperarProdutosPorCompra(const char* idCompra) {
     // Percorre o arquivo de vendas em busca da compra com o ID fornecido
     while (fread(&vend, sizeof(Vendas), 1, fp)) {
         if (strcmp(vend.idCompra, idCompra) == 0 && vend.status == 1) {
-            // Encontrou a compra pelo ID no arquivo
-
-            // Agora, você pode usar o ID do produto na venda para buscar informações no arquivo de estoque
-            // Certifique-se de implementar uma função semelhante para buscar produtos por ID no estoque
-
-            // Exemplo de como buscar informações no arquivo de estoque
             Estoque* produto = buscaEstoque(vend.id);
-
-            // Se o produto for encontrado, você pode imprimir suas informações
             if (produto != NULL) {
                 printEstoque(produto);
                 free(produto);  // Lembre-se de liberar a memória alocada pela função buscarProdutoPorId
             }
         }
     }
-
     fclose(fp);  // Fecha o arquivo de vendas
 }
 

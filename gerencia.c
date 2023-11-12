@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "gerencia.h"
+#include "util.h"
 
 
 void moduloGerencia(void) { 
@@ -63,8 +64,7 @@ char tela_menu_gerencia(void) {
     getchar();
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");    
+    espacamento();   
     return op;
 }
 
@@ -99,9 +99,7 @@ void tela_relatorio_cliente(void) {
     printf("///###################################################################################///\n");
     printf("///                                                                                   ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
 }
 
 
@@ -135,9 +133,7 @@ void tela_relatorio_vendas(void) {
     printf("///###################################################################################///\n");
     printf("///                                                                                   ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
 }
 
 void tela_relatorio_estoque(void) {
@@ -170,9 +166,7 @@ void tela_relatorio_estoque(void) {
     printf("///###################################################################################///\n");
     printf("///                                                                                   ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
 }
 
 
@@ -206,7 +200,5 @@ void tela_relatorio_funcionarios(void) {
     printf("///###################################################################################///\n");
     printf("///                                                                                   ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
 }

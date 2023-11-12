@@ -191,13 +191,11 @@ Cliente* tela_pesquisar_cliente(void) {
     if (!cliEncontrado){
         printf("\n");
         printf("\t\t\tCLIENTE NAO REGISTRADO\n");
-        limparBuffer();
+        espacamento();
         return NULL;
     }
     
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
     return NULL;
 }
 
@@ -215,9 +213,7 @@ char* tela_alterar_cliente(void) {
     printf("///                                                                         ///\n");
     printf("///CPF DO CLIENTE: ");
     scanf("%[0-9]", cpf);
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
     return cpf;
 }
 
@@ -301,9 +297,7 @@ void listarTodosClientes(void) {
     if (!clienteEncontrado) {
         printf("\nNenhum cliente ativo encontrado.\n"); // Mensagem se nenhum cliente ativo for encontrado
     }
-    printf("\n");
-    printf("\t\t>>> Tecle ENTER para voltar ao menu anterior... <<<");
-    getchar();
+    espacamento();
 }
 
 // Busca um cliente pelo CPF
@@ -345,8 +339,7 @@ void atualizaCliente(void) {
         system("clear||cls");
         printf("\n");
         printf("\t\t\tCLIENTE NAO ENCONTRADO!\n\n");
-        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-        getchar();
+        espacamento();
     } else {
         removeCliente(cli);
         cli = tela_cadastro_cliente();
@@ -454,9 +447,7 @@ void excluirCliente(void) {
     }
 
     free(cpf);
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    limparBuffer();
+    espacamento();
 }
 
 

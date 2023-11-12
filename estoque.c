@@ -69,9 +69,7 @@ char tela_menu_estoque(void) {
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
     return op;
 }
 
@@ -132,9 +130,7 @@ Estoque* tela_cadastro_estoque(void) {
     } while (!idValido || idDuplicado);
 
     est -> status = 1;
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
     return est;
 }
 
@@ -177,9 +173,7 @@ Estoque* tela_pesquisar_estoque(void) {
         return NULL;
     }
 
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
     return NULL;
 }
 
@@ -196,9 +190,7 @@ char* tela_alterar_estoque(void) {
     printf("///                                                                         ///\n");
     printf("///ID: ");
     scanf("%[0-9]", id);
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
     return id;
 }
 
@@ -254,9 +246,7 @@ void listarEstoque(void) {
             printEstoque(&est);
         }
     }
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
     fclose(fp);
     free(fp);
 }
@@ -301,8 +291,7 @@ void atualizaEstoque(void) {
         system("clear||cls");
         printf("\n");
         printf("\t\t\tESTOQUE NAO ENCONTRADO!\n\n");
-        printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-        getchar();
+        espacamento();
     } else {
         removeEstoque(est);
         est = tela_cadastro_estoque();
@@ -372,9 +361,7 @@ void excluirEstoque(void) {
     }
 
     free(id);
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    limparBuffer();
+    espacamento();
 }
 
 
@@ -464,9 +451,7 @@ void listagemEstoque(void) {
     if (!EstoqueEncontrado) {
         printf("\t\t\tNENHUM PRODUTO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum estente ativo for encontrado
     }
-    printf("\n");
-    printf("\t\t>>> Tecle ENTER para voltar ao menu anterior... <<<");
-    getchar();
+    espacamento();
 }
 
 
