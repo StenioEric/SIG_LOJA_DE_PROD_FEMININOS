@@ -8,7 +8,7 @@
 
 void moduloGerencia(void);
 char tela_menu_gerencia(void);
-void tela_relatorio_cliente(void);
-void tela_relatorio_vendas(void);
-void tela_relatorio_estoque(void);
-void tela_relatorio_funcionarios(void);
+// void tela_relatorio_cliente(void);
+// void tela_relatorio_vendas(void);
+// void tela_relatorio_estoque(void);
+// void tela_relatorio_funcionarios(void);
