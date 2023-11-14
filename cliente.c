@@ -32,7 +32,7 @@ void moduloCliente(void) {
                         break;
 
         }
-    } while (op != 0);
+    } while (op != '0');
 }
 
 char tela_menu_cliente(void) {
@@ -67,9 +67,7 @@ char tela_menu_cliente(void) {
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
     return op;
 
 }
