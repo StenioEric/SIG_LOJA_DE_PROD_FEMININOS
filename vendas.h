@@ -21,12 +21,15 @@ struct vendas {
 void moduloVendas(void);
 char tela_menu_vendas(void);
 Vendas* adicionarProdutos(void);
-void tela_excluir_produto(void);
-void tela_finalizar_compra(void);
+Vendas* excluirProduto(void);
+// void tela_finalizar_compra(void);
 Vendas* tela_ver_carrinho(void);
 void gravaProduto(Vendas*);
+void removeVenda(Vendas*);
 
 int verificaQuantidade(const char* quantidade, const char* idProduto);
+// int verificaIdCompra(const char* idCompra);
 void recuperarProdutosPorCompra(const char* idCompra);
+int buscaVenda(char*);
 
 #endif // VENDAS_H
