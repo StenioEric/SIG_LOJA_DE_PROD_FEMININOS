@@ -28,9 +28,6 @@ void moduloFuncio(void) {
                         break;
             case '4':   excluirFuncionario();
                         break;
-            case '5':   listagemFuncionarios();
-                        break;
-                
         }
 
     } while (op != '0');
@@ -251,28 +248,28 @@ void gravaFuncionario(Funcio* fun) {
     fclose(fp);
 }
 
-void listarFuncionarios(void) {
-    FILE* fp;
-    Funcio fun;
-    system("clear||cls");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-    printf("       LISTAGEM DOS FUNCIONARIOS       \n");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-    printf("                                       \n");
-    fp = fopen("funcionarios.dat", "rb");
-    if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
-        printf("Nao eh possivel continuar...\n");
-        exit(1);
-    }
-    while (fread(&fun, sizeof(Funcio), 1, fp)) {
-        if (fun.status != 'x') {
-            printFuncionarios(&fun);
-        }
-    }
-    espacamento();
-    fclose(fp);
-}
+// void listarFuncionarios(void) {
+//     FILE* fp;
+//     Funcio fun;
+//     system("clear||cls");
+//     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+//     printf("       LISTAGEM DOS FUNCIONARIOS       \n");
+//     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+//     printf("                                       \n");
+//     fp = fopen("funcionarios.dat", "rb");
+//     if (fp == NULL) {
+//         printf("Ops! Erro na abertura do arquivo!\n");
+//         printf("Nao eh possivel continuar...\n");
+//         exit(1);
+//     }
+//     while (fread(&fun, sizeof(Funcio), 1, fp)) {
+//         if (fun.status != 'x') {
+//             printFuncionarios(&fun);
+//         }
+//     }
+//     espacamento();
+//     fclose(fp);
+// }
 
 void printFuncionarios(Funcio* fun) {
     printf("\n = = = DADOS DO FUNCIONARIO = = = \n");
@@ -475,30 +472,30 @@ Funcio* buscaFuncionario(char* cpf) {
     return NULL; // Retorna NULL se o Funcio não foi encontrado
 }
 
-void listagemFuncionarios(void) {
-    FILE* fp;
-    Funcio* fun;
-    fun = (Funcio*) malloc(sizeof(Funcio));
-    fp = fopen("funcionarios.dat", "rb");
-    if (fp == NULL) {
-        telaErro(); // Exibe uma mensagem de erro
-        free(fun); // Libera a memória alocada para o Funcio
-        exit(1); // Encerra o programa
-    }
+// void listagemFuncionarios(void) {
+//     FILE* fp;
+//     Funcio* fun;
+//     fun = (Funcio*) malloc(sizeof(Funcio));
+//     fp = fopen("funcionarios.dat", "rb");
+//     if (fp == NULL) {
+//         telaErro(); // Exibe uma mensagem de erro
+//         free(fun); // Libera a memória alocada para o Funcio
+//         exit(1); // Encerra o programa
+//     }
 
-    int FuncioEncontrado = 0; // Variável para rastrear se algum Funcio foi encontrado
+//     int FuncioEncontrado = 0; // Variável para rastrear se algum Funcio foi encontrado
 
-    system("clear||cls");
-    while (fread(fun, sizeof(Funcio), 1, fp)) {
-        if (fun->status == 1) {
-            printFuncionarios(fun); 
-            FuncioEncontrado = 1; // Marca que um Funcio foi encontrado
-        }
-    }
-    fclose(fp);
-    free(fun); 
-    if (!FuncioEncontrado) {
-        printf("\t\t\tNENHUM FUNCIONAIRO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum cliente ativo for encontrado
-    }
-    espacamento();
-}
+//     system("clear||cls");
+//     while (fread(fun, sizeof(Funcio), 1, fp)) {
+//         if (fun->status == 1) {
+//             printFuncionarios(fun); 
+//             FuncioEncontrado = 1; // Marca que um Funcio foi encontrado
+//         }
+//     }
+//     fclose(fp);
+//     free(fun); 
+//     if (!FuncioEncontrado) {
+//         printf("\t\t\tNENHUM FUNCIONAIRO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum cliente ativo for encontrado
+//     }
+//     espacamento();
+// }
