@@ -32,7 +32,6 @@ void cadCliente(void);
 void removeCliente(Cliente*);
 void excluirCliente(void);
 void gravaCliente(Cliente*);
-void listarTodosClientes(void);
 
 
 void limparBuffer(void);

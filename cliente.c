@@ -28,9 +28,6 @@ void moduloCliente(void) {
                         break;
             case '4':   excluirCliente();
                         break;
-            case '5':   listarTodosClientes();
-                        break;
-
         }
     } while (op != '0');
 }
@@ -59,7 +56,6 @@ char tela_menu_cliente(void) {
     printf("///            2. PESQUISAR DADOS DO CLIENTE                                ///\n");
     printf("///            3. ATUALIZAR CADASTRO DO CLIENTE                             ///\n");
     printf("///            4. EXCLUIR DADOS DO CLIENTE                                  ///\n");
-    printf("///            5. LISTAR TODOS OS CLIENTES                                  ///\n");
     printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
     printf("///                                                                         ///\n");
     printf("///            ESCOLHA A OPCAO DESEJADA: ");
@@ -252,6 +248,7 @@ void printCliente(Cliente* cli) {
     printf("===================================\n");
 }
 
+
 // Grava os dados do cliente em um arquivo
 void gravaCliente(Cliente* cli) {
     // Abre o arquivo "clientes.dat" para escrita binária no final do arquivo
@@ -270,33 +267,6 @@ void gravaCliente(Cliente* cli) {
     fclose(fp);
 }
 
-void listarTodosClientes(void) {
-    FILE* fp;
-    Cliente* cli;
-    cli = (Cliente*) malloc(sizeof(Cliente));
-    fp = fopen("clientes.dat", "rb");
-    if (fp == NULL) {
-        telaErro(); // Exibe uma mensagem de erro
-        free(cli); // Libera a memória alocada para o cliente
-        exit(1); // Encerra o programa
-    }
-
-    int clienteEncontrado = 0; // Variável para rastrear se algum cliente foi encontrado
-
-    system("clear||cls");
-    while (fread(cli, sizeof(Cliente), 1, fp)) {
-        if (cli->status == 1) {
-            printCliente(cli); 
-            clienteEncontrado = 1; // Marca que um cliente foi encontrado
-        }
-    }
-    fclose(fp);
-    free(cli); 
-    if (!clienteEncontrado) {
-        printf("\nNenhum cliente ativo encontrado.\n"); // Mensagem se nenhum cliente ativo for encontrado
-    }
-    espacamento();
-}
 
 // Busca um cliente pelo CPF
 Cliente* buscaCliente(char* cpf) {
@@ -324,6 +294,7 @@ Cliente* buscaCliente(char* cpf) {
     return NULL; // Retorna NULL se o cliente não foi encontrado
 }
 
+
 // Atualiza um cliente
 void atualizaCliente(void) {
     Cliente* cli;
@@ -348,6 +319,7 @@ void atualizaCliente(void) {
 
     free(cpf);
 }
+
 
 // Reescreve os dados de um cliente no arquivo
 void regravarCliente(Cliente* cli) {
@@ -383,6 +355,7 @@ void regravarCliente(Cliente* cli) {
     }
 }
 
+
 // Cadastra um novo cliente
 void cadCliente(void) {
     Cliente *cli;
@@ -390,6 +363,7 @@ void cadCliente(void) {
     gravaCliente(cli);
     free(cli);
 }
+
 
 // Remove um cliente
 void removeCliente(Cliente* cli) {
@@ -423,6 +397,7 @@ void removeCliente(Cliente* cli) {
     }
 }
 
+
 // Exclui um cliente
 void excluirCliente(void) {
     Cliente *cli;
@@ -449,7 +424,6 @@ void excluirCliente(void) {
 }
 
 
-
 // Verifica se um CPF já está cadastrado
 int verificaCPFDuplicado(const char* cpf) {
     FILE* fp = fopen("clientes.dat", "rb");
@@ -465,6 +439,7 @@ int verificaCPFDuplicado(const char* cpf) {
     fclose(fp); // Fecha o arquivo
     return 0; // CPF não duplicado
 }
+
 
 // Verifica se um e-mail já está cadastrado
 int verificaEmailDuplicado(const char* email) {
