@@ -225,7 +225,7 @@ void gravaEstoque(Estoque* est) {
 void printEstoque(Estoque* est) {
     printf("\n = = = DADOS DO PRODUTO = = = \n");
     printf("PRODUTO:%s\n", est-> produto);
-    printf("QUANTIDADE:%s\n", est-> quantidade);                                                         
+    printf("EM ESTOQUE:%s\n", est-> quantidade);                                                         
     printf("VALOR:%s\n", est-> valor);                                                      
     printf("DESCRICAO:%s\n", est-> descricao);                                          
     printf("ID: %s\n", est-> id);

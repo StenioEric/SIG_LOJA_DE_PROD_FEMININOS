@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include "cliente.h"
 #include "vendas.h"
@@ -15,7 +16,6 @@
 #include "gerencia.h"
 #include "projeto.h"
 #include "util.h"
-
 
 ////
 // Assinatura das funcoes
@@ -27,7 +27,6 @@ char tela_menu_principal(void);
 
 int main(void) {
     char op;
-
     do {
         op = tela_menu_principal();
         switch (op) {
