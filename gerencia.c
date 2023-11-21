@@ -26,9 +26,13 @@ void moduloGerencia(void) {
                         break;
             case '3':   listarCliInativos();
                         break;
-            case '4':   listagemFuncionarios();
+            case '4':   listarTodosFun();
                         break;
-            case '5':   listarEstoque();
+            case '5':   listarFunInativos();
+                        break;
+            case '6':   listarFunInativos();
+                        break;
+            case '7':   listarEstoque();
                         break;
 
 
@@ -59,9 +63,13 @@ char tela_menu_gerencia(void) {
     printf("///                                                                         ///\n");
     printf("///           ------------ MENU GERENCIA ------------                       ///\n");
     printf("///                                                                         ///\n");
-    printf("///            1. RELATORIO DE CLIENTES                                     ///\n");
-    printf("///            2. RELATORIO DE FUNCIONARIOS                                 ///\n");
-    printf("///            3. RELATORIO DE ESTOQUE                                      ///\n");
+    printf("///            1. RELATORIO DE TODOS OS CLIENTES                            ///\n");
+    printf("///            2. RELATORIO DE CLIENTES ATIVOS                              ///\n");
+    printf("///            3. RELATORIO DE CLIENTES INATIVOS                            ///\n");
+    printf("///            4. RELATORIO DE TODOS OS FUNCIONARIOS                        ///\n");
+    printf("///            5. RELATORIO DE FUNCIONARIOS ATIVOS                          ///\n");
+    printf("///            6. RELATORIO DE FUNCIONARIOS INATIVOS                        ///\n");
+    printf("///            7. RELATORIO DE ESTOQUE                                      ///\n");
     printf("///            0. SAIR                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///            ESCOLHA A OPCAO DESEJADA: ");
@@ -74,139 +82,8 @@ char tela_menu_gerencia(void) {
 }
 
 
-// void tela_relatorio_cliente(void) {
-
-//     system("clear||cls");
-//     printf("\n");
-//     printf("/////////////////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                                   ///\n");
-//     printf("///             EEEEEEE lll                                                           ///\n");
-//     printf("///             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee               ///\n");
-//     printf("///             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e              ///\n");
-//     printf("///             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee               ///\n");
-//     printf("///             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee              ///\n");
-//     printf("///                                  ggggg                                            ///\n");
-//     printf("///                                                                                   ///\n");
-//     printf("///                             LOJA DE ARTIGOS FEMININOS                             ///\n");
-//     printf("///                                                                                   ///\n");
-//     printf("/////////////////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                                   ///\n");
-//     printf("///                      -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                      ///\n");
-//     printf("///                                 RELATORIO CLIENTE                                 ///\n");
-//     printf("///                      -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                      ///\n");
-//     printf("///                                                                                   ///\n");
-//     printf("///###################################################################################///\n");
-//     printf("///#Nome do Cliente|CPF|E-mail|Data de Nascimento|Celular|Endereco|Compras realizadas#///\n");                              ///\n");
-//     printf("///#               |   |      |                  |       |        |                  #///\n");
-//     printf("///#               |   |      |                  |       |        |                  #///\n");    
-//     printf("///#               |   |      |                  |       |        |                  #///\n");    
-//     printf("///#               |   |      |                  |       |        |                  #///\n");    
-//     printf("///###################################################################################///\n");
-//     printf("///                                                                                   ///\n");
-//     printf("/////////////////////////////////////////////////////////////////////////////////////////\n");
-//     espacamento();
-// }
-
-
-// void tela_relatorio_vendas(void) {
-
-//     system("clear||cls");
-//     printf("\n");
-//     printf("/////////////////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                                   ///\n");
-//     printf("///             EEEEEEE lll                                                           ///\n");
-//     printf("///             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee               ///\n");
-//     printf("///             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e              ///\n");
-//     printf("///             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee               ///\n");
-//     printf("///             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee              ///\n");
-//     printf("///                                  ggggg                                            ///\n");
-//     printf("///                                                                                   ///\n");
-//     printf("///                             LOJA DE ARTIGOS FEMININOS                             ///\n");
-//     printf("///                                                                                   ///\n");
-//     printf("/////////////////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                                   ///\n");
-//     printf("///                      -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                      ///\n");
-//     printf("///                                  RELATORIO VENDAS                                 ///\n");
-//     printf("///                      -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                      ///\n");
-//     printf("///                                                                                   ///\n");
-//     printf("///###################################################################################///\n");
-//     printf("///#           |Produto|Quantidade de Vendas|ID do Produto|Valor Arrecadado|         #///\n");                                                   
-//     printf("///#           |       |                    |             |                |         #///\n");
-//     printf("///#           |       |                    |             |                |         #///\n");    
-//     printf("///#           |       |                    |             |                |         #///\n");    
-//     printf("///#           |       |                    |             |                |         #///\n");    
-//     printf("///###################################################################################///\n");
-//     printf("///                                                                                   ///\n");
-//     printf("/////////////////////////////////////////////////////////////////////////////////////////\n");
-//     espacamento();
-// }
-
-// void tela_relatorio_estoque(void) {
-
-//     system("clear||cls");
-//     printf("\n");
-//     printf("/////////////////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                                   ///\n");
-//     printf("///             EEEEEEE lll                                                           ///\n");
-//     printf("///             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee               ///\n");
-//     printf("///             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e              ///\n");
-//     printf("///             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee               ///\n");
-//     printf("///             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee              ///\n");
-//     printf("///                                  ggggg                                            ///\n");
-//     printf("///                                                                                   ///\n");
-//     printf("///                             LOJA DE ARTIGOS FEMININOS                             ///\n");
-//     printf("///                                                                                   ///\n");
-//     printf("/////////////////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                                   ///\n");
-//     printf("///                      -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                      ///\n");
-//     printf("///                                 RELATORIO ESTOQUE                                 ///\n");
-//     printf("///                      -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                      ///\n");
-//     printf("///                                                                                   ///\n");
-//     printf("///###################################################################################///\n");
-//     printf("///#           |Produto|Quantidade em Estoque|ID do Produto|Valor do Produto|        #///\n");                        
-//     printf("///#           |       |                     |             |                |        #///\n");
-//     printf("///#           |       |                     |             |                |        #///\n");    
-//     printf("///#           |       |                     |             |                |        #///\n");    
-//     printf("///#           |       |                     |             |                |        #///\n");    
-//     printf("///###################################################################################///\n");
-//     printf("///                                                                                   ///\n");
-//     printf("/////////////////////////////////////////////////////////////////////////////////////////\n");
-//     espacamento();
-// }
-
-
-// void tela_relatorio_funcionarios(void) {
-    
-//     system("clear||cls");
-//     printf("\n");
-//     printf("/////////////////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                                   ///\n");
-//     printf("///             EEEEEEE lll                                                           ///\n");
-//     printf("///             EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee               ///\n");
-//     printf("///             EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e              ///\n");
-//     printf("///             EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee               ///\n");
-//     printf("///             EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee              ///\n");
-//     printf("///                                  ggggg                                            ///\n");
-//     printf("///                                                                                   ///\n");
-//     printf("///                             LOJA DE ARTIGOS FEMININOS                             ///\n");
-//     printf("///                                                                                   ///\n");
-//     printf("/////////////////////////////////////////////////////////////////////////////////////////\n");
-//     printf("///                                                                                   ///\n");
-//     printf("///                      -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                      ///\n");
-//     printf("///                              RELATORIO FUNCIONARIOS                               ///\n");
-//     printf("///                      -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                      ///\n");
-//     printf("///                                                                                   ///\n");
-//     printf("///###################################################################################///\n");
-//     printf("///#    |Nome|CPF|Cargo|Data de Nascimento|Email|Telefone|Vendas Realizadas|Salario| #///\n");                    
-//     printf("///#    |    |   |     |                  |     |        |                 |       | #///\n");
-//     printf("///#    |    |   |     |                  |     |        |                 |       | #///\n");    
-//     printf("///#    |    |   |     |                  |     |        |                 |       | #///\n");    
-//     printf("///#    |    |   |     |                  |     |        |                 |       | #///\n");    
-//     printf("///###################################################################################///\n");
-//     printf("///                                                                                   ///\n");
-//     printf("/////////////////////////////////////////////////////////////////////////////////////////\n");
-//     espacamento();
-// }
+///////////////////////
+// Modulo Clientes
 
 
 void listarTodosCli(void) {
@@ -220,18 +97,15 @@ void listarTodosCli(void) {
         free(cli); // Libera a memória alocada para o cliente
         exit(1); // Encerra o programa
     }
-
-    int clienteEncontrado = 0; // Variável para rastrear se algum cliente foi encontrado
-
     system("clear||cls");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("         LISTAGEM DOS CLIENTES         \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");  
     while (fread(cli, sizeof(Cliente), 1, fp) == 1)  {
         printCliente(cli); 
     }
     fclose(fp);
     free(cli); 
-    if (!clienteEncontrado) {
-        printf("\nNenhum cliente ativo encontrado.\n"); // Mensagem se nenhum cliente ativo for encontrado
-    }
     espacamento();
 }
 
@@ -250,6 +124,9 @@ void listarCliAtivos(void) {
     int clienteEncontrado = 0; // Variável para rastrear se algum cliente foi encontrado
 
     system("clear||cls");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("         LISTAGEM DOS CLIENTES         \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
     while (fread(cli, sizeof(Cliente), 1, fp)) {
         if (cli->status == 1) {
             printCliente(cli); 
@@ -259,7 +136,7 @@ void listarCliAtivos(void) {
     fclose(fp);
     free(cli); 
     if (!clienteEncontrado) {
-        printf("\nNenhum cliente ativo encontrado.\n"); // Mensagem se nenhum cliente ativo for encontrado
+        printf("\nNENHUM CLIENTE ATIVO ENCONTRADO.\n"); // Mensagem se nenhum cliente ativo for encontrado
     }
     espacamento();
 }
@@ -277,8 +154,10 @@ void listarCliInativos(void) {
     }
 
     int clienteEncontrado = 0; // Variável para rastrear se algum cliente foi encontrado
-
     system("clear||cls");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("         LISTAGEM DOS CLIENTES         \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
     while (fread(cli, sizeof(Cliente), 1, fp)) {
         if (cli->status == 0) {
             printCliente(cli); 
@@ -288,7 +167,98 @@ void listarCliInativos(void) {
     fclose(fp);
     free(cli); 
     if (!clienteEncontrado) {
-        printf("\nNenhum cliente ativo encontrado.\n"); // Mensagem se nenhum cliente ativo for encontrado
+        printf("\nNENHUM CLIENTE INATIVO ENCONTRADO.\n"); // Mensagem se nenhum cliente ativo for encontrado
+    }
+    espacamento();
+}
+
+
+
+///////////////////////
+// Modulo Funcionarios
+
+void listarTodosFun(void) {
+
+    FILE* fp;
+    Funcio* fun;
+    fun = (Funcio*) malloc(sizeof(Funcio));
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+        free(fun); // Libera a memória alocada para o Funcio
+        exit(1); // Encerra o programa
+    }
+    system("clear||cls");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("       LISTAGEM DOS FUNCIONARIOS       \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    while (fread(fun, sizeof(Funcio), 1, fp) == 1)  {
+        printFuncionarios(fun);    }
+    fclose(fp);
+    free(fun); 
+    espacamento();
+}
+
+
+void listarFunAtivos(void) {
+    FILE* fp;
+    Funcio* fun;
+    fun = (Funcio*) malloc(sizeof(Funcio));
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+        free(fun); // Libera a memória alocada para o Funcio
+        exit(1); // Encerra o programa
+    }
+
+    int funcioEncontrado = 0; // Variável para rastrear se algum Funcio foi encontrado
+
+    system("clear||cls");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("       LISTAGEM DOS FUNCIONARIOS       \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    while (fread(fun, sizeof(Funcio), 1, fp)) {
+        if (fun->status == 1) {
+            printFuncionarios(fun);            
+            funcioEncontrado = 1; // Marca que um Funcio foi encontrado
+        }
+    }
+    fclose(fp);
+    free(fun); 
+    if (!funcioEncontrado) {
+        printf("\nNENHUM FUNCIONARIO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum cliente ativo for encontrado
+    }
+    espacamento();
+}
+
+
+void listarFunInativos(void) {
+    FILE* fp;
+    Funcio* fun;
+    fun = (Funcio*) malloc(sizeof(Funcio));
+    fp = fopen("Funcios.dat", "rb");                                  
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+        free(fun); // Libera a memória alocada para fun
+        exit(1); // Encerra o programa
+    }
+
+    int funcioEncontrado = 0; // Variável para rastrear se algum funcionario foi encontrado
+
+    system("clear||cls");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("       LISTAGEM DOS FUNCIONARIOS       \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    while (fread(fun, sizeof(Funcio), 1, fp)) {
+        if (fun->status == 0) {
+            printFuncionarios(fun);            
+            funcioEncontrado = 1; // Marca que um funcionario foi encontrado
+        }
+    }
+    fclose(fp);
+    free(fun); 
+    if (!funcioEncontrado) {
+        printf("\nNENHUM FUNCIONARIO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum funcionario ativo for encontrado
     }
     espacamento();
 }
