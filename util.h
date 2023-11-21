@@ -25,9 +25,6 @@ void espacamento(void);
 int ehvirgula(char);
 int ehdinheiro(char*);
 
-
-
-
 // char* pegaNome (void);
 // char* pegaData(void);
 // char* pegaEmail(void);
