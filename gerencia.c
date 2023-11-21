@@ -20,14 +20,18 @@ void moduloGerencia(void) {
     do {
         op = tela_menu_gerencia();
         switch (op) {
-            case '1':   listarTodosClientes();
+            case '1':   listarTodosCli();
                         break;
-            case '2':   listagemFuncionarios();
+            case '2':   listarCliAtivos();
                         break;
-            case '3':   listarEstoque();
+            case '3':   listarCliInativos();
                         break;
-            // case '4':   tela_relatorio_funcionarios();
-            //             break;
+            case '4':   listagemFuncionarios();
+                        break;
+            case '5':   listarEstoque();
+                        break;
+
+
 
         }
 
@@ -203,3 +207,88 @@ char tela_menu_gerencia(void) {
 //     printf("/////////////////////////////////////////////////////////////////////////////////////////\n");
 //     espacamento();
 // }
+
+
+void listarTodosCli(void) {
+
+    FILE* fp;
+    Cliente* cli;
+    cli = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+        free(cli); // Libera a memória alocada para o cliente
+        exit(1); // Encerra o programa
+    }
+
+    int clienteEncontrado = 0; // Variável para rastrear se algum cliente foi encontrado
+
+    system("clear||cls");
+    while (fread(cli, sizeof(Cliente), 1, fp) == 1)  {
+        printCliente(cli); 
+    }
+    fclose(fp);
+    free(cli); 
+    if (!clienteEncontrado) {
+        printf("\nNenhum cliente ativo encontrado.\n"); // Mensagem se nenhum cliente ativo for encontrado
+    }
+    espacamento();
+}
+
+
+void listarCliAtivos(void) {
+    FILE* fp;
+    Cliente* cli;
+    cli = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+        free(cli); // Libera a memória alocada para o cliente
+        exit(1); // Encerra o programa
+    }
+
+    int clienteEncontrado = 0; // Variável para rastrear se algum cliente foi encontrado
+
+    system("clear||cls");
+    while (fread(cli, sizeof(Cliente), 1, fp)) {
+        if (cli->status == 1) {
+            printCliente(cli); 
+            clienteEncontrado = 1; // Marca que um cliente foi encontrado
+        }
+    }
+    fclose(fp);
+    free(cli); 
+    if (!clienteEncontrado) {
+        printf("\nNenhum cliente ativo encontrado.\n"); // Mensagem se nenhum cliente ativo for encontrado
+    }
+    espacamento();
+}
+
+
+void listarCliInativos(void) {
+    FILE* fp;
+    Cliente* cli;
+    cli = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+        free(cli); // Libera a memória alocada para o cliente
+        exit(1); // Encerra o programa
+    }
+
+    int clienteEncontrado = 0; // Variável para rastrear se algum cliente foi encontrado
+
+    system("clear||cls");
+    while (fread(cli, sizeof(Cliente), 1, fp)) {
+        if (cli->status == 0) {
+            printCliente(cli); 
+            clienteEncontrado = 1; // Marca que um cliente foi encontrado
+        }
+    }
+    fclose(fp);
+    free(cli); 
+    if (!clienteEncontrado) {
+        printf("\nNenhum cliente ativo encontrado.\n"); // Mensagem se nenhum cliente ativo for encontrado
+    }
+    espacamento();
+}

@@ -8,6 +8,9 @@
 
 void moduloGerencia(void);
 char tela_menu_gerencia(void);
+void listarTodosCli(void);
+void listarCliAtivos(void);
+void listarCliInativos(void);
 // void tela_relatorio_cliente(void);
 // void tela_relatorio_vendas(void);
 // void tela_relatorio_estoque(void);
