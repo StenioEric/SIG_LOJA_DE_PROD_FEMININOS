@@ -28,8 +28,6 @@ void moduloEstoque(void) {
                         break;
             case '4':   excluirEstoque();
                         break;
-            case '5':   listarEstoque();
-                        break;
         }
 
     } while (op != '0');
@@ -230,25 +228,6 @@ void printEstoque(Estoque* est) {
     printf("DESCRICAO:%s\n", est-> descricao);                                          
     printf("ID: %s\n", est-> id);
     printf("===================================\n"); 
-}
-
-
-void listarEstoque(void) {
-    FILE* fp;
-    Estoque est;
-    fp = fopen("estoque.dat", "rb");
-    if (fp == NULL) {
-        telaErro();
-    }
-    system("clear||cls");
-    while (fread(&est, sizeof(Estoque), 1, fp)) {
-        if (est.status != 'x') {
-            printEstoque(&est);
-        }
-    }
-    espacamento();
-    fclose(fp);
-    free(fp);
 }
 
 

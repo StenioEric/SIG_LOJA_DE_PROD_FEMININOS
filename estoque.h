@@ -25,7 +25,6 @@ char* tela_exclui_estoque(void);
 void gravaEstoque(Estoque*);
 void printEstoque(Estoque*);
 void cadEstoque(void);
-void listarEstoque(void);
 Estoque* buscaEstoque(char*);
 void regravarEstoque(Estoque*);
 void removeEstoque(Estoque*);
