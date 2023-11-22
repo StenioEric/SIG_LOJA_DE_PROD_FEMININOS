@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include "gerencia.h"
 #include "util.h"
@@ -32,9 +33,12 @@ void moduloGerencia(void) {
                         break;
             case '6':   listarFunInativos();
                         break;
-            case '7':   listarEstoque();
+            case '7':   listarTodosProd();
                         break;
-
+            case '8':   listarProdAtivos();
+                        break;
+            case '9':   listarProdInativos();
+                        break;
 
 
         }
@@ -69,7 +73,9 @@ char tela_menu_gerencia(void) {
     printf("///            4. RELATORIO DE TODOS OS FUNCIONARIOS                        ///\n");
     printf("///            5. RELATORIO DE FUNCIONARIOS ATIVOS                          ///\n");
     printf("///            6. RELATORIO DE FUNCIONARIOS INATIVOS                        ///\n");
-    printf("///            7. RELATORIO DE ESTOQUE                                      ///\n");
+    printf("///            7. RELATORIO DE TODOS OS PRODUTOS                            ///\n");
+    printf("///            8. RELATORIO DOS PRODUTOS ATIVOS                             ///\n");
+    printf("///            9. RELATORIO DOS PRODUTOS INATIVOS                           ///\n");
     printf("///            0. SAIR                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///            ESCOLHA A OPCAO DESEJADA: ");
@@ -233,6 +239,7 @@ void listarFunAtivos(void) {
 
 
 void listarFunInativos(void) {
+
     FILE* fp;
     Funcio* fun;
     fun = (Funcio*) malloc(sizeof(Funcio));
@@ -259,6 +266,98 @@ void listarFunInativos(void) {
     free(fun); 
     if (!funcioEncontrado) {
         printf("\nNENHUM FUNCIONARIO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum funcionario ativo for encontrado
+    }
+    espacamento();
+}
+
+
+
+///////////////////////
+// Modulo Funcionarios
+
+void listarTodosProd(void) {
+
+    FILE* fp;
+    Estoque* est;
+    est = (Estoque*) malloc(sizeof(Estoque));
+    fp = fopen("estoque.dat", "rb");
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+        free(est); // Libera a memória alocada para o Estoque
+        exit(1); // Encerra o programa
+    }
+    system("clear||cls");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("       LISTAGEM DOS PRODUTOS      \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    while (fread(est, sizeof(Estoque), 1, fp) == 1)  {
+        printEstoque(est);    }
+    fclose(fp);
+    free(est); 
+    espacamento();
+}
+
+
+void listarProdAtivos(void) {
+    FILE* fp;
+    Estoque* est;
+    est = (Estoque*) malloc(sizeof(Estoque));
+    fp = fopen("estoque.dat", "rb");
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+        free(est); // Libera a memória alocada para o Estoque
+        exit(1); // Encerra o programa
+    }
+
+    int EstoqueEncontrado = 0; // Variável para rastrear se algum Estoque foi encontrado
+
+    system("clear||cls");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("         LISTAGEM DOS PRODUTOS         \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    while (fread(est, sizeof(Estoque), 1, fp)) {
+        if (est->status == 1) {
+            printEstoque(est);            
+            EstoqueEncontrado = 1; // Marca que um Estoque foi encontrado
+        }
+    }
+    fclose(fp);
+    free(est); 
+    if (!EstoqueEncontrado) {
+        printf("\nNENHUM PRODUTO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum cliente ativo for encontrado
+    }
+    espacamento();
+}
+
+
+void listarProdInativos(void) {
+
+    FILE* fp;
+    Estoque* est;
+    est = (Estoque*) malloc(sizeof(Estoque));
+    fp = fopen("Estoques.dat", "rb");                                  
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+        free(est); // Libera a memória alocada para est
+        exit(1); // Encerra o programa
+    }
+
+    int EstoqueEncontrado = 0; // Variável para rastrear se algum Estoquenario foi encontrado
+
+    system("clear||cls");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("         LISTAGEM DOS PRODUTOS         \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    while (fread(est, sizeof(Estoque), 1, fp)) {
+        if (est->status == 0) {
+            printEstoque(est);            
+            EstoqueEncontrado = 1; // Marca que um produto foi encontrado
+        }
+    }
+    fclose(fp);
+    free(est); 
+    if (!EstoqueEncontrado) {
+        printf("\nNENHUM PRODUTO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum produto ativo for encontrado
     }
     espacamento();
 }

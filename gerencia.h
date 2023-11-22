@@ -14,7 +14,8 @@ void listarCliInativos(void);
 void listarTodosFun(void);
 void listarFunAtivos(void);
 void listarFunInativos(void);
-// void tela_relatorio_cliente(void);
-// void tela_relatorio_vendas(void);
-// void tela_relatorio_estoque(void);
-// void tela_relatorio_funcionarios(void);
+void listarTodosProd(void);
+void listarProdAtivos(void); 
+void listarProdInativos(void);
+
+
