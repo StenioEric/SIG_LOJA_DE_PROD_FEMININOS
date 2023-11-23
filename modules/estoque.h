@@ -16,12 +16,18 @@ struct estoque {
     char status;
 };
 
+////////////////////////////////
+/// FUNCOES COM TELA 
 void moduloEstoque(void);
 char tela_menu_estoque(void);
 Estoque* tela_cadastro_estoque(void);
 Estoque*  tela_pesquisar_estoque(void);
 char* tela_alterar_estoque(void);
 char* tela_exclui_estoque(void);
+
+
+////////////////////////////////
+/// FUNCOES DO MODULO ESTOQUE
 void gravaEstoque(Estoque*);
 void printEstoque(Estoque*);
 void cadEstoque(void);
@@ -32,5 +38,7 @@ void atualizaEstoque(void);
 void excluirEstoque(void);
 
 
+////////////////////////////////
+/// FUNCOES UTEIS
 int verificaIdDuplicado(const char*);
 

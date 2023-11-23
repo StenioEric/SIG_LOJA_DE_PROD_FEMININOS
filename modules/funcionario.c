@@ -235,6 +235,11 @@ char* tela_excluir_funcionarios(void) {
 }
 
 
+////////////////////////////////////////////////////////////////
+///////////////// FUNCOES UTILIZADAS NO CODIGO /////////////////
+////////////////////////////////////////////////////////////////
+
+
 void gravaFuncionario(Funcio* fun) {
     FILE* fp;
     fp = fopen("funcionarios.dat", "ab");
@@ -260,6 +265,7 @@ void printFuncionarios(Funcio* fun) {
     printf("===================================\n");                  
 }
 
+
 // Verifica se um CPF já está cadastrado
 int cpfDuplicadoFuncio(const char* cpf) {
     FILE* fp = fopen("funcionarios.dat", "rb");
@@ -276,6 +282,7 @@ int cpfDuplicadoFuncio(const char* cpf) {
     return 0; // CPF não duplicado
 }
 
+
 // Verifica se um e-mail já está cadastrado
 int emailDuplicadoFuncio(const char* email) {
     FILE* fp = fopen("funcionarios.dat", "rb");
@@ -291,6 +298,7 @@ int emailDuplicadoFuncio(const char* email) {
     fclose(fp); // Fecha o arquivo
     return 0; // E-mail não duplicado
 }
+
 
 // Cadastra um novo cliente
 void cadFuncionario(void) {

@@ -5,6 +5,9 @@
 ///             Developed by @stenioeric -- since August, 2023              ///
 ///////////////////////////////////////////////////////////////////////////////
 
+
+////////////////////////////////
+/// FUNCOES DO MODULO PROJETO
 void moduloSobre(void);
 void tela_sobre_projeto(void);
 void tela_info_desenvolvedor(void);

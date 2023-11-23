@@ -19,14 +19,7 @@ int validarData(char*);
 int validarFone(char*);
 int validarCPF(char *);
 void limparBuffer(void);
-// int validarEmail(char*);
 void telaErro(void);
 void espacamento(void);
 int ehvirgula(char);
 int ehdinheiro(char*);
-
-// char* pegaNome (void);
-// char* pegaData(void);
-// char* pegaEmail(void);
-// char* pegaCPF(void);
-// char* pegaTelefone(void);

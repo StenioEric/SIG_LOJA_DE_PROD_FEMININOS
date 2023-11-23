@@ -16,12 +16,18 @@ struct funcio {
     char status;
 };
 
+////////////////////////////////
+/// FUNCOES COM TELA 
 void moduloFuncio(void);
 char tela_menu_funcionarios(void);
 Funcio* tela_cadastro_funcionarios(void);
 Funcio* tela_pesquisar_funcionarios(void);
 char* tela_alterar_funcionarios(void);
 char* tela_excluir_funcionarios(void);
+
+
+////////////////////////////////
+/// FUNCOES DO MODULO FUNCIONARIOS
 void gravaFuncionario(Funcio*);
 void printFuncionarios(Funcio*);
 void cadFuncionario(void);
@@ -32,5 +38,7 @@ void removeFuncionario(Funcio*);
 void excluirFuncionario(void);
 
 
+////////////////////////////////
+/// FUNCOES UTEIS
 int cpfDuplicadoFuncio(const char*);
 int emailDuplicadoFuncio(const char*);

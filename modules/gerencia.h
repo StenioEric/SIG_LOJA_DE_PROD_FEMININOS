@@ -5,7 +5,8 @@
 ///             Developed by @stenioeric -- since August, 2023              ///
 ///////////////////////////////////////////////////////////////////////////////
 
-
+////////////////////////////////
+/// FUNCOES DO MODULO GERENCIA
 void moduloGerencia(void);
 char tela_menu_gerencia(void);
 void listarTodosCli(void);

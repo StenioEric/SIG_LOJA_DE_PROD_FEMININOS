@@ -21,6 +21,7 @@ char tela_menu_vendas(void);
 Vendas* adicionarProdutos(void);
 Vendas* excluirProduto(void);
 Vendas* tela_ver_carrinho(void);
+
 void gravaProduto(Vendas*);
 void removeVenda(Vendas*);
 Vendas* finalizarVenda(void);

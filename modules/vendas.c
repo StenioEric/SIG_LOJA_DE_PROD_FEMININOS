@@ -288,30 +288,9 @@ Vendas* excluirProduto(void) {
 }
 
 
-int verificaQuantidade(const char* quantidade, const char* id) {
-    FILE* fp = fopen("estoque.dat", "rb");
-    if (fp == NULL) {
-        // Lidar com a falha na abertura do arquivo, se necessário
-        return 0;
-    }
-
-    Estoque est;
-    int quantidadeProduto = atoi(quantidade);
-    while (fread(&est, sizeof(Estoque), 1, fp)) {
-        if (strcmp(est.id, id) == 0) {
-            // Encontrou o produto pelo ID no arquivo
-            if (quantidadeProduto <= atoi(est.quantidade)) {
-                fclose(fp);
-                return 1; // Quantidade suficiente
-            } else {
-                fclose(fp);
-                return 0; // Quantidade insuficiente
-            }
-        }
-    }
-    fclose(fp);
-    return 0; // Produto não encontrado
-}
+////////////////////////////////////////////////////////////////
+///////////////// FUNCOES UTILIZADAS NO CODIGO /////////////////
+////////////////////////////////////////////////////////////////
 
 
 void gravaProduto(Vendas* vend) {
@@ -326,29 +305,17 @@ void gravaProduto(Vendas* vend) {
 }
 
 
-void recuperarProdutosPorCompra(const char* idCompra) {
-    FILE* fp;
-    Vendas vend;
-    system("clear||cls");
+void gravaVendas(Vendas* venda) {
+    FILE* fp = fopen("vendas.dat", "ab");
 
-    // Abre o arquivo de vendas para leitura binária
-    fp = fopen("vendas.dat", "rb");
-    if (fp == NULL) {
+    if (fp == NULL || venda == NULL) {
         printf("Erro ao abrir o arquivo de vendas.\n");
         return;
     }
 
-    // Percorre o arquivo de vendas em busca da compra com o ID fornecido
-    while (fread(&vend, sizeof(Vendas), 1, fp)) {
-        if (strcmp(vend.idCompra, idCompra) == 0 && vend.status == 1) {
-            Estoque* produto = buscaEstoque(vend.id);
-            if (produto != NULL) {
-                printEstoque(produto);
-                free(produto);  // Lembre-se de liberar a memória alocada pela função buscarProdutoPorId
-            }
-        }
-    }
-    fclose(fp);  // Fecha o arquivo de vendas
+    fwrite(venda, sizeof(Vendas), 1, fp);
+
+    fclose(fp);
 }
 
 
@@ -385,22 +352,6 @@ void removeVenda(Vendas* vend) {
 }
 
 
-// // Verifica se um id já está cadastrado
-int verificaIdCompra(const char* idCompra) {
-    FILE* fp = fopen("vendas.dat", "rb");
-
-    Vendas vend;
-    while (fread(&vend, sizeof(Vendas), 1, fp)) {
-        if (vend.status != 0 && strcmp(vend.idCompra, idCompra) == 0) {
-            fclose(fp);
-            return 1; // id duplicado
-        }
-    }
-
-    fclose(fp); // Fecha o arquivo
-    return 0; // id não duplicado
-}
-
 // // Busca um produto pelo id
 int buscaVenda(char* idCompra) {
     // Abre o arquivo "Vendas.dat" para leitura binária
@@ -428,32 +379,29 @@ int buscaVenda(char* idCompra) {
 }
 
 
-void verificaEstoque(const char* idProduto, int quantidade) {
-    FILE* fp = fopen("estoque.dat", "rb+");
+void recuperarProdutosPorCompra(const char* idCompra) {
+    FILE* fp;
+    Vendas vend;
+    system("clear||cls");
 
+    // Abre o arquivo de vendas para leitura binária
+    fp = fopen("vendas.dat", "rb");
     if (fp == NULL) {
-        // Lidar com a falha na abertura do arquivo, se necessário
+        printf("Erro ao abrir o arquivo de vendas.\n");
         return;
     }
 
-    Estoque est;
-
-    while (fread(&est, sizeof(Estoque), 1, fp)) {
-        if (strcmp(est.id, idProduto) == 0) {
-            int novaQuantidade = atoi(est.quantidade) - quantidade;
-            if (novaQuantidade >= 0) {
-                sprintf(est.quantidade, "%d", novaQuantidade);
-                fseek(fp, -sizeof(Estoque), SEEK_CUR);
-                fwrite(&est, sizeof(Estoque), 1, fp);
-                break;
-            } else {
-                printf("\nQuantidade insuficiente em estoque para este produto!\n");
-                // Lógica para tratamento de quantidade insuficiente, se necessário
+    // Percorre o arquivo de vendas em busca da compra com o ID fornecido
+    while (fread(&vend, sizeof(Vendas), 1, fp)) {
+        if (strcmp(vend.idCompra, idCompra) == 0 && vend.status == 1) {
+            Estoque* produto = buscaEstoque(vend.id);
+            if (produto != NULL) {
+                printEstoque(produto);
+                free(produto);  // Lembre-se de liberar a memória alocada pela função buscarProdutoPorId
             }
         }
     }
-
-    fclose(fp);
+    fclose(fp);  // Fecha o arquivo de vendas
 }
 
 
@@ -523,20 +471,6 @@ void listarProdutosPorCompra(const char* idCompra) {
 }
 
 
-void gravaVendas(Vendas* venda) {
-    FILE* fp = fopen("vendas.dat", "ab");
-
-    if (fp == NULL || venda == NULL) {
-        printf("Erro ao abrir o arquivo de vendas.\n");
-        return;
-    }
-
-    fwrite(venda, sizeof(Vendas), 1, fp);
-
-    fclose(fp);
-}
-
-
 void listagemVendas(void) {
     FILE* fp;
     Vendas* vend;
@@ -596,3 +530,74 @@ void printVendas(Vendas* vend) {
     fclose(fpEstoque);
 }
 
+
+int verificaQuantidade(const char* quantidade, const char* id) {
+    FILE* fp = fopen("estoque.dat", "rb");
+    if (fp == NULL) {
+        // Lidar com a falha na abertura do arquivo, se necessário
+        return 0;
+    }
+
+    Estoque est;
+    int quantidadeProduto = atoi(quantidade);
+    while (fread(&est, sizeof(Estoque), 1, fp)) {
+        if (strcmp(est.id, id) == 0) {
+            // Encontrou o produto pelo ID no arquivo
+            if (quantidadeProduto <= atoi(est.quantidade)) {
+                fclose(fp);
+                return 1; // Quantidade suficiente
+            } else {
+                fclose(fp);
+                return 0; // Quantidade insuficiente
+            }
+        }
+    }
+    fclose(fp);
+    return 0; // Produto não encontrado
+}
+
+
+void verificaEstoque(const char* idProduto, int quantidade) {
+    FILE* fp = fopen("estoque.dat", "rb+");
+
+    if (fp == NULL) {
+        // Lidar com a falha na abertura do arquivo, se necessário
+        return;
+    }
+
+    Estoque est;
+
+    while (fread(&est, sizeof(Estoque), 1, fp)) {
+        if (strcmp(est.id, idProduto) == 0) {
+            int novaQuantidade = atoi(est.quantidade) - quantidade;
+            if (novaQuantidade >= 0) {
+                sprintf(est.quantidade, "%d", novaQuantidade);
+                fseek(fp, -sizeof(Estoque), SEEK_CUR);
+                fwrite(&est, sizeof(Estoque), 1, fp);
+                break;
+            } else {
+                printf("\nQuantidade insuficiente em estoque para este produto!\n");
+                // Lógica para tratamento de quantidade insuficiente, se necessário
+            }
+        }
+    }
+
+    fclose(fp);
+}
+
+
+// // Verifica se um id já está cadastrado
+int verificaIdCompra(const char* idCompra) {
+    FILE* fp = fopen("vendas.dat", "rb");
+
+    Vendas vend;
+    while (fread(&vend, sizeof(Vendas), 1, fp)) {
+        if (vend.status != 0 && strcmp(vend.idCompra, idCompra) == 0) {
+            fclose(fp);
+            return 1; // id duplicado
+        }
+    }
+
+    fclose(fp); // Fecha o arquivo
+    return 0; // id não duplicado
+}

@@ -209,6 +209,13 @@ char* tela_exclui_estoque(void) {
     return id;
 }
 
+
+
+////////////////////////////////////////////////////////////////
+///////////////// FUNCOES UTILIZADAS NO CODIGO /////////////////
+////////////////////////////////////////////////////////////////
+
+
 void gravaEstoque(Estoque* est) {
     FILE* fp;
     fp = fopen("estoque.dat", "ab");
@@ -219,6 +226,7 @@ void gravaEstoque(Estoque* est) {
     fwrite(est, sizeof(Estoque), 1, fp);
     fclose(fp);
 }
+
 
 void printEstoque(Estoque* est) {
     printf("\n = = = DADOS DO PRODUTO = = = \n");
@@ -404,6 +412,7 @@ Estoque* buscaEstoque(char* id) {
     free(est); // Libera a memória alocada para o produto
     return NULL; // Retorna NULL se o produto não foi encontrado
 }
+
 
 void listagemEstoque(void) {
     FILE* fp;
