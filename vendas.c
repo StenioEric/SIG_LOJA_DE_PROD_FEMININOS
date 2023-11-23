@@ -13,6 +13,7 @@
 #include "cliente.h"
 #include "funcionario.h"
 #include "estoque.h"
+#include "gerencia.h"
 
 typedef struct vendas Vendas;
 
@@ -22,7 +23,7 @@ void moduloVendas(void) {
     do {
         op = tela_menu_vendas();
         switch (op) {
-            case '1':   listarEstoque();
+            case '1':   listarProdAtivos();
                         break;
             case '2':   adicionarProdutos();
                         break;
@@ -30,6 +31,10 @@ void moduloVendas(void) {
                         break;
             case '4':   excluirProduto();
                         break;
+            case '5':   finalizarVenda();
+                        break;
+            case '6':   listagemVendas();
+            break;
         }
     } while (op != '0');
 }
@@ -110,6 +115,12 @@ Vendas* adicionarProdutos(void) {
                 }
             } while (!idValido && !idDuplicado);
 
+            do {
+                printf("/// ID DA COMPRA:");
+                scanf("%s", vend->idCompra);
+                limparBuffer();
+            } while (!ehDigitos(vend->idCompra));
+
             int quantidade = 0;
             do {
                 printf("/// QUANTIDADE DE PRODUTOS: ");
@@ -126,11 +137,6 @@ Vendas* adicionarProdutos(void) {
                     quantidade = 1; // Atribui 1 para indicar que a quantidade é válida
                 }
             } while (!quantidade || vend->quantidade == 0);
-            do {
-                printf("/// ID DA COMPRA:");
-                scanf("%s", vend->idCompra);
-                limparBuffer();
-            } while (!ehDigitos(vend->idCompra));
 
             vend->status = 1;
             gravaProduto(vend);
@@ -138,7 +144,7 @@ Vendas* adicionarProdutos(void) {
         } while (!ehDigitos(vend->idCompra));
 
         printf("\n");
-        printf("Deseja adicionar mais produtos? (1 para sim, 0 para encerrar): ");
+        printf("DESEJA ADICIONAR MAIS PRODUTOS? (1 PARA SIM, 0 PARA VOLTAR): ");
         scanf("%d", &adicionarMais);
         limparBuffer(); // Limpar o buffer para a próxima entrada
     } while (adicionarMais);
@@ -169,6 +175,45 @@ Vendas* tela_ver_carrinho(void) {
     espacamento();
     return vend;
 }
+
+
+Vendas* finalizarVenda(void) {
+    char idCompra[15];
+    Vendas* vend;
+    vend = (Vendas*)malloc(sizeof(Vendas));
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
+    printf("///                            FINALIZAR COMPRA                             ///\n");
+    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
+    printf("///                                                                         ///\n");
+    int encontraVenda = 1;
+    do {
+        printf("/// ID DA COMPRA: ");
+        scanf("%[0-9]", idCompra);
+        limparBuffer();
+    } while (!ehDigitos(idCompra));
+    
+    encontraVenda = buscaVenda(idCompra);
+
+    if (encontraVenda) {
+        if (strcmp(vend->idCompra, idCompra) == 0) {
+            float totalCompra = calcularTotalCompra(idCompra);
+            if (totalCompra > 0) {
+                printf("\nVALOR TOTAL DA COMPRA: R$ %.2f\n", totalCompra);
+                listarProdutosPorCompra(idCompra);
+            }
+            vend->status = 3; // Altera o status da venda para 3
+            gravaVendas(vend); 
+            // free(vend); 
+        }
+    }
+    espacamento();
+    return vend;
+}
+
 
 
 Vendas* excluirProduto(void) {
@@ -281,7 +326,6 @@ void gravaProduto(Vendas* vend) {
 }
 
 
-
 void recuperarProdutosPorCompra(const char* idCompra) {
     FILE* fp;
     Vendas vend;
@@ -382,3 +426,173 @@ int buscaVenda(char* idCompra) {
     free(vend); // Libera a memória alocada para o produto
     return 0; // Retorna NULL se o produto não foi encontrado
 }
+
+
+void verificaEstoque(const char* idProduto, int quantidade) {
+    FILE* fp = fopen("estoque.dat", "rb+");
+
+    if (fp == NULL) {
+        // Lidar com a falha na abertura do arquivo, se necessário
+        return;
+    }
+
+    Estoque est;
+
+    while (fread(&est, sizeof(Estoque), 1, fp)) {
+        if (strcmp(est.id, idProduto) == 0) {
+            int novaQuantidade = atoi(est.quantidade) - quantidade;
+            if (novaQuantidade >= 0) {
+                sprintf(est.quantidade, "%d", novaQuantidade);
+                fseek(fp, -sizeof(Estoque), SEEK_CUR);
+                fwrite(&est, sizeof(Estoque), 1, fp);
+                break;
+            } else {
+                printf("\nQuantidade insuficiente em estoque para este produto!\n");
+                // Lógica para tratamento de quantidade insuficiente, se necessário
+            }
+        }
+    }
+
+    fclose(fp);
+}
+
+
+float calcularTotalCompra(const char* idCompra) {
+    FILE* fpEstoque = fopen("estoque.dat", "rb");
+    FILE* fpVendas = fopen("vendas.dat", "rb");
+    float total = 0.0;
+
+    if (fpEstoque == NULL || fpVendas == NULL) {
+        return total;
+    }
+
+    Estoque est;
+    Vendas vend;
+
+    // Loop para percorrer os produtos da compra
+    while (fread(&vend, sizeof(Vendas), 1, fpVendas)) {
+        if (strcmp(vend.idCompra, idCompra) == 0) {
+            // Procura o produto no arquivo de estoque
+            rewind(fpEstoque);
+            while (fread(&est, sizeof(Estoque), 1, fpEstoque)) {
+                if (strcmp(est.id, vend.id) == 0) {
+                    total += atof(est.valor) * atoi(vend.quantidade); // Calcula o valor total do produto
+                    break;
+                }
+            }
+        }
+    }
+
+    fclose(fpEstoque);
+    fclose(fpVendas);
+    return total;
+}
+
+
+// gravar o idCompra com um status diferente após ser finalizado
+// verificador do idCompra pelo status de atividade
+
+void listarProdutosPorCompra(const char* idCompra) {
+    FILE* fpVendas = fopen("vendas.dat", "rb");
+    FILE* fpEstoque = fopen("estoque.dat", "rb");
+
+    if (fpVendas == NULL || fpEstoque == NULL) {
+        return;
+    }
+
+    Vendas vend;
+    Estoque est;
+
+    printf("\nPRODUTOS SELECIONADOS NA COMPRA %s:\n", idCompra);
+    printf("========================================\n");
+
+    while (fread(&vend, sizeof(Vendas), 1, fpVendas)) {
+        if (strcmp(vend.idCompra, idCompra) == 0) {
+            while (fread(&est, sizeof(Estoque), 1, fpEstoque)) {
+                if (strcmp(est.id, vend.id) == 0) {
+                    printf("Produto: %s | Quantidade: %s | Valor: %s\n", est.produto, vend.quantidade, est.valor);
+                    break; 
+                }
+            }
+            rewind(fpEstoque); // Retorna ao início do arquivo para a próxima busca
+        }
+    }
+
+    fclose(fpVendas);
+    fclose(fpEstoque);
+}
+
+
+void gravaVendas(Vendas* venda) {
+    FILE* fp = fopen("vendas.dat", "ab");
+
+    if (fp == NULL || venda == NULL) {
+        printf("Erro ao abrir o arquivo de vendas.\n");
+        return;
+    }
+
+    fwrite(venda, sizeof(Vendas), 1, fp);
+
+    fclose(fp);
+}
+
+
+void listagemVendas(void) {
+    FILE* fp;
+    Vendas* vend;
+    vend = (Vendas*) malloc(sizeof(Vendas));
+    fp = fopen("vendas.dat", "rb");
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+        free(vend); // Libera a memória alocada para o produto
+        exit(1); // Encerra o programa
+    }
+
+    int VendasEncontrado = 0; // Variável para rastrear se algum produto foi encontrado
+
+    system("clear||cls");
+    while (fread(vend, sizeof(Vendas), 1, fp)) {
+        if (vend->status == 3) {
+            printVendas(vend); 
+            VendasEncontrado = 1; // Marca que um produto foi encontrado
+        }
+    }
+    fclose(fp);
+    free(vend); 
+    if (!VendasEncontrado) {
+        printf("\t\t\tNENHUM PRODUTO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum estente ativo for encontrado
+    }
+    espacamento();
+}
+
+
+void printVendas(Vendas* vend) {
+    FILE* fpVendas = fopen("vendas.dat", "rb");
+    FILE* fpEstoque = fopen("estoque.dat", "rb");
+
+    if (fpVendas == NULL || fpEstoque == NULL) {
+        printf("ERRO AO ABRIR UM DOS ARQUIVOS.\n");
+        return;
+    }
+
+    Vendas venda;
+    Estoque estoque;
+
+    printf("\nDETALHES DAS VENDAS:\n");
+    printf("====================================\n");
+
+    while (fread(&venda, sizeof(Vendas), 1, fpVendas)) {
+        while (fread(&estoque, sizeof(Estoque), 1, fpEstoque)) {
+            if (strcmp(estoque.id, venda.id) == 0) {
+                printf("ID da Compra: %s | Produto: %s | Quantidade: %s | Valor: %s | Status: %d\n",
+                       venda.idCompra, estoque.produto, venda.quantidade, estoque.valor, venda.status);
+                break; // Encerra o loop interno após encontrar o produto correspondente
+            }
+        }
+        rewind(fpEstoque); // Retorna ao início do arquivo para a próxima busca
+    }
+
+    fclose(fpVendas);
+    fclose(fpEstoque);
+}
+
