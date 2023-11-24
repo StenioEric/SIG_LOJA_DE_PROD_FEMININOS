@@ -197,19 +197,12 @@ Vendas* finalizarVenda(void) {
     } while (!ehDigitos(idCompra));
     
     encontraVenda = buscaVenda(idCompra);
-
+    
     if (encontraVenda) {
-        if (strcmp(vend->idCompra, idCompra) == 0) {
-            float totalCompra = calcularTotalCompra(idCompra);
-            if (totalCompra > 0) {
-                printf("\nVALOR TOTAL DA COMPRA: R$ %.2f\n", totalCompra);
-                listarProdutosPorCompra(idCompra);
-            }
-            vend->status = 3; // Altera o status da venda para 3
-            gravaVendas(vend); 
-            // free(vend); 
-        }
+        mostrarDetalhesCompra(idCompra);
     }
+    vend->status = 3; // Altera o status da venda para 3
+    gravaVendas(vend); 
     espacamento();
     return vend;
 }
@@ -306,10 +299,10 @@ void gravaProduto(Vendas* vend) {
 
 
 void gravaVendas(Vendas* venda) {
-    FILE* fp = fopen("vendas.dat", "ab");
+    FILE* fp = fopen("idCompra.dat", "ab");
 
     if (fp == NULL || venda == NULL) {
-        printf("Erro ao abrir o arquivo de vendas.\n");
+        printf("ERRO AO ABRIR O ARQUIVO IDCOMPRA.\n");
         return;
     }
 
@@ -600,4 +593,16 @@ int verificaIdCompra(const char* idCompra) {
 
     fclose(fp); // Fecha o arquivo
     return 0; // id não duplicado
+}
+
+
+void mostrarDetalhesCompra(const char* idCompra) {
+    float totalCompra = calcularTotalCompra(idCompra);
+
+    if (totalCompra > 0) {
+        printf("\nValor total da compra %s: R$ %.2f\n", idCompra, totalCompra);
+        listarProdutosPorCompra(idCompra);
+    } else {
+        printf("\nCompra com ID %s não encontrada ou sem produtos associados.\n", idCompra);
+    }
 }
