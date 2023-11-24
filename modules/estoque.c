@@ -58,7 +58,6 @@ char tela_menu_estoque(void) {
     printf("///            2. PESQUISAR DADOS DO PRODUTO                                ///\n");
     printf("///            3. ATUALIZAR CADASTRO DO PRODUTO                             ///\n");
     printf("///            4. EXCLUIR DADOS DO PRODUTO                                  ///\n");
-    printf("///            5. LISTAR PRODUTOS                                           ///\n");
     printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
     printf("///                                                                         ///\n");
     printf("///            ESCOLHA A OPCAO DESEJADA: ");
