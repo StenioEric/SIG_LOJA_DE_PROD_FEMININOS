@@ -10,6 +10,7 @@
 typedef struct vendas Vendas;
 struct vendas {
     char quantidade[13];
+    char valorVenda[10];
     char id[20];
     char idCompra[20];
     char status;
@@ -27,7 +28,6 @@ Vendas* finalizarVenda(void);
 
 int verificaQuantidade(const char* quantidade, const char* idProduto);
 int verificaIdCompra(const char* idCompra);
-void recuperarProdutosPorCompra(const char* idCompra);
 int buscaVenda(char*);
 void verificaEstoque(const char* idProduto, int quantidade);
 float calcularTotalCompra(const char* IdCompra);

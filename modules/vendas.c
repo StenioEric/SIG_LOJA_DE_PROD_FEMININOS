@@ -34,7 +34,7 @@ void moduloVendas(void) {
             case '5':   finalizarVenda();
                         break;
             case '6':   listagemVendas();
-            break;
+                        break;
         }
     } while (op != '0');
 }
@@ -138,7 +138,7 @@ Vendas* adicionarProdutos(void) {
                 }
             } while (!quantidade || vend->quantidade == 0);
 
-            vend->status = 1;
+            vend->status = 2;
             gravaProduto(vend);
 
         } while (!ehDigitos(vend->idCompra));
@@ -171,7 +171,7 @@ Vendas* tela_ver_carrinho(void) {
         scanf("%[0-9]", idCompra);
         limparBuffer();
     } while (!ehDigitos(idCompra));
-    recuperarProdutosPorCompra(idCompra);
+    listarProdutosPorCompra(idCompra);
     espacamento();
     return vend;
 }
@@ -199,10 +199,18 @@ Vendas* finalizarVenda(void) {
     encontraVenda = buscaVenda(idCompra);
     
     if (encontraVenda) {
+        system("clear||cls");
         mostrarDetalhesCompra(idCompra);
-    }
-    vend->status = 3; // Altera o status da venda para 3
-    gravaVendas(vend); 
+        vend->status = 3; // Altera o status da venda para 3 
+        gravaVendas(vend);
+        
+    }else   {
+        printf("\n");
+        printf("\t\t\t NENHUMA VENDA FOI ENCONTRADA COM ESSE ID\n");
+        printf("\n");
+    }   
+
+    
     espacamento();
     return vend;
 }
@@ -360,7 +368,7 @@ int buscaVenda(char* idCompra) {
 
     // Percorre o arquivo em busca do produto com o id fornecido
     while (fread(vend, sizeof(Vendas), 1, fp)) {
-        if (strcmp(vend->idCompra, idCompra) == 0 && vend->status == 1) {
+        if (strcmp(vend->idCompra, idCompra) == 0 && vend->status == 2) {
             fclose(fp); // Fecha o arquivo
             return 1; // Retorna o Vendas encontrado
         }
@@ -369,32 +377,6 @@ int buscaVenda(char* idCompra) {
     fclose(fp); // Fecha o arquivo
     free(vend); // Libera a memória alocada para o produto
     return 0; // Retorna NULL se o produto não foi encontrado
-}
-
-
-void recuperarProdutosPorCompra(const char* idCompra) {
-    FILE* fp;
-    Vendas vend;
-    system("clear||cls");
-
-    // Abre o arquivo de vendas para leitura binária
-    fp = fopen("vendas.dat", "rb");
-    if (fp == NULL) {
-        printf("Erro ao abrir o arquivo de vendas.\n");
-        return;
-    }
-
-    // Percorre o arquivo de vendas em busca da compra com o ID fornecido
-    while (fread(&vend, sizeof(Vendas), 1, fp)) {
-        if (strcmp(vend.idCompra, idCompra) == 0 && vend.status == 1) {
-            Estoque* produto = buscaEstoque(vend.id);
-            if (produto != NULL) {
-                printEstoque(produto);
-                free(produto);  // Lembre-se de liberar a memória alocada pela função buscarProdutoPorId
-            }
-        }
-    }
-    fclose(fp);  // Fecha o arquivo de vendas
 }
 
 
@@ -407,10 +389,9 @@ float calcularTotalCompra(const char* idCompra) {
         return total;
     }
 
-    Estoque est;
+    Estoque est; 
     Vendas vend;
 
-    // Loop para percorrer os produtos da compra
     while (fread(&vend, sizeof(Vendas), 1, fpVendas)) {
         if (strcmp(vend.idCompra, idCompra) == 0) {
             // Procura o produto no arquivo de estoque
@@ -423,12 +404,10 @@ float calcularTotalCompra(const char* idCompra) {
             }
         }
     }
-
     fclose(fpEstoque);
     fclose(fpVendas);
     return total;
 }
-
 
 // gravar o idCompra com um status diferente após ser finalizado
 // verificador do idCompra pelo status de atividade
@@ -443,9 +422,9 @@ void listarProdutosPorCompra(const char* idCompra) {
 
     Vendas vend;
     Estoque est;
-
+    system("clear||cls");
     printf("\nPRODUTOS SELECIONADOS NA COMPRA %s:\n", idCompra);
-    printf("========================================\n");
+    printf("==================================================\n");
 
     while (fread(&vend, sizeof(Vendas), 1, fpVendas)) {
         if (strcmp(vend.idCompra, idCompra) == 0) {
@@ -466,26 +445,26 @@ void listarProdutosPorCompra(const char* idCompra) {
 
 void listagemVendas(void) {
     FILE* fp;
-    Vendas* vend;
-    vend = (Vendas*) malloc(sizeof(Vendas));
-    fp = fopen("vendas.dat", "rb");
+    Vendas* venda;
+    venda = (Vendas*) malloc(sizeof(Vendas));
+    fp = fopen("idCompra.dat", "rb");
     if (fp == NULL) {
         telaErro(); // Exibe uma mensagem de erro
-        free(vend); // Libera a memória alocada para o produto
+        free(venda); // Libera a memória alocada para o produto
         exit(1); // Encerra o programa
     }
 
     int VendasEncontrado = 0; // Variável para rastrear se algum produto foi encontrado
 
     system("clear||cls");
-    while (fread(vend, sizeof(Vendas), 1, fp)) {
-        if (vend->status == 3) {
-            printVendas(vend); 
+    while (fread(venda, sizeof(Vendas), 1, fp)) {
+        if (venda->status == 3) {
+            printVendas(venda); 
             VendasEncontrado = 1; // Marca que um produto foi encontrado
         }
     }
     fclose(fp);
-    free(vend); 
+    free(venda); 
     if (!VendasEncontrado) {
         printf("\t\t\tNENHUM PRODUTO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum estente ativo for encontrado
     }
@@ -493,7 +472,7 @@ void listagemVendas(void) {
 }
 
 
-void printVendas(Vendas* vend) {
+void printVendas(Vendas* venda) {
     FILE* fpVendas = fopen("vendas.dat", "rb");
     FILE* fpEstoque = fopen("estoque.dat", "rb");
 
@@ -502,23 +481,24 @@ void printVendas(Vendas* vend) {
         return;
     }
 
-    Vendas venda;
-    Estoque estoque;
+    Estoque* estoque = (Estoque*)malloc(sizeof(Estoque));
 
     printf("\nDETALHES DAS VENDAS:\n");
-    printf("====================================\n");
+    printf("=================================================================\n");
 
-    while (fread(&venda, sizeof(Vendas), 1, fpVendas)) {
-        while (fread(&estoque, sizeof(Estoque), 1, fpEstoque)) {
-            if (strcmp(estoque.id, venda.id) == 0) {
+    while (fread(venda, sizeof(Vendas), 1, fpVendas)) {
+        while (fread(estoque, sizeof(Estoque), 1, fpEstoque)) {
+            if (strcmp(estoque->id, venda->id) == 0) {
                 printf("ID da Compra: %s | Produto: %s | Quantidade: %s | Valor: %s | Status: %d\n",
-                       venda.idCompra, estoque.produto, venda.quantidade, estoque.valor, venda.status);
+                       venda->idCompra, estoque->produto, venda->quantidade, estoque->valor, venda->status);
                 break; // Encerra o loop interno após encontrar o produto correspondente
             }
         }
         rewind(fpEstoque); // Retorna ao início do arquivo para a próxima busca
     }
 
+    free(venda);
+    free(estoque);
     fclose(fpVendas);
     fclose(fpEstoque);
 }
@@ -597,8 +577,8 @@ int verificaIdCompra(const char* idCompra) {
 
 
 void mostrarDetalhesCompra(const char* idCompra) {
-    float totalCompra = calcularTotalCompra(idCompra);
 
+    float totalCompra = calcularTotalCompra(idCompra);
     if (totalCompra > 0) {
         printf("\nValor total da compra %s: R$ %.2f\n", idCompra, totalCompra);
         listarProdutosPorCompra(idCompra);
@@ -606,3 +586,5 @@ void mostrarDetalhesCompra(const char* idCompra) {
         printf("\nCompra com ID %s não encontrada ou sem produtos associados.\n", idCompra);
     }
 }
+
+
