@@ -34,38 +34,28 @@ void moduloCliente(void) {
 
 char tela_menu_cliente(void) {
     char op;
-
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///                 ------------ MENU CLIENTES ------------                 ///\n");
-    printf("///                                                                         ///\n");
-    printf("///            1. CADASTRAR CLIENTE                                         ///\n");
-    printf("///            2. PESQUISAR DADOS DO CLIENTE                                ///\n");
-    printf("///            3. ATUALIZAR CADASTRO DO CLIENTE                             ///\n");
-    printf("///            4. EXCLUIR DADOS DO CLIENTE                                  ///\n");
-    printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
-    printf("///                                                                         ///\n");
-    printf("///            ESCOLHA A OPCAO DESEJADA: ");
-    scanf("%c", &op);
-    printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    espacamento();
+    printf("===========================================\n");
+    printf("||       BEM-VINDO A LOJA ELEGANCE       ||\n");
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||           MENU DE CLIENTES            ||\n");
+    printf("||                                       ||\n");
+    printf("||  1. CADASTRAR CLIENTE                 ||\n");
+    printf("||  2. PESQUISAR DADOS DO CLIENTE        ||\n");
+    printf("||  3. ATUALIZAR CADASTRO DO CLIENTE     ||\n");
+    printf("||  4. EXCLUIR DADOS DO CLIENTE          ||\n");
+    printf("||  0. VOLTAR AO MENU PRINCIPAL          ||\n");
+    printf("||                                       ||\n");
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||  ESCOLHA A OPCAO DESEJADA: ");
+    scanf(" %c", &op);
+    printf("||                                       ||\n");
+    printf("===========================================\n");
+    printf("\n");
     return op;
-
 }
 
 
@@ -74,71 +64,64 @@ Cliente* tela_cadastro_cliente(void){
     cli = (Cliente*)malloc(sizeof(Cliente));
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                         CADASTRO CLIENTE                                ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                                                                         ///\n");
+    printf("\n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("            CADASTRO CLIENTE           \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("\n");
+
     do {
-        printf("/// NOME:");
+        printf(" -> NOME: ");
         scanf("%s", cli -> nome);
         limparBuffer();
     } while(!validarNome(cli -> nome));
+
     int cpfDuplicado = 0;
     int cpfValido = 0;
     do {
-        printf("/// CPF DO CLIENTE: ");
+        printf(" -> CPF DO CLIENTE: ");
         scanf("%s", cli->cpf);
         limparBuffer();
 
         cpfDuplicado = verificaCPFDuplicado(cli->cpf);
 
         if (cpfDuplicado) {
-            printf("\n");
-            printf("\t\t\tCPF JA EXISTE. TENTE NOVAMENTE.\n");
-            printf("\n");
+            cpfErro();
         } else if (validarCPF(cli->cpf)) {
             cpfValido= 1;
         }
         else {
-            printf("\n");
-            printf("\t\t\tCPF INVALIDO. TENTE NOVAMENTE.\n");
-            printf("\n");
+            cpfErro();
         }
     } while (!cpfValido || cpfDuplicado);
 
     int emailDuplicado = 0;
     int emailValido = 0;
-    do {
-        printf("/// EMAIL:");
+    do { 
+        printf(" -> EMAIL: ");
         scanf("%[a-z0-9@.]",cli -> email);
         limparBuffer();
 
         emailDuplicado = verificaEmailDuplicado(cli->email);
 
         if (emailDuplicado) {
-            printf("\n");
-            printf("\t\t\tEMAIL JA EXISTE. TENTE NOVAMENTE.\n");
-            printf("\n");
+            emailErro();
         } else if (validarEmail(cli->email)) {
             emailValido = 1;
         }
         else {
-            printf("\n");
-            printf("\t\t\tEMAIL INVALIDO. TENTE NOVAMENTE.\n");
-            printf("\n");
+            emailErro();
         }
     } while (emailDuplicado || !emailValido);
 
     do {
-        printf("/// DATA DE NASCIMENTO:");
+        printf(" -> DATA DE NASCIMENTO: ");
         scanf("%[0-9/]",cli -> dataNas);
         limparBuffer();
     } while(!validarData(cli -> dataNas));
 
     do {
-        printf("/// TELEFONE:");
+        printf(" -> TELEFONE((xx)xxxxxxxxx): ");
         scanf("%[0-9()]",cli -> telefone);
         limparBuffer();
     } while(!validarFone(cli -> telefone));
@@ -151,20 +134,17 @@ Cliente* tela_cadastro_cliente(void){
 }
 
 Cliente* tela_pesquisar_cliente(void) {
-    char opc[15];
     FILE* fp;
+    char opc[15];
     Cliente* cli;
     cli = (Cliente*)malloc(sizeof(Cliente));
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                        PESQUISAR CLIENTE                                ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                                                                         ///\n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("            PESQUISAR CLIENTE          \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
     do {
-        printf("///CPF DO CLIENTE: ");
+        printf("->CPF: ");
         scanf("%[0-9]",opc);
         limparBuffer();
     } while(!validarCPF(opc));
@@ -177,53 +157,54 @@ Cliente* tela_pesquisar_cliente(void) {
     int cliEncontrado = 0;
     system("clear||cls");
     while (fread(cli, sizeof(Cliente), 1, fp)) {
-        if ((cli->status != 0) && (strcmp(cli->cpf,opc)==0)) {
+        if ((cli->status == 1) && (strcmp(cli->cpf,opc)==0)) {
             printCliente(cli);
             cliEncontrado = 1;
         }
     }
     if (!cliEncontrado){
         printf("\n");
-        printf("\t\t\tCLIENTE NAO REGISTRADO\n");
+        printf("\t\t\t CLIENTE NAO REGISTRADO\n");
         espacamento();
         return NULL;
     }
     
     espacamento();
-    return NULL;
+    return cli;
 }
-
+    
 
 char* tela_alterar_cliente(void) {
     char* cpf;
 	cpf = (char*) malloc(15*sizeof(char));
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                         ALTERAR CLIENTE                                 ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                                                                         ///\n");
-    printf("///CPF DO CLIENTE: ");
-    scanf("%[0-9]", cpf);
-    espacamento();
+    system("clear||cls");
+    printf("\n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("            ALTERAR CLIENTE            \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("\n");
+    do {
+        printf(" -> CPF DO CLIENTE: ");
+        scanf("%[0-9]",cpf);
+        limparBuffer();
+    } while(!validarCPF(cpf));
     return cpf;
 }
+
 
 char* tela_excluir_cliente(void) {
     char* cpf;
 	cpf = (char*) malloc(15*sizeof(char));
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                         EXCLUIR CLIENTE                                 ///\n");
-    printf("///              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                    ///\n");
-    printf("///                                                                         ///\n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("            EXCLUIR CLIENTE            \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("\n");
     do {
-        printf("///CPF DO CLIENTE: ");
+        printf(" -> CPF DO CLIENTE: ");
         scanf("%[0-9]",cpf);
         limparBuffer();
     } while(!validarCPF(cpf));
@@ -238,15 +219,19 @@ char* tela_excluir_cliente(void) {
 
 // PRINTA DADOS DO CLIENTE
 void printCliente(Cliente* cli) {
-    printf("\n = = = DADOS DO CLIENTE = = = \n");
-    printf("NOME:              %s\n", cli->nome);
-    printf("CPF:               %s\n", cli->cpf);
-    printf("EMAIL:             %s\n", cli->email);
-    printf("DATA DE NASCIMENTO:%s\n", cli->dataNas);
-    printf("TELEFONE:          %s\n", cli->telefone);
-    printf("STATUS:            %d\n", cli->status);
-    printf("===================================\n");
+    printf("\n");
+    printf(" _____________________________________________ \n");
+    printf("|              DADOS DO CLIENTE               |\n");
+    printf("|_____________________________________________|\n");
+    printf("|->NOME:---------%-20s\n", cli->nome);
+    printf("|->CPF:----------%-20s\n", cli->cpf);
+    printf("|->EMAIL:--------%-20s\n", cli->email);
+    printf("|->ANIVERSARIO:--%-20s\n", cli->dataNas);
+    printf("|->TELEFONE:-----%-20s\n", cli->telefone);
+    printf("|->STATUS:-------%-20d\n", cli->status);
+    printf("|_____________________________________________|\n");
 }
+
 
 
 // Grava os dados do cliente em um arquivo
@@ -456,4 +441,3 @@ int verificaEmailDuplicado(const char* email) {
     fclose(fp); // Fecha o arquivo
     return 0; // E-mail não duplicado
 }
-
