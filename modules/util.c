@@ -5,11 +5,6 @@
 ///             Developed by @stenioeric -- since August, 2023              ///
 ///////////////////////////////////////////////////////////////////////////////
 
-// #define TAMANHO_MAXIMO_NOME 50
-// #define TAMANHO_MAXIMO_EMAIL 50
-// #define TAMANHO_MAXIMO_CPF 50
-// #define TAMANHO_MAXIMO_NUMERO 50
-// #define TAMANHO_MAXIMO_DATA 50
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -306,6 +301,7 @@ int ehdinheiro(char* str) {
     return 1; // Todos os caracteres são dígitos
 }
 
+
 int ehvirgula(char c) {
   if (c == ',') {
     return 1;
@@ -376,3 +372,28 @@ int ehvirgula(char c) {
 
 //   return strdup(dataNas);
 // }
+
+
+void cpfErro(void){
+  printf("\n");
+  printf("=============================================\n");
+  printf("|         CPF INVALIDO OU JA EXISTE         |\n");
+  printf("=============================================\n");
+  printf("|                                           |\n");
+  printf("|    POR FAVOR, INSIRA UM CPF VALIDO OU     |\n");
+  printf("|    QUE NAO ESTEJA CADASTRADO.             |\n");
+  printf("|                                           |\n");
+  printf("=============================================\n");
+}
+
+void emailErro(void){
+  printf("\n");
+  printf("=============================================\n");
+  printf("|          EMAIL INVALIDO OU JA EXISTE      |\n");
+  printf("=============================================\n");
+  printf("|                                           |\n");
+  printf("|  POR FAVOR, INSIRA UM EMAIL VALIDO OU     |\n");
+  printf("|  QUE NAO ESTEJA CADASTRADO.               |\n");
+  printf("|                                           |\n");
+  printf("=============================================\n");
+}

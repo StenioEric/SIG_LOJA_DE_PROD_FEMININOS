@@ -23,3 +23,5 @@ void telaErro(void);
 void espacamento(void);
 int ehvirgula(char);
 int ehdinheiro(char*);
+void cpfErro(void);
+void emailErro(void);
