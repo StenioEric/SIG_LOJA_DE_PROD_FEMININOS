@@ -384,16 +384,31 @@ void cpfErro(void){
   printf("|    QUE NAO ESTEJA CADASTRADO.             |\n");
   printf("|                                           |\n");
   printf("=============================================\n");
+  printf("\n");
 }
 
 void emailErro(void){
   printf("\n");
   printf("=============================================\n");
-  printf("|          EMAIL INVALIDO OU JA EXISTE      |\n");
+  printf("|        EMAIL INVALIDO OU JA EXISTE        |\n");
   printf("=============================================\n");
   printf("|                                           |\n");
   printf("|  POR FAVOR, INSIRA UM EMAIL VALIDO OU     |\n");
   printf("|  QUE NAO ESTEJA CADASTRADO.               |\n");
   printf("|                                           |\n");
   printf("=============================================\n");
+  printf("\n");
+}
+
+void idErro(void) {
+  printf("\n");
+  printf("=============================================\n");
+  printf("|         ID JA EXISTE OU INVALIDO          |\n");
+  printf("=============================================\n");
+  printf("|                                           |\n");
+  printf("|  O ID INSERIDO JA EXISTE NO SISTEMA OU É  |\n");
+  printf("|  INVALIDO POR FAVOR, INSIRA UM NOVO ID.   |\n");
+  printf("|                                           |\n");
+  printf("=============================================\n");
+  printf("\n");
 }

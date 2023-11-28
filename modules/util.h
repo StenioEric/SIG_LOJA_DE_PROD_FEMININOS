@@ -25,3 +25,4 @@ int ehvirgula(char);
 int ehdinheiro(char*);
 void cpfErro(void);
 void emailErro(void);
+void idErro(void);
