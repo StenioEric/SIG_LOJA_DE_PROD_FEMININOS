@@ -39,7 +39,7 @@ char tela_menu_estoque(void) {
 
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///        EEEEEEE lll                                                      ///\n");
     printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
@@ -226,17 +226,20 @@ void gravaEstoque(Estoque* est) {
 
 
 void printEstoque(Estoque* est) {
-    printf("\n = = = DADOS DO PRODUTO = = = \n");
-    printf("PRODUTO:%s\n", est-> produto);
-    printf("EM ESTOQUE:%s\n", est-> quantidade);                                                         
-    printf("VALOR:%s\n", est-> valor);                                                      
-    printf("DESCRICAO:%s\n", est-> descricao);                                          
-    printf("ID: %s\n", est-> id);
-    printf("===================================\n"); 
+    printf("\n");
+    printf(" _____________________________________________ \n");
+    printf("|               DADOS DO PRODUTO               |\n");
+    printf("|_____________________________________________|\n");
+    printf("|->PRODUTO:------%-20s\n", est->produto);
+    printf("|->EM ESTOQUE:---%-20s\n", est->quantidade);
+    printf("|->VALOR:--------%-20s\n", est->valor);
+    printf("|->DESCRICAO:----%-20s\n", est->descricao);
+    printf("|->ID:-----------%-20s\n", est->id);
+    printf("|=============================================|\n");
 }
 
 
-// // Verifica se um id já está cadastrado
+// // Verifica se um id 
 int verificaIdDuplicado(const char* id) {
     FILE* fp = fopen("estoque.dat", "rb");
 
