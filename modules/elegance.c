@@ -12,7 +12,7 @@
 #include "../modules/cliente.h"
 #include "../modules/vendas.h"
 #include "../modules/estoque.h"
-#include "../modules/funcionario.h"
+// #include "../modules/funcionario.h"
 #include "../modules/gerencia.h"
 #include "../modules/projeto.h"
 #include "../modules/util.h"
@@ -36,11 +36,9 @@ int main(void) {
                         break;
             case '3':   moduloEstoque();
                         break;
-            case '4':   moduloFuncio();
+            case '4':   moduloGerencia();
                         break;
-            case '5':   moduloGerencia();
-                        break;
-            case '6':   moduloSobre();
+            case '5':   moduloSobre();
                         break;
                     
         }
@@ -76,9 +74,8 @@ char tela_menu_principal(void) {
     printf("///            1. MENU CLIENTES                                             ///\n");
     printf("///            2. MENU VENDAS                                               ///\n");
     printf("///            3. MENU ESTOQUE                                              ///\n");
-    printf("///            4. MENU FUNCIONARIOS                                         ///\n");
-    printf("///            5. MENU GERENCIA                                             ///\n");
-    printf("///            6. INFORMACOES SOBRE O PROJETO/DESENVOLVEDOR                 ///\n");
+    printf("///            4. MENU GERENCIA                                             ///\n");
+    printf("///            5. INFORMACOES SOBRE O PROJETO/DESENVOLVEDOR                 ///\n");
     printf("///            0. SAIR                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///            ESCOLHA A OPCAO DESEJADA: ");
