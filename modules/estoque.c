@@ -72,8 +72,7 @@ char tela_menu_estoque(void) {
 
 
 Estoque* tela_cadastro_estoque(void) {
-    Estoque* est;
-    est = (Estoque*)malloc(sizeof(Estoque));
+    Estoque* est = (Estoque*)malloc(sizeof(Estoque));
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -104,27 +103,15 @@ Estoque* tela_cadastro_estoque(void) {
     } while(!validarNome(est->descricao));
 
     int idDuplicado = 0;
-    int idValido = 0;
     do {
         printf("/// ID DO PRODUTO: ");
         scanf("%s", est->id);
         limparBuffer();
-
         idDuplicado = verificaIdDuplicado(est->id);
-
         if (idDuplicado) {
-            printf("\n");
-            printf("\t\t\tID JA EXISTE. TENTE NOVAMENTE.\n");
-            printf("\n");
-        } else if (ehDigitos(est->id)) {
-            idValido= 1;
+            idErro();
         }
-        else {
-            printf("\n");
-            printf("\t\t\tID INVALIDO. TENTE NOVAMENTE.\n");
-            printf("\n");
-        }
-    } while (!idValido || idDuplicado);
+    } while(!ehDigitos(est->id) || idDuplicado);
 
     est -> status = 1;
     espacamento();
@@ -133,9 +120,12 @@ Estoque* tela_cadastro_estoque(void) {
 
 Estoque* tela_pesquisar_estoque(void) {
     FILE* fp;
-    char opc[15];
-    Estoque* est;
-    est = (Estoque*)malloc(sizeof(Estoque));
+    char id[15];
+    Estoque* est = (Estoque*)malloc(sizeof(Estoque));
+    if (est == NULL) {
+        printf("ERRO DE ALOCACAO DE MEMORIA.");
+        exit(1);
+    }
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -145,10 +135,14 @@ Estoque* tela_pesquisar_estoque(void) {
     printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
     printf("///                                                                         ///\n");
     do {
-        printf("///ID: ");
-        scanf("%[0-9]",opc);
+        printf("/// ID DO PRODUTO: ");
+        scanf("%[0-9]", id);
         limparBuffer();
-    } while(!ehDigitos(opc));
+    if (!ehDigitos(id)) {
+        idErro();
+    }
+    } while (!ehDigitos(id));
+
     fp = fopen("estoque.dat", "rb");
     if (fp == NULL) {
         telaErro();
@@ -158,20 +152,24 @@ Estoque* tela_pesquisar_estoque(void) {
     int prodEncontrado = 0;
     system("clear||cls");
     while (fread(est, sizeof(Estoque), 1, fp)) {
-        if ((est->status != 0) && (strcmp(est->id,opc)==0)) {
+        if ((est->status != 0) && (strcmp(est->id,id)==0)) {
             printEstoque(est);
             prodEncontrado = 1;
         }
     }
+
+    fclose(fp);
+
     if (!prodEncontrado){
         printf("\n");
         printf("\t\t\t PRODUTO NAO REGISTRADO\n");
         limparBuffer();
+        free(est);
         return NULL;
     }
 
     espacamento();
-    return NULL;
+    return est;
 }
 
 char* tela_alterar_estoque(void) {
@@ -335,15 +333,13 @@ void excluirEstoque(void) {
     if (est == NULL) {
         printf("\n");
         printf("\t\t\tESTOQUE NAO ENCONTRADO!\n\n");
-        limparBuffer();
     } else {
         est->status = 0;
-        removeEstoque(est);
+        regravarEstoque(est);
         free(est);
         est = NULL; // Define est como NULL após remoção
         printf("\n");
         printf("\t\t\tESTOQUE EXCLUIDO COM SUCESSO!\n");
-        limparBuffer();
     }
 
     free(id);
