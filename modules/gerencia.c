@@ -336,7 +336,7 @@ void listarProdInativos(void) {
     FILE* fp;
     Estoque* est;
     est = (Estoque*) malloc(sizeof(Estoque));
-    fp = fopen("Estoques.dat", "rb");                                  
+    fp = fopen("estoque.dat", "rb");                                  
     if (fp == NULL) {
         telaErro(); // Exibe uma mensagem de erro
         free(est); // Libera a memória alocada para est
