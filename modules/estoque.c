@@ -36,51 +36,40 @@ void moduloEstoque(void) {
 
 char tela_menu_estoque(void) {
     char op;
-
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///             ------------  MENU ESTOQUE ------------                     ///\n");
-    printf("///                                                                         ///\n");
-    printf("///            1. CADASTRAR PRODUTO                                         ///\n");
-    printf("///            2. PESQUISAR DADOS DO PRODUTO                                ///\n");
-    printf("///            3. ATUALIZAR CADASTRO DO PRODUTO                             ///\n");
-    printf("///            4. EXCLUIR DADOS DO PRODUTO                                  ///\n");
-    printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
-    printf("///                                                                         ///\n");
-    printf("///            ESCOLHA A OPCAO DESEJADA: ");
-    scanf("%c", &op);
-    getchar();
-    printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    espacamento();
+    printf("===========================================\n");
+    printf("||       BEM-VINDO A LOJA ELEGANCE       ||\n");
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||           MENU DE ESTOQUE             ||\n");
+    printf("||                                       ||\n");
+    printf("||  1. CADASTRAR PRODUTO                 ||\n");
+    printf("||  2. PESQUISAR DADOS DO PRODUTO        ||\n");
+    printf("||  3. ATUALIZAR DADOS DO PRODUTO        ||\n");
+    printf("||  4. EXCLUIR DADOS DO PRODUTO          ||\n");
+    printf("||  0. VOLTAR AO MENU PRINCIPAL          ||\n");
+    printf("||                                       ||\n");
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||  ESCOLHA A OPCAO DESEJADA: ");
+    scanf(" %c", &op);
+    printf("||                                       ||\n");
+    printf("===========================================\n");
+    printf("\n");
     return op;
 }
+
 
 
 Estoque* tela_cadastro_estoque(void) {
     Estoque* est = (Estoque*)malloc(sizeof(Estoque));
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
-    printf("///                            CADASTRO PRODUTOS                            ///\n");
-    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
-    printf("///                                                                         ///\n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("            CADASTRO PRODUTO           \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("\n");                                                                      ///\n");
     do {
         printf("/// PRODUTO:");
         scanf("%s", est->produto);
@@ -126,14 +115,11 @@ Estoque* tela_pesquisar_estoque(void) {
         printf("ERRO DE ALOCACAO DE MEMORIA.");
         exit(1);
     }
-    system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
-    printf("///                           PESQUISAR PRODUTO                             ///\n");
-    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
-    printf("///                                                                         ///\n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("           PESQUISAR PRODUTO           \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("\n");
     do {
         printf("/// ID DO PRODUTO: ");
         scanf("%[0-9]", id);
@@ -177,12 +163,10 @@ char* tela_alterar_estoque(void) {
 	id = (char*) malloc(15*sizeof(char));
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
-    printf("///                            ALTERAR PRODUTO                              ///\n");
-    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
-    printf("///                                                                         ///\n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("             ALTERAR PRODUTO           \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("\n");
     printf("///ID: ");
     scanf("%[0-9]", id);
     espacamento();
@@ -192,14 +176,11 @@ char* tela_alterar_estoque(void) {
 char* tela_exclui_estoque(void) {
     char* id;
 	id = (char*) malloc(15*sizeof(char));
-    system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
-    printf("///                             EXCLUIR PRODUTO                             ///\n");
-    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
-    printf("///                                                                         ///\n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("             EXCLUIR PRODUTO           \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("\n");
     printf("///ID: ");
     scanf("%[0-9]", id);
     printf("\n");
