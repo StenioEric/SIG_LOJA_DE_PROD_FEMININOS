@@ -80,87 +80,76 @@ char tela_menu_vendas(void) {
     return op;
 }
 
-
 Vendas* adicionarProdutos(void) {
     Vendas* vendas;
     vendas = (Vendas*)malloc(sizeof(Vendas));
-    int adicionarMais = 1;
-    do { 
-        do {
-            system("clear||cls");
-            printf("\n");
-            printf("///////////////////////////////////////////////////////////////////////////////\n");
-            printf("///                                                                         ///\n");
-            printf("///             ------------ ADICIONAR PRODUTOS ------------                ///\n");
-            printf("///                                                                         ///\n");           
-            int idDuplicado = 0;
-            int idValido = 0;
-            do {
-                printf("/// ID DO PRODUTO: ");
-                scanf("%s", vendas->id);
-                limparBuffer();
 
-                idDuplicado = verificaIdDuplicado(vendas->id);
+    // Gera um ID de Compra unico
+    char* idCompra = gera_idCompra();
+    snprintf(vendas->idCompra, sizeof(vendas->idCompra), "%s", idCompra);
+    free(idCompra); // Liberar memoria alocada para o ID de Compra
 
-                if (!idDuplicado) {
-                    printf("\n");
-                    printf("\t\t\tID NAO EXISTE. TENTE NOVAMENTE.\n");
-                    printf("\n");
-                } else if (ehDigitos(vendas->id)) {
-                    idValido = 1;
-                } else {
-                    printf("\n");
-                    printf("\t\t\tID INVALIDO. TENTE NOVAMENTE.\n");
-                    printf("\n");
-                }
-            } while (!idValido && !idDuplicado);
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///             ------------ ADICIONAR PRODUTOS ------------                ///\n");
+    printf("///                                                                         ///\n");  
 
-            int quantidade = 0;
-            do {
-                printf("/// QUANTIDADE DE PRODUTOS: ");
-                scanf("%s", vendas->quantidade);
-                limparBuffer();
-
-                quantidade = verificaQuantidade(vendas->quantidade, vendas->id);
-
-                if (!quantidade) {
-                    printf("\n");
-                    printf("\t\tNAO EXISTE ESSA QUANTIDADE EM ESTOQUE. TENTE NOVAMENTE.\n");
-                    printf("\n");
-                } else {
-                    quantidade = 1; // Atribui 1 para indicar que a quantidade é válida
-                }
-            } while (!quantidade || vendas->quantidade == 0);
-            
-            vendas->status = 2;
-            gravaProduto(vendas);
-
-        } while (!ehDigitos(vendas->idCompra));
-        printf("\n");
-        printf("DESEJA ADICIONAR MAIS PRODUTOS? (1 PARA SIM, 0 PARA VOLTAR): ");
-        scanf("%d", &adicionarMais);
-        limparBuffer(); // Limpar o buffer para a próxima entrada
-    } while (adicionarMais);
-
-    int encontraId = 0;
+    // Lógica para capturar o CPF do cliente
+    int cpfDuplicado = 0;
     do {
-        char* idCompra = gera_idCompra();
-        snprintf(vendas->idCompra, sizeof(vendas->idCompra), "%s", idCompra);
-        encontraId = verStatusVend(idCompra);
-        
-        if (!encontraId) {
-            printVendas(vendas);
-            break;
-            encontraId = 0;
-        } else {
-            encontraId = 1;
+        printf(" -> CPF: ");
+        scanf("%[0-9]", vendas->cpf);
+        limparBuffer();
+        cpfDuplicado = verificaCPFDuplicado(vendas->cpf);
+
+        if (!validarCPF(vendas->cpf) || !cpfDuplicado) {
+            cpfValido();
         }
+    } while (!validarCPF(vendas->cpf) || !cpfDuplicado);
 
-    } while (!encontraId);
+    int adicionarMais = 0; 
+    do {
+        do {
+            printf(" -> ID DO PRODUTO: ");
+            scanf("%[0-9]", vendas->id);
+            limparBuffer();
+            if (!ehDigitos(vendas->id)) {
+                idValido();
+            }
+        } while (!ehDigitos(vendas->id));
 
-    free(vendas);
+        int quantidade = 0;
+        do {
+            printf(" -> QUANTIDADE DE PRODUTOS: ");
+            scanf("%s", vendas->quantidade);
+            limparBuffer();
+
+            quantidade = verificaQuantidade(vendas->quantidade, vendas->id);
+
+            if (!quantidade) {
+                printf("\n");
+                printf("\t\tNAO EXISTE ESSA QUANTIDADE EM ESTOQUE. TENTE NOVAMENTE.\n");
+                printf("\n");
+            } else {
+                quantidade = 1; 
+            }
+        } while (!quantidade || vendas->quantidade == 0);
+
+        printf("\n");
+        printf("DESEJA ADICIONAR MAIS PRODUTOS? (1 PARA VOLTAR, 0 PARA SIM): ");
+        scanf("%d", &adicionarMais);
+        limparBuffer(); 
+
+        vendas->status = 2;
+        gravaProduto(vendas);
+    } while (adicionarMais != 1);
+
+    listarProdutosPorCompra(vendas->idCompra);
     espacamento();
-    return vendas;
+    free(vendas); 
+    return vendas; 
 }
 
 
@@ -210,7 +199,7 @@ Vendas* finalizarVenda(void) {
         system("clear||cls");
         mostrarDetalhesCompra(idCompra);
         vend->status = 3; 
-        gravaVendas(vend);
+        gravaProduto(vend);
     } else {
         printf("\n\t\tNENHUMA VENDA FOI ENCONTRADA COM ESSE ID\n\n");
     }
@@ -310,18 +299,15 @@ void gravaProduto(Vendas* vend) {
 }
 
 
-void gravaVendas(Vendas* venda) {
-    FILE* fp = fopen("idCompra.dat", "ab");
-
-    if (fp == NULL || venda == NULL) {
-        printf("ERRO AO ABRIR O ARQUIVO IDCOMPRA.\n");
-        return;
-    }
-
-    fwrite(venda, sizeof(Vendas), 1, fp);
-
-    fclose(fp);
-}
+// void gravaVendas(Vendas* venda) {
+//     FILE* fp = fopen("idCompra.dat", "ab");
+//     if (fp == NULL || venda == NULL) {
+//         printf("ERRO AO ABRIR O ARQUIVO IDCOMPRA.\n");
+//         return;
+//     }
+//     fwrite(venda, sizeof(Vendas), 1, fp);
+//     fclose(fp);
+// }
 
 
 // Remove um Estoque
@@ -403,6 +389,7 @@ float calcularTotalCompra(const char* idCompra) {
             while (fread(&est, sizeof(Estoque), 1, fpEstoque)) {
                 if (strcmp(est.id, vend.id) == 0) {
                     total += atof(est.valor) * atoi(vend.quantidade); // Calcula o valor total do produto
+                    return total;
                     break;
                 }
             }
@@ -561,30 +548,29 @@ void mostrarDetalhesCompra(const char* idCompra) {
 }
 
 
-int verStatusVend(const char* idCompra) {
-    FILE* fp = fopen("vendas.dat", "rb");
-
-    if (fp == NULL) {
-        return 0;
-    }
-    Vendas vend;
-    int encontrou = 0;
-
-    while (fread(&vend, sizeof(Vendas), 1, fp)) {
-        if ((strcmp(vend.idCompra, idCompra) == 0) && (vend.status == 3 || vend.status == 2)) {
-            encontrou = 1; // ID de compra encontrado com status 3 ou 2
-            break;
-        }
-    }
-    fclose(fp); 
-    return encontrou; 
-}
+// int verStatusVend(const char* idCompra) {
+//     FILE* fp = fopen("vendas.dat", "rb");
+// 
+//     if (fp == NULL) {
+//         return 0;
+//     }
+//     Vendas vend;
+//     int encontrou = 0;
+//     while (fread(&vend, sizeof(Vendas), 1, fp)) {
+//         if ((strcmp(vend.idCompra, idCompra) == 0) && (vend.status == 3 || vend.status == 2)) {
+//             encontrou = 1; // ID de compra encontrado com status 3 ou 2
+//             break;
+//         }
+//     }
+//     fclose(fp); 
+//     return encontrou; 
+// }
 
 
 char* gera_idCompra(void)
 {
     FILE *fp;
-    fp = fopen("idCompra.dat", "rb");
+    fp = fopen("vendas.dat", "rb");
     if (fp == NULL) {
         return "1"; // Caso o arquivo não exista, retorna 1 como o primeiro ID de compra
     }
@@ -605,4 +591,30 @@ char* gera_idCompra(void)
         fclose(fp);
         return id;
     }
+}
+
+
+int buscaIdCompra(char* idCompra) {
+    // Abre o arquivo "Vendas.dat" para leitura binária
+    FILE* fp;
+    Vendas* vend;
+    vend = (Vendas*)malloc(sizeof(Vendas));
+    fp = fopen("vendas.dat", "rb");
+
+    // Verifica se houve erro ao abrir o arquivo
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+    }
+
+    // Percorre o arquivo em busca do produto com o id fornecido
+    while (fread(vend, sizeof(Vendas), 1, fp)) {
+        if (strcmp(vend->idCompra, idCompra) == 0) {
+            fclose(fp); // Fecha o arquivo
+            return 1; // Retorna o Vendas encontrado
+        }
+    }
+
+    fclose(fp); // Fecha o arquivo
+    free(vend); // Libera a memória alocada para o produto
+    return 0; // Retorna NULL se o produto não foi encontrado
 }
