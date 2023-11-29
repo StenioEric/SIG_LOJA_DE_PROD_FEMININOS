@@ -54,6 +54,7 @@ char tela_menu_estoque(void) {
     printf("||                                       ||\n");
     printf("||  ESCOLHA A OPCAO DESEJADA: ");
     scanf(" %c", &op);
+    limparBuffer();
     printf("||                                       ||\n");
     printf("===========================================\n");
     printf("\n");
@@ -122,11 +123,11 @@ Estoque* tela_pesquisar_estoque(void) {
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
     printf("\n");
     do {
-        printf("/// ID DO PRODUTO: ");
+        printf(" -> ID DO PRODUTO: ");
         scanf("%[0-9]", id);
         limparBuffer();
     if (!ehDigitos(id)) {
-        idErro();
+        idValido();
     }
     } while (!ehDigitos(id));
 
@@ -137,7 +138,6 @@ Estoque* tela_pesquisar_estoque(void) {
         exit(1);
     }
     int prodEncontrado = 0;
-    system("clear||cls");
     while (fread(est, sizeof(Estoque), 1, fp)) {
         if ((est->status != 0) && (strcmp(est->id,id)==0)) {
             printEstoque(est);
@@ -150,7 +150,7 @@ Estoque* tela_pesquisar_estoque(void) {
     if (!prodEncontrado){
         printf("\n");
         printf("\t\t\t PRODUTO NAO REGISTRADO\n");
-        limparBuffer();
+        espacamento();
         free(est);
         return NULL;
     }
@@ -169,14 +169,14 @@ char* tela_alterar_estoque(void) {
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
     printf("\n");
     do {
-        printf("/// ID DO PRODUTO: ");
+        printf(" -> ID DO PRODUTO: ");
         scanf("%[0-9]", id);
         limparBuffer();
     if (!ehDigitos(id)) {
-        idErro();
+        idValido();
     }
     } while (!ehDigitos(id));
-    espacamento();
+    printf("\n");
     return id;
 }
 
@@ -190,11 +190,11 @@ char* tela_exclui_estoque(void) {
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
     printf("\n");
     do {
-        printf("/// ID DO PRODUTO: ");
+        printf(" -> ID DO PRODUTO: ");
         scanf("%[0-9]", id);
         limparBuffer();
     if (!ehDigitos(id)) {
-        idErro();
+        idValido();
     }
     } while (!ehDigitos(id));
     printf("\n");
