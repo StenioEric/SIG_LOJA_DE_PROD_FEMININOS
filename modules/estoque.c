@@ -69,31 +69,31 @@ Estoque* tela_cadastro_estoque(void) {
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
     printf("            CADASTRO PRODUTO           \n");
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-    printf("\n");                                                                      ///\n");
+    printf("\n");                                                               
     do {
-        printf("/// PRODUTO:");
+        printf(" -> PRODUTO: ");
         scanf("%s", est->produto);
         limparBuffer();
     } while(!validarNome(est->produto));
     do {
-        printf("/// QUANTIDADE DE PRODUTOS:");
+        printf(" -> QUANTIDADE DE PRODUTOS: ");
         scanf("%s", est->quantidade);
         limparBuffer();
     } while(!ehDigitos(est->quantidade));
     do {
-        printf("/// VALOR:");
+        printf(" -> VALOR: ");
         scanf("%s",est->valor);
         limparBuffer();
     } while(!ehdinheiro(est->valor));
     do {
-        printf("/// DESCRICAO:");
+        printf(" -> DESCRICAO: ");
         scanf("%s",est->descricao);
         limparBuffer();
     } while(!validarNome(est->descricao));
 
     int idDuplicado = 0;
     do {
-        printf("/// ID DO PRODUTO: ");
+        printf(" -> ID DO PRODUTO: ");
         scanf("%s", est->id);
         limparBuffer();
         idDuplicado = verificaIdDuplicado(est->id);
@@ -115,6 +115,7 @@ Estoque* tela_pesquisar_estoque(void) {
         printf("ERRO DE ALOCACAO DE MEMORIA.");
         exit(1);
     }
+    system("clear||cls");
     printf("\n");
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
     printf("           PESQUISAR PRODUTO           \n");
@@ -167,8 +168,14 @@ char* tela_alterar_estoque(void) {
     printf("             ALTERAR PRODUTO           \n");
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
     printf("\n");
-    printf("///ID: ");
-    scanf("%[0-9]", id);
+    do {
+        printf("/// ID DO PRODUTO: ");
+        scanf("%[0-9]", id);
+        limparBuffer();
+    if (!ehDigitos(id)) {
+        idErro();
+    }
+    } while (!ehDigitos(id));
     espacamento();
     return id;
 }
@@ -176,13 +183,20 @@ char* tela_alterar_estoque(void) {
 char* tela_exclui_estoque(void) {
     char* id;
 	id = (char*) malloc(15*sizeof(char));
+    system("clear||cls");
     printf("\n");
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
     printf("             EXCLUIR PRODUTO           \n");
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
     printf("\n");
-    printf("///ID: ");
-    scanf("%[0-9]", id);
+    do {
+        printf("/// ID DO PRODUTO: ");
+        scanf("%[0-9]", id);
+        limparBuffer();
+    if (!ehDigitos(id)) {
+        idErro();
+    }
+    } while (!ehDigitos(id));
     printf("\n");
     return id;
 }
