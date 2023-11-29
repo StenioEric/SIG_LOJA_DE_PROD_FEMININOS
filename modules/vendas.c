@@ -170,7 +170,7 @@ Vendas* tela_ver_carrinho(void) {
         scanf("%[0-9]", idCompra);
         limparBuffer();
     } while (!ehDigitos(idCompra));
-    mostrarDetalhesCompra(idCompra);
+    listarProdutosPorCompra(idCompra);
     espacamento();
     return vend;
 }
@@ -539,6 +539,7 @@ int verificaIdCompra(const char* idCompra) {
 void mostrarDetalhesCompra(const char* idCompra) {
 
     float totalCompra = calcularTotalCompra(idCompra);
+    system("clear||cls");
     if (totalCompra > 0) {
         printf("\nVALOR TOTAL DA COMPRA %s: R$ %.2f\n", idCompra, totalCompra);
         listarProdutosPorCompra(idCompra);
