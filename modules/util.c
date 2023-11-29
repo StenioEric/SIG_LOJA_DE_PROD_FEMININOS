@@ -406,8 +406,36 @@ void idErro(void) {
   printf("|         ID JA EXISTE OU INVALIDO          |\n");
   printf("=============================================\n");
   printf("|                                           |\n");
-  printf("|  O ID INSERIDO JA EXISTE NO SISTEMA OU É  |\n");
+  printf("|  O ID INSERIDO JA EXISTE NO SISTEMA OU E  |\n");
   printf("|  INVALIDO POR FAVOR, INSIRA UM NOVO ID.   |\n");
+  printf("|                                           |\n");
+  printf("=============================================\n");
+  printf("\n");
+}
+
+
+void idValido(void) {
+  printf("\n");
+  printf("=============================================\n");
+  printf("|         ID NAO EXISTE OU INVALIDO          |\n");
+  printf("=============================================\n");
+  printf("|                                           |\n");
+  printf("|  O ID INSERIDO NAO EXISTE NO SISTEMA OU E |\n");
+  printf("|  INVALIDO POR FAVOR, INSIRA UM NOVO ID.   |\n");
+  printf("|                                           |\n");
+  printf("=============================================\n");
+  printf("\n");
+}
+
+
+void cpfValido(void){
+  printf("\n");
+  printf("=============================================\n");
+  printf("|         CPF INVALIDO OU NAO EXISTE        |\n");
+  printf("=============================================\n");
+  printf("|                                           |\n");
+  printf("|    POR FAVOR, INSIRA UM CPF VALIDO E      |\n");
+  printf("|    QUE NAO ESTEJA CADASTRADO.             |\n");
   printf("|                                           |\n");
   printf("=============================================\n");
   printf("\n");

@@ -26,3 +26,5 @@ int ehdinheiro(char*);
 void cpfErro(void);
 void emailErro(void);
 void idErro(void);
+void idValido(void);
+void cpfValido(void);
