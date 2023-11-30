@@ -12,7 +12,6 @@
 #include "../modules/cliente.h"
 #include "../modules/vendas.h"
 #include "../modules/estoque.h"
-// #include "../modules/funcionario.h"
 #include "../modules/gerencia.h"
 #include "../modules/projeto.h"
 #include "../modules/util.h"
@@ -20,7 +19,6 @@
 ////
 // Assinatura das funcoes
 char tela_menu_principal(void);
-
 
 ////
 // Programa principal
@@ -52,37 +50,36 @@ int main(void) {
 // Funcoes
 
 char tela_menu_principal(void) {
-    char op;
+    char op[2];
 
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///           ------------ SISTEMA DE GERENCIAMENTO ------------            ///\n");
-    printf("///                                                                         ///\n");
-    printf("///            1. MENU CLIENTES                                             ///\n");
-    printf("///            2. MENU VENDAS                                               ///\n");
-    printf("///            3. MENU ESTOQUE                                              ///\n");
-    printf("///            4. MENU GERENCIA                                             ///\n");
-    printf("///            5. INFORMACOES SOBRE O PROJETO/DESENVOLVEDOR                 ///\n");
-    printf("///            0. SAIR                                                      ///\n");
-    printf("///                                                                         ///\n");
-    printf("///            ESCOLHA A OPCAO DESEJADA: ");
-    scanf("%c", &op);
-    getchar();
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("=============================================================================\n");
+    printf("|                                                                           |\n");
+    printf("|    ███████╗██╗     ███████╗ ██████╗  █████╗ ███╗   ██╗ ██████╗███████╗    |\n");
+    printf("|    ██╔════╝██║     ██╔════╝██╔════╝ ██╔══██╗████╗  ██║██╔════╝██╔════╝    |\n");
+    printf("|    █████╗  ██║     █████╗  ██║  ███╗███████║██╔██╗ ██║██║     █████╗      |\n");
+    printf("|    ██╔══╝  ██║     ██╔══╝  ██║   ██║██╔══██║██║╚██╗██║██║     ██╔══╝      |\n");
+    printf("|    ███████╗███████╗███████╗╚██████╔╝██║  ██║██║ ╚████║╚██████╗███████╗    |\n");
+    printf("|    ╚══════╝╚══════╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝╚══════╝    |\n");
+    printf("|                                                                           |\n");
+    printf("|                       LOJA DE ARTIGOS FEMININOS                           |\n");
+    printf("|                                                                           |\n");
+    printf("=============================================================================\n");
+    printf("|                                                                           |\n");
+    printf("|           ------------ SISTEMA DE GERENCIAMENTO ------------              |\n");
+    printf("|                                                                           |\n");
+    printf("|            1. MENU CLIENTES                                               |\n");
+    printf("|            2. MENU VENDAS                                                 |\n");
+    printf("|            3. MENU ESTOQUE                                                |\n");
+    printf("|            4. MENU GERENCIA                                               |\n");
+    printf("|            5. INFORMACOES SOBRE O PROJETO|DESENVOLVEDOR                   |\n");
+    printf("|            0. SAIR                                                        |\n");
+    printf("|                                                                           |\n");
+    printf("|            ESCOLHA A OPCAO DESEJADA: ");
+    fgets(op, sizeof(op), stdin);
+    printf("|                                                                           |\n");
+    printf("=============================================================================\n");
     espacamento();
-    return op;
+    return op[0];
 }
