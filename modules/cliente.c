@@ -51,11 +51,13 @@ char tela_menu_cliente(void) {
     printf("||                                       ||\n");
     printf("||  ESCOLHA A OPCAO DESEJADA: ");
     scanf(" %c", &op);
+    limparBuffer();
     printf("||                                       ||\n");
     printf("===========================================\n");
     printf("\n");
     return op;
 }
+
 
 
 Cliente* tela_cadastro_cliente(void){
@@ -226,7 +228,7 @@ void printCliente(Cliente* cli) {
     printf("|->ANIVERSARIO:--%-20s\n", cli->dataNas);
     printf("|->TELEFONE:-----%-20s\n", cli->telefone);
     printf("|->STATUS:-------%-20d\n", cli->status);
-    printf("|_____________________________________________|\n");
+    printf("|=============================================|\n");
 }
 
 
