@@ -9,12 +9,11 @@
 /// FUNCOES DO MODULO GERENCIA
 void moduloGerencia(void);
 char tela_menu_gerencia(void);
+
 void listarTodosCli(void);
 void listarCliAtivos(void);
 void listarCliInativos(void);
-// void listarTodosFun(void);
-// void listarFunAtivos(void);
-// void listarFunInativos(void);
+
 void listarTodosProd(void);
 void listarProdAtivos(void); 
 void listarProdInativos(void);

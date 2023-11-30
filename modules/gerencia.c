@@ -13,7 +13,6 @@
 #include "util.h"
 #include "cliente.h"
 #include "estoque.h"
-#include "funcionario.h"
 
 void moduloGerencia(void) { 
     char op;
@@ -27,12 +26,6 @@ void moduloGerencia(void) {
                         break;
             case '3':   listarCliInativos();
                         break;
-            // case '4':   listarTodosFun();
-            //             break;
-            // case '5':   listarFunInativos();
-            //             break;
-            // case '6':   listarFunInativos();
-            //             break;
             case '4':   listarTodosProd();
                         break;
             case '5':   listarProdAtivos();
@@ -178,100 +171,6 @@ void listarCliInativos(void) {
     }
     espacamento();
 }
-
-
-
-// ///////////////////////
-// // Modulo Funcionarios
-
-// void listarTodosFun(void) {
-
-//     FILE* fp;
-//     Funcio* fun;
-//     fun = (Funcio*) malloc(sizeof(Funcio));
-//     fp = fopen("funcionarios.dat", "rb");
-//     if (fp == NULL) {
-//         telaErro(); // Exibe uma mensagem de erro
-//         free(fun); // Libera a memória alocada para o Funcio
-//         exit(1); // Encerra o programa
-//     }
-//     system("clear||cls");
-//     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-//     printf("       LISTAGEM DOS FUNCIONARIOS       \n");
-//     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-//     while (fread(fun, sizeof(Funcio), 1, fp) == 1)  {
-//         printFuncionarios(fun);    }
-//     fclose(fp);
-//     free(fun); 
-//     espacamento();
-// }
-
-
-// void listarFunAtivos(void) {
-//     FILE* fp;
-//     Funcio* fun;
-//     fun = (Funcio*) malloc(sizeof(Funcio));
-//     fp = fopen("funcionarios.dat", "rb");
-//     if (fp == NULL) {
-//         telaErro(); // Exibe uma mensagem de erro
-//         free(fun); // Libera a memória alocada para o Funcio
-//         exit(1); // Encerra o programa
-//     }
-
-//     int funcioEncontrado = 0; // Variável para rastrear se algum Funcio foi encontrado
-
-//     system("clear||cls");
-//     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-//     printf("       LISTAGEM DOS FUNCIONARIOS       \n");
-//     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-//     while (fread(fun, sizeof(Funcio), 1, fp)) {
-//         if (fun->status == 1) {
-//             printFuncionarios(fun);            
-//             funcioEncontrado = 1; // Marca que um Funcio foi encontrado
-//         }
-//     }
-//     fclose(fp);
-//     free(fun); 
-//     if (!funcioEncontrado) {
-//         printf("\nNENHUM FUNCIONARIO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum cliente ativo for encontrado
-//     }
-//     espacamento();
-// }
-
-
-// void listarFunInativos(void) {
-
-//     FILE* fp;
-//     Funcio* fun;
-//     fun = (Funcio*) malloc(sizeof(Funcio));
-//     fp = fopen("Funcios.dat", "rb");                                  
-//     if (fp == NULL) {
-//         telaErro(); // Exibe uma mensagem de erro
-//         free(fun); // Libera a memória alocada para fun
-//         exit(1); // Encerra o programa
-//     }
-
-//     int funcioEncontrado = 0; // Variável para rastrear se algum funcionario foi encontrado
-
-//     system("clear||cls");
-//     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-//     printf("       LISTAGEM DOS FUNCIONARIOS       \n");
-//     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-//     while (fread(fun, sizeof(Funcio), 1, fp)) {
-//         if (fun->status == 0) {
-//             printFuncionarios(fun);            
-//             funcioEncontrado = 1; // Marca que um funcionario foi encontrado
-//         }
-//     }
-//     fclose(fp);
-//     free(fun); 
-//     if (!funcioEncontrado) {
-//         printf("\nNENHUM FUNCIONARIO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum funcionario ativo for encontrado
-//     }
-//     espacamento();
-// }
-
-
 
 ///////////////////////
 // Modulo Estoque
