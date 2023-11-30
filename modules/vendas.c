@@ -12,7 +12,6 @@
 #include "vendas.h"
 #include "util.h"
 #include "cliente.h"
-#include "funcionario.h"
 #include "estoque.h"
 #include "gerencia.h"
 
