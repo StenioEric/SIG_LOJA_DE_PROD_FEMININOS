@@ -29,14 +29,10 @@ Vendas* finalizarVenda(void);
 int verificaQuantidade(const char* quantidade, const char* idProduto);
 int verificaIdCompra(const char* idCompra);
 int buscaVenda(char*);
-// void verificaEstoque(const char* idProduto, int quantidade);
 float calcularTotalCompra(const char* IdCompra);
 void listarProdutosPorCompra(const char* idCompra);
-// void gravaVendas(Vendas* venda);
 void listagemVendas(void);
 void printVendas(Vendas* vend);
-void mostrarDetalhesCompra(const char* idCompra);
-// int verStatusVend(const char* idCompra);
 char* gera_idCompra(void);
 int buscaIdCompra(char* idCompra);
 

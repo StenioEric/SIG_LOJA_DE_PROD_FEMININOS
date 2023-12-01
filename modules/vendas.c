@@ -534,35 +534,6 @@ int verificaIdCompra(const char* idCompra) {
 }
 
 
-// void mostrarDetalhesCompra(const char* idCompra) {
-
-//     if (totalCompra > 0) {
-//         listarProdutosPorCompra(idCompra);
-//     } else {
-//         printf("\nCOMPRA COM ID %s NAO ENCONTRADA.\n", idCompra);
-//     }
-// }
-
-
-// int verStatusVend(const char* idCompra) {
-//     FILE* fp = fopen("vendas.dat", "rb");
-// 
-//     if (fp == NULL) {
-//         return 0;
-//     }
-//     Vendas vend;
-//     int encontrou = 0;
-//     while (fread(&vend, sizeof(Vendas), 1, fp)) {
-//         if ((strcmp(vend.idCompra, idCompra) == 0) && (vend.status == 3 || vend.status == 2)) {
-//             encontrou = 1; // ID de compra encontrado com status 3 ou 2
-//             break;
-//         }
-//     }
-//     fclose(fp); 
-//     return encontrou; 
-// }
-
-
 char* gera_idCompra(void)
 {
     FILE *fp;
