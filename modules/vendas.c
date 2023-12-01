@@ -293,17 +293,6 @@ void gravaProduto(Vendas* vend) {
 }
 
 
-// void gravaVendas(Vendas* venda) {
-//     FILE* fp = fopen("idCompra.dat", "ab");
-//     if (fp == NULL || venda == NULL) {
-//         printf("ERRO AO ABRIR O ARQUIVO IDCOMPRA.\n");
-//         return;
-//     }
-//     fwrite(venda, sizeof(Vendas), 1, fp);
-//     fclose(fp);
-// }
-
-
 // Remove um Estoque
 void removeVenda(Vendas* vend) {
     FILE* fp;
@@ -394,7 +383,6 @@ double calcularTotal(const char* idCompra) {
 }
 
 
-
 void listarProdutosPorCompra(const char* idCompra) {
     FILE* fpVendas = fopen("vendas.dat", "rb");
     FILE* fpEstoque = fopen("estoque.dat", "rb");
@@ -415,46 +403,15 @@ void listarProdutosPorCompra(const char* idCompra) {
         if (strcmp(vend.idCompra, idCompra) == 0) {
             while (fread(&est, sizeof(Estoque), 1, fpEstoque)) {
                 if (strcmp(est.id, vend.id) == 0) {
-                    printf("Produto: %s | Quantidade: %s | Valor: %s\n", est.produto, vend.quantidade, est.valor);
-                    break; 
+                    printf("| ID CLIENTE: %s | PRODUTO: %s | QUANTIDADE: %s | VALOR: %s | STATUS: %d\n",
+                       vend.cpf, est.produto, vend.quantidade, est.valor, vend.status);
+                       break;
                 }
             }
             rewind(fpEstoque); // Retorna ao início do arquivo para a próxima busca
         }
     }
 
-    fclose(fpVendas);
-    fclose(fpEstoque);
-}
-
-
-void printVendas(Vendas* venda) {
-    FILE* fpVendas = fopen("vendas.dat", "rb");
-    FILE* fpEstoque = fopen("estoque.dat", "rb");
-
-    if (fpVendas == NULL || fpEstoque == NULL) {
-        printf("ERRO AO ABRIR UM DOS ARQUIVOS.\n");
-        return;
-    }
-
-    Estoque* estoque = (Estoque*)malloc(sizeof(Estoque));
-
-    printf("\nDETALHES DAS VENDAS:\n");
-    printf("=============================================================================\n");
-
-    while (fread(venda, sizeof(Vendas), 1, fpVendas)) {
-        while (fread(estoque, sizeof(Estoque), 1, fpEstoque)) {
-            if (strcmp(estoque->id, venda->id) == 0) {
-                printf("ID da Compra: %s | Produto: %s | Quantidade: %s | Valor: %s | Status: %d\n",
-                       venda->idCompra, estoque->produto, venda->quantidade, estoque->valor, venda->status);
-                break; // Encerra o loop interno após encontrar o produto correspondente
-            }
-        }
-        rewind(fpEstoque); // Retorna ao início do arquivo para a próxima busca
-    }
-
-    free(venda);
-    free(estoque);
     fclose(fpVendas);
     fclose(fpEstoque);
 }

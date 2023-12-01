@@ -13,6 +13,7 @@ struct vendas {
     char id[20];
     char idCompra[20];
     char cpf[15];
+    char totalCompra[10];
     char status;
 };
 
@@ -31,7 +32,6 @@ int verificaIdCompra(const char* idCompra);
 int buscaVenda(char*);
 double calcularTotal(const char* IdCompra);
 void listarProdutosPorCompra(const char* idCompra);
-void printVendas(Vendas* vend);
 char* gera_idCompra(void);
 int buscaIdCompra(char* idCompra);
 
