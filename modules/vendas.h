@@ -20,7 +20,7 @@ void moduloVendas(void);
 char tela_menu_vendas(void);
 Vendas* adicionarProdutos(void);
 Vendas* excluirProduto(void);
-Vendas* tela_ver_carrinho(void);
+void tela_ver_carrinho(void);
 
 void gravaProduto(Vendas*);
 void removeVenda(Vendas*);
@@ -29,7 +29,7 @@ Vendas* finalizarVenda(void);
 int verificaQuantidade(const char* quantidade, const char* idProduto);
 int verificaIdCompra(const char* idCompra);
 int buscaVenda(char*);
-float calcularTotalCompra(const char* IdCompra);
+double calcularTotal(const char* IdCompra);
 void listarProdutosPorCompra(const char* idCompra);
 void listagemVendas(void);
 void printVendas(Vendas* vend);

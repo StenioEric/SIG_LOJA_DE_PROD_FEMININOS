@@ -152,7 +152,7 @@ Vendas* adicionarProdutos(void) {
 }
 
 
-Vendas* tela_ver_carrinho(void) {
+void tela_ver_carrinho(void) {
     char idCompra[15];
     system("clear||cls");
     printf("\n");
@@ -366,35 +366,35 @@ int buscaVenda(char* idCompra) {
 }
 
 
-float calcularTotalCompra(const char* idCompra) {
-    FILE* fpEstoque = fopen("estoque.dat", "rb");
-    FILE* fpVendas = fopen("vendas.dat", "rb");
-    float total = 0.0;
-
-    if (fpEstoque == NULL || fpVendas == NULL) {
-        return total;
-    }
-
-    Estoque est; 
+double calcularTotal(const char* idCompra) {
+    double total = 0.0;
     Vendas vend;
+    Estoque est;
+
+    FILE* fpVendas = fopen("vendas.dat", "rb");
+    FILE* fpEstoque = fopen("estoque.dat", "rb");
+
+    if (fpVendas == NULL || fpEstoque == NULL) {
+        return -1; 
+    }
 
     while (fread(&vend, sizeof(Vendas), 1, fpVendas)) {
         if (strcmp(vend.idCompra, idCompra) == 0) {
-            // Procura o produto no arquivo de estoque
             rewind(fpEstoque);
             while (fread(&est, sizeof(Estoque), 1, fpEstoque)) {
                 if (strcmp(est.id, vend.id) == 0) {
-                    total += atof(est.valor) * atoi(vend.quantidade); // Calcula o valor total do produto
-                    return total;
-                    break;
+                    total += atof(est.valor) * atoi(vend.quantidade);
+                    // Não retorne aqui para calcular o total de todos os produtos
                 }
             }
         }
     }
+
     fclose(fpEstoque);
     fclose(fpVendas);
-    return total;
+    return total; // Retornar o total após percorrer todos os produtos
 }
+
 
 
 void listarProdutosPorCompra(const char* idCompra) {
@@ -405,7 +405,7 @@ void listarProdutosPorCompra(const char* idCompra) {
         return;
     }
 
-    float totalCompra = calcularTotalCompra(idCompra);
+    float totalCompra = calcularTotal(idCompra);
 
     Vendas vend;
     Estoque est;
