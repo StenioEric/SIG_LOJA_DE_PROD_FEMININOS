@@ -31,7 +31,6 @@ int verificaIdCompra(const char* idCompra);
 int buscaVenda(char*);
 double calcularTotal(const char* IdCompra);
 void listarProdutosPorCompra(const char* idCompra);
-void listagemVendas(void);
 void printVendas(Vendas* vend);
 char* gera_idCompra(void);
 int buscaIdCompra(char* idCompra);

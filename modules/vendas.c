@@ -33,8 +33,6 @@ void moduloVendas(void) {
                         break;
             case '5':   finalizarVenda();
                         break;
-            case '6':   listagemVendas();
-                        break;
         }
     } while (op != '0');
 }
@@ -427,35 +425,6 @@ void listarProdutosPorCompra(const char* idCompra) {
 
     fclose(fpVendas);
     fclose(fpEstoque);
-}
-
-
-void listagemVendas(void) {
-    FILE* fp;
-    Vendas* venda;
-    venda = (Vendas*) malloc(sizeof(Vendas));
-    fp = fopen("idCompra.dat", "rb");
-    if (fp == NULL) {
-        telaErro(); // Exibe uma mensagem de erro
-        free(venda); // Libera a memória alocada para o produto
-        exit(1); // Encerra o programa
-    }
-
-    int VendasEncontrado = 0; // Variável para rastrear se algum produto foi encontrado
-
-    system("clear||cls");
-    while (fread(venda, sizeof(Vendas), 1, fp)) {
-        if (venda->status == 3) {
-            printVendas(venda); 
-            VendasEncontrado = 1; // Marca que um produto foi encontrado
-        }
-    }
-    fclose(fp);
-    free(venda); 
-    if (!VendasEncontrado) {
-        printf("\t\t\tNENHUM PRODUTO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum estente ativo for encontrado
-    }
-    espacamento();
 }
 
 
