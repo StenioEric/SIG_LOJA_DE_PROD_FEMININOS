@@ -103,10 +103,10 @@ Vendas* adicionarProdutos(void) {
         limparBuffer();
         cpfDuplicado = verificaCPFDuplicado(vendas->cpf);
 
-        if (!validarCPF(vendas->cpf) || !cpfDuplicado) {
+        if (!validarCPF(vendas->cpf) || cpfDuplicado) {
             cpfValido();
         }
-    } while (!validarCPF(vendas->cpf) || !cpfDuplicado);
+    } while (!validarCPF(vendas->cpf) || cpfDuplicado);
 
     int adicionarMais = 0; 
     do {
@@ -154,8 +154,6 @@ Vendas* adicionarProdutos(void) {
 
 Vendas* tela_ver_carrinho(void) {
     char idCompra[15];
-    Vendas* vend;
-    vend = (Vendas*)malloc(sizeof(Vendas));
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -164,15 +162,24 @@ Vendas* tela_ver_carrinho(void) {
     printf("///                        VER CARRINHO DE PRODUTOS                         ///\n");
     printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
     printf("///                                                                         ///\n");
+    int encontraVenda = 1;
     do {
         printf("/// ID DA COMPRA: ");
         scanf("%[0-9]", idCompra);
         limparBuffer();
+
+        encontraVenda = buscaVenda(idCompra);
+
+    if (encontraVenda) {
+        system("clear||cls");
+        listarProdutosPorCompra(idCompra);
+
+    } else {
+        printf("\n\t\tNENHUMA VENDA FOI ENCONTRADA COM ESSE ID\n\n");
+    }
     } while (!ehDigitos(idCompra));
-    listarProdutosPorCompra(idCompra);
     espacamento();
-    return vend;
-}
+}  
 
 
 Vendas* finalizarVenda(void) {
@@ -188,26 +195,24 @@ Vendas* finalizarVenda(void) {
     int encontraVenda = 1;
     do {
         printf("/// ID DA COMPRA: ");
-        scanf("%14s", idCompra); 
+        scanf("%[0-9]", idCompra);
         limparBuffer();
-    } while (!ehDigitos(idCompra));
 
-    encontraVenda = buscaVenda(idCompra);
+        encontraVenda = buscaVenda(idCompra);
 
     if (encontraVenda) {
         system("clear||cls");
-        mostrarDetalhesCompra(idCompra);
+        listarProdutosPorCompra(idCompra);
         vend->status = 3; 
         gravaProduto(vend);
+
     } else {
         printf("\n\t\tNENHUMA VENDA FOI ENCONTRADA COM ESSE ID\n\n");
     }
-
+    } while (!ehDigitos(idCompra));
     espacamento();
-    return vend;
+    return NULL;
 }
-
-
 
 Vendas* excluirProduto(void) {
     Vendas* vend;
@@ -222,26 +227,18 @@ Vendas* excluirProduto(void) {
             printf("///               ------------ EXCLUIR PRODUTOS ------------                ///\n");
             printf("///                                                                         ///\n");
             int verificaId = 0;
-            int achaId = 0;   
             do {
-                printf("/// ID DA COMPRA:");
+                printf("/// ID DA COMPRA: ");
                 scanf("%s", vend->idCompra);
                 limparBuffer();
                 
                 verificaId = buscaVenda(vend->idCompra);
 
-                if (!verificaId) {
-                    printf("\n");
-                    printf("\t\t\tID NAO EXISTE. TENTE NOVAMENTE.\n");
-                    printf("\n");
-                } else if (ehDigitos(vend->idCompra)) {
-                    achaId = 1;
-                } else {
-                    printf("\n");
-                    printf("\t\t\tID INVALIDO. TENTE NOVAMENTE.\n");
-                    printf("\n");
+                if (!ehDigitos(vend->idCompra) || !verificaId) {
+                    idErro();
                 }
-            } while (!achaId && !verificaId);
+            } while (!ehDigitos(vend->idCompra) || !verificaId);
+
 
             int idDuplicado = 0;
             int idValido = 0;
@@ -408,11 +405,13 @@ void listarProdutosPorCompra(const char* idCompra) {
         return;
     }
 
+    float totalCompra = calcularTotalCompra(idCompra);
+
     Vendas vend;
     Estoque est;
     system("clear||cls");
-    printf("\nPRODUTOS SELECIONADOS NA COMPRA %s:\n", idCompra);
-    printf("==================================================\n");
+    printf("\nVALOR TOTAL DA COMPRA %s: R$ %.2f\n", idCompra, totalCompra);
+    printf("==============================================================\n");
 
     while (fread(&vend, sizeof(Vendas), 1, fpVendas)) {
         if (strcmp(vend.idCompra, idCompra) == 0) {
@@ -535,17 +534,14 @@ int verificaIdCompra(const char* idCompra) {
 }
 
 
-void mostrarDetalhesCompra(const char* idCompra) {
+// void mostrarDetalhesCompra(const char* idCompra) {
 
-    float totalCompra = calcularTotalCompra(idCompra);
-    system("clear||cls");
-    if (totalCompra > 0) {
-        printf("\nVALOR TOTAL DA COMPRA %s: R$ %.2f\n", idCompra, totalCompra);
-        listarProdutosPorCompra(idCompra);
-    } else {
-        printf("\nCOMPRA COM ID %s NAO ENCONTRADA.\n", idCompra);
-    }
-}
+//     if (totalCompra > 0) {
+//         listarProdutosPorCompra(idCompra);
+//     } else {
+//         printf("\nCOMPRA COM ID %s NAO ENCONTRADA.\n", idCompra);
+//     }
+// }
 
 
 // int verStatusVend(const char* idCompra) {
