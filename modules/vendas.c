@@ -4,6 +4,7 @@
 ///             PROJETO SIG DE UMA LOJA PARA ARTIGOS FEMININOS              ///
 ///             Developed by @stenioeric -- since August, 2023              ///
 ///////////////////////////////////////////////////////////////////////////////
+
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -201,6 +202,7 @@ Vendas* finalizarVenda(void) {
     if (encontraVenda) {
         system("clear||cls");
         listarProdutosPorCompra(idCompra);
+        
         vend->status = 3; 
         gravaProduto(vend);
 
@@ -237,30 +239,17 @@ Vendas* excluirProduto(void) {
                 }
             } while (!ehDigitos(vend->idCompra) || !verificaId);
 
-
-            int idDuplicado = 0;
-            int idValido = 0;
             do {
                 printf("/// ID DO PRODUTO: ");
                 scanf("%s", vend->id);
                 limparBuffer();
 
-                idDuplicado = verificaIdDuplicado(vend->id);
+            if (!ehDigitos(vend->id)) {
+                idValido();
+            }
+            } while (!ehDigitos(vend->id));
 
-                if (!idDuplicado) {
-                    printf("\n");
-                    printf("\t\t\tID NAO EXISTE. TENTE NOVAMENTE.\n");
-                    printf("\n");
-                } else if (ehDigitos(vend->id)) {
-                    idValido = 1;
-                } else {
-                    printf("\n");
-                    printf("\t\t\tID INVALIDO. TENTE NOVAMENTE.\n");
-                    printf("\n");
-                }
-            } while (!idValido && !idDuplicado);
-
-            vend->status = 1;
+            vend->status = 0;
             removeVenda(vend);
 
         } while (!ehDigitos(vend->idCompra));
@@ -511,3 +500,6 @@ int buscaIdCompra(char* idCompra) {
     free(vend); // Libera a memória alocada para o produto
     return 0; // Retorna NULL se o produto não foi encontrado
 }
+
+
+
