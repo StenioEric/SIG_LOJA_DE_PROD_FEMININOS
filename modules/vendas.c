@@ -214,7 +214,7 @@ Vendas* finalizarVenda(void) {
     return NULL;
 }
 
-Vendas* excluirProduto(void) {
+Vendas* excluirVenda(void) {
     Vendas* vend;
     vend = (Vendas*)malloc(sizeof(Vendas));
     int excluirMais = 1;
@@ -224,7 +224,7 @@ Vendas* excluirProduto(void) {
             printf("\n");
             printf("///////////////////////////////////////////////////////////////////////////////\n");
             printf("///                                                                         ///\n");
-            printf("///               ------------ EXCLUIR PRODUTOS ------------                ///\n");
+            printf("///                ------------ EXCLUIR VENDAS ------------                 ///\n");
             printf("///                                                                         ///\n");
             int verificaId = 0;
             do {
@@ -239,23 +239,13 @@ Vendas* excluirProduto(void) {
                 }
             } while (!ehDigitos(vend->idCompra) || !verificaId);
 
-            do {
-                printf("/// ID DO PRODUTO: ");
-                scanf("%s", vend->id);
-                limparBuffer();
-
-            if (!ehDigitos(vend->id)) {
-                idValido();
-            }
-            } while (!ehDigitos(vend->id));
-
             vend->status = 0;
-            removeVenda(vend);
+            regravarVenda(vend);
 
         } while (!ehDigitos(vend->idCompra));
 
         printf("\n");
-        printf("EXCLUIR MAIS ALGUM PRODUTO DO CARRINHO? (1 PARA SIM, 0 PARA VOLTAR AO MENU): ");
+        printf("EXCLUIR MAIS ALGUMA VENDA? (1 PARA SIM, 0 PARA VOLTAR AO MENU): ");
         scanf("%d", &excluirMais);
         limparBuffer(); // Limpar o buffer para a próxima entrada
     } while (excluirMais);
@@ -502,4 +492,27 @@ int buscaIdCompra(char* idCompra) {
 }
 
 
+void regravarVenda(Vendas* vend) {
+    FILE* fp;
+    Vendas* vend_Lido;
 
+    vend_Lido = (Vendas*)malloc(sizeof(Vendas));
+    fp = fopen("vendas.dat", "r+b");
+
+    if (fp == NULL) {
+        telaErro();
+    }
+
+    // Busca o vendoque pelo id no arquivo
+    while(!feof(fp)) {
+        fread(vend_Lido, sizeof(Vendas), 1, fp);
+        if (strcmp(vend_Lido->id, vend->id) == 0) {
+            fseek(fp, -1 * sizeof(Vendas), SEEK_CUR);
+            fwrite(vend, sizeof(Vendas), 1, fp);
+            break;
+        }
+    }
+
+    fclose(fp); // Fecha o arquivo
+    free(vend_Lido); // Libera a memória alocada para o produto lido do arquivo
+}
