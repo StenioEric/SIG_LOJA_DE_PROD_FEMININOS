@@ -87,6 +87,7 @@ Cliente* tela_cadastro_cliente(void){
 	} while (!validarCPF(cli -> cpf) || cpfDuplicado );
 
 
+
     int emailDuplicado = 0;
     do {
         printf(" -> EMAIL: ");
@@ -349,7 +350,7 @@ void cadCliente(void) {
 }
 
 
-// Remove um cliente
+// // Remove um cliente
 void removeCliente(Cliente* cli) {
     FILE* fp;
     Cliente* cli_Lido;
@@ -414,7 +415,7 @@ int verificaCPFDuplicado(const char* cpf) {
 
     Cliente cli;
     while (fread(&cli, sizeof(Cliente), 1, fp)) {
-        if (cli.status != 0 && strcmp(cli.cpf, cpf) == 0) {
+        if (strcmp(cli.cpf, cpf) == 0) {
             fclose(fp);
             return 1; // CPF duplicado
         }
@@ -431,7 +432,7 @@ int verificaEmailDuplicado(const char* email) {
 
     Cliente cli;
     while (fread(&cli, sizeof(Cliente), 1, fp)) {
-        if (cli.status != 0 && strcmp(cli.email, email) == 0) {
+        if (strcmp(cli.email, email) == 0) {
             fclose(fp);
             return 1; // E-mail duplicado
         }
