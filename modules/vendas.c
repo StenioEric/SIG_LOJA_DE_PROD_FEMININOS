@@ -519,15 +519,15 @@ int buscaIdCompra(char* idCompra) {
 //     espacamento();
 // }
 
-// void printVendas(Vendas* vend) {
-//     printf("\n");
-//     printf(" ______________________________________________________ \n");
-//     printf("|                  REGISTRO DE VENDAS                  |\n");
-//     printf("|______________________________________________________|\n");
-//     printf("| CPF:-------------%-20s\n", vend->cpf);    
-//     printf("| ID PRODUTO:------%-20s\n", vend->id);
-//     printf("| QUANTIDADE:------%-20s\n", vend->quantidade);
-//     printf("| ID COMPRA:-------%-20s\n", vend->idCompra);
-//     printf("| VALOR TOTAL:-----%-20s\n", vend->valorCompra);
-//     printf("|======================================================|\n");
-// }
+void printVendas(Vendas* vend) {
+    printf("\n");
+    printf(" ______________________________________________________ \n");
+    printf("|                  REGISTRO DE VENDAS                  |\n");
+    printf("|______________________________________________________|\n");
+    printf("| CPF:-------------%-20s\n", vend->cpf);    
+    printf("| ID PRODUTO:------%-20s\n", vend->id);
+    printf("| QUANTIDADE:------%-20s\n", vend->quantidade);
+    printf("| ID COMPRA:-------%-20s\n", vend->idCompra);
+    printf("| VALOR TOTAL:-----%-20s\n", vend->valorCompra);
+    printf("|======================================================|\n");
+}
