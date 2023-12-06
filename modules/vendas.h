@@ -26,7 +26,7 @@ void tela_ver_carrinho(void);
 void gravaProduto(Vendas*);
 void removeVenda(Vendas*);
 Vendas* finalizarVenda(void);
-// void deleteVenda(void);
+void deleteVenda(void);
 void regravarVendas(Vendas*);
 
 int verificaQuantidade(const char* quantidade, const char* idProduto);

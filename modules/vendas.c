@@ -582,30 +582,30 @@ char* lerQuantidade(Vendas* vendas) {
 }
 
 
-// // Exclui um cliente
-// void deleteVenda(void) {
-//     Vendas *vendas;
-//     char *idCompra;
+// Exclui um cliente
+void deleteVenda(void) {
+    Vendas *vendas;
+    char *idCompra;
 
-//     // Obtém o CPF do cliente a ser excluído
-//     idCompra = adicionarProdutos();
-//     vendas = buscaVenda(idCompra);
+    // Obtém o CPF do cliente a ser excluído
+    idCompra = adicionarProdutos();
+    vendas = buscaVenda(idCompra);
 
-//     if (vendas == NULL) {
-//         printf("\n");
-//         printf("\t\t\tVENDAS NAO ENCONTRADO!\n\n");
-//     } else {
-//         vendas->status = 0;
-//         regravarVendad(vendas);
-//         free(vendas);
-//         vendas = NULL; // Define vendas como NULL após remoção
-//         printf("\n");
-//         printf("\t\t\tVENDAS EXCLUIDO COM SUCESSO!\n");
-//     }
+    if (vendas == NULL) {
+        printf("\n");
+        printf("\t\t\tVENDAS NAO ENCONTRADO!\n\n");
+    } else {
+        vendas->status = 0;
+        regravarVendad(vendas);
+        free(vendas);
+        vendas = NULL; // Define vendas como NULL após remoção
+        printf("\n");
+        printf("\t\t\tVENDAS EXCLUIDO COM SUCESSO!\n");
+    }
 
-//     free(idCompra);
-//     espacamento();
-// }
+    free(idCompra);
+    espacamento();
+}
 
 
 // Reescreve os dados de um cliente no arquivo
