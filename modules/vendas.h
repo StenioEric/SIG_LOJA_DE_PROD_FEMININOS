@@ -36,5 +36,7 @@ char* gera_idCompra(void);
 int buscaIdCompra(char* idCompra);
 void listarVendas(void);
 void printVendas(Vendas*);
-
+char* lerCPF(void);
+char* lerQuantidade(Vendas*);
+char* lerIdProd(void);
 #endif // VENDAS_H

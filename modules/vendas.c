@@ -73,11 +73,9 @@ char tela_menu_vendas(void) {
 Vendas* adicionarProdutos(void) {
     Vendas* vendas;
     vendas = (Vendas*)malloc(sizeof(Vendas));
-
-    // Gera um ID de Compra unico
-    char* idCompra = gera_idCompra();
-    snprintf(vendas->idCompra, sizeof(vendas->idCompra), "%s", idCompra);
-    free(idCompra); // Liberar memoria alocada para o ID de Compra
+    char* cpf;
+    char* quant;
+    char* prod;
 
     system("clear||cls");
     printf("\n");
@@ -87,62 +85,32 @@ Vendas* adicionarProdutos(void) {
     printf("\n"); 
 
     // Lógica para capturar o CPF do cliente
-    int cpfDuplicado = 1;
-    do {
-        printf(" -> CPF: ");
-        scanf("%[0-9]", vendas->cpf);
-        limparBuffer();
-        cpfDuplicado = verificaCPFDuplicado(vendas->cpf);
+    cpf = lerCPF();
+    strcpy(vendas->cpf, cpf);
 
-        if (!validarCPF(vendas->cpf) || !cpfDuplicado) {
-            cpfValido();
-        }
-    } while (!validarCPF(vendas->cpf) || !cpfDuplicado);
+    // Gera um ID de Compra unico
+    char* idCompra = gera_idCompra();
+    snprintf(vendas->idCompra, sizeof(vendas->idCompra), "%s", idCompra);
 
     int adicionarMais = 0; 
     do {
-        int idDuplicado = 1;
-        do {
-            printf(" -> ID DO PRODUTO: ");
-            scanf("%[0-9]", vendas->id);
-            limparBuffer();
-            idDuplicado = verificaIdDuplicado(vendas->id);
-
-            if (!ehDigitos(vendas->id) || !idDuplicado) {
-                idValido();
-            }
-        } while (!ehDigitos(vendas->id) || !idDuplicado);
-
-        int quantidade = 0;
-        do {
-            printf(" -> QUANTIDADE DE PRODUTOS: ");
-            scanf("%s", vendas->quantidade);
-            limparBuffer();
-
-            quantidade = verificaQuantidade(vendas->quantidade, vendas->id);
-
-            if (!quantidade) {
-                printf("\n");
-                printf("\t\tNAO EXISTE ESSA QUANTIDADE EM ESTOQUE. TENTE NOVAMENTE.\n");
-                printf("\n");
-            } else {
-                quantidade = 1; 
-            }
-        } while (!quantidade || vendas->quantidade == 0);
-
+        
+        prod = lerIdProd();
+        strcpy(vendas->id, prod);
+        quant = lerQuantidade(vendas);
+        strcpy(vendas->quantidade, quant);
+        
         printf("\n");
         printf("DESEJA ADICIONAR MAIS PRODUTOS? (1 PARA VOLTAR, 0 PARA SIM): ");
         scanf("%d", &adicionarMais);
         limparBuffer(); 
 
-        vendas->status = 2;
-        gravaProduto(vendas);
-    } while (adicionarMais != 1);
+    } while(!adicionarMais);
 
+    vendas->status = 2;
+    gravaProduto(vendas);
     listarProdutosPorCompra(vendas->idCompra);
     espacamento();
-    free(vendas); 
-    return vendas; 
 }
 
 
@@ -199,7 +167,12 @@ Vendas* finalizarVenda(void) {
         
             vend->status = 3; 
             gravaProduto(vend);
-        } 
+
+        } else {
+            printf("\n");
+            printf("\n\t\tNENHUMA VENDA FOI ENCONTRADA COM ESSE ID\n\n");
+            printf("\n");
+        }
 
     } while (!ehDigitos(idCompra));
 
@@ -256,6 +229,8 @@ void excluirVenda(void) {
     fclose(fp); // Fecha o arquivo
     free(vend);
 }
+
+
 
 
 
@@ -533,3 +508,75 @@ void printVendas(Vendas* vend) {
     printf("| VALOR TOTAL:-----%-20s\n", vend->valorCompra);
     printf("|======================================================|\n");
 }
+
+char* lerCPF(void) {
+    char* cpf = (char*)malloc(12 * sizeof(char)); 
+    if (cpf == NULL) {
+        telaErro();
+        return NULL;
+    }
+
+    int cpfDuplicado = 1;
+    do {
+        printf(" -> CPF: ");
+        scanf("%11s", cpf);
+        limparBuffer();
+        cpfDuplicado = verificaCPFDuplicado(cpf);
+
+        if (!validarCPF(cpf) || !cpfDuplicado) {
+            cpfValido();
+        }
+    } while (!validarCPF(cpf) || !cpfDuplicado);
+
+    return cpf;
+}
+
+
+char* lerIdProd(void) {
+    char* id = (char*)malloc(10 * sizeof(char)); 
+    if (id == NULL) {
+        telaErro();
+        return NULL;
+    }
+    int idDuplicado = 1;
+    
+    do {
+        printf(" -> ID DO PRODUTO: ");
+        scanf("%[0-9]", id);
+        limparBuffer();
+        idDuplicado = verificaIdDuplicado(id);
+
+        if (!ehDigitos(id) || !idDuplicado) {
+            idValido();
+        }
+    } while (!ehDigitos(id) || !idDuplicado);
+
+    return id;
+}
+
+
+char* lerQuantidade(Vendas* vendas) {
+    int quantidade = 0;
+    char* qtde;
+    do {
+        printf(" -> QUANTIDADE DE PRODUTOS: ");
+        scanf("%s", vendas->quantidade);
+        limparBuffer();
+
+        quantidade = verificaQuantidade(vendas->quantidade, vendas->id);
+
+        if (!quantidade) {
+            printf("\n");
+            printf("\t\tNAO EXISTE ESSA QUANTIDADE EM ESTOQUE. TENTE NOVAMENTE.\n");
+            printf("\n");
+        } else {
+            quantidade = 1; 
+        }
+    } while (!quantidade || vendas->quantidade == 0);
+
+    qtde = (char *)malloc(strlen(vendas->quantidade) + 1);
+    strcpy(qtde, vendas->quantidade);
+
+    return qtde;
+}
+
