@@ -199,7 +199,7 @@ Vendas* finalizarVenda(void) {
         
             vend->status = 3; 
             gravaProduto(vend);
-        }
+        } 
 
     } while (!ehDigitos(idCompra));
 
@@ -219,42 +219,40 @@ void excluirVenda(void) {
     }
 
     Vendas* vend = (Vendas*)malloc(sizeof(Vendas));
-    int excluirMais = 1;
+    system("clear||cls");
+    printf("\n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("           EXCLUIR CARRINHO            \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("\n"); 
 
-    do {
-        system("clear||cls");
-        printf("\n");
-        printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-        printf("           EXCLUIR CARRINHO            \n");
-        printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-        printf("\n"); 
+    int achouId = 1;
+    printf(" -> ID DA COMPRA: ");
+    scanf("%s", vend->idCompra);
+    limparBuffer();
 
-        int achouId = 0;
-        printf(" -> ID DA COMPRA: ");
-        scanf("%s", vend->idCompra);
-        limparBuffer();
+    achouId = buscaIdCompra(vend->idCompra);
 
-        // Busca a venda pelo ID no arquivo
+    if (achouId) {
         while (fread(vend, sizeof(Vendas), 1, fp) == 1) {
             if (strcmp(vend->idCompra, vend->idCompra) == 0) {
                 achouId = 1;
                 vend->status = 0;
                 fseek(fp, -1 * sizeof(Vendas), SEEK_CUR);
                 fwrite(vend, sizeof(Vendas), 1, fp);
+                printf("\n");
                 printf("\n\t\tVENDA EXCLUIDA COM SUCESSO\n\n");
+                printf("\n");
+                getchar();
                 break;
             }
         }
 
-        if (!achouId) {
-            printf("\n\t\tNENHUMA VENDA FOI ENCONTRADA COM ESSE ID\n\n");
-        }
-
-        printf("EXCLUIR MAIS ALGUMA VENDA? (1 PARA SIM, 0 PARA VOLTAR AO MENU): ");
-        scanf("%d", &excluirMais);
-        limparBuffer();
-    } while (excluirMais);
-
+    }else{
+        printf("\n\t\tNENHUMA VENDA FOI ENCONTRADA COM ESSE ID\n\n");
+        espacamento();
+    }
+        
     fclose(fp); // Fecha o arquivo
     free(vend);
 }
@@ -521,6 +519,7 @@ void listarVendas(void) {
     free(vend); 
     espacamento();
 }
+
 
 void printVendas(Vendas* vend) {
     printf("\n");
