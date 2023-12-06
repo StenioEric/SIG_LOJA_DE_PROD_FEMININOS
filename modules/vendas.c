@@ -34,6 +34,8 @@ void moduloVendas(void) {
                         break;
             case '5':   finalizarVenda();
                         break;
+            // case '6':   listarVendas();
+            //             break;
         }
     } while (op != '0');
 }
@@ -41,42 +43,32 @@ void moduloVendas(void) {
 
 char tela_menu_vendas(void) {
     char op;
-
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///             ------------  MENU VENDAS ------------                      ///\n");
-    printf("///                                                                         ///\n");
-    printf("///            1. VER CATALOGO                                              ///\n");
-    printf("///            2. ADICIONAR PRODUTO AO CARRINHO                             ///\n");
-    printf("///            3. VER CARRINHO                                              ///\n");
-    printf("///            4. EXCLUIR PRODUTO                                           ///\n");
-    printf("///            5. FINALIZAR COMPRA                                          ///\n");
-    printf("///            0. VOLTAR AO MENU PRINCIPAL                                  ///\n");
-    printf("///                                                                         ///\n");
-    printf("///            ESCOLHA A OPCAO DESEJADA: ");
-    scanf("%c", &op);
-    getchar();
-    printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||            MENU DE VENDAS             ||\n");
+    printf("||                                       ||\n");
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||  1. VER CATALOGO                      ||\n");
+    printf("||  2. ADICIONAR PRODUTO AO CARRINHO     ||\n");
+    printf("||  3. VER CARRINHO                      ||\n");
+    printf("||  4. EXCLUIR PRODUTO                   ||\n");
+    printf("||  5. FINALIZAR COMPRA                  ||\n");
+    printf("||  0. VOLTAR AO MENU PRINCIPAL          ||\n");
+    printf("||                                       ||\n");
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||  ESCOLHA A OPCAO DESEJADA: ");
+    scanf(" %c", &op);
+    limparBuffer();
+    printf("||                                       ||\n");
+    printf("===========================================\n");
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
     return op;
 }
+
 
 Vendas* adicionarProdutos(void) {
     Vendas* vendas;
@@ -85,14 +77,14 @@ Vendas* adicionarProdutos(void) {
     // Gera um ID de Compra unico
     char* idCompra = gera_idCompra();
     snprintf(vendas->idCompra, sizeof(vendas->idCompra), "%s", idCompra);
-    // free(idCompra); // Liberar memoria alocada para o ID de Compra
+    free(idCompra); // Liberar memoria alocada para o ID de Compra
 
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///             ------------ ADICIONAR PRODUTOS ------------                ///\n");
-    printf("///                                                                         ///\n");  
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("    ADICIONAR PRODUTOS AO CARRINHO     \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("\n"); 
 
     // Lógica para capturar o CPF do cliente
     int cpfDuplicado = 0;
@@ -155,15 +147,13 @@ void tela_ver_carrinho(void) {
     char idCompra[15];
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
-    printf("///                        VER CARRINHO DE PRODUTOS                         ///\n");
-    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
-    printf("///                                                                         ///\n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("              VER CARRINHO             \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("\n"); 
     int encontraVenda = 1;
     do {
-        printf("/// ID DA COMPRA: ");
+        printf(" ->  ID DA COMPRA: ");
         scanf("%[0-9]", idCompra);
         limparBuffer();
 
@@ -187,16 +177,15 @@ Vendas* finalizarVenda(void) {
     char idCompra[15];
     Vendas* vend = (Vendas*)malloc(sizeof(Vendas)); 
     system("clear||cls");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
-    printf("///                            FINALIZAR COMPRA                             ///\n");
-    printf("///                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                 ///\n");
-    printf("///                                                                         ///\n");
+    printf("\n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("            FINALIZAR COMPRA           \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("\n"); 
     int encontraVenda = 1;
     do {
-        printf("/// ID DA COMPRA: ");
-        scanf("%[0-9]", idCompra);
+        printf(" ->  ID DA COMPRA: ");
+        scanf("%14s", idCompra);
         limparBuffer();
 
         encontraVenda = buscaIdCompra(idCompra);
@@ -204,17 +193,18 @@ Vendas* finalizarVenda(void) {
         if (encontraVenda) {
             system("clear||cls");
             listarProdutosPorCompra(idCompra);
-            
+        
             vend->status = 3; 
             gravaProduto(vend);
+        }
 
-        } else {
-            printf("\n\t\tNENHUMA VENDA FOI ENCONTRADA COM ESSE ID\n\n");
-    }
     } while (!ehDigitos(idCompra));
+
     espacamento();
     return NULL;
 }
+
+
 
 
 void excluirVenda(void) {
@@ -230,13 +220,14 @@ void excluirVenda(void) {
 
     do {
         system("clear||cls");
-        printf("\n///////////////////////////////////////////////////////////////////////////////\n");
-        printf("///                                                                         ///\n");
-        printf("///                ------------ EXCLUIR VENDAS ------------                 ///\n");
-        printf("///                                                                         ///\n");
+        printf("\n");
+        printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+        printf("           EXCLUIR CARRINHO            \n");
+        printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+        printf("\n"); 
 
         int achouId = 0;
-        printf("/// ID DA COMPRA: ");
+        printf(" -> ID DA COMPRA: ");
         scanf("%s", vend->idCompra);
         limparBuffer();
 
@@ -389,7 +380,7 @@ void listarProdutosPorCompra(const char* idCompra) {
     Estoque est;
     system("clear||cls");
     printf("\nVALOR TOTAL DA COMPRA %s: R$ %.2f\n", idCompra, totalCompra);
-    printf("==============================================================\n");
+    printf("======================================================================================\n");
 
     while (fread(&vend, sizeof(Vendas), 1, fpVendas)) {
         if (strcmp(vend.idCompra, idCompra) == 0 && vend.status != 0) {
@@ -505,3 +496,38 @@ int buscaIdCompra(char* idCompra) {
 }
 
 
+// void listarVendas(void) {
+
+//     FILE* fp;
+//     Vendas* vend;
+//     vend = (Vendas*) malloc(sizeof(Vendas));
+//     fp = fopen("Vendas.dat", "rb");
+//     if (fp == NULL) {
+//         telaErro(); // Exibe uma mensagem de erro
+//         free(vend); // Libera a memória alocada para o Vendas
+//         exit(1); // Encerra o programa
+//     }
+//     system("clear||cls");
+//     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+//     printf("         LISTAGEM DOS VendasS         \n");
+//     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");  
+//     while (fread(vend, sizeof(Vendas), 1, fp) == 1)  {
+//         printVendas(vend); 
+//     }
+//     fclose(fp);
+//     free(vend); 
+//     espacamento();
+// }
+
+// void printVendas(Vendas* vend) {
+//     printf("\n");
+//     printf(" ______________________________________________________ \n");
+//     printf("|                  REGISTRO DE VENDAS                  |\n");
+//     printf("|______________________________________________________|\n");
+//     printf("| CPF:-------------%-20s\n", vend->cpf);    
+//     printf("| ID PRODUTO:------%-20s\n", vend->id);
+//     printf("| QUANTIDADE:------%-20s\n", vend->quantidade);
+//     printf("| ID COMPRA:-------%-20s\n", vend->idCompra);
+//     printf("| VALOR TOTAL:-----%-20s\n", vend->valorCompra);
+//     printf("|======================================================|\n");
+// }
