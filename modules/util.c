@@ -5,11 +5,16 @@
 ///             Developed by @stenioeric -- since August, 2023              ///
 ///////////////////////////////////////////////////////////////////////////////
 
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include "cliente.h"
+#include <unistd.h>
+#include <time.h>
+#include "vendas.h"
 #include "util.h"
+#include "cliente.h"
+#include "estoque.h"
+#include "gerencia.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Retorna 1 se o caractere recebido for uma alfabético 
@@ -435,7 +440,7 @@ void cpfValido(void){
   printf("=============================================\n");
   printf("|                                           |\n");
   printf("|    POR FAVOR, INSIRA UM CPF VALIDO E      |\n");
-  printf("|    QUE NAO ESTEJA CADASTRADO.             |\n");
+  printf("|    QUE ESTEJA CADASTRADO.                 |\n");
   printf("|                                           |\n");
   printf("=============================================\n");
   printf("\n");

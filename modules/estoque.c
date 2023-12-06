@@ -223,7 +223,7 @@ void gravaEstoque(Estoque* est) {
 void printEstoque(Estoque* est) {
     printf("\n");
     printf(" _____________________________________________ \n");
-    printf("|               DADOS DO PRODUTO               |\n");
+    printf("|               DADOS DO PRODUTO              |\n");
     printf("|_____________________________________________|\n");
     printf("|->PRODUTO:------%-20s\n", est->produto);
     printf("|->EM ESTOQUE:---%-20s\n", est->quantidade);
