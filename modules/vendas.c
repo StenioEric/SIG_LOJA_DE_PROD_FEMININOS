@@ -496,28 +496,28 @@ int buscaIdCompra(char* idCompra) {
 }
 
 
-// void listarVendas(void) {
+void listarVendas(void) {
 
-//     FILE* fp;
-//     Vendas* vend;
-//     vend = (Vendas*) malloc(sizeof(Vendas));
-//     fp = fopen("Vendas.dat", "rb");
-//     if (fp == NULL) {
-//         telaErro(); // Exibe uma mensagem de erro
-//         free(vend); // Libera a memória alocada para o Vendas
-//         exit(1); // Encerra o programa
-//     }
-//     system("clear||cls");
-//     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-//     printf("         LISTAGEM DOS VendasS         \n");
-//     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");  
-//     while (fread(vend, sizeof(Vendas), 1, fp) == 1)  {
-//         printVendas(vend); 
-//     }
-//     fclose(fp);
-//     free(vend); 
-//     espacamento();
-// }
+    FILE* fp;
+    Vendas* vend;
+    vend = (Vendas*) malloc(sizeof(Vendas));
+    fp = fopen("Vendas.dat", "rb");
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+        free(vend); // Libera a memória alocada para o Vendas
+        exit(1); // Encerra o programa
+    }
+    system("clear||cls");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("         LISTAGEM DOS VendasS         \n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");  
+    while (fread(vend, sizeof(Vendas), 1, fp) == 1)  {
+        printVendas(vend); 
+    }
+    fclose(fp);
+    free(vend); 
+    espacamento();
+}
 
 void printVendas(Vendas* vend) {
     printf("\n");
