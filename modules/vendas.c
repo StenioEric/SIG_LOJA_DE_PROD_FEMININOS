@@ -509,6 +509,7 @@ void printVendas(Vendas* vend) {
     printf("|======================================================|\n");
 }
 
+
 char* lerCPF(void) {
     char* cpf = (char*)malloc(12 * sizeof(char)); 
     if (cpf == NULL) {
@@ -580,3 +581,63 @@ char* lerQuantidade(Vendas* vendas) {
     return qtde;
 }
 
+
+// // Exclui um cliente
+// void deleteVenda(void) {
+//     Vendas *vendas;
+//     char *idCompra;
+
+//     // Obtém o CPF do cliente a ser excluído
+//     idCompra = adicionarProdutos();
+//     vendas = buscaVenda(idCompra);
+
+//     if (vendas == NULL) {
+//         printf("\n");
+//         printf("\t\t\tVENDAS NAO ENCONTRADO!\n\n");
+//     } else {
+//         vendas->status = 0;
+//         regravarVendad(vendas);
+//         free(vendas);
+//         vendas = NULL; // Define vendas como NULL após remoção
+//         printf("\n");
+//         printf("\t\t\tVENDAS EXCLUIDO COM SUCESSO!\n");
+//     }
+
+//     free(idCompra);
+//     espacamento();
+// }
+
+
+// Reescreve os dados de um cliente no arquivo
+void regravarVendas(Vendas* vend) {
+    FILE* fp;
+    Vendas* vend_Lido;
+
+    vend_Lido = (Vendas*)malloc(sizeof(Vendas));
+    fp = fopen("vendas.dat", "r+b");
+
+    if (fp == NULL) {
+        telaErro();
+    }
+
+    int achou = 0;
+
+    // Busca o Vendas pelo CPF no arquivo
+    while(!feof(fp)) {
+        fread(vend_Lido, sizeof(Vendas), 1, fp);
+        if (strcmp(vend_Lido->cpf, vend->cpf) == 0) {
+            achou = 1;
+            fseek(fp, -1 * sizeof(Vendas), SEEK_CUR);
+            fwrite(vend, sizeof(Vendas), 1, fp);
+            break;
+        }
+    }
+
+    fclose(fp); // Fecha o arquivo
+    free(vend_Lido); // Libera a memória alocada para o Vendas lido do arquivo
+
+    if (!achou) {
+        printf("\n");
+        printf("\t\t\tVENDAS NAO ENCONTRADO!\n");
+    }
+}
