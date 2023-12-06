@@ -34,8 +34,8 @@ void moduloVendas(void) {
                         break;
             case '5':   finalizarVenda();
                         break;
-            // case '6':   listarVendas();
-            //             break;
+            case '6':   listarVendas();
+                        break;
         }
     } while (op != '0');
 }
@@ -87,28 +87,31 @@ Vendas* adicionarProdutos(void) {
     printf("\n"); 
 
     // Lógica para capturar o CPF do cliente
-    int cpfDuplicado = 0;
+    int cpfDuplicado = 1;
     do {
         printf(" -> CPF: ");
         scanf("%[0-9]", vendas->cpf);
         limparBuffer();
         cpfDuplicado = verificaCPFDuplicado(vendas->cpf);
 
-        if (!validarCPF(vendas->cpf) || cpfDuplicado) {
+        if (!validarCPF(vendas->cpf) || !cpfDuplicado) {
             cpfValido();
         }
-    } while (!validarCPF(vendas->cpf) || cpfDuplicado);
+    } while (!validarCPF(vendas->cpf) || !cpfDuplicado);
 
     int adicionarMais = 0; 
     do {
+        int idDuplicado = 1;
         do {
             printf(" -> ID DO PRODUTO: ");
             scanf("%[0-9]", vendas->id);
             limparBuffer();
-            if (!ehDigitos(vendas->id)) {
+            idDuplicado = verificaIdDuplicado(vendas->id);
+
+            if (!ehDigitos(vendas->id) || !idDuplicado) {
                 idValido();
             }
-        } while (!ehDigitos(vendas->id));
+        } while (!ehDigitos(vendas->id) || !idDuplicado);
 
         int quantidade = 0;
         do {
