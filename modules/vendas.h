@@ -14,13 +14,13 @@ struct vendas {
     char idCompra[20];
     char cpf[15];
     char valorCompra[15];
-    char status;
+    int status;
 };
 
 void moduloVendas(void);
 char tela_menu_vendas(void);
-Vendas* adicionarProdutos(void);
-void excluirVenda(void);
+void adicionarProdutos(void);
+char* excluirVenda(void);
 void tela_ver_carrinho(void);
 
 void gravaProduto(Vendas*);
