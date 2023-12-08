@@ -214,7 +214,6 @@ char* excluirVenda(void) {
     }
     } while (!ehDigitos(id_Compra));
 
-    espacamento();
     return id_Compra;
 }  
 
@@ -568,8 +567,9 @@ char* lerQuantidade(Vendas* vendas) {
 
 // Exclui um cliente
 void deleteVenda(void) {
-    Vendas *vendas;
+    Vendas *vendas = (Vendas*)malloc(sizeof(Vendas));
     char *idCompra;
+    int achou = 0;
 
     // Obtém o CPF do cliente a ser excluído
     idCompra = excluirVenda();
@@ -583,21 +583,31 @@ void deleteVenda(void) {
 
     if (vendas == NULL) {
         printf("\n");
-        printf("\t\t\tVENDAS NAO ENCONTRADO!\n\n");
-
+        printf(" -> CARRINHO NAO ENCONTRADO!\n\n");
+    
     } else {
         while(fread(vendas, sizeof(Vendas), 1, fp)){
             if (strcmp(vendas->idCompra, idCompra) == 0 && vendas->status == 2) {
+                achou = 1;
                 vendas->status = 0;
                 fseek(fp, -sizeof(Vendas), SEEK_CUR);
                 fwrite(vendas, sizeof(Vendas), 1, fp);
                 rewind(fp);
             }
          }
-        free(vendas);
     }
 
-    free(idCompra);
+    fclose(fp);
+    free(vendas);
+
+    if (!achou) {
+        printf("\n");
+        printf(" -> CARRINHO NAO ENCONTRADO!\n");
+    }else{
+        printf("\n");
+        printf(" -> CARRINHO EXCLUIDO!\n");
+    }
+    
     espacamento();
 }
 
@@ -626,7 +636,6 @@ void regravarVendas(Vendas* vend) {
             break;
         }   
     }
-    
 
     fclose(fp); // Fecha o arquivo
     free(vend_Lido); // Libera a memória alocada para o Vendas lido do arquivo
@@ -636,6 +645,8 @@ void regravarVendas(Vendas* vend) {
         printf("\t\t\tVENDAS NAO ENCONTRADO!\n");
     }
 }
+
+    
 
 // // Busca um produto pelo id
 char* buscaValorProd(char* id) {
