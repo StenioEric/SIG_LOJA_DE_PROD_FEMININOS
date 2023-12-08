@@ -14,6 +14,7 @@ struct vendas {
     char idCompra[20];
     char cpf[15];
     char valorCompra[15];
+    char valorItem [15];
     int status;
 };
 
@@ -41,4 +42,5 @@ void printVendas(Vendas*);
 char* lerCPF(void);
 char* lerQuantidade(Vendas*);
 char* lerIdProd(void);
+char* buscaValorProd(char*);
 #endif // VENDAS_H

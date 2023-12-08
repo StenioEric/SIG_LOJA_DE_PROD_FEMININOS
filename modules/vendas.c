@@ -73,12 +73,11 @@ char tela_menu_vendas(void) {
 void adicionarProdutos(void) {
     Vendas* vendas;
     vendas = (Vendas*)malloc(sizeof(Vendas));
-    Estoque* est = (Estoque*)malloc(sizeof(Estoque));
     char* cpf;
     char* quant;
     char* prod;
-    double valorTotal = 0.0;
     int adicionarMais = 0; 
+    double compra = 0.0;
 
     system("clear||cls");
     printf("\n");
@@ -96,14 +95,18 @@ void adicionarProdutos(void) {
     snprintf(vendas->idCompra, sizeof(vendas->idCompra), "%s", idCompra);
 
     do {
+        
         prod = lerIdProd();
         strcpy(vendas->id, prod);
+
         quant = lerQuantidade(vendas);
         strcpy(vendas->quantidade, quant);
+        
+        char* valorItem = buscaValorProd(prod);
+        double valor = atof(valorItem) * atoi(quant);
 
-        // Calcular o valor total da compra e atribuir à variável valorTotal
-        valorTotal = calcularTotal(idCompra);
-        sprintf(vendas->valorCompra, "%.2f", valorTotal);
+        sprintf(valorItem, "%.2f", valor);
+        strcpy(vendas->valorItem, valorItem);
 
         vendas->status = 2;
         gravaProduto(vendas);
@@ -114,10 +117,10 @@ void adicionarProdutos(void) {
         limparBuffer(); 
 
     } while(!adicionarMais);
+
     // Calcular o valor total da compra e atribuir à variável valorTotal
-    valorTotal = calcularTotal(idCompra);
-    sprintf(vendas->valorCompra, "%.2f", valorTotal);
-    gravaProduto(vendas);
+    // compra = calcularTotal(idCompra);
+    // sprintf(vendas->valorCompra, "%.2f", compra);
     
     // Mostra todos os itens com suas especificacoes que estão na compra 
     listarProdutosPorCompra(vendas->idCompra);
@@ -176,7 +179,7 @@ Vendas* finalizarVenda(void) {
             listarProdutosPorCompra(idCompra);
         
             vend->status = 3; 
-            gravaProduto(vend);
+            regravarVendas(vend);
 
         } else {
             printf("\n");
@@ -468,9 +471,7 @@ int buscaIdCompra(char* idCompra) {
 void listarVendas(void) {
 
     FILE* fp;
-    Vendas* vend;
-    double valorTotal;
-    vend = (Vendas*) malloc(sizeof(Vendas));
+    Vendas* vend = (Vendas*) malloc(sizeof(Vendas));
     fp = fopen("Vendas.dat", "rb");
     if (fp == NULL) {
         telaErro(); // Exibe uma mensagem de erro
@@ -478,16 +479,16 @@ void listarVendas(void) {
         exit(1); // Encerra o programa
     }
     system("clear||cls");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-    printf("         LISTAGEM DOS VendasS         \n");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");  
-    
+    printf("\n");
+    printf(" __________________________________________________________________________________________\n");
+    printf("|                                                                                          |\n");
+    printf("|                                    REGISTRO DE VENDAS                                    |\n");
+    printf("|                                                                                          |\n");
+    printf("|__________________________________________________________________________________________|\n");
     while (fread(vend, sizeof(Vendas), 1, fp) == 1)  {
-        valorTotal = atof(vend->valorCompra); 
-
-        if (valorTotal > 0.0) {
-            printVendas(vend);
-        }
+            if (vend->status == 2) {
+                printVendas(vend);
+            }
     }
     fclose(fp);
     free(vend); 
@@ -495,14 +496,11 @@ void listarVendas(void) {
 }
 
 
-void printVendas(Vendas* vend) {
-    printf("\n");
-    printf(" ___________________________________________________________________________________________________ \n");
-    printf("|                                        REGISTRO DE VENDAS                                         |\n");
-    printf("|---------------------------------------------------------------------------------------------------|\n");
-    printf("| CPF: %s | ID PRODUTO: %s | QUANTIDADE: %s | ID COMPRA: %s | VALOR TOTAL: %s |\n",
-           vend->cpf, vend->id, vend->quantidade, vend->idCompra, vend->valorCompra);
-    printf("|___________________________________________________________________________________________________|\n");
+void printVendas(Vendas* vend){
+    printf("|------------------------------------------------------------------------------------------|\n");
+    printf("| CPF: %s | ID PRODUTO: %s | QUANTIDADE: %s | ID COMPRA: %s | VALOR TOTAL: %s \n",
+           vend->cpf, vend->id, vend->quantidade, vend->idCompra, vend->valorItem);
+    printf("|__________________________________________________________________________________________|\n");
 }
 
 
@@ -606,6 +604,7 @@ void deleteVenda(void) {
 
 // Reescreve os dados de um cliente no arquivo
 void regravarVendas(Vendas* vend) {
+
     FILE* fp;
     Vendas* vend_Lido;
 
@@ -637,4 +636,30 @@ void regravarVendas(Vendas* vend) {
         printf("\n");
         printf("\t\t\tVENDAS NAO ENCONTRADO!\n");
     }
+}
+
+// // Busca um produto pelo id
+char* buscaValorProd(char* id) {
+    // Abre o arquivo "Vendas.dat" para leitura binária
+    FILE* fp;
+    Estoque* est;
+    est = (Estoque*)malloc(sizeof(Estoque));
+    fp = fopen("estoque.dat", "rb");
+
+    // Verifica se houve erro ao abrir o arquivo
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+    }
+
+    // Percorre o arquivo em busca do produto com o id fornecido
+    while (fread(est, sizeof(Vendas), 1, fp)) {
+        if (strcmp(est->id, id) == 0) {
+            return est->valor; // Retorna o Vendas encontrado
+            fclose(fp); // Fecha o arquivo
+        }
+    }
+
+    fclose(fp); // Fecha o arquivo
+    free(est); // Libera a memória alocada para o produto
+    return NULL; // Retorna NULL se o produto não foi encontrado
 }
