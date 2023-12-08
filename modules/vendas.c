@@ -71,14 +71,9 @@ char tela_menu_vendas(void) {
 
 
 void adicionarProdutos(void) {
-    Vendas* vendas;
-    vendas = (Vendas*)malloc(sizeof(Vendas));
-    char* cpf;
-    char* quant;
-    char* prod;
-    int adicionarMais = 0; 
-    double compra = 0.0;
 
+    Vendas* vendas = (Vendas*)malloc(sizeof(Vendas));
+    int adicionarMais = 0; 
     system("clear||cls");
     printf("\n");
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
@@ -87,7 +82,7 @@ void adicionarProdutos(void) {
     printf("\n"); 
 
     // Lógica para capturar o CPF do cliente
-    cpf = lerCPF();
+    char* cpf = lerCPF();
     strcpy(vendas->cpf, cpf);
 
     // Gera um ID de Compra unico
@@ -96,10 +91,10 @@ void adicionarProdutos(void) {
 
     do {
         
-        prod = lerIdProd();
+        char* prod = lerIdProd();
         strcpy(vendas->id, prod);
 
-        quant = lerQuantidade(vendas);
+        char* quant = lerQuantidade(vendas);
         strcpy(vendas->quantidade, quant);
         
         char* valorItem = buscaValorProd(prod);
@@ -148,9 +143,7 @@ void tela_ver_carrinho(void) {
         listarProdutosPorCompra(idCompra);
 
     } else {
-        printf("\n");
-        printf("\n\t\tNENHUMA VENDA FOI ENCONTRADA COM ESSE ID\n\n");
-        printf("\n");
+        idValido();
     }
     } while (!ehDigitos(idCompra));
     espacamento();
@@ -182,9 +175,7 @@ Vendas* finalizarVenda(void) {
             regravarVendas(vend);
 
         } else {
-            printf("\n");
-            printf("\n\t\tNENHUMA VENDA FOI ENCONTRADA COM ESSE ID\n\n");
-            printf("\n");
+            idValido();
         }
 
     } while (!ehDigitos(idCompra));
@@ -217,12 +208,11 @@ char* excluirVenda(void) {
         listarProdutosPorCompra(id_Compra);
 
     } else {
-        printf("\n");
-        printf("\n\t\tNENHUMA VENDA FOI ENCONTRADA COM ESSE ID\n\n");
-        printf("\n");
+        idValido();
+        return NULL;
 
     }
-    } while (!ehDigitos(id_Compra) || !encontraVenda);
+    } while (!ehDigitos(id_Compra));
 
     espacamento();
     return id_Compra;
@@ -504,7 +494,6 @@ void printVendas(Vendas* vend){
 }
 
 
-
 char* lerCPF(void) {
     char* cpf = (char*)malloc(12 * sizeof(char)); 
     if (cpf == NULL) {
@@ -585,16 +574,27 @@ void deleteVenda(void) {
     // Obtém o CPF do cliente a ser excluído
     idCompra = excluirVenda();
     vendas = buscaVenda(idCompra);
+    FILE* fp;
+    fp = fopen("vendas.dat", "r+b");
+
+    if (fp == NULL) {
+        telaErro();
+    }
 
     if (vendas == NULL) {
         printf("\n");
         printf("\t\t\tVENDAS NAO ENCONTRADO!\n\n");
+
     } else {
-        vendas->status = 0;
-        regravarVendas(vendas);
+        while(fread(vendas, sizeof(Vendas), 1, fp)){
+            if (strcmp(vendas->idCompra, idCompra) == 0 && vendas->status == 2) {
+                vendas->status = 0;
+                fseek(fp, -sizeof(Vendas), SEEK_CUR);
+                fwrite(vendas, sizeof(Vendas), 1, fp);
+                rewind(fp);
+            }
+         }
         free(vendas);
-        printf("\n");
-        printf("\t\t\tVENDAS EXCLUIDO COM SUCESSO!\n");
     }
 
     free(idCompra);
@@ -618,8 +618,7 @@ void regravarVendas(Vendas* vend) {
     int achou = 0;
 
     // Busca o Vendas pelo CPF no arquivo
-    while(!feof(fp)) {
-        fread(vend_Lido, sizeof(Vendas), 1, fp);
+    while(fread(vend_Lido, sizeof(Vendas), 1, fp)){
         if (strcmp(vend_Lido->idCompra, vend->idCompra) == 0) {
             achou = 1;
             fseek(fp, -1 * sizeof(Vendas), SEEK_CUR);
