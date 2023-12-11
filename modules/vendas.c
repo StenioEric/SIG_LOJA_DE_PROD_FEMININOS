@@ -112,10 +112,6 @@ void adicionarProdutos(void) {
         limparBuffer(); 
 
     } while(!adicionarMais);
-
-    // Calcular o valor total da compra e atribuir à variável valorTotal
-    // compra = calcularTotal(idCompra);
-    // sprintf(vendas->valorCompra, "%.2f", compra);
     
     // Mostra todos os itens com suas especificacoes que estão na compra 
     listarProdutosPorCompra(vendas->idCompra);
@@ -364,7 +360,6 @@ void listarProdutosPorCompra(const char* idCompra) {
 int verificaQuantidade(const char* quantidade, const char* id) {
     FILE* fp = fopen("estoque.dat", "rb");
     if (fp == NULL) {
-        // Lidar com a falha na abertura do arquivo, se necessário
         return 0;
     }
 
@@ -454,34 +449,6 @@ int buscaIdCompra(char* idCompra) {
     fclose(fp); // Fecha o arquivo
     free(vend); // Libera a memória alocada para o produto
     return 0; // Retorna NULL se o produto não foi encontrado
-}
-
-
-void listarVendas(void) {
-
-    FILE* fp;
-    Vendas* vend = (Vendas*) malloc(sizeof(Vendas));
-    fp = fopen("Vendas.dat", "rb");
-    if (fp == NULL) {
-        telaErro(); // Exibe uma mensagem de erro
-        free(vend); // Libera a memória alocada para o Vendas
-        exit(1); // Encerra o programa
-    }
-    system("clear||cls");
-    printf("\n");
-    printf(" __________________________________________________________________________________________\n");
-    printf("|                                                                                          |\n");
-    printf("|                                    REGISTRO DE VENDAS                                    |\n");
-    printf("|                                                                                          |\n");
-    printf("|__________________________________________________________________________________________|\n");
-    while (fread(vend, sizeof(Vendas), 1, fp) == 1)  {
-            if (vend->status == 2) {
-                printVendas(vend);
-            }
-    }
-    fclose(fp);
-    free(vend); 
-    espacamento();
 }
 
 
