@@ -13,26 +13,59 @@
 #include "util.h"
 #include "cliente.h"
 #include "estoque.h"
+#include "vendas.h"
 
 void moduloGerencia(void) { 
     char op;
 
     do {
+
         op = tela_menu_gerencia();
         switch (op) {
-            case '1':   listarTodosCli();
-                        break;
-            case '2':   listarCliAtivos();
-                        break;
-            case '3':   listarCliInativos();
-                        break;
-            case '4':   listarTodosProd();
-                        break;
-            case '5':   listarProdAtivos();
-                        break;
-            case '6':   listarProdInativos();
-                        break;
+            case '1':   
+                do{
 
+                    op = telaCli();
+                    switch (op) {
+                        case '1':   listarTodosCli();
+                                    break;
+                        case '2':   listarCliAtivos();
+                                    break;
+                        case '3':   listarCliInativos();
+                                    break;
+                    }
+                }while (op != '0');
+                break; 
+
+            case '2':
+                do{
+                    
+                    op = telaEst();
+                    switch (op) {
+                        case '1':   listarTodosProd();
+                                    break;
+                        case '2':   listarProdAtivos();
+                                    break;
+                        case '3':   listarProdInativos();
+                                    break;
+                    }
+                }while (op != '0');
+                break; 
+
+            case '3':
+                do{
+                    
+                    op = telaVend();
+                    switch (op) {
+                        case '1':   listarVendas();
+                                    break;
+                        // case '2':   listar();
+                        //             break;
+                        // case '3':   listar();
+                        //             break;
+                    }
+                }while (op != '0');
+                break; 
 
         }
 
@@ -42,40 +75,30 @@ void moduloGerencia(void) {
 
 char tela_menu_gerencia(void) {
     char op;
-
     system("clear||cls");
     printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///        EEEEEEE lll                                                      ///\n");
-    printf("///        EE      lll   eee   gggggg   aa aa nn nnn    cccc   eee          ///\n");
-    printf("///        EEEEE   lll ee   e gg   gg  aa aaa nnn  nn cc     ee   e         ///\n");
-    printf("///        EE      lll eeeee  ggggggg aa  aaa nn   nn cc     eeeee          ///\n");
-    printf("///        EEEEEEE lll  eeeee      gg  aaa aa nn   nn  ccccc  eeeee         ///\n");
-    printf("///                             ggggg                                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                      LOJA DE ARTIGOS FEMININOS                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///           ------------ MENU GERENCIA ------------                       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///            1. RELATORIO DE TODOS OS CLIENTES                            ///\n");
-    printf("///            2. RELATORIO DE CLIENTES ATIVOS                              ///\n");
-    printf("///            3. RELATORIO DE CLIENTES INATIVOS                            ///\n");
-    printf("///            4. RELATORIO DE TODOS OS PRODUTOS                            ///\n");
-    printf("///            5. RELATORIO DOS PRODUTOS ATIVOS                             ///\n");
-    printf("///            6. RELATORIO DOS PRODUTOS INATIVOS                           ///\n");
-    printf("///            0. SAIR                                                      ///\n");
-    printf("///                                                                         ///\n");
-    printf("///            ESCOLHA A OPCAO DESEJADA: ");
-    scanf("%c", &op);
-    getchar();
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    espacamento();   
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||             MENU GERENCIA             ||\n");
+    printf("||                                       ||\n");
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||  1. RELATORIO DE CLIENTES             ||\n");
+    printf("||  2. RELATORIO DO ESTOQUE              ||\n");
+    printf("||  3. RELATORIO DAS VENDAS              ||\n");
+    printf("||  0. SAIR                              ||\n");
+    printf("||                                       ||\n");
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||  ESCOLHA A OPCAO DESEJADA: ");
+    scanf(" %c", &op);
+    limparBuffer();
+    printf("||                                       ||\n");
+    printf("===========================================\n");
+    printf("\n");
     return op;
 }
+
 
 
 ////////////////////////////////////////////////////////////////
@@ -85,6 +108,33 @@ char tela_menu_gerencia(void) {
 
 ///////////////////////
 // Modulo Clientes
+
+char telaCli(void) {
+    char op;
+    system("clear||cls");
+    printf("\n");
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||             MENU CLIENTES             ||\n");
+    printf("||                                       ||\n");
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||  1. RELATORIO DE TODOS OS CLIENTES    ||\n");
+    printf("||  2. RELATORIO DE CLIENTES ATIVOS      ||\n");
+    printf("||  3. RELATORIO DE CLIENTES INATIVOS    ||\n");
+    printf("||  0. SAIR                              ||\n");
+    printf("||                                       ||\n");
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||  ESCOLHA A OPCAO DESEJADA: ");
+    scanf(" %c", &op);
+    limparBuffer();
+    printf("||                                       ||\n");
+    printf("===========================================\n");
+    printf("\n");
+    return op;
+}
+
 
 void listarTodosCli(void) {
 
@@ -175,6 +225,33 @@ void listarCliInativos(void) {
 ///////////////////////
 // Modulo Estoque
 
+char telaEst(void) {
+    char op;
+    system("clear||cls");
+    printf("\n");
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||              MENU ESTOQUE             ||\n");
+    printf("||                                       ||\n");
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||  1. RELATORIO DE TODOS OS PRODUTOS    ||\n");
+    printf("||  2. RELATORIO DOS PRODUTOS ATIVOS     ||\n");
+    printf("||  3. RELATORIO DOS PRODUTOS INATIVOS   ||\n");
+    printf("||  0. SAIR                              ||\n");
+    printf("||                                       ||\n");
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||  ESCOLHA A OPCAO DESEJADA: ");
+    scanf(" %c", &op);
+    limparBuffer();
+    printf("||                                       ||\n");
+    printf("===========================================\n");
+    printf("\n");
+    return op;
+}
+
+
 void listarTodosProd(void) {
 
     FILE* fp;
@@ -259,5 +336,60 @@ void listarProdInativos(void) {
     if (!EstoqueEncontrado) {
         printf("\nNENHUM PRODUTO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum produto ativo for encontrado
     }
+    espacamento();
+}
+
+///////////////////////
+// Modulo Vendas
+
+char telaVend(void) {
+    char op;
+    system("clear||cls");
+    printf("\n");
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||              MENU VENDAS              ||\n");
+    printf("||                                       ||\n");
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||  1. RELATORIO DE TODAS AS VENDAS      ||\n");
+    printf("||  0. SAIR                              ||\n");
+    printf("||                                       ||\n");
+    printf("===========================================\n");
+    printf("||                                       ||\n");
+    printf("||  ESCOLHA A OPCAO DESEJADA: ");
+    scanf(" %c", &op);
+    limparBuffer();
+    printf("||                                       ||\n");
+    printf("===========================================\n");
+    printf("\n");
+    return op;
+}
+
+
+void listarVendas(void) {
+
+    FILE* fp;
+    Vendas* vend = (Vendas*) malloc(sizeof(Vendas));
+    fp = fopen("Vendas.dat", "rb");
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+        free(vend); // Libera a memória alocada para o Vendas
+        exit(1); // Encerra o programa
+    }
+    system("clear||cls");
+    printf("\n");
+    printf(" __________________________________________________________________________________________\n");
+    printf("|                                                                                          |\n");
+    printf("|                                    REGISTRO DE VENDAS                                    |\n");
+    printf("|                                                                                          |\n");
+    printf("|__________________________________________________________________________________________|\n");
+    while (fread(vend, sizeof(Vendas), 1, fp) == 1)  {
+            if (vend->status == 2) {
+                printVendas(vend);
+            }
+    }
+    fclose(fp);
+    free(vend); 
     espacamento();
 }

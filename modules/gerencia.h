@@ -10,12 +10,15 @@
 void moduloGerencia(void);
 char tela_menu_gerencia(void);
 
+char telaCli(void);
 void listarTodosCli(void);
 void listarCliAtivos(void);
 void listarCliInativos(void);
 
+char telaEst(void);
 void listarTodosProd(void);
 void listarProdAtivos(void); 
 void listarProdInativos(void);
 
-
+char telaVend(void);
+void listarVendas(void);
