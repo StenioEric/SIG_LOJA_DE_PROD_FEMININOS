@@ -34,8 +34,6 @@ void moduloVendas(void) {
                         break;
             case '5':   finalizarVenda();
                         break;
-            case '6':   listarVendas();
-                        break;
         }
     } while (op != '0');
 }
@@ -341,8 +339,12 @@ void listarProdutosPorCompra(const char* idCompra) {
     Estoque* est = (Estoque*)malloc(sizeof(Estoque));
 
     system("clear||cls");
-    printf("\nVALOR TOTAL DA COMPRA %s: R$ %.2f\n", idCompra, totalCompra);
-    printf("======================================================================================\n");
+    printf("=======================================================================================\n");
+    printf("|                                                                                     \n");
+    printf("| --> VALOR TOTAL DA COMPRA R$ %.2f\n", totalCompra);
+    printf("| --> ID DA COMPRA: %s\n", idCompra);
+    printf("|                                                                                     \n");
+    printf("=======================================================================================\n");
 
     while (fread(vend, sizeof(Vendas), 1, fpVendas)) {
         if (strcmp(vend->idCompra, idCompra) == 0 && vend->status != 0) {
@@ -350,7 +352,10 @@ void listarProdutosPorCompra(const char* idCompra) {
                 if (strcmp(est->id, vend->id) == 0) {
                     printf("| ID CLIENTE: %s | PRODUTO: %s | QUANTIDADE: %s | VALOR: %s | STATUS: %d\n",
                        vend->cpf, est->produto, vend->quantidade, est->valor, vend->status);
+                    printf("|______________________________________________________________________________________\n");
+
                        break;
+                    
                 }
             }
             rewind(fpEstoque); // Retorna ao início do arquivo para a próxima busca
@@ -469,6 +474,7 @@ void printVendas(Vendas* vend){
 
 char* lerCPF(void) {
     char* cpf = (char*)malloc(12 * sizeof(char)); 
+    
     if (cpf == NULL) {
         telaErro();
         return NULL;
@@ -588,19 +594,19 @@ void deleteVenda(void) {
 
 // // Reescreve os dados de um cliente no arquivo
 // void regravarVendas(Vendas* vend) {
-
+// 
 //     FILE* fp;
 //     Vendas* vend_Lido;
-
+// 
 //     vend_Lido = (Vendas*)malloc(sizeof(Vendas));
 //     fp = fopen("vendas.dat", "r+b");
-
+// 
 //     if (fp == NULL) {
 //         telaErro();
 //     }
-
+// 
 //     int achou = 0;
-
+// 
 //     // Busca o Vendas pelo CPF no arquivo
 //     while(fread(vend_Lido, sizeof(Vendas), 1, fp)){
 //         if (strcmp(vend_Lido->idCompra, vend->idCompra) == 0) {
@@ -610,10 +616,10 @@ void deleteVenda(void) {
 //             break;
 //         }   
 //     }
-
+// 
 //     fclose(fp); // Fecha o arquivo
 //     free(vend_Lido); // Libera a memória alocada para o Vendas lido do arquivo
-
+// 
 //     if (!achou) {
 //         printf("\n");
 //         printf("\t\t\tVENDAS NAO ENCONTRADO!\n");
