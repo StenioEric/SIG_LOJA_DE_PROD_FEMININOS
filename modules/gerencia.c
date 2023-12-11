@@ -59,8 +59,8 @@ void moduloGerencia(void) {
                     switch (op) {
                         case '1':   listarVendas();
                                     break;
-                        // case '2':   listar();
-                        //             break;
+                        case '2':   listarVendasFinal();
+                                    break;
                         // case '3':   listar();
                         //             break;
                     }
@@ -115,13 +115,13 @@ char telaCli(void) {
     printf("\n");
     printf("===========================================\n");
     printf("||                                       ||\n");
-    printf("||             MENU CLIENTES             ||\n");
+    printf("||               RELATORIOS              ||\n");
     printf("||                                       ||\n");
     printf("===========================================\n");
     printf("||                                       ||\n");
-    printf("||  1. RELATORIO DE TODOS OS CLIENTES    ||\n");
-    printf("||  2. RELATORIO DE CLIENTES ATIVOS      ||\n");
-    printf("||  3. RELATORIO DE CLIENTES INATIVOS    ||\n");
+    printf("||  1. TODOS OS CLIENTES                 ||\n");
+    printf("||  2. CLIENTES ATIVOS                   ||\n");
+    printf("||  3. CLIENTES INATIVOS                 ||\n");
     printf("||  0. SAIR                              ||\n");
     printf("||                                       ||\n");
     printf("===========================================\n");
@@ -148,9 +148,11 @@ void listarTodosCli(void) {
         exit(1); // Encerra o programa
     }
     system("clear||cls");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-    printf("         LISTAGEM DOS CLIENTES         \n");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");  
+    printf("\n");
+    printf(" _____________________________________________________________________________________________________________________________________________________________\n");
+    printf("|                                                                                                                                                             |\n");
+    printf("|                                                                    REGISTRO DE CLIENTES                                                                     |\n");
+    printf("|                                                                                                                                                             |\n");
     while (fread(cli, sizeof(Cliente), 1, fp) == 1)  {
         printCliente(cli); 
     }
@@ -174,9 +176,11 @@ void listarCliAtivos(void) {
     int clienteEncontrado = 0; // Variável para rastrear se algum cliente foi encontrado
 
     system("clear||cls");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-    printf("         LISTAGEM DOS CLIENTES         \n");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("\n");
+    printf(" _____________________________________________________________________________________________________________________________________________________________\n");
+    printf("|                                                                                                                                                             |\n");
+    printf("|                                                                    REGISTRO DE CLIENTES                                                                     |\n");
+    printf("|                                                                                                                                                             |\n");
     while (fread(cli, sizeof(Cliente), 1, fp)) {
         if (cli->status == 1) {
             printCliente(cli); 
@@ -205,9 +209,11 @@ void listarCliInativos(void) {
 
     int clienteEncontrado = 0; // Variável para rastrear se algum cliente foi encontrado
     system("clear||cls");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-    printf("         LISTAGEM DOS CLIENTES         \n");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("\n");
+    printf(" _____________________________________________________________________________________________________________________________________________________________\n");
+    printf("|                                                                                                                                                             |\n");
+    printf("|                                                                    REGISTRO DE CLIENTES                                                                     |\n");
+    printf("|                                                                                                                                                             |\n");
     while (fread(cli, sizeof(Cliente), 1, fp)) {
         if (cli->status == 0) {
             printCliente(cli); 
@@ -231,13 +237,13 @@ char telaEst(void) {
     printf("\n");
     printf("===========================================\n");
     printf("||                                       ||\n");
-    printf("||              MENU ESTOQUE             ||\n");
+    printf("||               RELATORIOS              ||\n");
     printf("||                                       ||\n");
     printf("===========================================\n");
     printf("||                                       ||\n");
-    printf("||  1. RELATORIO DE TODOS OS PRODUTOS    ||\n");
-    printf("||  2. RELATORIO DOS PRODUTOS ATIVOS     ||\n");
-    printf("||  3. RELATORIO DOS PRODUTOS INATIVOS   ||\n");
+    printf("||  1. TODOS OS PRODUTOS                 ||\n");
+    printf("||  2. PRODUTOS ATIVOS                   ||\n");
+    printf("||  3. PRODUTOS INATIVOS                 ||\n");
     printf("||  0. SAIR                              ||\n");
     printf("||                                       ||\n");
     printf("===========================================\n");
@@ -264,9 +270,12 @@ void listarTodosProd(void) {
         exit(1); // Encerra o programa
     }
     system("clear||cls");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-    printf("       LISTAGEM DOS PRODUTOS      \n");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("\n");
+    printf(" ___________________________________________________________________________________________________________________\n");
+    printf("|                                                                                                                   |\n");
+    printf("|                                                REGISTRO DE ESTOQUE                                                |\n");
+    printf("|                                                                                                                   |\n");
+    printf("|___________________________________________________________________________________________________________________|\n");
     while (fread(est, sizeof(Estoque), 1, fp) == 1)  {
         printEstoque(est);    }
     fclose(fp);
@@ -289,9 +298,12 @@ void listarProdAtivos(void) {
     int EstoqueEncontrado = 0; // Variável para rastrear se algum Estoque foi encontrado
 
     system("clear||cls");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-    printf("         LISTAGEM DOS PRODUTOS         \n");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("\n");
+    printf(" ___________________________________________________________________________________________________________________\n");
+    printf("|                                                                                                                   |\n");
+    printf("|                                                REGISTRO DE ESTOQUE                                                |\n");
+    printf("|                                                                                                                   |\n");
+    printf("|___________________________________________________________________________________________________________________|\n");
     while (fread(est, sizeof(Estoque), 1, fp)) {
         if (est->status == 1) {
             printEstoque(est);            
@@ -322,9 +334,12 @@ void listarProdInativos(void) {
     int EstoqueEncontrado = 0; // Variável para rastrear se algum Estoquenario foi encontrado
 
     system("clear||cls");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-    printf("         LISTAGEM DOS PRODUTOS         \n");
-    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("\n");
+    printf(" ___________________________________________________________________________________________________________________\n");
+    printf("|                                                                                                                   |\n");
+    printf("|                                                REGISTRO DE ESTOQUE                                                |\n");
+    printf("|                                                                                                                   |\n");
+    printf("|___________________________________________________________________________________________________________________|\n");
     while (fread(est, sizeof(Estoque), 1, fp)) {
         if (est->status == 0) {
             printEstoque(est);            
@@ -348,11 +363,12 @@ char telaVend(void) {
     printf("\n");
     printf("===========================================\n");
     printf("||                                       ||\n");
-    printf("||              MENU VENDAS              ||\n");
+    printf("||               RELATORIOS              ||\n");
     printf("||                                       ||\n");
     printf("===========================================\n");
     printf("||                                       ||\n");
-    printf("||  1. RELATORIO DE TODAS AS VENDAS      ||\n");
+    printf("||  1. VENDAS EM PROCESSO E FINALIZADAS  ||\n");
+    printf("||  2. VENDAS FINALIZADAS                ||\n");
     printf("||  0. SAIR                              ||\n");
     printf("||                                       ||\n");
     printf("===========================================\n");
@@ -367,7 +383,7 @@ char telaVend(void) {
 }
 
 
-void listarVendas(void) {
+void listarTodasVendas(void) {
 
     FILE* fp;
     Vendas* vend = (Vendas*) malloc(sizeof(Vendas));
@@ -379,13 +395,41 @@ void listarVendas(void) {
     }
     system("clear||cls");
     printf("\n");
-    printf(" __________________________________________________________________________________________\n");
-    printf("|                                                                                          |\n");
-    printf("|                                    REGISTRO DE VENDAS                                    |\n");
-    printf("|                                                                                          |\n");
-    printf("|__________________________________________________________________________________________|\n");
+    printf(" ___________________________________________________________________________________________________________________\n");
+    printf("|                                                                                                                   |\n");
+    printf("|                                                REGISTRO DE VENDAS                                                 |\n");
+    printf("|                                                                                                                   |\n");
+    printf("|___________________________________________________________________________________________________________________|\n");
     while (fread(vend, sizeof(Vendas), 1, fp) == 1)  {
-            if (vend->status == 2) {
+            if (vend->status != 0) {
+                printVendas(vend);
+            }
+    }
+    fclose(fp);
+    free(vend); 
+    espacamento();
+}
+
+
+void listarVendasFinal(void) {
+
+    FILE* fp;
+    Vendas* vend = (Vendas*) malloc(sizeof(Vendas));
+    fp = fopen("Vendas.dat", "rb");
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+        free(vend); // Libera a memória alocada para o Vendas
+        exit(1); // Encerra o programa
+    }
+    system("clear||cls");
+    printf("\n");
+    printf(" ___________________________________________________________________________________________________________________\n");
+    printf("|                                                                                                                   |\n");
+    printf("|                                                REGISTRO DE VENDAS                                                 |\n");
+    printf("|                                                                                                                   |\n");
+    printf("|___________________________________________________________________________________________________________________|\n");
+    while (fread(vend, sizeof(Vendas), 1, fp) == 1)  {
+            if (vend->status == 3) {
                 printVendas(vend);
             }
     }

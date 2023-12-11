@@ -21,4 +21,5 @@ void listarProdAtivos(void);
 void listarProdInativos(void);
 
 char telaVend(void);
-void listarVendas(void);
+void listarTodasVendas(void);
+void listarVendasFinal(void); 
