@@ -21,5 +21,6 @@ void listarProdAtivos(void);
 void listarProdInativos(void);
 
 char telaVend(void);
-void listarTodasVendas(void);
 void listarVendasFinal(void); 
+void listarVendasAbert(void);
+void list_Vend_Cli(void);

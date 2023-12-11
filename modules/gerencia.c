@@ -57,12 +57,13 @@ void moduloGerencia(void) {
                     
                     op = telaVend();
                     switch (op) {
-                        case '1':   listarVendas();
+                        case '1':   listarVendasFinal();
                                     break;
-                        case '2':   listarVendasFinal();
+                        case '2':   listarVendasAbert();
                                     break;
-                        // case '3':   listar();
-                        //             break;
+                        case '3':   list_Vend_Cli();
+                                    break;
+                        
                     }
                 }while (op != '0');
                 break; 
@@ -367,8 +368,10 @@ char telaVend(void) {
     printf("||                                       ||\n");
     printf("===========================================\n");
     printf("||                                       ||\n");
-    printf("||  1. VENDAS EM PROCESSO E FINALIZADAS  ||\n");
-    printf("||  2. VENDAS FINALIZADAS                ||\n");
+    printf("||  1. VENDAS FINALIZADAS                ||\n");
+    printf("||  2. VENDAS EM PROCESSO                ||\n");    
+    printf("||  3. VENDAS POR CLIENTE                ||\n");
+    printf("||  4. VENDAS POR ID DE COMPRA           ||\n");
     printf("||  0. SAIR                              ||\n");
     printf("||                                       ||\n");
     printf("===========================================\n");
@@ -383,32 +386,7 @@ char telaVend(void) {
 }
 
 
-void listarTodasVendas(void) {
 
-    FILE* fp;
-    Vendas* vend = (Vendas*) malloc(sizeof(Vendas));
-    fp = fopen("Vendas.dat", "rb");
-    if (fp == NULL) {
-        telaErro(); // Exibe uma mensagem de erro
-        free(vend); // Libera a memória alocada para o Vendas
-        exit(1); // Encerra o programa
-    }
-    system("clear||cls");
-    printf("\n");
-    printf(" ___________________________________________________________________________________________________________________\n");
-    printf("|                                                                                                                   |\n");
-    printf("|                                                REGISTRO DE VENDAS                                                 |\n");
-    printf("|                                                                                                                   |\n");
-    printf("|___________________________________________________________________________________________________________________|\n");
-    while (fread(vend, sizeof(Vendas), 1, fp) == 1)  {
-            if (vend->status != 0) {
-                printVendas(vend);
-            }
-    }
-    fclose(fp);
-    free(vend); 
-    espacamento();
-}
 
 
 void listarVendasFinal(void) {
@@ -433,6 +411,74 @@ void listarVendasFinal(void) {
                 printVendas(vend);
             }
     }
+    fclose(fp);
+    free(vend); 
+    espacamento();
+}
+
+
+void listarVendasAbert(void) {
+
+    FILE* fp;
+    Vendas* vend = (Vendas*) malloc(sizeof(Vendas));
+    fp = fopen("Vendas.dat", "rb");
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+        free(vend); // Libera a memória alocada para o Vendas
+        exit(1); // Encerra o programa
+    }
+
+    system("clear||cls");
+    printf("\n");
+    printf(" ___________________________________________________________________________________________________________________\n");
+    printf("|                                                                                                                   |\n");
+    printf("|                                                REGISTRO DE VENDAS                                                 |\n");
+    printf("|                                                                                                                   |\n");
+    printf("|___________________________________________________________________________________________________________________|\n");
+    while (fread(vend, sizeof(Vendas), 1, fp) == 1)  {
+            if (vend->status == 2) {
+                printVendas(vend);
+            }
+    }
+    fclose(fp);
+    free(vend); 
+    espacamento();
+}
+
+
+void list_Vend_Cli(void) {
+
+    FILE* fp;
+    Vendas* vend = (Vendas*) malloc(sizeof(Vendas));
+    fp = fopen("Vendas.dat", "rb");
+    if (fp == NULL) {
+        telaErro(); // Exibe uma mensagem de erro
+        free(vend); // Libera a memória alocada para o Vendas
+        exit(1); // Encerra o programa
+    }
+
+    // Lógica para capturar o CPF do cliente
+    char* cpf = lerCPF();
+
+    if (cpf == NULL) {
+        return;
+
+    }else{
+        
+        system("clear||cls");
+        printf("\n");
+        printf(" ___________________________________________________________________________________________________________________\n");
+        printf("|                                                                                                                   |\n");
+        printf("|                                                REGISTRO DE VENDAS                                                 |\n");
+        printf("|                                                                                                                   |\n");
+        printf("|___________________________________________________________________________________________________________________|\n");
+        while (fread(vend, sizeof(Vendas), 1, fp) == 1)  {
+            if (strcmp(vend->cpf, cpf) == 0) {
+                printVendas(vend);
+            }
+        }
+    }
+    
     fclose(fp);
     free(vend); 
     espacamento();
