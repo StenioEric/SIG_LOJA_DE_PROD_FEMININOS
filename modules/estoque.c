@@ -138,13 +138,15 @@ Estoque* tela_pesquisar_estoque(void) {
         exit(1);
     }
     int prodEncontrado = 0;
+    system("clear||cls");
+    printf("|-------------------------------------------------------------------------------------------------------------------|\n");
+    printf("|                                                  DADOS DO PRODUTO                                                 |\n");
     while (fread(est, sizeof(Estoque), 1, fp)) {
         if ((est->status != 0) && (strcmp(est->id,id)==0)) {
             printEstoque(est);
             prodEncontrado = 1;
         }
     }
-
     fclose(fp);
 
     if (!prodEncontrado){
@@ -221,17 +223,12 @@ void gravaEstoque(Estoque* est) {
 
 
 void printEstoque(Estoque* est) {
-    printf("\n");
-    printf(" _____________________________________________ \n");
-    printf("|               DADOS DO PRODUTO              |\n");
-    printf("|_____________________________________________|\n");
-    printf("|->PRODUTO:------%-20s\n", est->produto);
-    printf("|->EM ESTOQUE:---%-20s\n", est->quantidade);
-    printf("|->VALOR:--------%-20s\n", est->valor);
-    printf("|->DESCRICAO:----%-20s\n", est->descricao);
-    printf("|->ID:-----------%-20s\n", est->id);
-    printf("|=============================================|\n");
+    printf("|-------------------------------------------------------------------------------------------------------------------|\n");
+    printf("| PRODUTO: %-10s | EM ESTOQUE: %-10s | VALOR: %-10s | DESCRICAO: %-15s | ID: %-10s    |\n",
+           est->produto, est->quantidade, est->valor, est->descricao, est->id);
+    printf("|___________________________________________________________________________________________________________________|\n");
 }
+
 
 
 // // Verifica se um id 

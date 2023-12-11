@@ -149,6 +149,8 @@ Cliente* tela_pesquisar_cliente(void) {
 
     int cliEncontrado = 0;
     system("clear||cls");
+    printf("|-------------------------------------------------------------------------------------------------------------------------------------------------------------|\n");
+    printf("|                                                                       DADOS DO CLIENTE                                                                      |\n");
     while (fread(cli, sizeof(Cliente), 1, fp)) {
         if ((cli->status == 1) && (strcmp(cli->cpf, cpf) == 0)) {
             printCliente(cli);
@@ -219,19 +221,11 @@ char* tela_excluir_cliente(void) {
 
 // PRINTA DADOS DO CLIENTE
 void printCliente(Cliente* cli) {
-    printf("\n");
-    printf(" _____________________________________________ \n");
-    printf("|              DADOS DO CLIENTE               |\n");
-    printf("|_____________________________________________|\n");
-    printf("|->NOME:---------%-20s\n", cli->nome);
-    printf("|->CPF:----------%-20s\n", cli->cpf);
-    printf("|->EMAIL:--------%-20s\n", cli->email);
-    printf("|->ANIVERSARIO:--%-20s\n", cli->dataNas);
-    printf("|->TELEFONE:-----%-20s\n", cli->telefone);
-    printf("|->STATUS:-------%-20d\n", cli->status);
-    printf("|=============================================|\n");
+    printf("|-------------------------------------------------------------------------------------------------------------------------------------------------------------|\n");
+    printf("| CPF: %-15s | NOME: %-20s | EMAIL: %-25s | ANIVERSARIO: %-12s | TELEFONE: %-15s | STATUS: %d    |\n",
+           cli->cpf, cli->nome, cli->email, cli->dataNas, cli->telefone, cli->status);
+    printf("|_____________________________________________________________________________________________________________________________________________________________|\n");
 }
-
 
 
 // Grava os dados do cliente em um arquivo
