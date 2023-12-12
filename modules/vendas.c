@@ -92,7 +92,7 @@ void adicionarProdutos(void) {
         char* prod = lerIdProd();
         strcpy(vendas->id, prod);
 
-        char* quant = lerQuantidade(vendas);
+        char* quant = lerQuantidade(vendas->id);
         strcpy(vendas->quantidade, quant);
         
         char* valorItem = buscaValorProd(prod);
@@ -519,29 +519,86 @@ char* lerIdProd(void) {
 }
 
 
-char* lerQuantidade(Vendas* vendas) {
+// char* lerQuantidade(Vendas* vendas) {
+//     int quantidade = 0;
+//     char* qtde;
+//     do {
+//         printf(" -> QUANTIDADE DE PRODUTOS: ");
+//         scanf("%s", vendas->quantidade);
+//         limparBuffer();
+//         quantidade = verificaQuantidade(vendas->quantidade, vendas->id);
+//         if (!quantidade) {
+//             printf("\n");
+//             printf("\t\tNAO EXISTE ESSA QUANTIDADE EM ESTOQUE. TENTE NOVAMENTE.\n");
+//             printf("\n");
+//         } else {
+//             quantidade = 1; 
+//         }
+//     } while (!quantidade || vendas->quantidade == 0);
+//     qtde = (char *)malloc(strlen(vendas->quantidade) + 1);
+//     strcpy(qtde, vendas->quantidade);
+//     return qtde;
+// }
+
+char* lerQuantidade(char* id) {
+    Estoque* est = (Estoque*)malloc(sizeof(Estoque));
+    FILE* fp = fopen("estoque.dat", "r+b");
+
+    if (fp == NULL) {
+        telaErro();
+        free(est);
+        return NULL; // Retorna NULL para indicar um erro na abertura do arquivo
+    }
+
     int quantidade = 0;
-    char* qtde;
     do {
         printf(" -> QUANTIDADE DE PRODUTOS: ");
-        scanf("%s", vendas->quantidade);
+        scanf("%d", &quantidade);
         limparBuffer();
+    } while (quantidade <= 0);
 
-        quantidade = verificaQuantidade(vendas->quantidade, vendas->id);
+    while (fread(est, sizeof(Estoque), 1, fp) == 1) {
+        if (strcmp(est->id, id) == 0) {
+            if (quantidade == 0){
+                printf("\n -> QUANTIDADE INVALIDA!");
+                espacamento();
+                fclose(fp);
+                free(est);
+                return NULL; // Retorna NULL para indicar quantidade inválida ou excedendo o estoque
 
-        if (!quantidade) {
-            printf("\n");
-            printf("\t\tNAO EXISTE ESSA QUANTIDADE EM ESTOQUE. TENTE NOVAMENTE.\n");
-            printf("\n");
-        } else {
-            quantidade = 1; 
+            }else if (quantidade > atoi(est->quantidade)) {
+                do {
+                    printf("\n");
+                    printf(" -> QUANTIDADE INVALIDA! EM ESTOQUE: %s\n", est-> quantidade);
+                    printf(" -> DIGITE UMA NOVA QUANTIDADE: ");
+                    scanf("%d", &quantidade);
+                    limparBuffer();
+                    printf("\n");
+                    
+                }while (quantidade > atoi(est->quantidade) && quantidade != 0);
+            }
+
+            // Atualiza a quantidade no estoque
+            int novaQuantidade = atoi(est->quantidade) - quantidade;
+            sprintf(est->quantidade, "%d", novaQuantidade);
+
+            fseek(fp, -sizeof(Estoque), SEEK_CUR);
+            fwrite(est, sizeof(Estoque), 1, fp);
+
+            fclose(fp);
+            free(est);
+
+            // Converte a quantidade digitada para string e retorna
+            char* qtde = (char*)malloc(sizeof(char) * 20); // Ajuste o tamanho conforme necessário
+            sprintf(qtde, "%d", quantidade);
+            return qtde; // Retorna a quantidade digitada pelo usuário como uma string
         }
-    } while (!quantidade || vendas->quantidade == 0);
+    }
 
-    qtde = (char *)malloc(strlen(vendas->quantidade) + 1);
-    strcpy(qtde, vendas->quantidade);
-
-    return qtde;
+    printf("\n -> PRODUTO NAO ENCONTRADO NO ESTOQUE.");
+    fclose(fp);
+    free(est);
+    return NULL; // Retorna NULL para indicar produto não encontrado
 }
 
 
@@ -629,6 +686,7 @@ void deleteVenda(void) {
     
 // // Busca um produto pelo id
 char* buscaValorProd(char* id) {
+
     // Abre o arquivo "Vendas.dat" para leitura binária
     FILE* fp;
     Estoque* est;
@@ -652,3 +710,4 @@ char* buscaValorProd(char* id) {
     free(est); // Libera a memória alocada para o produto
     return NULL; // Retorna NULL se o produto não foi encontrado
 }
+
