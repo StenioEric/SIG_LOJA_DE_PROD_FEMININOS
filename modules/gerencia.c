@@ -50,6 +50,8 @@ void moduloGerencia(void) {
                                     break;
                         case '3':   listarProdInativos();
                                     break;
+                        case '4':   list_alfa_est();
+                                    break;
                     }
                 }while (op != '0');
                 break; 
@@ -65,6 +67,10 @@ void moduloGerencia(void) {
                                     break;
                         case '3':   list_Vend_Cli();
                                     break;
+                        case '4':   list_idCompra();
+                                    break;
+                        // case '5':   list_alfa_vendas();
+                        //             break;
                         
                     }
                 }while (op != '0');
@@ -194,7 +200,7 @@ void listarCliAtivos(void) {
     fclose(fp);
     free(cli); 
     if (!clienteEncontrado) {
-        printf("\nNENHUM CLIENTE ATIVO ENCONTRADO.\n"); // Mensagem se nenhum cliente ativo for encontrado
+        printf(" -> NENHUM CLIENTE ATIVO ENCONTRADO.\n"); // Mensagem se nenhum cliente ativo for encontrado
     }
     espacamento();
 }
@@ -227,14 +233,13 @@ void listarCliInativos(void) {
     fclose(fp);
     free(cli); 
     if (!clienteEncontrado) {
-        printf("\nNENHUM CLIENTE INATIVO ENCONTRADO.\n"); // Mensagem se nenhum cliente ativo for encontrado
+        printf(" -> NENHUM CLIENTE INATIVO ENCONTRADO.\n"); // Mensagem se nenhum cliente ativo for encontrado
     }
     espacamento();
 }
 
 
 void list_alfa_cli(void) {
-    system("clear||cls");
     FILE* file;
     Cliente* novocli;
     Cliente* lista;
@@ -245,12 +250,12 @@ void list_alfa_cli(void) {
         exit(1);
     }
 
-    printf("================================\n");
-    printf("   Relatorio Ordem Alfabetica\n");
-    printf("================================\n");
+    system("clear||cls");
     printf("\n");
-
-    cabecalhoCli();
+    printf(" _____________________________________________________________________________________________________________________________________________________________\n");
+    printf("|                                                                                                                                                             |\n");
+    printf("|                                                                    REGISTRO DE CLIENTES                                                                     |\n");
+    printf("|                                                                                                                                                             |\n");
 
     lista = NULL;
     novocli = (Cliente*)malloc(sizeof(Cliente));
@@ -288,7 +293,7 @@ void list_alfa_cli(void) {
 
     novocli = lista;
     while (novocli != NULL) {
-        exibeCliente(novocli);
+        printCliente(novocli);
         novocli = novocli->prox;
     }
 
@@ -299,9 +304,7 @@ void list_alfa_cli(void) {
         novocli = lista;
     }
 
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    espacamento();
 }
 
 
@@ -321,6 +324,7 @@ char telaEst(void) {
     printf("||  1. TODOS OS PRODUTOS                 ||\n");
     printf("||  2. PRODUTOS ATIVOS                   ||\n");
     printf("||  3. PRODUTOS INATIVOS                 ||\n");
+    printf("||  4. LISTAGEM EM ORDEM ALFABETICA      ||\n");
     printf("||  0. SAIR                              ||\n");
     printf("||                                       ||\n");
     printf("===========================================\n");
@@ -352,7 +356,6 @@ void listarTodosProd(void) {
     printf("|                                                                                                                   |\n");
     printf("|                                                REGISTRO DE ESTOQUE                                                |\n");
     printf("|                                                                                                                   |\n");
-    printf("|___________________________________________________________________________________________________________________|\n");
     while (fread(est, sizeof(Estoque), 1, fp) == 1)  {
         printEstoque(est);    }
     fclose(fp);
@@ -380,7 +383,6 @@ void listarProdAtivos(void) {
     printf("|                                                                                                                   |\n");
     printf("|                                                REGISTRO DE ESTOQUE                                                |\n");
     printf("|                                                                                                                   |\n");
-    printf("|___________________________________________________________________________________________________________________|\n");
     while (fread(est, sizeof(Estoque), 1, fp)) {
         if (est->status == 1) {
             printEstoque(est);            
@@ -390,7 +392,7 @@ void listarProdAtivos(void) {
     fclose(fp);
     free(est); 
     if (!EstoqueEncontrado) {
-        printf("\nNENHUM PRODUTO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum cliente ativo for encontrado
+        printf(" -> NENHUM PRODUTO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum cliente ativo for encontrado
     }
     espacamento();
 }
@@ -416,7 +418,6 @@ void listarProdInativos(void) {
     printf("|                                                                                                                   |\n");
     printf("|                                                REGISTRO DE ESTOQUE                                                |\n");
     printf("|                                                                                                                   |\n");
-    printf("|___________________________________________________________________________________________________________________|\n");
     while (fread(est, sizeof(Estoque), 1, fp)) {
         if (est->status == 0) {
             printEstoque(est);            
@@ -426,10 +427,79 @@ void listarProdInativos(void) {
     fclose(fp);
     free(est); 
     if (!EstoqueEncontrado) {
-        printf("\nNENHUM PRODUTO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum produto ativo for encontrado
+        printf(" -> NENHUM PRODUTO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum produto ativo for encontrado
     }
     espacamento();
 }
+
+
+void list_alfa_est(void) {
+    FILE* file;
+    Estoque* novoEstoque;
+    Estoque* lista;
+
+    file = fopen("estoque.dat", "rb");
+    if (file == NULL) {
+        telaErro();
+        exit(1);
+    }
+
+    system("clear||cls");
+    printf("\n");
+    printf(" ___________________________________________________________________________________________________________________\n");
+    printf("|                                                                                                                   |\n");
+    printf("|                                                REGISTRO DE ESTOQUE                                                |\n");
+    printf("|                                                                                                                   |\n");
+    lista = NULL;
+    novoEstoque = (Estoque*)malloc(sizeof(Estoque));
+
+    if (novoEstoque == NULL) {
+        telaErro();
+        exit(1);
+    }
+
+    while (fread(novoEstoque, sizeof(Estoque), 1, file) == 1) {
+        novoEstoque->prox = NULL;
+
+        if ((lista == NULL) || (strcmp(novoEstoque->produto, lista->produto) < 0)) {
+            novoEstoque->prox = lista;
+            lista = novoEstoque;
+        } else {
+            Estoque* ant = lista;
+            Estoque* atual = lista->prox;
+            while ((atual != NULL) && strcmp(atual->produto, novoEstoque->produto) < 0) {
+                ant = atual;
+                atual = atual->prox;
+            }
+            ant->prox = novoEstoque;
+            novoEstoque->prox = atual;
+        }
+
+        novoEstoque = (Estoque*)malloc(sizeof(Estoque));
+        if (novoEstoque == NULL) {
+            telaErro();
+            exit(1);
+        }
+    }
+
+    fclose(file);
+
+    novoEstoque = lista;
+    while (novoEstoque != NULL) {
+        printEstoque(novoEstoque);
+        novoEstoque = novoEstoque->prox;
+    }
+
+    novoEstoque = lista;
+    while (lista != NULL) {
+        lista = lista->prox;
+        free(novoEstoque);
+        novoEstoque = lista;
+    }
+
+    espacamento();
+}
+
 
 ///////////////////////
 // Modulo Vendas
@@ -462,9 +532,6 @@ char telaVend(void) {
 }
 
 
-
-
-
 void listarVendasFinal(void) {
 
     FILE* fp;
@@ -475,20 +542,24 @@ void listarVendasFinal(void) {
         free(vend); // Libera a memória alocada para o Vendas
         exit(1); // Encerra o programa
     }
+    int achou = 0;
     system("clear||cls");
     printf("\n");
     printf(" ___________________________________________________________________________________________________________________\n");
     printf("|                                                                                                                   |\n");
     printf("|                                                REGISTRO DE VENDAS                                                 |\n");
     printf("|                                                                                                                   |\n");
-    printf("|___________________________________________________________________________________________________________________|\n");
     while (fread(vend, sizeof(Vendas), 1, fp) == 1)  {
             if (vend->status == 3) {
+                achou = 1;
                 printVendas(vend);
             }
     }
     fclose(fp);
     free(vend); 
+    if (!achou) {
+        printf(" -> NENHUMA VENDA ENCONTRADA.\n"); // Mensagem se nenhum produto ativo for encontrado
+    }
     espacamento();
 }
 
@@ -503,21 +574,24 @@ void listarVendasAbert(void) {
         free(vend); // Libera a memória alocada para o Vendas
         exit(1); // Encerra o programa
     }
-
+    int achou = 0;
     system("clear||cls");
     printf("\n");
     printf(" ___________________________________________________________________________________________________________________\n");
     printf("|                                                                                                                   |\n");
     printf("|                                                REGISTRO DE VENDAS                                                 |\n");
     printf("|                                                                                                                   |\n");
-    printf("|___________________________________________________________________________________________________________________|\n");
     while (fread(vend, sizeof(Vendas), 1, fp) == 1)  {
             if (vend->status == 2) {
+                achou = 1;
                 printVendas(vend);
             }
     }
     fclose(fp);
     free(vend); 
+    if (!achou) {
+        printf(" -> NENHUMA VENDA ENCONTRADA.\n"); // Mensagem se nenhum produto ativo for encontrado
+    }
     espacamento();
 }
 
@@ -547,9 +621,8 @@ void list_Vend_Cli(void) {
         printf("|                                                                                                                   |\n");
         printf("|                                                REGISTRO DE VENDAS                                                 |\n");
         printf("|                                                                                                                   |\n");
-        printf("|___________________________________________________________________________________________________________________|\n");
-        while (fread(vend, sizeof(Vendas), 1, fp) == 1)  {
-            if (strcmp(vend->cpf, cpf) == 0) {
+            while (fread(vend, sizeof(Vendas), 1, fp) == 1)  {
+            if (strcmp(vend->cpf, cpf) == 0 && vend->status == 3) {
                 printVendas(vend);
             }
         }
@@ -559,3 +632,93 @@ void list_Vend_Cli(void) {
     free(vend); 
     espacamento();
 }
+
+
+// void list_alfa_vendas(void) {
+//     FILE* file;
+//     Vendas* novaVenda;
+//     Vendas* lista;
+
+//     file = fopen("vendas.dat", "rb");
+//     if (file == NULL) {
+//         telaErro();
+//         exit(1);
+//     }
+
+//     system("clear||cls");
+//     printf("\n");
+//     printf(" ___________________________________________________________________________________________________________________\n");
+//     printf("|                                                                                                                   |\n");
+//     printf("|                                                        REGISTRO DE VENDAS                                          |\n");
+//     printf("|                                                                                                                   |\n");
+
+//     lista = NULL;
+//     novaVenda = (Vendas*)malloc(sizeof(Vendas));
+
+//     if (novaVenda == NULL) {
+//         telaErro();
+//         exit(1);
+//     }
+
+//     while (fread(novaVenda, sizeof(Vendas), 1, file) == 1) {
+//         novaVenda->prox = NULL;
+
+//         if ((lista == NULL) || (strcmp(novaVenda->id, lista->id) < 0)) {
+//             novaVenda->prox = lista;
+//             lista = novaVenda;
+//         } else {
+//             Vendas* ant = lista;
+//             Vendas* atual = lista->prox;
+//             while ((atual != NULL) && strcmp(atual->id, novaVenda->id) < 0) {
+//                 ant = atual;
+//                 atual = atual->prox;
+//             }
+//             ant->prox = novaVenda;
+//             novaVenda->prox = atual;
+//         }
+
+//         novaVenda = (Vendas*)malloc(sizeof(Vendas));
+//         if (novaVenda == NULL) {
+//             telaErro();
+//             exit(1);
+//         }
+//     }
+
+//     fclose(file);
+
+//     novaVenda = lista;
+//     while (novaVenda != NULL) {
+//         printVendas(novaVenda);
+//         novaVenda = novaVenda->prox;
+//     }
+
+//     novaVenda = lista;
+//     while (lista != NULL) {
+//         lista = lista->prox;
+//         free(novaVenda);
+//         novaVenda = lista;
+//     }
+
+//     espacamento();
+// }
+
+
+void list_idCompra(void) {
+    char idCompra[15];
+    int encontraVenda = 1;
+    do {
+        printf(" ->  ID DA COMPRA: ");
+        scanf("%[0-9]", idCompra);
+        limparBuffer();
+
+        encontraVenda = verificaIdCompra(idCompra);
+
+    if (encontraVenda) {
+        listarProdutosPorCompra(idCompra);
+
+    } else {
+        idValido();
+    }
+    } while (!ehDigitos(idCompra));
+    espacamento();
+} 
