@@ -39,8 +39,8 @@ void cadCliente(void);
 void removeCliente(Cliente*);
 void excluirCliente(void);
 void gravaCliente(Cliente*);
-void cabecalhoCli(void);
-void exibeCliente(Cliente*);
+// void cabecalhoCli(void);
+// void exibeCliente(Cliente*);
 
 
 

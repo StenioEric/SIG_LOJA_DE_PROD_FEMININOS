@@ -317,69 +317,6 @@ int ehvirgula(char c) {
   }
 }
 
-
-/// criar função ehdinheiro
-// char* pegaNome(void) {
-//   char nome[TAMANHO_MAXIMO_NOME];
-
-//   do {
-//     printf("/// NOME: ");
-//     scanf("%s", nome);
-//     limparBuffer();
-//   } while(!validarNome(nome));
-
-//   return strdup(nome);
-// }
-
-// char* pegaEmail(void) {
-//   char email[TAMANHO_MAXIMO_NOME];
-
-//   do {
-//     printf("/// EMAIL: ");
-//     scanf("%s", email);
-//     limparBuffer();
-//   } while(!validarEmail(email));
-
-//   return strdup(email);
-// }
-
-// char* pegaCPF(void) {
-//   Cliente *cli;
-//   cli = (Cliente*)malloc(sizeof(Cliente));
-//   char cpf[TAMANHO_MAXIMO_CPF];
-//   do {
-//     printf("/// CPF: ");
-//     scanf("%s",cpf);
-//     limparBuffer();
-//   } while (!validarCPF(cpf));
-
-//   return strdup(cpf);
-// }
-
-// char* pegaTelefone(void) {
-//   char telefone[TAMANHO_MAXIMO_NUMERO];
-//   do {
-//     printf("/// TELEFONE: ");
-//     scanf("%s", telefone);
-//     limparBuffer();
-//   } while (!validarFone(telefone));
-
-//   return strdup(telefone);
-// }
-
-// char* pegaData(void) {
-//   char dataNas[TAMANHO_MAXIMO_DATA];
-
-//   do {
-//     printf("/// DATA DE NASCIMENTO: ");
-//     scanf("%s", dataNas);
-//     limparBuffer();
-//   } while (!validarData(dataNas));
-
-//   return strdup(dataNas);
-// }
-
-
 void cpfErro(void){
   printf("\n");
   printf("=============================================\n");

@@ -435,17 +435,3 @@ int verificaEmailDuplicado(const char* email) {
     fclose(fp); // Fecha o arquivo
     return 0; // E-mail não duplicado
 }
-
-
-// void cabecalhoCli(void) {
-//     printf(" ________________________________________________________ \n");
-//     printf("|                    Dados do Cliente                    |\n");
-//     printf("|________________________________________________________|\n");
-//     printf("|  NOME            |  CPF          |  EMAIL               |\n");
-//     printf("|________________________________________________________|\n");
-// }
-
-// void exibeCliente(Cliente* cliente) {
-//     printf("|  %-15s|  %-13s|  %-20s|\n", cliente->nome, cliente->cpf, cliente->email);
-//     printf("|__________________|_______________|______________________|\n");
-// }

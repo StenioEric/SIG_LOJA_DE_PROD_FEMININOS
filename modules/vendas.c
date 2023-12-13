@@ -654,42 +654,6 @@ void deleteVenda(void) {
     espacamento();
 }
 
-
-
-// // Reescreve os dados de um cliente no arquivo
-// void regravarVendas(Vendas* vend) {
-// 
-//     FILE* fp;
-//     Vendas* vend_Lido;
-// 
-//     vend_Lido = (Vendas*)malloc(sizeof(Vendas));
-//     fp = fopen("vendas.dat", "r+b");
-// 
-//     if (fp == NULL) {
-//         telaErro();
-//     }
-// 
-//     int achou = 0;
-// 
-//     // Busca o Vendas pelo CPF no arquivo
-//     while(fread(vend_Lido, sizeof(Vendas), 1, fp)){
-//         if (strcmp(vend_Lido->idCompra, vend->idCompra) == 0) {
-//             achou = 1;
-//             fseek(fp, -1 * sizeof(Vendas), SEEK_CUR);
-//             fwrite(vend, sizeof(Vendas), 1, fp);
-//             break;
-//         }   
-//     }
-// 
-//     fclose(fp); // Fecha o arquivo
-//     free(vend_Lido); // Libera a memória alocada para o Vendas lido do arquivo
-// 
-//     if (!achou) {
-//         printf("\n");
-//         printf(" -> VENDAS NAO ENCONTRADO!\n");
-//     }
-// }
-
     
 // // Busca um produto pelo id
 char* buscaValorProd(char* id) {

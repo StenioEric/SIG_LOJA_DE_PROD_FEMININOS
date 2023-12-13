@@ -29,7 +29,6 @@ void gravaProduto(Vendas*);
 void removeVenda(Vendas*);
 void finalizarVenda(void);
 void deleteVenda(void);
-// void regravarVendas(Vendas*);
 
 int verificaQuantidade(const char* quantidade, const char* idProduto);
 int verificaIdCompra(const char* idCompra);
