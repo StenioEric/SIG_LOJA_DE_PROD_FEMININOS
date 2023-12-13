@@ -13,6 +13,7 @@ struct estoque {
     char valor[30];
     char descricao[30];
     char id[20];
+    Estoque *prox;
     char status;
 };
 
@@ -36,8 +37,6 @@ void regravarEstoque(Estoque*);
 void removeEstoque(Estoque*);
 void atualizaEstoque(void);
 void excluirEstoque(void);
-
-
 ////////////////////////////////
 /// FUNCOES UTEIS
 int verificaIdDuplicado(const char*);

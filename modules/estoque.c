@@ -151,7 +151,7 @@ Estoque* tela_pesquisar_estoque(void) {
 
     if (!prodEncontrado){
         printf("\n");
-        printf("\t\t\t PRODUTO NAO REGISTRADO\n");
+        printf(" -> PRODUTO NAO REGISTRADO\n");
         espacamento();
         free(est);
         return NULL;
@@ -188,7 +188,7 @@ char* tela_exclui_estoque(void) {
     system("clear||cls");
     printf("\n");
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
-    printf("             EXCLUIR PRODUTO           \n");
+    printf("             EXCLUIR VENDA             \n");
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
     printf("\n");
     do {
@@ -269,7 +269,7 @@ void atualizaEstoque(void) {
     if (est == NULL) {
         system("clear||cls");
         printf("\n");
-        printf("\t\t\tESTOQUE NAO ENCONTRADO!\n\n");
+        printf(" ->ESTOQUE NAO ENCONTRADO!\n\n");
         espacamento();
     } else {
         removeEstoque(est);
@@ -311,7 +311,7 @@ void removeEstoque(Estoque* est) {
 
     if (!achou) {
         printf("\n");
-        printf("\t\t\tESTOQUE NAO ENCONTRADO OU JA REMOVIDO!\n");
+        printf(" ->ESTOQUE NAO ENCONTRADO OU JA REMOVIDO!\n");
     }
 }
 
@@ -327,14 +327,14 @@ void excluirEstoque(void) {
 
     if (est == NULL) {
         printf("\n");
-        printf("\t\t\tESTOQUE NAO ENCONTRADO!\n\n");
+        printf(" ->ESTOQUE NAO ENCONTRADO!\n\n");
     } else {
         est->status = 0;
         regravarEstoque(est);
         free(est);
         est = NULL; // Define est como NULL após remoção
         printf("\n");
-        printf("\t\t\tESTOQUE EXCLUIDO COM SUCESSO!\n");
+        printf(" ->ESTOQUE EXCLUIDO COM SUCESSO!\n");
     }
 
     free(id);
@@ -372,7 +372,7 @@ void regravarEstoque(Estoque* est) {
 
     if (!achou) {
         printf("\n");
-        printf("\t\t\tESTOQUE NAO ENCONTRADO!\n");
+        printf(" ->ESTOQUE NAO ENCONTRADO!\n");
     }
 }
 
@@ -427,9 +427,7 @@ void listagemEstoque(void) {
     fclose(fp);
     free(est); 
     if (!EstoqueEncontrado) {
-        printf("\t\t\tNENHUM PRODUTO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum estente ativo for encontrado
+        printf(" ->NENHUM PRODUTO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum estente ativo for encontrado
     }
     espacamento();
 }
-
-
