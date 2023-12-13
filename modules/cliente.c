@@ -161,7 +161,7 @@ Cliente* tela_pesquisar_cliente(void) {
 
     if (!cliEncontrado) {
         printf("\n");
-        printf("\t\t\t CLIENTE NAO REGISTRADO\n");
+        printf(" -> CLIENTE NAO REGISTRADO\n");
         espacamento();
         free(cli);
         return NULL;
@@ -286,7 +286,7 @@ void atualizaCliente(void) {
     if (cli == NULL) {
         system("clear||cls");
         printf("\n");
-        printf("\t\t\tCLIENTE NAO ENCONTRADO!\n\n");
+        printf(" ->CLIENTE NAO ENCONTRADO!\n\n");
         espacamento();
     } else {
         removeCliente(cli);
@@ -330,7 +330,7 @@ void regravarCliente(Cliente* cli) {
 
     if (!achou) {
         printf("\n");
-        printf("\t\t\tCLIENTE NAO ENCONTRADO!\n");
+        printf(" ->CLIENTE NAO ENCONTRADO!\n");
     }
 }
 
@@ -372,7 +372,7 @@ void removeCliente(Cliente* cli) {
 
     if (!achou) {
         printf("\n");
-        printf("\t\t\tCLIENTE NAO ENCONTRADO OU JA REMOVIDO!\n");
+        printf(" ->CLIENTE NAO ENCONTRADO OU JA REMOVIDO!\n");
     }
 }
 
@@ -388,14 +388,14 @@ void excluirCliente(void) {
 
     if (cli == NULL) {
         printf("\n");
-        printf("\t\t\tCLIENTE NAO ENCONTRADO!\n\n");
+        printf(" ->CLIENTE NAO ENCONTRADO!\n\n");
     } else {
         cli->status = 0;
         regravarCliente(cli);
         free(cli);
         cli = NULL; // Define cli como NULL após remoção
         printf("\n");
-        printf("\t\t\tCLIENTE EXCLUIDO COM SUCESSO!\n");
+        printf(" ->CLIENTE EXCLUIDO COM SUCESSO!\n");
     }
 
     free(cpf);
@@ -437,15 +437,15 @@ int verificaEmailDuplicado(const char* email) {
 }
 
 
-void cabecalhoCli(void) {
-    printf(" ________________________________________________________ \n");
-    printf("|                    Dados do Cliente                    |\n");
-    printf("|________________________________________________________|\n");
-    printf("|  NOME            |  CPF          |  EMAIL               |\n");
-    printf("|________________________________________________________|\n");
-}
+// void cabecalhoCli(void) {
+//     printf(" ________________________________________________________ \n");
+//     printf("|                    Dados do Cliente                    |\n");
+//     printf("|________________________________________________________|\n");
+//     printf("|  NOME            |  CPF          |  EMAIL               |\n");
+//     printf("|________________________________________________________|\n");
+// }
 
-void exibeCliente(Cliente* cliente) {
-    printf("|  %-15s|  %-13s|  %-20s|\n", cliente->nome, cliente->cpf, cliente->email);
-    printf("|__________________|_______________|______________________|\n");
-}
+// void exibeCliente(Cliente* cliente) {
+//     printf("|  %-15s|  %-13s|  %-20s|\n", cliente->nome, cliente->cpf, cliente->email);
+//     printf("|__________________|_______________|______________________|\n");
+// }

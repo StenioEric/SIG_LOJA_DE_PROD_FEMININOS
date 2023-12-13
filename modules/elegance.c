@@ -46,7 +46,7 @@ int main(void) {
     return 0;
 }
 
-/////
+///////////
 // Funcoes
 
 char tela_menu_principal(void) {

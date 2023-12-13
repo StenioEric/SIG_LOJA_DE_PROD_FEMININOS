@@ -284,7 +284,7 @@ int ehDigito(char c) {
 
 void telaErro(void) {
   system("clear||cls");
-  printf("\t\t\tOps! Erro na abertura do arquivo!\n");
+  printf(" -> OPS! ERRO NA ABERTURA DO ARQUIVO\n");
   printf("\n");
   exit(1);
 }
@@ -292,8 +292,9 @@ void telaErro(void) {
 
 void espacamento(void) {
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    printf("\n");
+    printf(" -> TECLE ENTER PARA CONTINUAR...\n");
+    limparBuffer();
 }
 
 
