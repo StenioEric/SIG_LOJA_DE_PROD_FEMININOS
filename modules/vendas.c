@@ -146,6 +146,7 @@ void tela_ver_carrinho(void) {
 
 void finalizarVenda(void) {
     char idCompra[15];
+    int achou = 0;
     Vendas* vend = (Vendas*)malloc(sizeof(Vendas)); 
     FILE* fp = fopen("vendas.dat", "r+b");
     
@@ -170,6 +171,7 @@ void finalizarVenda(void) {
             while(fread(vend, sizeof(Vendas), 1, fp)){
                 if (strcmp(vend->idCompra, idCompra) == 0 && vend->status == 2) {
                     vend->status = 3;
+
                     fseek(fp, -sizeof(Vendas), SEEK_CUR);
                     fwrite(vend, sizeof(Vendas), 1, fp);
                     rewind(fp);
@@ -182,6 +184,10 @@ void finalizarVenda(void) {
 
     } while (!ehDigitos(idCompra));
 
+    if (achou) {
+        printf("\n");
+        printf(" -> COMPRA BEM SUCEDIDA!\n");
+    }
     espacamento();
     free(vend);
 }
@@ -216,6 +222,7 @@ char* excluirVenda(void) {
     } while (!ehDigitos(id_Compra));
 
     return id_Compra;
+
 }  
 
 
@@ -263,7 +270,7 @@ void removeVenda(Vendas* vend) {
 
     if (!achou) {
         printf("\n");
-        printf("\t\t\tVENDAS NAO ENCONTRADO OU JA REMOVIDO!\n");
+        printf(" -> VENDAS NAO ENCONTRADO OU JA REMOVIDO!\n");
     }
 }
 
@@ -471,7 +478,6 @@ void printVendas(Vendas* vend){
     printf("|___________________________________________________________________________________________________________________|\n");
 }
 
-
 char* lerCPF(void) {
     char* cpf = (char*)malloc(12 * sizeof(char)); 
     
@@ -649,6 +655,7 @@ void deleteVenda(void) {
 }
 
 
+
 // // Reescreve os dados de um cliente no arquivo
 // void regravarVendas(Vendas* vend) {
 // 
@@ -679,7 +686,7 @@ void deleteVenda(void) {
 // 
 //     if (!achou) {
 //         printf("\n");
-//         printf("\t\t\tVENDAS NAO ENCONTRADO!\n");
+//         printf(" -> VENDAS NAO ENCONTRADO!\n");
 //     }
 // }
 

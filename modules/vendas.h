@@ -15,6 +15,7 @@ struct vendas {
     char cpf[15];
     char valorCompra[15];
     char valorItem [15];
+    Vendas *prox;
     int status;
 };
 
