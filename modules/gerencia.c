@@ -33,6 +33,8 @@ void moduloGerencia(void) {
                                     break;
                         case '3':   listarCliInativos();
                                     break;
+                        case '4':   list_alfa_cli();
+                                    break;
                     }
                 }while (op != '0');
                 break; 
@@ -123,6 +125,7 @@ char telaCli(void) {
     printf("||  1. TODOS OS CLIENTES                 ||\n");
     printf("||  2. CLIENTES ATIVOS                   ||\n");
     printf("||  3. CLIENTES INATIVOS                 ||\n");
+    printf("||  4. LISTAGEM EM ORDEM ALFABETICA      ||\n");
     printf("||  0. SAIR                              ||\n");
     printf("||                                       ||\n");
     printf("===========================================\n");
@@ -228,6 +231,79 @@ void listarCliInativos(void) {
     }
     espacamento();
 }
+
+
+void list_alfa_cli(void) {
+    system("clear||cls");
+    FILE* file;
+    Cliente* novocli;
+    Cliente* lista;
+
+    file = fopen("clientes.dat", "rb");
+    if (file == NULL) {
+        telaErro();
+        exit(1);
+    }
+
+    printf("================================\n");
+    printf("   Relatorio Ordem Alfabetica\n");
+    printf("================================\n");
+    printf("\n");
+
+    cabecalhoCli();
+
+    lista = NULL;
+    novocli = (Cliente*)malloc(sizeof(Cliente));
+
+    if (novocli == NULL) {
+        telaErro();
+        exit(1);
+    }
+
+    while (fread(novocli, sizeof(Cliente), 1, file) == 1) {
+        novocli->prox = NULL;
+
+        if ((lista == NULL) || (strcmp(novocli->nome, lista->nome) < 0)) {
+            novocli->prox = lista;
+            lista = novocli;
+        } else {
+            Cliente* ant = lista;
+            Cliente* atual = lista->prox;
+            while ((atual != NULL) && strcmp(atual->nome, novocli->nome) < 0) {
+                ant = atual;
+                atual = atual->prox;
+            }
+            ant->prox = novocli;
+            novocli->prox = atual;
+        }
+
+        novocli = (Cliente*)malloc(sizeof(Cliente));
+        if (novocli == NULL) {
+            telaErro();
+            exit(1);
+        }
+    }
+
+    fclose(file);
+
+    novocli = lista;
+    while (novocli != NULL) {
+        exibeCliente(novocli);
+        novocli = novocli->prox;
+    }
+
+    novocli = lista;
+    while (lista != NULL) {
+        lista = lista->prox;
+        free(novocli);
+        novocli = lista;
+    }
+
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
 
 ///////////////////////
 // Modulo Estoque
