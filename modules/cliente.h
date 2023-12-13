@@ -15,6 +15,7 @@ struct cliente {
     char email[50];
     char dataNas[15];
     char telefone[15];
+    Cliente *prox;
     int status;
 };
 
@@ -38,6 +39,9 @@ void cadCliente(void);
 void removeCliente(Cliente*);
 void excluirCliente(void);
 void gravaCliente(Cliente*);
+void cabecalhoCli(void);
+void exibeCliente(Cliente*);
+
 
 
 ////////////////////////////////
