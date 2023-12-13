@@ -14,6 +14,7 @@ char telaCli(void);
 void listarTodosCli(void);
 void listarCliAtivos(void);
 void listarCliInativos(void);
+void list_alfa_cli(void);
 
 char telaEst(void);
 void listarTodosProd(void);
