@@ -38,3 +38,21 @@ gcc -o elegance modules/*.c
 elegance.exe
 ```
 
+## Dados Cadastrados 
+
+### Clientes 
+
+-> Luiz Fernando
+
+-> CPF: 12345678909
+
+-> Nelson
+
+-> CPF: 53956069048
+
+### Produtos
+
+-> Vestido
+
+-> ID: 1
+
