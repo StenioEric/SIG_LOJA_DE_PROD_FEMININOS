@@ -1,11 +1,14 @@
-## Elegance <h6> 
+## Elegance 
 
 -> Sistema de gestão para uma loja de produtos femininos.
+
 -> Curso: Bacharelado em Sistemas da Informação/ UFRN Campus - Ceres
+
 -> Disciplina: Programação 2° Período
+
 -> Desenvolvedor: Stênio Éric
 
-## Compilação para Linux <h6> 
+## Compilação para Linux  
 
 -> 1° Abra o terminal do linux e clone o projeto
 ``` 
@@ -20,7 +23,7 @@ gcc -o elegance modules/*.c
 ./elegance
 ```
 
-## Compilação para Windows <h6> 
+## Compilação para Windows 
 
 -> 1° Abra o prompt de comando e clone o projeto
 ``` 
@@ -34,3 +37,4 @@ gcc -o elegance modules/*.c
 ``` 
 elegance.exe
 ```
+
