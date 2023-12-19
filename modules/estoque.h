@@ -37,6 +37,7 @@ void regravarEstoque(Estoque*);
 void removeEstoque(Estoque*);
 void atualizaEstoque(void);
 void excluirEstoque(void);
+char* gera_idProd(void);
 ////////////////////////////////
 /// FUNCOES UTEIS
 int verificaIdDuplicado(const char*);

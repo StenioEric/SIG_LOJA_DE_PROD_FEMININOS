@@ -92,16 +92,10 @@ Estoque* tela_cadastro_estoque(void) {
         limparBuffer();
     } while(!validarNome(est->descricao));
 
-    int idDuplicado = 0;
-    do {
-        printf(" -> ID DO PRODUTO: ");
-        scanf("%s", est->id);
-        limparBuffer();
-        idDuplicado = verificaIdDuplicado(est->id);
-        if (idDuplicado) {
-            idErro();
-        }
-    } while(!ehDigitos(est->id) || idDuplicado);
+    // Gera um ID unico
+    char* id = gera_idProd();
+    snprintf(est->id, sizeof(est->id), "%s", id);
+    printf(" -> ID: %s",est->id);
 
     est -> status = 1;
     espacamento();
@@ -430,4 +424,31 @@ void listagemEstoque(void) {
         printf(" ->NENHUM PRODUTO ATIVO ENCONTRADO.\n"); // Mensagem se nenhum estente ativo for encontrado
     }
     espacamento();
+}
+
+
+char* gera_idProd(void)
+{
+    FILE *fp;
+    fp = fopen("estoque.dat", "rb");
+    if (fp == NULL) {
+        return "1"; // Caso o arquivo não exista, retorna 1 como o primeiro ID
+    }
+
+    fseek(fp, 0, SEEK_END);
+    if (ftell(fp) == 0) {
+        fclose(fp);
+        return "1"; // Se o arquivo estiver vazio, retorna 1 como o primeiro ID
+    }
+    else {
+        fseek(fp, -((long)sizeof(Estoque)), SEEK_END);
+        Estoque est;
+        fread(&est, sizeof(Estoque), 1, fp);
+        int id_int = atoi(est.id);
+        int id_soma = id_int + 1;
+        char *id = (char *)malloc(sizeof(char) * 20); // Aloca memória para o ID
+        snprintf(id, 20, "%d", id_soma); // Converte o novo valor do ID para uma string
+        fclose(fp);
+        return id;
+    }
 }
