@@ -478,6 +478,7 @@ void printVendas(Vendas* vend){
     printf("|___________________________________________________________________________________________________________________|\n");
 }
 
+
 char* lerCPF(void) {
     char* cpf = (char*)malloc(12 * sizeof(char)); 
     
@@ -523,28 +524,6 @@ char* lerIdProd(void) {
 
     return id;
 }
-
-
-// char* lerQuantidade(Vendas* vendas) {
-//     int quantidade = 0;
-//     char* qtde;
-//     do {
-//         printf(" -> QUANTIDADE DE PRODUTOS: ");
-//         scanf("%s", vendas->quantidade);
-//         limparBuffer();
-//         quantidade = verificaQuantidade(vendas->quantidade, vendas->id);
-//         if (!quantidade) {
-//             printf("\n");
-//             printf("\t\tNAO EXISTE ESSA QUANTIDADE EM ESTOQUE. TENTE NOVAMENTE.\n");
-//             printf("\n");
-//         } else {
-//             quantidade = 1; 
-//         }
-//     } while (!quantidade || vendas->quantidade == 0);
-//     qtde = (char *)malloc(strlen(vendas->quantidade) + 1);
-//     strcpy(qtde, vendas->quantidade);
-//     return qtde;
-// }
 
 char* lerQuantidade(char* id) {
     Estoque* est = (Estoque*)malloc(sizeof(Estoque));
